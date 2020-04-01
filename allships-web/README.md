@@ -1,4 +1,4 @@
-# TypeScript & Styled Components Next.js example
+# ALLSHIPS
 
 This is a really simple project that show the usage of Next.js with TypeScript and Styled Components.
 

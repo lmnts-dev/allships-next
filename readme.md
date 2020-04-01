@@ -1,3 +1,3 @@
-# LMNTS-6
+# ALLSHIPS
 By Peter Laxalt
 www.laxaltandmciver.co
