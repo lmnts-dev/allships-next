@@ -1,0 +1,35 @@
+{
+  "root": true,
+  "project": {
+    "name": "Laxalt & McIver"
+  },
+  "api": {
+    "projectId": "w2xt1cyc",
+    "dataset": "production"
+  },
+  "plugins": [
+    "@sanity/base",
+    "@sanity/components",
+    "@sanity/default-layout",
+    "@sanity/default-login",
+    "@sanity/desk-tool",
+    "@sanity/dashboard",
+    "@sanity/vision",
+    "content-model-graph",
+    "media"
+  ],
+  "parts": [
+    {
+      "name": "part:@sanity/base/schema",
+      "path": "./schemas/schema.js"
+    },
+    {
+      "name": "part:@sanity/desk-tool/structure",
+      "path": "./structure/deskStructure.js"
+    },
+    {
+      "implements": "part:@sanity/base/theme/variables/override-style",
+      "path": "./styles/main.css"
+    }
+  ]
+}

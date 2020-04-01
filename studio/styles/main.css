@@ -1,0 +1,66 @@
+/* :root {
+  --body-bg: #000000;
+  --text-color: #fff;
+  --brand-primary: #ff8e6f;
+  --brand-primary--inverted: #ffffff;
+  --brand-secondary: #ff7650;
+  --brand-secondary--inverted: #ff7650;
+  --component-bg: #1b161c;
+  --component-border-color: rgb(57, 57, 57);
+  --component-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  --state-danger-color: #f8495f;
+}
+
+pre {
+  background-color: black !important;
+}
+
+.CodeMirror .CodeMirror-lines pre[class*="CodeMirror"] {
+  background-color: transparent !important;
+}
+
+
+div[class*="RadioSelect_radioContainer"] {
+  display: flex;
+  align-items: center;
+}
+
+div[class*="NavBar_root"] {
+  background: var(--body-bg) !important;
+}
+
+div[class*="TabList_root"]::before {
+  background: linear-gradient(to right, rgba(27, 22, 28, 1), rgba(27, 22, 28, 0))
+}
+
+div[class*="TabList_root"]::after {
+  background: linear-gradient(to right, rgba(27, 22, 28, 1), rgba(27, 22, 28, 0))
+}
+
+div[class*="DefaultButton_content"] {
+  color: var(--brand-primary--inverted) !important;
+}
+
+
+
+div[class*="RadioSelect_radioContainer"] div[class*="RadioSelect_item"] {
+  margin-top: 0 !important;
+  margin-right: 20px !important;
+  cursor: pointer !important;
+  background: rgba(255,255,255, 0);
+  padding: 10px;
+  border-radius: 4px;
+}
+
+div[class*="RadioSelect_radioContainer"] div[class*="RadioSelect_item"]:hover {
+  background: rgba(255,255,255, .08);
+}
+
+button[class*="DefaultButton"] {
+  background: var(--brand-primary) !important;
+  cursor: pointer !important;
+}
+
+button[class*="DefaultButton"]:hover {
+  background: var(--brand-primary) !important;
+} */

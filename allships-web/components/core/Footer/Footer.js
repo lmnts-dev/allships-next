@@ -1,0 +1,18 @@
+/**
+ *
+ * Footer.js
+ * @author Peter Laxalt
+ * @description The website footer.
+ *
+ */
+
+// Core
+import React from "react";
+
+// Begin Component
+//////////////////////////////////////////////////////////////////////
+
+export const Footer = () => <footer>Footer</footer>;
+
+// End Component
+//////////////////////////////////////////////////////////////////////
