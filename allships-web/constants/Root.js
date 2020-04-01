@@ -69,7 +69,10 @@ export const Root = {
   Radius: "var(--Radius)",
 
   // Borders
-  BorderSize: "var(--BorderSize)"
+  BorderSize: "var(--BorderSize)",
+
+  // Dialogs
+  DialogPaddingSize: "var(--DialogPaddingSize)"
 };
 
 // Responsive Measurements:
@@ -118,6 +121,9 @@ export const RootVariables = createGlobalStyle`
 
     /* --------- Borders */
     --BorderSize: ${Theme.Base.Border.Size};
+
+    /* --------- Dialogs */
+    --DialogPaddingSize: ${Theme.Base.DialogPaddingSize.Lg};
     
     /* ----------------------------------- Medium Width Viewports */
     @media (max-width: ${Theme.Base.Media.Width.Md}) {
@@ -159,6 +165,9 @@ export const RootVariables = createGlobalStyle`
 
         /* --------- Borders */
         --BorderSize: ${Theme.Base.Border.Size};
+
+        /* --------- Dialogs */
+        --DialogPaddingSize: ${Theme.Base.DialogPaddingSize.Md};
     }
 
     /* ----------------------------------- Small Width Viewports */
@@ -201,6 +210,9 @@ export const RootVariables = createGlobalStyle`
 
         /* --------- Borders */
         --BorderSize: ${Theme.Base.Border.Size};
+
+        /* --------- Dialogs */
+        --DialogPaddingSize: ${Theme.Base.DialogPaddingSize.Sm};
     }
   }
 `;

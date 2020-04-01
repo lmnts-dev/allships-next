@@ -31,7 +31,18 @@ class MyApp extends App {
     super(props);
 
     this.state = {
-      // Scroll States
+      /**
+       *
+       * @name Dialog
+       *
+       */
+      visibleDialog: "launcher",
+
+      /**
+       *
+       * @name Scroll States
+       *
+       */
       lastScrollY: 0,
       idleTime: 0,
       scrollDirection: "unset",
@@ -61,12 +72,13 @@ class MyApp extends App {
         },
         {
           id: "4",
-          text: "- CHANGE BG COLOR_NAME",
+          text:
+            "- SET_COLOR <primary | secondary | bg | text | dialog> <COLOR_NAME>",
           done: false
         },
         {
-          id: "325",
-          text: "- INVERT COLOR_NAME",
+          id: "23525",
+          text: "- LAUNCH <LAUNCHER>",
           done: false
         },
         {
@@ -143,7 +155,7 @@ class MyApp extends App {
      *
      */
     if (currentCmd.includes("set_color")) {
-      console.log("VALID");
+      // console.log("VALID");
 
       let property = currentCmd.split(" ")[1];
       let color = currentCmd.split(" ")[2];
@@ -152,33 +164,25 @@ class MyApp extends App {
         this.setState({
           bgColor: color
         });
-      }
-
-      if (property == "primary") {
+      } else if (property == "primary") {
         this.setState({
           primaryColor: color
         });
-      }
-
-      if (property == "secondary") {
+      } else if (property == "secondary") {
         this.setState({
           secondaryColor: color
         });
-      }
-
-      if (property == "dialog") {
+      } else if (property == "dialog") {
         this.setState({
           dialogColor: color
         });
-      }
-
-      if (property == "text") {
+      } else if (property == "text") {
         this.setState({
           textColor: color
         });
       }
-    }
-
+    } 
+    
     /**
      *
      * @name launch
@@ -187,18 +191,21 @@ class MyApp extends App {
      * @description: Launch apps.
      *
      */
-
-    if (currentCmd.includes("launch")) {
-      console.log("VALID");
+    
+    else if (currentCmd.includes("launch")) {
+      
+      // console.log("VALID");
 
       let property = currentCmd.split(" ")[1];
 
-      alert("🚀 Launching '" + property + "'!");
+      this.setState({
+        visibleDialog: property
+      });
     }
 
     // CMD: Invert
-    if (currentCmd.includes("invert")) {
-      console.log("VALID");
+    else if (currentCmd.includes("invert")) {
+      // console.log("VALID");
 
       let color = currentCmd.split("invert ")[1];
 
@@ -208,7 +215,7 @@ class MyApp extends App {
     }
 
     // CMD: Help
-    if (currentCmd.includes("help")) {
+    else if (currentCmd.includes("help")) {
       let helpMsg = [
         {
           id: Math.random()
@@ -242,14 +249,15 @@ class MyApp extends App {
           id: Math.random()
             .toString(36)
             .substring(7),
-          text: "- CHANGE BG COLOR_NAME",
+          text:
+            "- SET_COLOR <primary | secondary | bg | text | dialog> <COLOR_NAME>",
           done: false
         },
         {
           id: Math.random()
             .toString(36)
             .substring(7),
-          text: "- INVERT COLOR_NAME",
+          text: "- LAUNCH <launcher>",
           done: false
         },
         {
@@ -288,7 +296,7 @@ class MyApp extends App {
     }
 
     // CMD: Reset
-    if (currentCmd.includes("reset")) {
+    else if (currentCmd.includes("reset")) {
       this.setState({
         items: [
           {
@@ -298,8 +306,44 @@ class MyApp extends App {
             text: "CONSOLE CLEARED",
             done: false
           }
-        ]
+        ],
+        primaryColor: Theme.Color.UltraRed,
+        secondaryColor: Theme.Color.HackerGold,
+        bgColor: Theme.Color.HackerGold,
+        dialogColor: Theme.Color.Black,
+        textColor: Theme.Color.UltraRed
       });
+    }
+
+    // CMD: Not Found
+    else {
+      let errorMessage = [
+        {
+          id: Math.random()
+            .toString(36)
+            .substring(7),
+          text: "COMMAND '" + cmd + "' NOT FOUND",
+          done: false
+        },
+        {
+          id: Math.random()
+            .toString(36)
+            .substring(7),
+          text: "TYPE 'HELP' FOR LIST OF COMMANDS",
+          done: false
+        },
+        {
+          id: Math.random()
+            .toString(36)
+            .substring(7),
+          text: "",
+          done: false
+        }
+      ];
+
+      this.setState(prevState => ({
+        items: prevState.items.concat(errorMessage)
+      }));
     }
 
     // Clear & reset input
@@ -433,8 +477,9 @@ class MyApp extends App {
       <>
         <VariableOverrides />
         <Layout
-          handleCmd={this.handleTextChange}
-          handleAddCmd={this.handleAddItem}
+          handleTextChange={this.handleTextChange}
+          handleAddItem={this.handleAddItem}
+          handleCommand={this.handleCommand}
           appState={this.state}
           shouldFocus={this.state.focus}
         >

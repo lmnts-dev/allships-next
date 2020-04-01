@@ -14,6 +14,8 @@ import { Footer } from "../Footer";
 import { Navigation } from "../Navigation";
 import { SiteHead } from "../SiteHead";
 import { Frame } from "../Frame";
+import { LauncherDialog } from "../../lib/LauncherDialog";
+import { GrainCover } from "../../lib/GrainCover";
 
 // Styles
 import { LayoutStyle } from "./styles.scss";
@@ -21,16 +23,37 @@ import { LayoutStyle } from "./styles.scss";
 // Begin Component
 //////////////////////////////////////////////////////////////////////
 
-export const Layout = ({ appState, handleCmd, handleAddCmd, shouldFocus, children }) => {
+export const Layout = ({
+  appState,
+  handleCommand,
+  handleTextChange,
+  handleAddItem,
+  shouldFocus,
+  children
+}) => {
   return (
     <>
+      <GrainCover />
       <GlobalStyle />
-      <SiteHead title="Laxalt & McIver" />
+      <SiteHead title="ALLSHIPS" />
+      {
+        (appState.visibleDialog == "launcher" ? (
+          <LauncherDialog
+            handleCommand={handleCommand}
+            handleTextChange={handleTextChange}
+            handleAddItem={handleAddItem}
+            appState={appState}
+          />
+        ) : (
+          false
+        ))
+      }
       <Navigation
         appState={appState}
-        handleCmd={handleCmd}
-        handleAddCmd={handleAddCmd}
+        handleTextChange={handleTextChange}
+        handleAddItem={handleAddItem}
         shouldFocus={shouldFocus}
+        handleCommand={handleCommand}
       />
       {
         // @ts-ignore

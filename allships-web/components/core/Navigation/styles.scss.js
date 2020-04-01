@@ -26,7 +26,7 @@ import { hexToRGB } from "../../../utils/hexToRGB";
 //////////////////////////////////////////////////////////////////////
 
 let gridIconScale = 0.8;
-let navPadding = "calc(" + Root.Size + " / 4)";
+let navPadding = Root.DialogPaddingSize;
 let navFontSize = "1.3rem";
 
 export const NavigationStyle = styled.nav`

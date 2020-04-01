@@ -23,7 +23,14 @@ import { StatementHero } from "../sections/StatementHero";
 
 export default () => (
   <InnerGrid startBelowNav={true}>
-    <div style={{ height: "100vh" }}>
+    <div
+      style={{
+        height: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
+      }}
+    >
       <h1>HOME </h1>
     </div>
   </InnerGrid>

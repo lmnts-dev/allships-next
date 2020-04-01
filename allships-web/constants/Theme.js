@@ -152,8 +152,16 @@ export const Theme = {
       Radius: Base.Geometry.Radius + "px" // px
     },
 
+    // Borders
     Border: {
       Size: Base.Border.Size + "px" // px
+    },
+
+    // Dialogs
+    DialogPaddingSize: {
+      Lg: Base.DialogPaddingSize.Lg + "px",
+      Md: Base.DialogPaddingSize.Md + "px",
+      Sm: Base.DialogPaddingSize.Sm + "px",
     }
   },
 

@@ -18,9 +18,66 @@ import { Typography } from "./Font";
 import { Palette } from "./Color";
 import { RootVariables } from "../Root";
 import { Theme } from "../Theme";
+import { Root } from "../Root";
 
 // Begin Component
 //////////////////////////////////////////////////////////////////////
+
+let dialogShadowSize = "calc(" + Root.BorderSize + " * 2)";
+
+const GlobalClasses = createGlobalStyle`
+  .dialog {
+    background: ${Theme.Color.Dialog};
+    pointer-events: all;
+    border: ${Root.BorderSize} solid ${Theme.Color.Primary};
+    box-shadow: ${dialogShadowSize} ${dialogShadowSize} 0px 0px ${Theme.Color.Primary};
+    color: ${Theme.Color.Primary};
+    font-size: 1.3rem;
+
+    .dialog-header {
+      display: flex;
+      border-bottom: ${Root.BorderSize} solid ${Theme.Color.Primary};
+
+      .col {
+        display: flex;
+        height: ${Root.Nav.Size};
+        align-items: center;
+
+        &.title {
+          flex: 1;
+          padding: 0 ${Root.DialogPaddingSize};
+          color: ${Theme.Color.Secondary};
+        }
+
+        &.toggle {
+          width: ${Root.Nav.Size};
+          border-left: ${Root.BorderSize} solid ${Theme.Color.Primary};
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          line-height: 0;
+          font-size: 2rem;
+
+          &:hover {
+            background: ${Theme.Color.Secondary};
+            color: ${Theme.Color.Dialog};
+          }
+        }
+      }
+    }
+
+    .dialog-content {
+      padding: ${Root.DialogPaddingSize};
+    }
+  }
+`;
+
+/**
+ * 
+ * Browser Reset 
+ * 
+ */
 
 const Reset = createGlobalStyle`
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
@@ -502,6 +559,7 @@ export const GlobalStyle = () => (
   <>
     <RootVariables />
     <Reset />
+    <GlobalClasses />
     <Typography />
     <Palette />
   </>

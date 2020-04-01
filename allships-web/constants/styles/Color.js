@@ -63,7 +63,25 @@ export const Palette = createGlobalStyle`
 
     color: ${Color.Text};
     background-color: ${Color.Background};
+
+    /* Scrollbars */
+    scrollbar-color: ${Color.Primary} ${Color.Dialog};
+    scrollbar-width: auto;
   }
+
+  body::-webkit-scrollbar {
+    width: 25px;
+  }
+
+  body::-webkit-scrollbar-track {
+    background: ${Color.Dialog};
+  }
+  body::-webkit-scrollbar-thumb {
+    background-color: ${Color.Primary} ;
+    border-radius: 0px;
+    border: 3px solid ${Color.Dialog};
+  }
+
 
   ::-moz-selection { background: ${Color.Primary}; color: ${Color.Black} }
   ::selection { background: ${Color.Primary}; color: ${Color.Black} }

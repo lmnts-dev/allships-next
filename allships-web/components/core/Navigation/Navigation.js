@@ -23,8 +23,9 @@ import { Icon } from "../../lib/Icon";
 export const Navigation = ({
   shouldFocus,
   appState,
-  handleCmd,
-  handleAddCmd
+  handleTextChange,
+  handleAddItem,
+  handleCommand
 }) => {
   console.log(appState);
 
@@ -35,31 +36,42 @@ export const Navigation = ({
           {/* Column: Launcher Button */}
           <div className="col launcher-btn">
             <span className="launcher-btn-wrapper">
-              <span class="icon">
+              <span className="icon">
                 <figure />
                 <figure />
                 <figure />
               </span>
-              <span class="label">Open Launcher</span>
+              <span
+                className="label"
+                onClick={() => handleCommand("launch launcher")}
+              >
+                Open Launcher
+              </span>
             </span>
           </div>
 
           {/* Column: Launcher Input */}
           <div className="col launcher-input">
             <span className="launcher-input-wrapper">
-              <span className="label">ASR-MOTHERSHIP:~</span>
-              <form className="launcher-input-el">
-                <input
-                  type="text"
-                  placeholder="ENTER COMMAND"
-                  onChange={handleCmd}
-                  value={appState.text}
-                />
-                <span className="fake-cursor" />
-                <button style={{ display: "none" }} onClick={handleAddCmd}>
-                  Add
-                </button>
-              </form>
+              {appState.visibleDialog == "launcher" ? (
+                <span className="label">FROM THE INSIDE OUT</span>
+              ) : (
+                <>
+                  <span className="label">ASR-MOTHERSHIP:~</span>
+                  <form className="launcher-input-el">
+                    <input
+                      type="text"
+                      placeholder="ENTER COMMAND"
+                      onChange={handleTextChange}
+                      value={appState.text}
+                    />
+                    <span className="fake-cursor" />
+                    <button style={{ display: "none" }} onClick={handleAddItem}>
+                      Add
+                    </button>
+                  </form>
+                </>
+              )}
             </span>
           </div>
 

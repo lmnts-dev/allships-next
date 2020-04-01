@@ -133,6 +133,13 @@ export const Base = {
   // Borders
   Border: {
     Size: 6
+  },
+
+  // Dialogs
+  DialogPaddingSize: {
+    Lg: 15, // px
+    Md: 15, // px
+    Sm: 10 // px
   }
 };
 

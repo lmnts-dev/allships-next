@@ -1,6 +1,6 @@
 /**
  *
- * Icon.tsx
+ * Icon.js
  * @author Peter Laxalt
  * @description Simple Icon component to store & locate your icons cleanly.
  * @example Default: <Icon Name="Facebook" />
