@@ -24,7 +24,7 @@ const CardListingsStyle = styled.div`
   align-items: flex-start;
 
   .content-card {
-    width: 20%;
+    width: 25%;
   }
 `;
 
