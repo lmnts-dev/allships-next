@@ -48,6 +48,7 @@ const CardListingsStyle = styled.div`
       padding-bottom: 450px;
       overflow: hidden;
       position: relative;
+      background: ${Theme.Color.Primary};
       border: ${Root.BorderSize} solid ${Theme.Color.Primary};
       transform: translate(0, 0);
 
@@ -57,6 +58,11 @@ const CardListingsStyle = styled.div`
         right: 0;
         bottom: 0;
         top: 0;
+        object-fit: cover;
+        object-position: center center;
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
       }
     }
 

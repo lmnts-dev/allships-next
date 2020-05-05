@@ -44,11 +44,11 @@ export const Sanity = sanityClient({
 export const AirtableConfig = {
   baseUrl: "https://airtable.com/",
   apiKey: "keySE7sknWhmqvd7Q",
-  baseId: "appRssYYB66bB4P6Q",
+  baseId: "apptQRcp3DUnuhlm3",
   maxRecords: 2000,
   brainjuice: {
-    viewName: "Brainjuice",
-    tableName: "💯 Frontpage"
+    viewName: "Gallery",
+    tableName: "Content"
   }
 };
 
@@ -58,25 +58,3 @@ export const AirtableConfig = {
 export const Airtable = new airtableClient({
   apiKey: AirtableConfig.apiKey
 }).base(AirtableConfig.baseId);
-
-// Load Brainjuice Records
-export const BrainjuiceRecords = async () => {
-  // Load Tasks
-  const recordPromises = Airtable(AirtableConfig.brainjuice.tableName)
-    .select({
-      // Selecting the first 3 records in Kylie Grid:
-      maxRecords: AirtableConfig.maxRecords,
-      view: AirtableConfig.brainjuice.viewName
-    })
-    .all()
-    .then((record) => {
-      return record;
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-
-  const records = await recordPromises;
-
-  return records;
-};

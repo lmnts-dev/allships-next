@@ -23,16 +23,36 @@ import LazyImage from "../../utils/lazyImage";
 //////////////////////////////////////////////////////////////////////
 
 export const CardListings = ({ data }) => {
+  console.log(data);
+
   return (
     <CardListingsStyle className="section-card-listings">
       {data.map((item, idx) => {
-        return (
-          <div className="content-card" key={idx}>
-            <div className="content-card-inner">
-              <LazyImage src={item} alt={`Sample`} />
+        let { fields } = item;
+
+        if (fields.Link === "") {
+          return (
+            <div className="content-card" key={idx}>
+              <div className="content-card-inner">
+                <LazyImage src={fields.Attachments[0].url} alt={fields.name} />
+              </div>
             </div>
-          </div>
-        );
+          );
+        } else {
+          return (
+            <a
+              href={fields.Link}
+              target="_blank"
+              rel="nofollow noreferrer"
+              className="content-card"
+              key={idx}
+            >
+              <div className="content-card-inner">
+                <LazyImage src={fields.Attachments[0].url} alt={fields.name} />
+              </div>
+            </a>
+          );
+        }
       })}
     </CardListingsStyle>
   );
