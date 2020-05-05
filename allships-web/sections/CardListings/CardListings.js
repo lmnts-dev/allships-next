@@ -34,7 +34,7 @@ export const CardListings = ({ data }) => {
         return (
           <ContentCard
             data={fields}
-            isLink={fields.Link === "" ? false : true}
+            isLink={fields.Link ? true : false}
             key={idx}
           />
         );

@@ -47,7 +47,7 @@ export const ContentCard = ({ isLink, data }) => {
     return (
       <a
         href={data.Link}
-        className="content-card"
+        className="content-card __isLink"
         target="_blank"
         rel="nofollow noreferrer"
       >

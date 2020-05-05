@@ -24,7 +24,6 @@ export const GlobalStyles = createGlobalStyle`
     width: 20%;
     padding: var(--cardPadding);
     position: relative;
-    cursor: pointer;
 
     &:before {
       content: "";
@@ -35,6 +34,55 @@ export const GlobalStyles = createGlobalStyle`
       top: calc(var(--cardPadding));
       background: ${Theme.Color.Primary};
       transform: translate(0, 0);
+    }
+
+    &.__isLink {
+      cursor: pointer;
+
+      .content-card-inner {
+        &:after {
+          content: "";
+          position: absolute;
+          top: 0px;
+          right: -10px;
+          width: 0; 
+          height: 0; 
+          border-top: 20px solid transparent;
+          border-bottom: 20px solid transparent;  
+          border-left: 20px solid ${Theme.Color.Primary};
+          transform: rotate(-45deg);
+          transform-origin: bottom left;
+        }
+      }
+
+      &:hover {
+        .content-card-inner {
+          transform: translate(
+            calc(var(--hoverTranslate) * -1),
+            calc(var(--hoverTranslate) * -1)
+          );
+        }
+
+        &:before {
+          transform: translate(
+            calc(var(--hoverTranslate)),
+            calc(var(--hoverTranslate))
+          );
+        }
+      }
+
+      &:active {
+        .content-card-inner {
+          transform: translate(0, 0);
+        }
+
+        &:before {
+          transform: translate(
+            calc(var(--hoverTranslate)),
+            calc(var(--hoverTranslate))
+          );
+        }
+      }
     }
 
     .content-card-inner {
@@ -57,35 +105,6 @@ export const GlobalStyles = createGlobalStyle`
         width: 100%;
         height: 100%;
         max-width: 100%;
-      }
-    }
-
-    &:hover {
-      .content-card-inner {
-        transform: translate(
-          calc(var(--hoverTranslate) * -1),
-          calc(var(--hoverTranslate) * -1)
-        );
-      }
-
-      &:before {
-        transform: translate(
-          calc(var(--hoverTranslate)),
-          calc(var(--hoverTranslate))
-        );
-      }
-    }
-
-    &:active {
-      .content-card-inner {
-        transform: translate(0, 0);
-      }
-
-      &:before {
-        transform: translate(
-          calc(var(--hoverTranslate)),
-          calc(var(--hoverTranslate))
-        );
       }
     }
   }
