@@ -128,10 +128,10 @@ class MyApp extends App {
   componentDidMount() {
     // Begin listening for scroll time once mounted.
     // Run the handScroll function once we are on the clientside.
-    window.addEventListener("scroll", this.handleScroll, { passive: true });
+    // window.addEventListener("scroll", this.handleScroll, { passive: true });
 
     // Check if we should focus the nav & frame or not.
-    this.checkForFocus();
+    // this.checkForFocus();
   }
 
   /**
