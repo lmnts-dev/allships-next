@@ -40,13 +40,13 @@ export const LauncherDialog = ({
         <div className="launcher-dialog-structure">
           <div className="launcher-dialog-sidebar">
             <ul className="launcher-commands">
-              <li className="active">> Launcher</li>
-              <li>> Frontpage</li>
-              <li>> Editorial</li>
-              <li>> Events</li>
-              <li>> Agency</li>
-              <li>> Resources</li>
-              <li>> Help</li>
+              <li className="active" onClick={() => handleCommand("launch launcher")}>> Launcher</li>
+              <li onClick={() => handleCommand("launch frontpage")}>> Frontpage</li>
+              <li onClick={() => handleCommand("launch editorial")}>> Editorial</li>
+              <li onClick={() => handleCommand("launch events")}>> Events</li>
+              <li onClick={() => handleCommand("launch agency")}>> Agency</li>
+              <li onClick={() => handleCommand("launch resources")}>> Resources</li>
+              <li onClick={() => handleCommand("launch help")}>> Help</li>
             </ul>
           </div>
           <div className="dialog-content launcher-dialog-content">

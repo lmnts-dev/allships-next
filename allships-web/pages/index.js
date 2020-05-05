@@ -16,22 +16,25 @@ import React from "react";
 import { InnerGrid } from "../components/core/InnerGrid";
 
 // Sections
-import { StatementHero } from "../sections/StatementHero";
+import { CardListings } from "../sections/CardListings";
 
 // Begin Component
 //////////////////////////////////////////////////////////////////////
 
+let cards = [
+  "https://source.unsplash.com/1600x900/?arcade",
+  "https://source.unsplash.com/1600x900/?hacker",
+  "https://source.unsplash.com/1600x900/?code",
+  "https://source.unsplash.com/1600x900/?coding",
+  "https://source.unsplash.com/1600x900/?technology",
+  "https://source.unsplash.com/1600x900/?pink",
+  "https://source.unsplash.com/1600x900/?blue",
+  "https://source.unsplash.com/1600x900/?orange",
+];
+
 export default () => (
   <InnerGrid startBelowNav={true}>
-    <div
-      style={{
-        height: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center"
-      }}
-    >
-      <h1>HOME </h1>
-    </div>
+    <h1>FRONTPAGE</h1>
+    <CardListings data={cards} />
   </InnerGrid>
 );
