@@ -17,7 +17,7 @@ import React from "react";
 import CardListingsStyle from "./styles.scss";
 
 // Components
-import LazyImage from "../../utils/lazyImage";
+import { ContentCard, ContentCardGlobalStyles } from "../../components/lib/ContentCard";
 
 // Begin Component
 //////////////////////////////////////////////////////////////////////
@@ -27,32 +27,17 @@ export const CardListings = ({ data }) => {
 
   return (
     <CardListingsStyle className="section-card-listings">
+      <ContentCardGlobalStyles />
       {data.map((item, idx) => {
         let { fields } = item;
 
-        if (fields.Link === "") {
-          return (
-            <div className="content-card" key={idx}>
-              <div className="content-card-inner">
-                <LazyImage src={fields.Attachments[0].url} alt={fields.name} />
-              </div>
-            </div>
-          );
-        } else {
-          return (
-            <a
-              href={fields.Link}
-              target="_blank"
-              rel="nofollow noreferrer"
-              className="content-card"
-              key={idx}
-            >
-              <div className="content-card-inner">
-                <LazyImage src={fields.Attachments[0].url} alt={fields.name} />
-              </div>
-            </a>
-          );
-        }
+        return (
+          <ContentCard
+            data={fields}
+            isLink={fields.Link === "" ? false : true}
+            key={idx}
+          />
+        );
       })}
     </CardListingsStyle>
   );
