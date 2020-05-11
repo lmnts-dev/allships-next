@@ -45,17 +45,20 @@ export class ContentCard extends Component {
     let { isLink, data } = this.props;
 
     const Content = ({ data }) => {
-      let { Attachments, Name } = data;
+      let { Attachments, Name, Category } = data;
+
+      console.log(data);
 
       if (Attachments && Name) {
         return (
           <div className="content-card-inner">
             <LazyImage src={Attachments[0].url} alt={Name} />
             <div className="content-card-title">{Name}</div>
-            <ul className="content-card-categories">
-              <li>Tag Name</li>
-              <li>Tag Name</li>
-            </ul>
+            {Category ? (
+              <ul className="content-card-categories">
+                <li>{Category}</li>
+              </ul>
+            ) : null}
           </div>
         );
       } else {
