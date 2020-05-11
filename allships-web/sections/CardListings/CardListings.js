@@ -25,19 +25,28 @@ import {
 // Begin Component
 //////////////////////////////////////////////////////////////////////
 
-export const CardListings = ({ data, showFilterBar }) => {
+export const CardListings = ({
+  content,
+  showFilterBar,
+  availableCategories,
+  featuredContent,
+}) => {
   const FilterBar = () => {
     return (
       <FilterBarStyle>
         <div className="card-listings-filter-bar-inner">
           <div className="card-listings-filter-bar-col">
-            <ul className="card-listings-filter-bar-categories">
-              <li className="btn active">Category</li>
-              <li className="btn">Category</li>
-              <li className="btn">Category</li>
-              <li className="btn">Category</li>
-              <li className="btn">Category</li>
-            </ul>
+            {availableCategories ? (
+              <ul className="card-listings-filter-bar-categories">
+                {availableCategories.map((category, idx) => {
+                  return (
+                    <li className="btn" key={idx}>
+                      {category}
+                    </li>
+                  );
+                })}
+              </ul>
+            ) : null}
           </div>
           <div className="card-listings-filter-bar-col">
             <ul className="card-listings-filter-bar-categories">
@@ -55,16 +64,21 @@ export const CardListings = ({ data, showFilterBar }) => {
       <ContentCardGlobalStyles />
       {!showFilterBar ? null : <FilterBar />}
       <div className="card-listings-list">
-        {data.map((item, idx) => {
+        {content.map((item, idx) => {
           let { fields } = item;
 
-          return (
-            <ContentCard
-              data={fields}
-              isLink={fields.Link ? true : false}
-              key={idx}
-            />
-          );
+          if (item.fields.Name && item.fields.Attachments) {
+            return (
+              <ContentCard
+                data={fields}
+                isLink={fields.Link ? true : false}
+                key={idx}
+              />
+            );
+          } else {
+            console.log("🛑 Record missing required information:", item);
+            return null;
+          }
         })}
       </div>
     </CardListingsStyle>

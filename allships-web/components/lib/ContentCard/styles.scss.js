@@ -62,19 +62,21 @@ export const GlobalStyles = createGlobalStyle`
         }
       }
 
-      &:hover {
-        .content-card-inner {
-          transform: translate(
-            calc(var(--cardHoverTranslate) * -1),
-            calc(var(--cardHoverTranslate) * -1)
-          );
-        }
+      @media (min-width: ${Theme.Base.Media.Width.Md}) {
+          &:hover {
+          .content-card-inner {
+            transform: translate(
+              calc(var(--cardHoverTranslate) * -1),
+              calc(var(--cardHoverTranslate) * -1)
+            );
+          }
 
-        &:before {
-          transform: translate(
-            calc(var(--cardHoverTranslate)),
-            calc(var(--cardHoverTranslate))
-          );
+          &:before {
+            transform: translate(
+              calc(var(--cardHoverTranslate)),
+              calc(var(--cardHoverTranslate))
+            );
+          }
         }
       }
 
@@ -114,6 +116,12 @@ export const GlobalStyles = createGlobalStyle`
         padding: ${Root.BorderSize} calc(${Root.BorderSize} * 2) ${Root.BorderSize};
         z-index: 10;
         pointer-events: none;
+        -webkit-touch-callout: none; 
+        -webkit-user-select: none; 
+        -khtml-user-select: none; 
+        -moz-user-select: none; 
+        -ms-user-select: none; 
+        user-select: none;
       }
 
       /** Card Category */
@@ -126,6 +134,12 @@ export const GlobalStyles = createGlobalStyle`
         padding: ${Root.BorderSize};
         display: flex;
         pointer-events: none;
+        -webkit-touch-callout: none; 
+        -webkit-user-select: none; 
+        -khtml-user-select: none; 
+        -moz-user-select: none; 
+        -ms-user-select: none; 
+        user-select: none;
 
         li {
           background: ${Theme.Color.White};

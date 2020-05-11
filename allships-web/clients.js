@@ -95,7 +95,9 @@ export const loadAllRecords = Airtable(AirtableUtils.allRecords.tableName)
  * Load all of our featured records.
  *
  */
-export const loadFeaturedRecords = Airtable(AirtableUtils.featuredRecords.tableName)
+export const loadFeaturedRecords = Airtable(
+  AirtableUtils.featuredRecords.tableName
+)
   .select({
     // Selecting the first 3 records in Kylie Grid:
     maxRecords: AirtableUtils.maxRecords,
@@ -108,3 +110,26 @@ export const loadFeaturedRecords = Airtable(AirtableUtils.featuredRecords.tableN
   .catch((err) => {
     console.error(err);
   });
+
+/**
+ *
+ * @name createAvailableCategories
+ * @returns All categories in current use from `content` parameter.
+ * @param content : array : Records returned from `loadFeaturedRecords()`
+ *
+ */
+
+export const createAvailableCategories = (content) => {
+  // Remap all existing categories & remove null/undefined records.
+  let availableCategories = content
+    .map((item) => {
+      return item.fields.Category ? item.fields.Category : undefined;
+    })
+    .filter((item) => item != null || item != undefined);
+
+  // Remove Duplicates
+  availableCategories = new Set(availableCategories);
+  availableCategories = [...availableCategories];
+
+  return availableCategories;
+};

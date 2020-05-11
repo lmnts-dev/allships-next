@@ -39,6 +39,10 @@ export const CardListingsStyle = styled.div`
     .content-card {
       width: 25%;
 
+      @media (max-width: ${Theme.Base.Media.Width.Md}) {
+        width: 50%;
+      }
+
       @media (max-width: ${Theme.Base.Media.Width.Sm}) {
         width: 100%;
       }
@@ -52,8 +56,8 @@ export const FilterBarStyle = styled.div`
     ${Theme.Base.Grid.SiteFrameWidth} + ${Root.Nav.Size} + ${Root.BorderSize}
   );
   --btnShadowSize: 2px;
+  --toggleSpacing: calc(${Root.Size} / 4);
 
-  width: 100%;
   margin-left: calc(var(--cardPadding) * -1);
   margin-right: calc(var(--cardPadding) * -1);
   width: calc(100% + (var(--cardPadding) * 2));
@@ -66,14 +70,48 @@ export const FilterBarStyle = styled.div`
   top: var(--stickyTopSize);
   z-index: 300;
 
+  @media (max-width: ${Theme.Base.Media.Width.Md}) {
+    padding-left: 0;
+    padding-right: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
   .card-listings-filter-bar-inner {
     display: flex;
     justify-content: space-between;
 
+    @media (max-width: ${Theme.Base.Media.Width.Md}) {
+      justify-content: flex-end;
+      flex-direction: row-reverse;
+      padding-left: var(--cardPadding);
+      padding-right: calc(
+        ${Root.Grid.Gutter.Right} + ${Theme.Base.Grid.SiteFrameWidth} -
+          (${Root.BorderSize} / 2)
+      );
+    }
+
+    @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+      padding-left: calc(
+        ${Root.Grid.Gutter.Left} + ${Theme.Base.Grid.SiteFrameWidth} -
+          (${Root.BorderSize} / 2)
+      );
+    }
+
     .card-listings-filter-bar-col {
+      @media (max-width: ${Theme.Base.Media.Width.Md}) {
+        flex-shrink: 0;
+      }
+
       ul {
         display: flex;
         width: 100%;
+
+        @media (max-width: ${Theme.Base.Media.Width.Md}) {
+          width: auto;
+          flex-wrap: nowrap;
+          flex-shrink: 0;
+        }
 
         /** Core Pill Button Sizes */
         li {
@@ -85,11 +123,19 @@ export const FilterBarStyle = styled.div`
       &:first-child {
         flex: 1;
 
+        @media (max-width: ${Theme.Base.Media.Width.Md}) {
+          flex-shrink: 0;
+          padding-right: calc(
+            ${Root.Grid.Gutter.Right} - (${Root.BorderSize} / 2)
+          );
+          margin-left: var(--toggleSpacing);
+        }
+
         ul {
           li {
             /** Inherits .btn class */
             background: ${Theme.Color.White};
-            margin-right: calc(${Root.Size} / 4);
+            margin-right: var(--toggleSpacing);
             box-shadow: inset calc(var(--btnShadowSize) * -1)
               calc(var(--btnShadowSize) * -1) 0px var(--btnShadowSize)
               ${Theme.Color.Primary};
@@ -111,6 +157,10 @@ export const FilterBarStyle = styled.div`
 
             &:last-child {
               margin-right: 0;
+
+              @media (max-width: ${Theme.Base.Media.Width.Md}) {
+                margin-right: var(--toggleSpacing);
+              }
             }
           }
         }
@@ -120,17 +170,30 @@ export const FilterBarStyle = styled.div`
       &:last-child {
         flex: unset;
 
+        @media (max-width: ${Theme.Base.Media.Width.Md}) {
+          flex-shrink: 0;
+        }
+
         ul {
           justify-content: flex-end;
+
+          @media (max-width: ${Theme.Base.Media.Width.Md}) {
+            justify-content: space-between;
+          }
 
           li {
             /** Inherits .btn class */
             border: calc(var(--btnShadowSize) * 2) solid ${Theme.Color.Primary};
-            margin-left: calc(${Root.Size} / 4);
+            margin-left: var(--toggleSpacing);
 
             &:hover {
               background: ${Theme.Color.Primary};
               color: ${Theme.Color.Background};
+            }
+
+            &:active,
+            &.active {
+              background: ${Theme.Color.Dialog};
             }
 
             &:first-child {

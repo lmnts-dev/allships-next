@@ -77,7 +77,7 @@ const GlobalClasses = createGlobalStyle`
   /** Buttons */
   .btn {
     --btnPadding: calc(${Root.Size} / 2);
-    --btnHeight: ${Root.Size};
+    --btnHeight: calc(${Root.Size} * .75);
 
     padding: 0 var(--btnPadding);
     display: flex;
@@ -85,19 +85,25 @@ const GlobalClasses = createGlobalStyle`
     justify-content: center;
     height: var(--btnHeight);
     text-transform: uppercase;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     cursor: pointer;
     outline: 0;
     border: 0;
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+    -khtml-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
   }
 
 
 `;
 
 /**
- * 
- * Browser Reset 
- * 
+ *
+ * Browser Reset
+ *
  */
 
 const Reset = createGlobalStyle`
