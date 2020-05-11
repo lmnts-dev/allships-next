@@ -123,7 +123,7 @@ export const Typography = createGlobalStyle`
   }
 
   h1, .h1 {
-    font-size: 4rem;
+    font-size: 6rem;
     @media (max-width: ${Base.Media.Width.Md + "px"}) {
       font-size: 2rem;
     }

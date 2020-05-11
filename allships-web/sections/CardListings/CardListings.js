@@ -14,7 +14,7 @@
 import React from "react";
 
 // Styles
-import CardListingsStyle from "./styles.scss";
+import { CardListingsStyle, FilterBarStyle } from "./styles.scss";
 
 // Components
 import {
@@ -26,14 +26,29 @@ import {
 //////////////////////////////////////////////////////////////////////
 
 export const CardListings = ({ data, showFilterBar }) => {
-
   const FilterBar = () => {
     return (
-      <div className="card-listings-filter-bar">
-        FILTER BAR
-      </div>
-    )
-  }
+      <FilterBarStyle>
+        <div className="card-listings-filter-bar-inner">
+          <div className="card-listings-filter-bar-col">
+            <ul className="card-listings-filter-bar-categories">
+              <li className="btn active">Category</li>
+              <li className="btn">Category</li>
+              <li className="btn">Category</li>
+              <li className="btn">Category</li>
+              <li className="btn">Category</li>
+            </ul>
+          </div>
+          <div className="card-listings-filter-bar-col">
+            <ul className="card-listings-filter-bar-categories">
+              <li className="btn">By Us</li>
+              <li className="btn">By Others</li>
+            </ul>
+          </div>
+        </div>
+      </FilterBarStyle>
+    );
+  };
 
   return (
     <CardListingsStyle className="section-card-listings">

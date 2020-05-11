@@ -26,6 +26,8 @@ import { Root } from "../Root";
 let dialogShadowSize = "calc(" + Root.BorderSize + " * 2)";
 
 const GlobalClasses = createGlobalStyle`
+
+  /** Dialogs */
   .dialog {
     background: ${Theme.Color.Dialog};
     pointer-events: all;
@@ -71,6 +73,25 @@ const GlobalClasses = createGlobalStyle`
       padding: ${Root.DialogPaddingSize};
     }
   }
+
+  /** Buttons */
+  .btn {
+    --btnPadding: calc(${Root.Size} / 2);
+    --btnHeight: ${Root.Size};
+
+    padding: 0 var(--btnPadding);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--btnHeight);
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    cursor: pointer;
+    outline: 0;
+    border: 0;
+  }
+
+
 `;
 
 /**

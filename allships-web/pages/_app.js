@@ -36,7 +36,9 @@ class MyApp extends App {
        * @name Dialog
        *
        */
-      visibleDialog: "launcher",
+      // visibleDialog: "launcher",
+      visibleDialog: "none",
+
 
       /**
        *

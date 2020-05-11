@@ -11,7 +11,7 @@
 
 // Core
 import React from "react";
-import { Airtable, AirtableConfig } from "../clients";
+import { loadFeaturedRecords, loadAllRecords } from "../clients";
 
 // Components
 import { InnerGrid } from "../components/core/InnerGrid";
@@ -19,30 +19,24 @@ import { ReadingWidthGrid } from "../components/core/ReadingWidthGrid";
 
 // Sections
 import { CardListings } from "../sections/CardListings";
+import { Theme } from "../constants/Theme";
 
 // Begin Component
 //////////////////////////////////////////////////////////////////////
 
-let cards = [
-  "https://source.unsplash.com/1600x900/?arcade",
-  "https://source.unsplash.com/1600x900/?hacker",
-  "https://source.unsplash.com/1600x900/?code",
-  "https://source.unsplash.com/1600x900/?coding",
-  "https://source.unsplash.com/1600x900/?technology",
-  "https://source.unsplash.com/1600x900/?pink",
-  "https://source.unsplash.com/1600x900/?blue",
-  "https://source.unsplash.com/1600x900/?orange",
-];
-
 const FrontPage = (props) => {
-  let { records } = props;
+  let { content, featuredContent } = props;
 
   return (
     <InnerGrid startBelowNav={true}>
       <ReadingWidthGrid>
-        <h1 style={{ paddingTop: "150px" }}>FRONTPAGE</h1>
+        <h1 style={{ paddingTop: "150px", color: Theme.Color.Dialog }}>FRONTPAGE</h1>
       </ReadingWidthGrid>
-      <CardListings data={records} showFilterBar />
+      <CardListings
+        featuredContent={featuredContent}
+        data={content}
+        showFilterBar
+      />
     </InnerGrid>
   );
 };
@@ -59,23 +53,22 @@ export default FrontPage;
  */
 FrontPage.getInitialProps = async () => {
   // Load Brainjuice from Airtable using Airtable.js
-  const recordPromises = Airtable(AirtableConfig.brainjuice.tableName)
-    .select({
-      // Selecting the first 3 records in Kylie Grid:
-      maxRecords: AirtableConfig.maxRecords,
-      view: AirtableConfig.brainjuice.viewName,
-    })
-    .all()
-    .then((record) => {
-      return record;
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+  // const loadAllRecords = Airtable(AirtableConfig.brainjuice.tableName)
+  //   .select({
+  //     // Selecting the first 3 records in Kylie Grid:
+  //     maxRecords: AirtableConfig.maxRecords,
+  //     view: AirtableConfig.brainjuice.viewName,
+  //   })
+  //   .all()
+  //   .then((record) => {
+  //     return record;
+  //   })
+  //   .catch((err) => {
+  //     console.error(err);
+  //   });
 
   // Create our array of records once the request is complete
   // and the Promises are fulfilled.
-  const records = await recordPromises;
 
   /**
    *
@@ -83,6 +76,7 @@ FrontPage.getInitialProps = async () => {
    *
    */
   return {
-    records: records,
+    content: await loadAllRecords,
+    featuredContent: await loadFeaturedRecords,
   };
 };

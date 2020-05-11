@@ -140,7 +140,7 @@ export const Base = {
     Lg: 15, // px
     Md: 15, // px
     Sm: 10 // px
-  }
+  },
 };
 
 // End Component

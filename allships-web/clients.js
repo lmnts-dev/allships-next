@@ -27,7 +27,7 @@ import airtableClient from "airtable";
 export const Sanity = sanityClient({
   projectId: "w2xt1cyc",
   dataset: "production",
-  useCdn: true // `false` if you want to ensure fresh data
+  useCdn: true, // `false` if you want to ensure fresh data
 });
 
 //////////////////////////////////////////////////////////////////////
@@ -36,25 +36,75 @@ export const Sanity = sanityClient({
  *
  * @name Airtable Settings
  * @description Our global Airtable settings.
+ * @returns Airtable variables
  * @see https://airtable.com/appRssYYB66bB4P6Q/api/docs
  *
  */
 
-// General Settings
-export const AirtableConfig = {
+export const AirtableUtils = {
   baseUrl: "https://airtable.com/",
   apiKey: "keySE7sknWhmqvd7Q",
   baseId: "apptQRcp3DUnuhlm3",
   maxRecords: 2000,
-  brainjuice: {
+  allRecords: {
     viewName: "Gallery",
-    tableName: "Content"
-  }
+    tableName: "Content",
+  },
+  featuredRecords: {
+    viewName: "Featured Content",
+    tableName: "Content",
+  },
 };
 
-// This is the meat and potatoes. Import this
-// as { Airtable } this to use the client.
-// See docs above.
+/**
+ *
+ * @name Airtable
+ * @returns Airtable Data
+ * Our Airtable client to load data.
+ *
+ */
 export const Airtable = new airtableClient({
-  apiKey: AirtableConfig.apiKey
-}).base(AirtableConfig.baseId);
+  apiKey: AirtableUtils.apiKey,
+}).base(AirtableUtils.baseId);
+
+/**
+ *
+ * @name loadAllRecords
+ * @returns All of our records.
+ * Load all of our records.
+ *
+ */
+export const loadAllRecords = Airtable(AirtableUtils.allRecords.tableName)
+  .select({
+    // Selecting the first 3 records in Kylie Grid:
+    maxRecords: AirtableUtils.maxRecords,
+    view: AirtableUtils.allRecords.viewName,
+  })
+  .all()
+  .then((record) => {
+    return record;
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+
+/**
+ *
+ * @name loadFeaturedRecords
+ * @returns All of our featured records.
+ * Load all of our featured records.
+ *
+ */
+export const loadFeaturedRecords = Airtable(AirtableUtils.featuredRecords.tableName)
+  .select({
+    // Selecting the first 3 records in Kylie Grid:
+    maxRecords: AirtableUtils.maxRecords,
+    view: AirtableUtils.featuredRecords.viewName,
+  })
+  .all()
+  .then((record) => {
+    return record;
+  })
+  .catch((err) => {
+    console.error(err);
+  });

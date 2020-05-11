@@ -47,8 +47,6 @@ export class ContentCard extends Component {
     const Content = ({ data }) => {
       let { Attachments, Name, Category } = data;
 
-      console.log(data);
-
       if (Attachments && Name) {
         return (
           <div className="content-card-inner">
