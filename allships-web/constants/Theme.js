@@ -66,6 +66,7 @@ export const Theme = {
     Grid: {
       SiteWidth: Base.Grid.SiteWidth + "px",
       SiteFrameWidth: Base.Grid.SiteFrameWidth + "px",
+      ReadingWidth: Base.Grid.ReadingWidth + "px",
       Nav: {
         Size: {
           Lg: Base.Grid.Nav.Size.Lg + "px",

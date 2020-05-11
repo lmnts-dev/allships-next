@@ -15,6 +15,7 @@ import { Airtable, AirtableConfig } from "../clients";
 
 // Components
 import { InnerGrid } from "../components/core/InnerGrid";
+import { ReadingWidthGrid } from "../components/core/ReadingWidthGrid";
 
 // Sections
 import { CardListings } from "../sections/CardListings";
@@ -38,8 +39,10 @@ const FrontPage = (props) => {
 
   return (
     <InnerGrid startBelowNav={true}>
-      <h1 style={{ paddingTop: "150px" }}>FRONTPAGE</h1>
-      <CardListings data={records} />
+      <ReadingWidthGrid>
+        <h1 style={{ paddingTop: "150px" }}>FRONTPAGE</h1>
+      </ReadingWidthGrid>
+      <CardListings data={records} showFilterBar />
     </InnerGrid>
   );
 };

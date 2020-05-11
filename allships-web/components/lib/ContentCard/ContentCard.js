@@ -22,7 +22,6 @@ import { GlobalStyles } from "./styles.scss";
 
 // Utils
 import LazyImage from "../../../utils/lazyImage";
-import { render } from "react-dom";
 
 // Begin Component
 //////////////////////////////////////////////////////////////////////
@@ -32,6 +31,7 @@ export class ContentCard extends Component {
     super(props);
   }
 
+  // Prevent Rerender on State Changes
   shouldComponentUpdate(nextProps, nextState) {
     if (this.props.data === nextProps.data) {
       return false;
@@ -40,21 +40,27 @@ export class ContentCard extends Component {
     }
   }
 
+  // Render
   render() {
     let { isLink, data } = this.props;
 
     const Content = ({ data }) => {
       let { Attachments, Name } = data;
 
-      return (
-        <div className="content-card-inner">
-          {Attachments && Name ? (
+      if (Attachments && Name) {
+        return (
+          <div className="content-card-inner">
             <LazyImage src={Attachments[0].url} alt={Name} />
-          ) : (
-            <div>No Image</div>
-          )}
-        </div>
-      );
+            <div className="content-card-title">{Name}</div>
+            <ul className="content-card-categories">
+              <li>Tag Name</li>
+              <li>Tag Name</li>
+            </ul>
+          </div>
+        );
+      } else {
+        return null;
+      }
     };
 
     if (!isLink) {
@@ -77,40 +83,5 @@ export class ContentCard extends Component {
     }
   }
 }
-
-// export const ContentCard = ({ isLink, data }) => {
-//   const Content = ({ data }) => {
-//     let { Attachments, Name } = data;
-
-//     return (
-//       <div className="content-card-inner">
-//         {Attachments && Name ? (
-//           <LazyImage src={Attachments[0].url} alt={Name} />
-//         ) : (
-//           <div>No Image</div>
-//         )}
-//       </div>
-//     );
-//   };
-
-//   if (!isLink) {
-//     return (
-//       <div className="content-card">
-//         <Content data={data} />
-//       </div>
-//     );
-//   } else {
-//     return (
-//       <a
-//         href={data.Link}
-//         className="content-card __isLink"
-//         target="_blank"
-//         rel="nofollow noreferrer"
-//       >
-//         <Content data={data} />
-//       </a>
-//     );
-//   }
-// };
 
 export const ContentCardGlobalStyles = () => <GlobalStyles />;

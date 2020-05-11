@@ -17,10 +17,13 @@ import { Blink } from "../../../constants/styles/Animation";
 //////////////////////////////////////////////////////////////////////
 
 export const GlobalStyles = createGlobalStyle`
-  .content-card {
-    --hoverTranslate: calc(${Root.Size} * 0.15);
+  :root {
+    --cardHoverTranslate: calc(${Root.Size} * 0.15);
     --cardPadding: calc(${Root.Size} * 0.25);
+  }
 
+  .content-card {
+  
     width: 20%;
     padding: var(--cardPadding);
     position: relative;
@@ -40,6 +43,9 @@ export const GlobalStyles = createGlobalStyle`
       cursor: pointer;
 
       .content-card-inner {
+        position: relative;
+
+        /** External Link Indicator */
         &:after {
           content: "";
           position: absolute;
@@ -52,21 +58,22 @@ export const GlobalStyles = createGlobalStyle`
           border-left: 20px solid ${Theme.Color.Primary};
           transform: rotate(-45deg);
           transform-origin: bottom left;
+          z-index: 15;
         }
       }
 
       &:hover {
         .content-card-inner {
           transform: translate(
-            calc(var(--hoverTranslate) * -1),
-            calc(var(--hoverTranslate) * -1)
+            calc(var(--cardHoverTranslate) * -1),
+            calc(var(--cardHoverTranslate) * -1)
           );
         }
 
         &:before {
           transform: translate(
-            calc(var(--hoverTranslate)),
-            calc(var(--hoverTranslate))
+            calc(var(--cardHoverTranslate)),
+            calc(var(--cardHoverTranslate))
           );
         }
       }
@@ -78,8 +85,8 @@ export const GlobalStyles = createGlobalStyle`
 
         &:before {
           transform: translate(
-            calc(var(--hoverTranslate)),
-            calc(var(--hoverTranslate))
+            calc(var(--cardHoverTranslate)),
+            calc(var(--cardHoverTranslate))
           );
         }
       }
@@ -94,6 +101,46 @@ export const GlobalStyles = createGlobalStyle`
       border: ${Root.BorderSize} solid ${Theme.Color.Primary};
       transform: translate(0, 0);
 
+      /** Card Title */
+      .content-card-title {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        max-width: 100%;
+        background: ${Theme.Color.Primary};
+        color: ${Theme.Color.Background};
+        text-transform: uppercase;
+        font-size: 1.2rem;
+        padding: ${Root.BorderSize} calc(${Root.BorderSize} * 2) ${Root.BorderSize};
+        z-index: 10;
+        pointer-events: none;
+      }
+
+      /** Card Category */
+      .content-card-categories {
+        position: absolute;
+        left: 0;
+        top: 0;
+        max-width: 100%;
+        z-index: 10;
+        padding: ${Root.BorderSize};
+        display: flex;
+        pointer-events: none;
+
+        li {
+          background: ${Theme.Color.White};
+          padding: ${Root.BorderSize};
+          margin-right: ${Root.BorderSize};
+          text-transform: uppercase;
+          color: ${Theme.Color.Primary};
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+
+      /** Card Cover */
       img {
         position: absolute;
         left: 0;
@@ -105,6 +152,7 @@ export const GlobalStyles = createGlobalStyle`
         width: 100%;
         height: 100%;
         max-width: 100%;
+        z-index: 5;
       }
     }
   }
