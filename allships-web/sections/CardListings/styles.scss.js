@@ -55,8 +55,20 @@ export const CardListingsStyle = styled.div`
     width: calc(100% + (var(--cardPadding) * 2));
     position: relative;
 
+    @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+      margin-left: 0;
+      margin-right: 0;
+      width: 100%;
+    }
+
     .content-card {
       width: 100%;
+
+      .content-card-inner {
+        .content-card-title {
+          max-width: 60%;
+        }
+      }
     }
 
     .featured-items-navigation {
