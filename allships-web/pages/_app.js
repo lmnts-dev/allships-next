@@ -36,9 +36,8 @@ class MyApp extends App {
        * @name Dialog
        *
        */
-      // visibleDialog: "launcher",
-      visibleDialog: "none",
-
+      visibleDialog: "launcher",
+      // visibleDialog: "none",
 
       /**
        *
@@ -60,39 +59,39 @@ class MyApp extends App {
         {
           id: "1",
           text: "INITIALIZING",
-          done: false
+          done: false,
         },
         {
           id: "2",
           text: "DOWNLOADING [XXXXXXXXX] 100%",
-          done: false
+          done: false,
         },
         {
           id: "3",
           text: "CURRENT COMMANDS:",
-          done: false
+          done: false,
         },
         {
           id: "4",
           text:
             "- SET_COLOR <primary | secondary | bg | text | dialog> <COLOR_NAME>",
-          done: false
+          done: false,
         },
         {
           id: "23525",
-          text: "- LAUNCH <LAUNCHER>",
-          done: false
+          text: "- LAUNCH <FRONTPAGE>",
+          done: false,
         },
         {
           id: "5",
           text: "- HELP",
-          done: false
+          done: false,
         },
         {
           id: "6",
           text: "- RESET",
-          done: false
-        }
+          done: false,
+        },
       ],
       text: "",
       command: "",
@@ -107,7 +106,7 @@ class MyApp extends App {
       secondaryColor: Theme.Color.HackerGold,
       bgColor: Theme.Color.HackerGold,
       dialogColor: Theme.Color.Black,
-      textColor: Theme.Color.UltraRed
+      textColor: Theme.Color.UltraRed,
     };
 
     // Bind functions.
@@ -131,7 +130,6 @@ class MyApp extends App {
     // Begin listening for scroll time once mounted.
     // Run the handScroll function once we are on the clientside.
     // window.addEventListener("scroll", this.handleScroll, { passive: true });
-
     // Check if we should focus the nav & frame or not.
     // this.checkForFocus();
   }
@@ -164,44 +162,40 @@ class MyApp extends App {
 
       if (property == "bg") {
         this.setState({
-          bgColor: color
+          bgColor: color,
         });
       } else if (property == "primary") {
         this.setState({
-          primaryColor: color
+          primaryColor: color,
         });
       } else if (property == "secondary") {
         this.setState({
-          secondaryColor: color
+          secondaryColor: color,
         });
       } else if (property == "dialog") {
         this.setState({
-          dialogColor: color
+          dialogColor: color,
         });
       } else if (property == "text") {
         this.setState({
-          textColor: color
+          textColor: color,
         });
       }
-    } 
-    
-    /**
-     *
-     * @name launch
-     * @param property: sample
-     * @example > launch sample
-     * @description: Launch apps.
-     *
-     */
-    
-    else if (currentCmd.includes("launch")) {
-      
+    } else if (currentCmd.includes("launch")) {
+      /**
+       *
+       * @name launch
+       * @param property: sample
+       * @example > launch sample
+       * @description: Launch apps.
+       *
+       */
       // console.log("VALID");
 
       let property = currentCmd.split(" ")[1];
 
       this.setState({
-        visibleDialog: property
+        visibleDialog: property,
       });
     }
 
@@ -212,7 +206,7 @@ class MyApp extends App {
       let color = currentCmd.split("invert ")[1];
 
       this.setState({
-        invert: color
+        invert: color,
       });
     }
 
@@ -220,80 +214,60 @@ class MyApp extends App {
     else if (currentCmd.includes("help")) {
       let helpMsg = [
         {
-          id: Math.random()
-            .toString(36)
-            .substring(7),
+          id: Math.random().toString(36).substring(7),
           text: "",
-          done: false
+          done: false,
         },
         {
-          id: Math.random()
-            .toString(36)
-            .substring(7),
+          id: Math.random().toString(36).substring(7),
           text: "~~~~~~~~~~~~~~~~~~~~~~~~~",
-          done: false
+          done: false,
         },
         {
-          id: Math.random()
-            .toString(36)
-            .substring(7),
+          id: Math.random().toString(36).substring(7),
           text: "NEED HELP?",
-          done: false
+          done: false,
         },
         {
-          id: Math.random()
-            .toString(36)
-            .substring(7),
+          id: Math.random().toString(36).substring(7),
           text: "CURRENT COMMANDS:",
-          done: false
+          done: false,
         },
         {
-          id: Math.random()
-            .toString(36)
-            .substring(7),
+          id: Math.random().toString(36).substring(7),
           text:
             "- SET_COLOR <primary | secondary | bg | text | dialog> <COLOR_NAME>",
-          done: false
+          done: false,
         },
         {
-          id: Math.random()
-            .toString(36)
-            .substring(7),
-          text: "- LAUNCH <launcher>",
-          done: false
+          id: Math.random().toString(36).substring(7),
+          text: "- LAUNCH <FRONTPAGE>",
+          done: false,
         },
         {
-          id: Math.random()
-            .toString(36)
-            .substring(7),
+          id: Math.random().toString(36).substring(7),
           text: "- HELP",
-          done: false
+          done: false,
         },
         {
-          id: Math.random()
-            .toString(36)
-            .substring(7),
+          id: Math.random().toString(36).substring(7),
           text: "- RESET",
-          done: false
+          done: false,
         },
         {
-          id: Math.random()
-            .toString(36)
-            .substring(7),
+          id: Math.random().toString(36).substring(7),
           text: "~~~~~~~~~~~~~~~~~~~~~~~~~",
-          done: false
+          done: false,
         },
         {
-          id: Math.random()
-            .toString(36)
-            .substring(7),
+          id: Math.random().toString(36).substring(7),
           text: "",
-          done: false
-        }
+          done: false,
+        },
       ];
 
-      this.setState(prevState => ({
-        items: prevState.items.concat(helpMsg)
+      this.setState((prevState) => ({
+        items: prevState.items.concat(helpMsg),
       }));
     }
 
@@ -302,18 +276,16 @@ class MyApp extends App {
       this.setState({
         items: [
           {
-            id: Math.random()
-              .toString(36)
-              .substring(7),
+            id: Math.random().toString(36).substring(7),
             text: "CONSOLE CLEARED",
-            done: false
-          }
+            done: false,
+          },
         ],
         primaryColor: Theme.Color.UltraRed,
         secondaryColor: Theme.Color.HackerGold,
         bgColor: Theme.Color.HackerGold,
         dialogColor: Theme.Color.Black,
-        textColor: Theme.Color.UltraRed
+        textColor: Theme.Color.UltraRed,
       });
     }
 
@@ -321,37 +293,31 @@ class MyApp extends App {
     else {
       let errorMessage = [
         {
-          id: Math.random()
-            .toString(36)
-            .substring(7),
+          id: Math.random().toString(36).substring(7),
           text: "COMMAND '" + cmd + "' NOT FOUND",
-          done: false
+          done: false,
         },
         {
-          id: Math.random()
-            .toString(36)
-            .substring(7),
+          id: Math.random().toString(36).substring(7),
           text: "TYPE 'HELP' FOR LIST OF COMMANDS",
-          done: false
+          done: false,
         },
         {
-          id: Math.random()
-            .toString(36)
-            .substring(7),
+          id: Math.random().toString(36).substring(7),
           text: "",
-          done: false
-        }
+          done: false,
+        },
       ];
 
-      this.setState(prevState => ({
-        items: prevState.items.concat(errorMessage)
+      this.setState((prevState) => ({
+        items: prevState.items.concat(errorMessage),
       }));
     }
 
     // Clear & reset input
     this.setState({
       command: "",
-      prevCommand: cmd
+      prevCommand: cmd,
     });
   }
 
@@ -364,7 +330,7 @@ class MyApp extends App {
    */
   handleTextChange(event) {
     this.setState({
-      text: event.target.value
+      text: event.target.value,
     });
   }
 
@@ -381,13 +347,13 @@ class MyApp extends App {
     var newItem = {
       id: Date.now(),
       text: this.state.text,
-      done: false
+      done: false,
     };
 
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       items: prevState.items.concat(newItem),
       text: "",
-      command: this.state.text
+      command: this.state.text,
     }));
 
     this.handleCommand(this.state.text);
@@ -409,7 +375,7 @@ class MyApp extends App {
 
     // Assign our new value.
     this.setState({
-      lastScrollY: window.scrollY
+      lastScrollY: window.scrollY,
     });
 
     // Check if we should focus the nav & frame or not.
@@ -425,11 +391,11 @@ class MyApp extends App {
   checkScrollDirection() {
     if (this.state.lastScrollY > window.scrollY) {
       this.setState({
-        scrollDirection: "up"
+        scrollDirection: "up",
       });
     } else {
       this.setState({
-        scrollDirection: "down"
+        scrollDirection: "down",
       });
     }
   }
@@ -446,22 +412,23 @@ class MyApp extends App {
     if (window.scrollY > 10) {
       if (this.state.scrollDirection === "down") {
         this.setState({
-          focus: false
+          focus: false,
         });
       } else {
         this.setState({
-          focus: true
+          focus: true,
         });
       }
     } else {
       this.setState({
-        focus: true
+        focus: true,
       });
     }
   }
 
   render() {
     const { Component, pageProps } = this.props;
+    const { visibleDialog } = this.state;
 
     // Variable Overrides
     const VariableOverrides = createGlobalStyle`
@@ -474,10 +441,17 @@ class MyApp extends App {
     }
   `;
 
+    const LockBodyScroll = createGlobalStyle`
+    body {
+      overflow: ${visibleDialog == "launcher" ? "hidden" : "visible"};
+    }
+  `;
+
     // Render our App
     return (
       <>
         <VariableOverrides />
+        <LockBodyScroll />
         <Layout
           handleTextChange={this.handleTextChange}
           handleAddItem={this.handleAddItem}
@@ -492,12 +466,12 @@ class MyApp extends App {
   }
 }
 
-MyApp.getInitialProps = async appContext => {
+MyApp.getInitialProps = async (appContext) => {
   // calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(appContext);
 
   return {
-    ...appProps
+    ...appProps,
   };
 };
 

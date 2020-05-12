@@ -45,6 +45,15 @@ const LauncherDialogStyle = styled.div`
     align-items: flex-start;
     justify-content: flex-start;
 
+    @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+      width: 100vw;
+      height: 100vh;
+      max-width: unset;
+      min-width: unset;
+      max-height: unset;
+      min-height: unset;
+    }
+
     .launcher-dialog-header {
       width: 100%;
     }
@@ -54,11 +63,19 @@ const LauncherDialogStyle = styled.div`
       flex: 1;
       width: 100%;
 
+      @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+        flex-direction: column;
+      }
+
       .launcher-dialog-sidebar {
         border-right: ${Root.BorderSize} solid ${Theme.Color.Primary};
         overflow-y: scroll;
         min-width: ${sideBarSize};
         text-transform: uppercase;
+
+        @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+          border-right: unset;
+        }
 
         ul {
           list-style-type: none;
@@ -72,10 +89,21 @@ const LauncherDialogStyle = styled.div`
             padding: ${Root.DialogPaddingSize};
             cursor: pointer;
 
+            @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+              padding: calc(${Root.DialogPaddingSize} * 2)
+                ${Root.DialogPaddingSize};
+            }
+
             &:hover,
             &.active {
               background: ${Theme.Color.Secondary};
               color: ${Theme.Color.Dialog};
+            }
+
+            @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+              &:hover {
+                background: ${Theme.Color.Primary};
+              }
             }
           }
         }
