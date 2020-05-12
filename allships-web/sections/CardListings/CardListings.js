@@ -1,12 +1,3 @@
-/**
- *
- * CardListings.js
- * @author Peter Laxalt
- * @description Our main card listings.
- * @example Default: <CardListings visible={true | false} />
- *
- */
-
 // Imports
 //////////////////////////////////////////////////////////////////////
 
@@ -21,6 +12,7 @@ import {
   ContentCard,
   ContentCardGlobalStyles,
 } from "../../components/lib/ContentCard";
+import { PageHero } from "../PageHero";
 
 // Begin Component
 //////////////////////////////////////////////////////////////////////
@@ -87,6 +79,12 @@ export class CardListings extends PureComponent {
   handleCategoryToggle(category) {
     let { availableCategories } = this.state;
     let { content, featuredContent } = this.props;
+
+    if (window) {
+      window.scrollTo(0, 0);
+    } else {
+      return;
+    }
 
     console.log("HANDLE CATEGORY FIRED");
     console.log(this.state);
@@ -205,7 +203,7 @@ export class CardListings extends PureComponent {
      * Variables
      *
      */
-    let { showFilterBar } = this.props;
+    let { showFilterBar, showPageHero } = this.props;
     let {
       content,
       availableCategories,
@@ -330,6 +328,9 @@ export class CardListings extends PureComponent {
     return (
       <CardListingsStyle className="section-card-listings">
         <ContentCardGlobalStyles />
+        {!showPageHero ? null : (
+          <PageHero currentHero={this.state.currentCategory} />
+        )}
         {!showFilterBar ? null : <FilterBar />}
         {!showFeaturedItems ? null : (
           <FeaturedItems
