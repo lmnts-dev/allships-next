@@ -155,6 +155,16 @@ export const FilterBarStyle = styled.div`
                 ${Theme.Color.Dialog};
             }
 
+            &.active {
+              &:active {
+                background: ${Theme.Color.Dialog};
+                color: ${Theme.Color.Background};
+                box-shadow: inset calc(var(--btnShadowSize) * 1)
+                  calc(var(--btnShadowSize) * 1) 0px var(--btnShadowSize)
+                  ${Theme.Color.Primary};
+              }
+            }
+
             &:last-child {
               margin-right: 0;
 
@@ -194,6 +204,7 @@ export const FilterBarStyle = styled.div`
             &:active,
             &.active {
               background: ${Theme.Color.Dialog};
+              color: ${Theme.Color.Background};
             }
 
             &:first-child {
