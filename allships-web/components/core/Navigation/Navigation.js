@@ -25,7 +25,7 @@ export const Navigation = ({
   appState,
   handleTextChange,
   handleAddItem,
-  handleCommand
+  handleCommand,
 }) => {
   // console.log(appState);
 

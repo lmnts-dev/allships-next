@@ -114,6 +114,10 @@ export const NavigationStyle = styled.nav`
 
           .label {
             padding: 0 ${navPadding} 0 0;
+
+            @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+              padding-left: ${navPadding};
+            }
           }
 
           &:hover {
@@ -138,6 +142,10 @@ export const NavigationStyle = styled.nav`
       &.launcher-input {
         flex: 1;
         padding: 0 ${navPadding};
+
+        @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+          display: none;
+        }
 
         .launcher-input-wrapper {
           display: flex;
@@ -201,6 +209,10 @@ export const NavigationStyle = styled.nav`
         display: flex;
         align-items: center;
         padding: 0 ${navPadding};
+
+        @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+          display: none;
+        }
       }
 
       /* Launcher Time */
@@ -209,6 +221,10 @@ export const NavigationStyle = styled.nav`
         align-items: center;
         padding: 0 ${navPadding};
         border-left: ${Root.BorderSize} solid ${Theme.Color.Primary};
+
+        @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+          border-left: unset;
+        }
       }
     }
   }
