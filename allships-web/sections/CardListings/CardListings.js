@@ -27,126 +27,6 @@ import {
 
 /**
  *
- * @name FeaturedItems
- * @description Our featured items from the given props.
- * @params currentAuthor : string : Current active `author`.
- * @params featuredContent : string: Airtable Records.
- * @returns A slider of featured items.
- *
- */
-
-export class FeaturedItems extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      currentIdx: 0,
-    };
-
-    // Bind our functions
-    this.handleIdxUpdate = this.handleIdxUpdate.bind(this);
-  }
-
-  componentDidMount() {
-    let { featuredContent } = this.props;
-
-    console.log("FEATURED ITEMS MOUNTED", this.state);
-    console.log("featuredContent (FROM FEATURED ITEMS)", featuredContent);
-
-    this.setState({
-      currentIdx: 0,
-    });
-  }
-
-  // Prevent Rerender on State Changes
-  shouldComponentUpdate(nextProps, nextState) {
-    if (this.props.featuredContent !== nextProps.featuredContent) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  /**
-   *
-   * @name handleIdxUpdate
-   * @description Our featured items from the given props.
-   * @params incrementing : boolean : If true, add to currentIdx. If false, subtract from currentIdx.
-   * @params totalIdx : number : Total number of items to loop through.
-   *
-   */
-  handleIdxUpdate(incrementing, totalIdx) {
-    let { currentIdx } = this.state;
-
-    console.log(this.state);
-    console.log("totalIdx:", totalIdx);
-
-    if (totalIdx != 0) {
-      if (incrementing) {
-        if (currentIdx < totalIdx) {
-          this.setState({
-            currentIdx: currentIdx + 1,
-          });
-        } else {
-          this.setState({
-            currentIdx: 0,
-          });
-        }
-      } else {
-        if (currentIdx === 0) {
-          this.setState({
-            currentIdx: totalIdx,
-          });
-        } else {
-          this.setState({
-            currentIdx: currentIdx - 1,
-          });
-        }
-      }
-    } else {
-      this.setState({
-        currentIdx: totalIdx,
-      });
-    }
-  }
-
-  render() {
-    let { featuredContent, featuredContentLength } = this.props;
-    let { currentIdx } = this.state;
-
-    return (
-      <div className="section-featured-items">
-        {featuredContentLength > 1 ? (
-          <div className="featured-items-navigation">
-            <span
-              onClick={() => this.handleIdxUpdate(false, featuredContentLength)}
-              className="featured-items-previous"
-            >{`<`}</span>
-            <span
-              onClick={() => this.handleIdxUpdate(true, featuredContentLength)}
-              className="featured-items-next"
-            >{`>`}</span>
-          </div>
-        ) : null}
-
-        {featuredContent[currentIdx] ? (
-          <ContentCard
-            data={featuredContent[currentIdx].fields}
-            isLink={featuredContent[currentIdx].fields.Link ? true : false}
-            isFeatured
-          />
-        ) : (
-          this.setState({
-            currentIdx: 0,
-          })
-        )}
-      </div>
-    );
-  }
-}
-
-/**
- *
  * @name CardListings
  * @description Our app's card listings to display our items.
  * @param availableCategories : array : The categories of the supplied records.
@@ -164,11 +44,14 @@ export class CardListings extends PureComponent {
       availableCategories: [],
       currentCategory: "everything",
       currentAuthor: "everything",
+      featuredItems: [],
+      featuredItemIdx: 0,
     };
 
     // Bind our functions
     this.handleCategoryToggle = this.handleCategoryToggle.bind(this);
     this.handleAuthorToggle = this.handleAuthorToggle.bind(this);
+    this.handleFeaturedIdxUpdate = this.handleFeaturedIdxUpdate.bind(this);
   }
 
   componentDidMount() {
@@ -260,13 +143,57 @@ export class CardListings extends PureComponent {
     }
   }
 
+  /**
+   *
+   * @name handleFeaturedIdxUpdate
+   * @description Our featured items from the given props.
+   * @params incrementing : boolean : If true, add to featuredItemIdx. If false, subtract from featuredItemIdx.
+   * @params totalIdx : number : Total number of items to loop through.
+   *
+   */
+  handleFeaturedIdxUpdate(incrementing, totalIdx) {
+    let { featuredItemIdx } = this.state;
+    totalIdx = totalIdx - 1;
+
+    console.log(this.state);
+    console.log("totalIdx:", totalIdx);
+
+    if (totalIdx != 0) {
+      if (incrementing) {
+        if (featuredItemIdx < totalIdx) {
+          this.setState({
+            featuredItemIdx: featuredItemIdx + 1,
+          });
+        } else {
+          this.setState({
+            featuredItemIdx: 0,
+          });
+        }
+      } else {
+        if (featuredItemIdx === 0) {
+          this.setState({
+            featuredItemIdx: totalIdx,
+          });
+        } else {
+          this.setState({
+            featuredItemIdx: featuredItemIdx - 1,
+          });
+        }
+      }
+    } else {
+      this.setState({
+        featuredItemIdx: totalIdx,
+      });
+    }
+  }
+
   render() {
     /**
      *
      * Variables
      *
      */
-    let { showFilterBar } = this.props;
+    let { showFilterBar, featuredContent } = this.props;
     let {
       content,
       availableCategories,
@@ -274,17 +201,9 @@ export class CardListings extends PureComponent {
       currentAuthor,
     } = this.state;
 
-    let featuredContent = content.filter(
-      (item) => item.fields.Featured == true
-    );
-    let featuredContentLength =
-      featuredContent.length > 0 ? featuredContent.length : 0;
-
     // Put our logic to check for featured items here.
-    let showFeaturedItems = featuredContent.length > 0 ? true : false;
+    let showFeaturedItems = true;
 
-    console.log("featuredContent", featuredContent);
-    console.log("featuredContentLength", featuredContentLength);
     /**
      *
      * @name FilterBar
@@ -349,6 +268,45 @@ export class CardListings extends PureComponent {
 
     /**
      *
+     * @name FeaturedItems
+     *
+     */
+    const FeaturedItems = ({ featuredContent, featuredItemIdx }) => {
+      console.log("featuredContent", featuredContent);
+      console.log("featuredItemIdx", featuredItemIdx);
+
+      return (
+        <div className="section-featured-items">
+          {featuredContent.length > 1 ? (
+            <div className="featured-items-navigation">
+              <span
+                onClick={() =>
+                  this.handleFeaturedIdxUpdate(false, featuredContent.length)
+                }
+                className="featured-items-previous"
+              >{`<`}</span>
+              <span
+                onClick={() =>
+                  this.handleFeaturedIdxUpdate(true, featuredContent.length)
+                }
+                className="featured-items-next"
+              >{`>`}</span>
+            </div>
+          ) : null}
+
+          {featuredContent[featuredItemIdx] ? (
+            <ContentCard
+              data={featuredContent[featuredItemIdx].fields}
+              isLink={featuredContent[featuredItemIdx].fields.Link ? true : false}
+              isFeatured
+            />
+          ) : null}
+        </div>
+      );
+    };
+
+    /**
+     *
      * @name CardListings
      * @returns Our Card Listings, FilterBar, and FeaturedItems.
      *
@@ -360,8 +318,7 @@ export class CardListings extends PureComponent {
         {!showFeaturedItems ? null : (
           <FeaturedItems
             featuredContent={featuredContent}
-            currentAuthor={currentAuthor}
-            featuredContentLength={featuredContentLength}
+            featuredItemIdx={this.state.featuredItemIdx}
           />
         )}
         <div className="card-listings-list">

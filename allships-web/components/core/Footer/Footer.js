@@ -36,7 +36,6 @@ class NewsletterForm extends Component {
   }
 
   handleSubmit = async (e) => {
-    console.log("SUBMITTED: " + this.state.value);
     e.preventDefault();
 
     addToEmailList(this.state.value);
