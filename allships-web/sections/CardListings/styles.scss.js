@@ -48,6 +48,16 @@ export const CardListingsStyle = styled.div`
       }
     }
   }
+
+  .section-featured-items {
+    margin-left: calc(var(--cardPadding) * -1);
+    margin-right: calc(var(--cardPadding) * -1);
+    width: calc(100% + (var(--cardPadding) * 2));
+
+    .content-card {
+      width: 100%;
+    }
+  }
 `;
 
 export const FilterBarStyle = styled.div`

@@ -27,6 +27,7 @@ export const GlobalStyles = createGlobalStyle`
     width: 20%;
     padding: var(--cardPadding);
     position: relative;
+    display: block;
 
     &:before {
       content: "";

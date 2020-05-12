@@ -25,6 +25,73 @@ import {
 // Begin Component
 //////////////////////////////////////////////////////////////////////
 
+/**
+ *
+ * @name FeaturedItems
+ * @description Our featured items from the given props.
+ * @params currentAuthor
+ * @params featuredContent
+ *
+ */
+
+export class FeaturedItems extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      currentIdx: 0,
+      totalIdx: 0,
+    };
+  }
+
+  componentDidMount() {
+    let { featuredContent } = this.props;
+
+    // Check for the total length of the `items` provided.
+    if (featuredContent) {
+      if (featuredContent.length) {
+        this.setState({
+          totalIdx: featuredContent.length,
+        });
+      } else {
+        this.setState({
+          totalIdx: 0,
+        });
+      }
+    } else {
+      this.setState({
+        totalIdx: 0,
+      });
+    }
+  }
+
+  render() {
+    let { currentAuthor, featuredContent } = this.props;
+    let { currentIdx, totalIdx } = this.state;
+
+    console.log("totalIdx", totalIdx);
+
+    return (
+      <div className="section-featured-items">
+        <ContentCard
+          data={featuredContent[currentIdx].fields}
+          isLink={featuredContent[currentIdx].fields.Link ? true : false}
+        />
+      </div>
+    );
+  }
+}
+
+/**
+ *
+ * @name CardListings
+ * @description Our app's card listings to display our items.
+ * @param availableCategories : array : The categories of the supplied records.
+ * @param featuredContent : object ? : Featured Airtable records. Defaults to hidden.
+ * @param content : object : All Airtable records.
+ * @param showFilterBar : boolean ? : Show or hide filter bar. Defaults to hidden.
+ *
+ */
 export class CardListings extends PureComponent {
   constructor(props) {
     super(props);
@@ -41,13 +108,6 @@ export class CardListings extends PureComponent {
     this.handleAuthorToggle = this.handleAuthorToggle.bind(this);
   }
 
-  /**
-   *
-   * @name componentDidMount
-   * @description Part of React lifecycle. We're just setting our `content` state to our supplied
-   * props safely upon mounting rather than including it in our constructor.
-   *
-   */
   componentDidMount() {
     let { content, availableCategories } = this.props;
 
@@ -138,15 +198,31 @@ export class CardListings extends PureComponent {
   }
 
   render() {
-    let { showFilterBar, featuredContent } = this.props;
-
+    /**
+     *
+     * Variables
+     *
+     */
+    let { showFilterBar } = this.props;
     let {
       content,
       availableCategories,
       currentCategory,
       currentAuthor,
     } = this.state;
+    let featuredContent = content.filter(
+      (item) => item.fields.Featured == true
+    );
 
+    // Put our logic to check for featured items here.
+    let showFeaturedItems = featuredContent.length > 0 ? true : false;
+
+    /**
+     *
+     * @name FilterBar
+     * @description Bar to show available filters.
+     *
+     */
     const FilterBar = () => {
       return (
         <FilterBarStyle>
@@ -203,10 +279,22 @@ export class CardListings extends PureComponent {
       );
     };
 
+    /**
+     *
+     * @name CardListings
+     * @returns Our Card Listings, FilterBar, and FeaturedItems.
+     *
+     */
     return (
       <CardListingsStyle className="section-card-listings">
         <ContentCardGlobalStyles />
         {!showFilterBar ? null : <FilterBar />}
+        {!showFeaturedItems ? null : (
+          <FeaturedItems
+            featuredContent={featuredContent}
+            currentAuthor={currentAuthor}
+          />
+        )}
         <div className="card-listings-list">
           {content
             .filter((item) => item.fields.Author.includes(currentAuthor))
@@ -231,66 +319,3 @@ export class CardListings extends PureComponent {
     );
   }
 }
-
-// export const CardListings = ({
-//   content,
-//   showFilterBar,
-//   availableCategories,
-//   featuredContent,
-// }) => {
-//   const FilterBar = () => {
-//     return (
-//       <FilterBarStyle>
-//         <div className="card-listings-filter-bar-inner">
-//           <div className="card-listings-filter-bar-col">
-//             {availableCategories ? (
-//               <ul className="card-listings-filter-bar-categories">
-//                 <li className="btn active">
-//                   Everything
-//                 </li>
-//                 {availableCategories.map((category, idx) => {
-//                   return (
-//                     <li className="btn" key={idx}>
-//                       {category}
-//                     </li>
-//                   );
-//                 })}
-//               </ul>
-//             ) : null}
-//           </div>
-//           <div className="card-listings-filter-bar-col">
-//             <ul className="card-listings-filter-bar-categories">
-//               <li className="btn">By Us</li>
-//               <li className="btn">By Others</li>
-//             </ul>
-//           </div>
-//         </div>
-//       </FilterBarStyle>
-//     );
-//   };
-
-//   return (
-//     <CardListingsStyle className="section-card-listings">
-//       <ContentCardGlobalStyles />
-//       {!showFilterBar ? null : <FilterBar />}
-//       <div className="card-listings-list">
-//         {content.map((item, idx) => {
-//           let { fields } = item;
-
-//           if (item.fields.Name && item.fields.Attachments) {
-//             return (
-//               <ContentCard
-//                 data={fields}
-//                 isLink={fields.Link ? true : false}
-//                 key={idx}
-//               />
-//             );
-//           } else {
-//             console.log("🛑 Record missing required information:", item);
-//             return null;
-//           }
-//         })}
-//       </div>
-//     </CardListingsStyle>
-//   );
-// };
