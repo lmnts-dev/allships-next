@@ -133,6 +133,7 @@ export class FeaturedItems extends Component {
           <ContentCard
             data={featuredContent[currentIdx].fields}
             isLink={featuredContent[currentIdx].fields.Link ? true : false}
+            isFeatured
           />
         ) : (
           this.setState({

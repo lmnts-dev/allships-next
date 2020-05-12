@@ -27,6 +27,7 @@ export const CardListingsStyle = styled.div`
     flex-wrap: wrap;
     margin-left: calc(var(--cardPadding) * -1);
     margin-right: calc(var(--cardPadding) * -1);
+    padding-bottom: calc(${Root.Size} * 4);
     width: calc(100% + (var(--cardPadding) * 2));
 
     @media (max-width: ${Theme.Base.Media.Width.Sm}) {

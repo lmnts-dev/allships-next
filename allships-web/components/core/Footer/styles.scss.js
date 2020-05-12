@@ -22,7 +22,7 @@ import { Root } from "../../../constants/Root";
 export const FooterStyle = styled.footer`
   background: ${Theme.Color.Dialog};
   border-top: ${Root.BorderSize} solid ${Theme.Color.Primary};
-  padding: ${Root.Size} 0;
+  padding: calc(${Root.Size} * 2) 0;
   position: relative;
   z-index: 200;
 

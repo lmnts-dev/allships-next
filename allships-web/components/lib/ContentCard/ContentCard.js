@@ -42,7 +42,7 @@ export class ContentCard extends Component {
 
   // Render
   render() {
-    let { isLink, data } = this.props;
+    let { isLink, data, isFeatured } = this.props;
 
     const Content = ({ data }) => {
       let { Attachments, Name, Category } = data;
@@ -54,6 +54,7 @@ export class ContentCard extends Component {
             <div className="content-card-title">{Name} ></div>
             {Category ? (
               <ul className="content-card-categories">
+                {isFeatured ? <li>Featured</li> : null}
                 <li>{Category}</li>
               </ul>
             ) : null}
