@@ -21,11 +21,13 @@ import LazyImage from "../../utils/lazyImage";
  *
  */
 export const PageHero = ({ currentHero }) => {
+  let isHomePage = currentHero == "everything" ? true : false;
+
   return (
     <PageHeroStyle className="section-page-hero">
       <div
         style={{
-          paddingTop: "150px",
+          paddingTop: !isHomePage ? 40 : 150,
           paddingBottom: 0,
           fontSize: "9rem",
           lineHeight: 0.8,
@@ -35,7 +37,7 @@ export const PageHero = ({ currentHero }) => {
           textAlign: "center",
         }}
       >
-        {currentHero != "everything" ? (
+        {!isHomePage ? (
           <h1 style={{ textTransform: "uppercase" }}>{currentHero}</h1>
         ) : (
           <LazyImage
@@ -45,16 +47,18 @@ export const PageHero = ({ currentHero }) => {
           />
         )}
       </div>
-      <p
-        style={{
-          marginBottom: 60,
-          paddingBottom: 0,
-          fontSize: "2.5rem",
-          textAlign: "center",
-        }}
-      >
-        A CREATIVE COALITION
-      </p>
+      {!isHomePage ? null : (
+        <p
+          style={{
+            marginBottom: 60,
+            paddingBottom: 0,
+            fontSize: "2.5rem",
+            textAlign: "center",
+          }}
+        >
+          A CREATIVE COALITION
+        </p>
+      )}
     </PageHeroStyle>
   );
 };

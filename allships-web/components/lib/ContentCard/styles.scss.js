@@ -38,6 +38,7 @@ export const GlobalStyles = createGlobalStyle`
       top: calc(var(--cardPadding));
       background: ${Theme.Color.Primary};
       transform: translate(0, 0);
+      mix-blend-mode: difference;
     }
 
     &.__isLink {
