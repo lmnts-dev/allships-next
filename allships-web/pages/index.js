@@ -20,6 +20,7 @@ import {
 // Components
 import { InnerGrid } from "../components/core/InnerGrid";
 import { ReadingWidthGrid } from "../components/core/ReadingWidthGrid";
+import LazyImage from "../utils/lazyImage";
 
 // Sections
 import { CardListings } from "../sections/CardListings";
@@ -35,11 +36,34 @@ const FrontPage = (props) => {
 
   return (
     <InnerGrid startBelowNav={true}>
-      <ReadingWidthGrid>
-        <h1 style={{ paddingTop: "150px", color: Theme.Color.Dialog }}>
-          FRONTPAGE
-        </h1>
-      </ReadingWidthGrid>
+      <div
+        style={{
+          paddingTop: "150px",
+          paddingBottom: 0,
+          fontSize: "9rem",
+          lineHeight: 0.8,
+          marginBottom: 5,
+          marginTop: 0,
+          color: Theme.Color.Dialog,
+          textAlign: "center",
+        }}
+      >
+        <LazyImage
+          src="/gradient-logo.svg"
+          style={{ width: "60vw" }}
+          alt="ALLSHIPS"
+        />
+      </div>
+      <p
+        style={{
+          marginBottom: 60,
+          paddingBottom: 0,
+          fontSize: "2.5rem",
+          textAlign: "center",
+        }}
+      >
+        A CREATIVE COALITION
+      </p>
       <CardListings
         availableCategories={availableCategories}
         featuredContent={featuredContent}

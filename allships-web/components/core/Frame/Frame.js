@@ -9,6 +9,9 @@
 // Core
 import React from "react";
 
+// Components
+import LazyImage from "../../../utils/lazyImage";
+
 // Styles
 import { FrameStyle } from "./styles.scss";
 
@@ -23,6 +26,18 @@ export const Frame = ({ shouldFocus }) => {
       <span className="frame-right" />
       <span className="frame-bottom" />
       <span className="frame-top" />
+      <span className="embellish embellish-top-left">
+        <LazyImage src="/nexus.png" alt="ALLSHIPS" />
+      </span>
+      <span className="embellish embellish-top-right">
+        <LazyImage src="/nexus.png" alt="ALLSHIPS" />
+      </span>
+      <span className="embellish embellish-bottom-right">
+        <LazyImage src="/nexus.png" alt="ALLSHIPS" />
+      </span>
+      <span className="embellish embellish-bottom-left">
+        <LazyImage src="/nexus.png" alt="ALLSHIPS" />
+      </span>
     </FrameStyle>
   );
 };

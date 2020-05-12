@@ -32,13 +32,13 @@ export const Root = {
 
   // Site Grid
   Site: {
-    Width: "var(--SiteWidth)"
+    Width: "var(--SiteWidth)",
   },
   Nav: {
-    Size: "var(--NavSize)"
+    Size: "var(--NavSize)",
   },
   Footer: {
-    Size: "var(--FooterSize)"
+    Size: "var(--FooterSize)",
   },
 
   Grid: {
@@ -48,18 +48,18 @@ export const Root = {
       Top: "var(--GutterTop)",
       Right: "var(--GutterRight)",
       Bottom: "var(--GutterBottom)",
-      Left: "var(--GutterLeft)"
+      Left: "var(--GutterLeft)",
     },
 
     Indent: {
       X: "var(--IndentX)",
-      Y: "var(--IndentY)"
-    }
+      Y: "var(--IndentY)",
+    },
   },
 
   // Buttons
   Button: {
-    Size: "var(--ButtonSize)"
+    Size: "var(--ButtonSize)",
   },
 
   // Inputs
@@ -72,7 +72,7 @@ export const Root = {
   BorderSize: "var(--BorderSize)",
 
   // Dialogs
-  DialogPaddingSize: "var(--DialogPaddingSize)"
+  DialogPaddingSize: "var(--DialogPaddingSize)",
 };
 
 // Responsive Measurements:
@@ -124,6 +124,10 @@ export const RootVariables = createGlobalStyle`
 
     /* --------- Dialogs */
     --DialogPaddingSize: ${Theme.Base.DialogPaddingSize.Lg};
+
+    /* -------- Embellishments */
+    --embellishOffset: calc(${Root.Size} * .5);
+    --embellishSize: calc(${Root.Size});
     
     /* ----------------------------------- Medium Width Viewports */
     @media (max-width: ${Theme.Base.Media.Width.Md}) {

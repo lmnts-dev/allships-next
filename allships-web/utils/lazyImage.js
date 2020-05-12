@@ -26,7 +26,7 @@ export class LazyImage extends React.Component {
     if (!document.lazyLoadInstance) {
       // @ts-ignore
       document.lazyLoadInstance = new LazyLoad({
-        elements_selector: ".lazy"
+        elements_selector: ".lazy",
       });
     }
 
@@ -43,7 +43,8 @@ export class LazyImage extends React.Component {
   // Just render the image with data-src
   render() {
     // @ts-ignore
-    const { alt, src, srcset, sizes, width, height } = this.props;
+    const { alt, src, srcset, sizes, width, height, style } = this.props;
+
     return (
       <img
         alt={alt}
@@ -53,6 +54,7 @@ export class LazyImage extends React.Component {
         data-sizes={sizes}
         width={width}
         height={height}
+        style={style}
       />
     );
   }

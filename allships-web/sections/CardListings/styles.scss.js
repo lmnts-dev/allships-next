@@ -18,7 +18,6 @@ import { Blink } from "../../constants/styles/Animation";
 
 export const CardListingsStyle = styled.div`
   width: 100%;
-  max-width: ${Theme.Base.Grid.ReadingWidth};
   margin: 0 auto;
 
   .card-listings-list {

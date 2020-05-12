@@ -114,8 +114,6 @@ export class FeaturedItems extends Component {
     let { featuredContent, featuredContentLength } = this.props;
     let { currentIdx } = this.state;
 
-    console.log("featuredContentLength FROM FEATURED", featuredContentLength);
-
     return (
       <div className="section-featured-items">
         {featuredContentLength > 1 ? (
