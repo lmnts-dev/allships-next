@@ -7,17 +7,66 @@
  */
 
 // Core
-import React from "react";
+import React, { Component } from "react";
 
 // Components
 import { InnerGrid } from "../InnerGrid";
 import LazyImage from "../../../utils/lazyImage";
+
+// Data
+import { addToEmailList } from "../../../clients";
 
 // Styles
 import { FooterStyle } from "./styles.scss";
 
 // Begin Component
 //////////////////////////////////////////////////////////////////////
+
+class NewsletterForm extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      complete: false,
+      value: "",
+    };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleSubmit = async (e) => {
+    console.log("SUBMITTED: " + this.state.value);
+    e.preventDefault();
+
+    addToEmailList(this.state.value);
+
+    this.setState({ complete: true });
+  };
+
+  handleChange(e) {
+    this.setState({ value: e.target.value });
+  }
+
+  render() {
+    return (
+      <>
+        {!this.state.complete ? (
+          <form onSubmit={this.handleSubmit}>
+            <input
+              type="email"
+              placeholder="> Enter your email address"
+              value={this.state.value}
+              onChange={this.handleChange}
+            />
+          </form>
+        ) : (
+          <span>Thanks for subscribing!</span>
+        )}
+      </>
+    );
+  }
+}
 
 export const Footer = () => {
   return (
@@ -56,7 +105,7 @@ export const Footer = () => {
                 />
               </div>
               <div className="footer-newsletter-form-wrapper">
-                <input type="text" placeholder="> Enter your email address" />
+                <NewsletterForm />
               </div>
             </div>
 
@@ -70,7 +119,7 @@ export const Footer = () => {
                   />
                 </li>
               </ul>
-              <div class="footer-copyright">
+              <div className="footer-copyright">
                 © {new Date().getFullYear()} AllShips New York City, NY
               </div>
             </div>

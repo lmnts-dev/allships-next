@@ -54,6 +54,9 @@ export const AirtableUtils = {
     viewName: "Featured Content",
     tableName: "Content",
   },
+  emailList: {
+    tableName: "Email List",
+  },
 };
 
 /**
@@ -132,4 +135,34 @@ export const createAvailableCategories = (content) => {
   availableCategories = [...availableCategories];
 
   return availableCategories;
+};
+
+/**
+ *
+ * @name addToEmailList
+ * @returns A response of true or false if the new email has been added
+ * @param email : string : Email address to add
+ *
+ */
+
+export const addToEmailList = (email) => {
+  Airtable(AirtableUtils.emailList.tableName).create(
+    [
+      {
+        fields: {
+          Email: email,
+        },
+      },
+    ],
+    (err, records) => {
+      if (err) {
+        console.error(err);
+        return false; // Unsuccessful
+      } else {
+        console.log("👍 Submitted Successfully");
+
+        return true; // Successful
+      }
+    }
+  );
 };
