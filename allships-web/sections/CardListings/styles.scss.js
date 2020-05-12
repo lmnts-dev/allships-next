@@ -53,9 +53,52 @@ export const CardListingsStyle = styled.div`
     margin-left: calc(var(--cardPadding) * -1);
     margin-right: calc(var(--cardPadding) * -1);
     width: calc(100% + (var(--cardPadding) * 2));
+    position: relative;
 
     .content-card {
       width: 100%;
+    }
+
+    .featured-items-navigation {
+      --featuredNavSize: ${Root.Size};
+
+      position: absolute;
+      right: calc(var(--cardPadding) + ${Root.BorderSize});
+      bottom: calc(var(--cardPadding) + ${Root.BorderSize});
+      z-index: 50;
+      display: flex;
+
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.7rem;
+        height: var(--featuredNavSize);
+        width: var(--featuredNavSize);
+        background: ${Theme.Color.Primary};
+        color: ${Theme.Color.Background};
+        margin-right: ${Root.BorderSize};
+        margin-bottom: ${Root.BorderSize};
+        border: calc(${Root.BorderSize} * 0.5) solid ${Theme.Color.Primary};
+        cursor: pointer;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        &:hover {
+          box-shadow: inset calc(${Root.BorderSize} * -0.5)
+            calc(${Root.BorderSize} * -0.5) 0px 0px ${Theme.Color.Background};
+        }
+
+        &:active {
+          box-shadow: inset calc(${Root.BorderSize} * 0.5)
+            calc(${Root.BorderSize} * 0.5) 0px 0px ${Theme.Color.Dialog};
+          color: ${Theme.Color.Dialog};
+        }
+      }
     }
   }
 `;
