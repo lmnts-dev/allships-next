@@ -45,9 +45,11 @@ export const FooterStyle = styled.footer`
     flex-wrap: nowrap;
     text-transform: uppercase;
     font-size: 1.8rem;
+    padding: 0 calc(${Root.Size} / 2);
 
     @media (max-width: ${Theme.Base.Media.Width.Sm}) {
       flex-wrap: wrap;
+      padding: 0;
     }
 
     img {
