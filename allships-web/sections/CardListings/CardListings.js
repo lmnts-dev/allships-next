@@ -55,7 +55,7 @@ export class CardListings extends PureComponent {
   }
 
   componentDidMount() {
-    let { content, availableCategories } = this.props;
+    let { content, availableCategories, featuredContent } = this.props;
 
     if (content) {
       this.setState({
@@ -63,6 +63,7 @@ export class CardListings extends PureComponent {
         availableCategories: availableCategories,
         currentCategory: "everything",
         currentAuthor: "",
+        featuredItems: featuredContent,
       });
     } else {
       this.setState({
@@ -70,6 +71,7 @@ export class CardListings extends PureComponent {
         availableCategories: [],
         currentCategory: "everything",
         currentAuthor: "",
+        featuredItems: [],
       });
     }
   }
@@ -84,7 +86,7 @@ export class CardListings extends PureComponent {
 
   handleCategoryToggle(category) {
     let { availableCategories } = this.state;
-    let { content } = this.props;
+    let { content, featuredContent } = this.props;
 
     console.log("HANDLE CATEGORY FIRED");
     console.log(this.state);
@@ -94,6 +96,8 @@ export class CardListings extends PureComponent {
       if (this.state.currentCategory == category) {
         this.setState({
           content: content,
+          featuredItems: featuredContent,
+          featuredItemIdx: 0,
           currentCategory: "everything",
         });
       }
@@ -103,8 +107,14 @@ export class CardListings extends PureComponent {
           (item) => item.fields.Category == category
         );
 
+        let filteredFeaturedContent = featuredContent.filter(
+          (item) => item.fields.Category == category
+        );
+
         this.setState({
           content: filteredContent,
+          featuredItems: filteredFeaturedContent,
+          featuredItemIdx: 0,
           currentCategory: category,
         });
       }
@@ -113,6 +123,8 @@ export class CardListings extends PureComponent {
     else {
       this.setState({
         content: content,
+        featuredItems: featuredContent,
+        featuredItemIdx: 0,
         currentCategory: "everything",
       });
     }
@@ -193,16 +205,20 @@ export class CardListings extends PureComponent {
      * Variables
      *
      */
-    let { showFilterBar, featuredContent } = this.props;
+    let { showFilterBar } = this.props;
     let {
       content,
       availableCategories,
       currentCategory,
       currentAuthor,
+      featuredItems,
     } = this.state;
 
     // Put our logic to check for featured items here.
-    let showFeaturedItems = true;
+    let showFeaturedItems = featuredItems.length > 0 ? true : false;
+
+    console.log("featuredItems.length: ", featuredItems.length);
+    console.log("showFeaturedItems: ", showFeaturedItems);
 
     /**
      *
@@ -271,33 +287,33 @@ export class CardListings extends PureComponent {
      * @name FeaturedItems
      *
      */
-    const FeaturedItems = ({ featuredContent, featuredItemIdx }) => {
-      console.log("featuredContent", featuredContent);
+    const FeaturedItems = ({ featuredItems, featuredItemIdx }) => {
+      console.log("featuredItems", featuredItems);
       console.log("featuredItemIdx", featuredItemIdx);
 
       return (
         <div className="section-featured-items">
-          {featuredContent.length > 1 ? (
+          {featuredItems.length > 1 ? (
             <div className="featured-items-navigation">
               <span
                 onClick={() =>
-                  this.handleFeaturedIdxUpdate(false, featuredContent.length)
+                  this.handleFeaturedIdxUpdate(false, featuredItems.length)
                 }
                 className="featured-items-previous"
               >{`<`}</span>
               <span
                 onClick={() =>
-                  this.handleFeaturedIdxUpdate(true, featuredContent.length)
+                  this.handleFeaturedIdxUpdate(true, featuredItems.length)
                 }
                 className="featured-items-next"
               >{`>`}</span>
             </div>
           ) : null}
 
-          {featuredContent[featuredItemIdx] ? (
+          {featuredItems[featuredItemIdx] ? (
             <ContentCard
-              data={featuredContent[featuredItemIdx].fields}
-              isLink={featuredContent[featuredItemIdx].fields.Link ? true : false}
+              data={featuredItems[featuredItemIdx].fields}
+              isLink={featuredItems[featuredItemIdx].fields.Link ? true : false}
               isFeatured
             />
           ) : null}
@@ -317,7 +333,7 @@ export class CardListings extends PureComponent {
         {!showFilterBar ? null : <FilterBar />}
         {!showFeaturedItems ? null : (
           <FeaturedItems
-            featuredContent={featuredContent}
+            featuredItems={featuredItems}
             featuredItemIdx={this.state.featuredItemIdx}
           />
         )}
@@ -327,17 +343,39 @@ export class CardListings extends PureComponent {
             .map((item, idx) => {
               let { fields } = item;
 
-              if (item.fields.Name && item.fields.Attachments) {
-                return (
-                  <ContentCard
-                    data={fields}
-                    isLink={fields.Link ? true : false}
-                    key={idx}
-                  />
-                );
+              if (showFeaturedItems) {
+                if (idx !== 0) {
+                  if (item.fields.Name && item.fields.Attachments) {
+                    return (
+                      <ContentCard
+                        data={fields}
+                        isLink={fields.Link ? true : false}
+                        key={idx}
+                      />
+                    );
+                  } else {
+                    console.log(
+                      "🛑 Record missing required information:",
+                      item
+                    );
+                    return null;
+                  }
+                } else {
+                  return null;
+                }
               } else {
-                console.log("🛑 Record missing required information:", item);
-                return null;
+                if (item.fields.Name && item.fields.Attachments) {
+                  return (
+                    <ContentCard
+                      data={fields}
+                      isLink={fields.Link ? true : false}
+                      key={idx}
+                    />
+                  );
+                } else {
+                  console.log("🛑 Record missing required information:", item);
+                  return null;
+                }
               }
             })}
         </div>
