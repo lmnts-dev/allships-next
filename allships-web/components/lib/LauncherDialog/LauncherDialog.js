@@ -22,7 +22,7 @@ export const LauncherDialog = ({
   handleCommand,
   handleTextChange,
   handleAddItem,
-  appState
+  appState,
 }) => {
   return (
     <LauncherDialogStyle>
@@ -41,7 +41,9 @@ export const LauncherDialog = ({
           <div className="launcher-dialog-sidebar">
             <ul className="launcher-commands">
               {/* <li className="active" onClick={() => handleCommand("launch launcher")}>> Launcher</li> */}
-              <li onClick={() => handleCommand("launch frontpage")}>> Frontpage</li>
+              <li onClick={() => handleCommand("launch frontpage")}>
+                > Frontpage
+              </li>
               {/* <li onClick={() => handleCommand("launch editorial")}>> Editorial</li>
               <li onClick={() => handleCommand("launch events")}>> Events</li>
               <li onClick={() => handleCommand("launch agency")}>> Agency</li>
@@ -66,7 +68,7 @@ export const LauncherDialog = ({
                     placeholder="ENTER COMMAND"
                     onChange={handleTextChange}
                     value={appState.text}
-                    autoFocus
+                    onSubmit={(e) => e.preventDefault()}
                   />
                   <span className="fake-cursor" />
                   <button style={{ display: "none" }} onClick={handleAddItem}>
