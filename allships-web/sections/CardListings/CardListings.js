@@ -93,13 +93,13 @@ export class FeaturedItems extends Component {
           });
         }
       } else {
-        if (currentIdx > 0) {
+        if (currentIdx === 0) {
           this.setState({
-            currentIdx: currentIdx - 1,
+            currentIdx: totalIdx,
           });
         } else {
           this.setState({
-            currentIdx: totalIdx,
+            currentIdx: currentIdx - 1,
           });
         }
       }
