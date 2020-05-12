@@ -25,12 +25,30 @@ export const FooterStyle = styled.footer`
   padding: calc(${Root.Size} * 2) 0;
   position: relative;
   z-index: 200;
+  overflow: hidden;
+
+  @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+    padding: 0;
+  }
+
+  &:not(input) {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
 
   .footer-inner {
     display: flex;
     flex-wrap: nowrap;
     text-transform: uppercase;
     font-size: 1.8rem;
+
+    @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+      flex-wrap: wrap;
+    }
 
     img {
       max-width: 100%;
@@ -39,12 +57,27 @@ export const FooterStyle = styled.footer`
     .footer-col {
       width: calc(100% / 3);
 
+      @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+        width: 100%;
+        padding: ${Root.Size};
+        border-top: ${Root.BorderSize} solid ${Theme.Color.Primary};
+
+        &:nth-child(2) {
+          border-top: none;
+        }
+      }
+
       &.__footer-left-col {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: flex-start;
         padding-right: ${Root.Size};
+
+        @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+          order: 2;
+          padding-right: 0;
+        }
 
         .footer-brand {
           -webkit-touch-callout: none;
@@ -57,8 +90,16 @@ export const FooterStyle = styled.footer`
           .footer-brand-image {
             width: 100%;
 
+            @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+              width: 90%;
+            }
+
             img {
               width: 100%;
+
+              @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+                width: 90%;
+              }
             }
           }
 
@@ -66,6 +107,10 @@ export const FooterStyle = styled.footer`
             color: ${Theme.Color.Background};
             font-size: 2.8rem;
             margin-bottom: calc(${Root.Size});
+
+            @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+              font-size: 1.5rem;
+            }
           }
         }
 
@@ -73,12 +118,27 @@ export const FooterStyle = styled.footer`
           li {
             margin-bottom: calc(${Root.Size} / 2);
             cursor: pointer;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+
+            &:last-child {
+              margin-bottom: 0;
+            }
           }
         }
       }
 
       &.__footer-center-col {
         padding: 0 ${Root.Size};
+
+        @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+          order: 1;
+          padding: ${Root.Size};
+        }
       }
 
       &.__footer-right-col {
@@ -87,6 +147,10 @@ export const FooterStyle = styled.footer`
         justify-content: space-between;
         align-items: flex-start;
         padding-left: ${Root.Size};
+
+        @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+          order: 3;
+        }
 
         .footer-newsletter-form {
           width: 100%;
@@ -107,6 +171,10 @@ export const FooterStyle = styled.footer`
               padding: calc(${Root.Size} / 4);
               text-transform: uppercase;
               color: ${Theme.Color.Primary};
+
+              @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+                font-size: 1.2rem;
+              }
 
               &:focus,
               &:active {
@@ -146,6 +214,24 @@ export const FooterStyle = styled.footer`
           -moz-user-select: none;
           -ms-user-select: none;
           user-select: none;
+
+          @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+            font-size: 1rem;
+          }
+        }
+
+        .footer-social-media-and-copyright {
+          @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+            display: flex;
+            align-items: center;
+            margin-top: calc(${Root.Size} / 2);
+
+            img {
+              margin-right: 10px;
+              position: relative;
+              bottom: -4px;
+            }
+          }
         }
       }
     }
