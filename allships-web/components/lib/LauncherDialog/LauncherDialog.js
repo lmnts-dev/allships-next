@@ -62,13 +62,15 @@ export const LauncherDialog = ({
               ))}
               <li className="launcher-input-wrapper">
                 <span className="label">ASR-MOTHERSHIP:~</span>
-                <form className="launcher-input-el">
+                <form
+                  className="launcher-input-el"
+                  onSubmit={(e) => e.preventDefault()}
+                >
                   <input
                     type="text"
                     placeholder="ENTER COMMAND"
                     onChange={handleTextChange}
                     value={appState.text}
-                    onSubmit={(e) => e.preventDefault()}
                   />
                   <span className="fake-cursor" />
                   <button style={{ display: "none" }} onClick={handleAddItem}>
