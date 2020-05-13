@@ -12,6 +12,11 @@ import Head from "next/head";
 // Begin Component
 //////////////////////////////////////////////////////////////////////
 
+let siteTitle = "Allships";
+let baseUrl = "https://www.allships.co";
+let description = "A Creative Coalition.";
+let keywords = "podcasts, creative, resources, interview, creativity";
+
 export const SiteHead = ({ title = "This is the default title" }) => {
   return (
     <Head>
@@ -25,7 +30,23 @@ export const SiteHead = ({ title = "This is the default title" }) => {
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-capable" content="yes" />
-      <meta name="keywords" content="keyword1 keyword2 keyword3 etc" />
+      <meta name="keywords" content={keywords} />
+      <meta name="description" content={description} />
+
+      {/* Opengraph */}
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={baseUrl} />
+      <meta property="og:title" content={siteTitle} />
+      <meta property="og:description" content={description} />
+      <meta property="og:image" content={`${baseUrl}/og.png`} />
+      <meta property="og:image:width" content="596" />
+      <meta property="og:image:height" content="328" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:domain" value={baseUrl} />
+      <meta name="twitter:title" value="" />
+      <meta name="twitter:description" value={description} />
+      <meta name="twitter:image" content={`${baseUrl}/og.png`} />
+      <meta name="twitter:url" value={baseUrl} />
 
       {/* Favicon */}
       {/* <link rel="apple-touch-icon" sizes="180x180" href="{{ 'apple-touch-icon.png' | asset_url }}">
@@ -34,9 +55,9 @@ export const SiteHead = ({ title = "This is the default title" }) => {
       <link rel="manifest" href="{{'site.webmanifest' | asset_url }}">
       <link rel="mask-icon" href="{{'safari-pinned-tab.svg' | asset_url }}" color="#df6b1f">
       <link rel="shortcut icon" href="{{'favicon.ico' | asset_url }}"> */}
-      <meta name="msapplication-TileColor" content="#df6b1f" />
+      <meta name="msapplication-TileColor" content="#EBD048" />
       {/* <meta name="msapplication-config" content="{{'browserconfig.xml' | asset_url }}"> */}
-      <meta name="theme-color" content="#ffffff" />
+      <meta name="theme-color" content="#EBD048" />
     </Head>
   );
 };
