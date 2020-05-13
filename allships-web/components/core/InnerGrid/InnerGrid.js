@@ -15,11 +15,18 @@ import { InnerGridStyle } from "./styles.scss";
 // Begin Component
 //////////////////////////////////////////////////////////////////////
 
-export const InnerGrid = (props) => {
-
+/**
+ *
+ * @name InnerGrid
+ * @description A generic wrapper to make sure our content has consistent padding & gutters.
+ * @param startBelowNav : boolean ? : Add padding to compensate for our Navigation Bar. Defaults to false.
+ * @param children : void : The elements to wrap element around.
+ *
+ */
+export const InnerGrid = ({ children, startBelowNav }) => {
   return (
-    <InnerGridStyle className="inner-grid" startBelowNav={props.startBelowNav}>
-      {props.children}
+    <InnerGridStyle className="inner-grid" startBelowNav={startBelowNav}>
+      {children}
     </InnerGridStyle>
   );
 };

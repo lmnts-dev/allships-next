@@ -1,14 +1,3 @@
-/**
- *
- * pages/index.tsx
- * @author Peter Laxalt
- * @description The website homepage.
- *
- */
-
-// Imports
-//////////////////////////////////////////////////////////////////////
-
 // Core
 import React from "react";
 import {
@@ -19,20 +8,22 @@ import {
 
 // Components
 import { InnerGrid } from "../components/core/InnerGrid";
-import { ReadingWidthGrid } from "../components/core/ReadingWidthGrid";
-import LazyImage from "../utils/lazyImage";
 
 // Sections
 import { CardListings } from "../sections/CardListings";
-import { Theme } from "../constants/Theme";
 
 // Begin Component
 //////////////////////////////////////////////////////////////////////
 
+/**
+ *
+ * pages/index.tsx
+ * @author Peter Laxalt
+ * @description The website homepage.
+ *
+ */
 const FrontPage = (props) => {
   let { content, featuredContent, availableCategories } = props;
-
-  console.log(availableCategories);
 
   return (
     <InnerGrid startBelowNav={true}>

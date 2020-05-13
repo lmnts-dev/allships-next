@@ -27,6 +27,29 @@ let dialogShadowSize = "calc(" + Root.BorderSize + " * 2)";
 
 const GlobalClasses = createGlobalStyle`
 
+  /* Media Query Modifiers */
+  @media (max-width: ${Theme.Base.Media.Width.Md}) {
+    &.__visible-mobile,
+    &.__visible-tablet {
+      display: block;
+
+      .card-listings-filter-bar-categories-mobile {
+        
+      }
+    }
+
+    &.__visible-desktop {
+      display: none;
+    }
+  }
+
+  @media (min-width: ${Theme.Base.Media.Width.Md}) {
+    &.__visible-mobile,
+    &.__visible-tablet {
+      display: none;
+    }
+  }
+  
   /** Dialogs */
   .dialog {
     background: ${Theme.Color.Dialog};

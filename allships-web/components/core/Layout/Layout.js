@@ -1,11 +1,3 @@
-/**
- *
- * Layout.js
- * @author Peter Laxalt
- * @description The website layout.
- *
- */
-
 // Constants
 import { GlobalStyle } from "../../../constants/styles/Global";
 
@@ -23,31 +15,41 @@ import { LayoutStyle } from "./styles.scss";
 // Begin Component
 //////////////////////////////////////////////////////////////////////
 
+/**
+ *
+ * Layout.js
+ * @author Peter Laxalt
+ * @description The website layout.
+ * @param appState = object = this.state from _app.js
+ * @param handleCommand = object = this.handleCommand from _app.js
+ * @param handleTextChange = object = this.handleTextChange from _app.js
+ * @param handleAddItem = object = this.handleAddItem from _app.js
+ * @param shouldFocus = boolean = Scroll listeners from _app.js
+ * @param children = void = Children to be wrapped
+ */
 export const Layout = ({
   appState,
   handleCommand,
   handleTextChange,
   handleAddItem,
   shouldFocus,
-  children
+  children,
 }) => {
   return (
     <>
       <GrainCover />
       <GlobalStyle />
       <SiteHead title="ALLSHIPS" />
-      {
-        (appState.visibleDialog == "launcher" ? (
-          <LauncherDialog
-            handleCommand={handleCommand}
-            handleTextChange={handleTextChange}
-            handleAddItem={handleAddItem}
-            appState={appState}
-          />
-        ) : (
-          false
-        ))
-      }
+      {appState.visibleDialog == "launcher" ? (
+        <LauncherDialog
+          handleCommand={handleCommand}
+          handleTextChange={handleTextChange}
+          handleAddItem={handleAddItem}
+          appState={appState}
+        />
+      ) : (
+        false
+      )}
       <Navigation
         appState={appState}
         handleTextChange={handleTextChange}
@@ -55,10 +57,7 @@ export const Layout = ({
         shouldFocus={shouldFocus}
         handleCommand={handleCommand}
       />
-      {
-        // @ts-ignore
-        <Frame shouldFocus={shouldFocus} />
-      }
+      <Frame shouldFocus={shouldFocus} />
       <LayoutStyle className="main-wrapper">{children}</LayoutStyle>
       <Footer />
     </>

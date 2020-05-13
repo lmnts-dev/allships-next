@@ -25,6 +25,7 @@ import { PageHero } from "../PageHero";
  * @param featuredContent : object ? : Featured Airtable records. Defaults to hidden.
  * @param content : object : All Airtable records.
  * @param showFilterBar : boolean ? : Show or hide filter bar. Defaults to hidden.
+ * @param showPageHero : boolean ? : Show or hide the page hero. Defaults to hidden.
  *
  */
 export class CardListings extends PureComponent {
@@ -38,12 +39,14 @@ export class CardListings extends PureComponent {
       currentAuthor: "everything",
       featuredItems: [],
       featuredItemIdx: 0,
+      mobileCategoryBarVisible: false,
     };
 
     // Bind our functions
     this.handleCategoryToggle = this.handleCategoryToggle.bind(this);
     this.handleAuthorToggle = this.handleAuthorToggle.bind(this);
     this.handleFeaturedIdxUpdate = this.handleFeaturedIdxUpdate.bind(this);
+    this.toggleMobileCategoryBar = this.toggleMobileCategoryBar.bind(this);
   }
 
   componentDidMount() {
@@ -56,6 +59,7 @@ export class CardListings extends PureComponent {
         currentCategory: "everything",
         currentAuthor: "",
         featuredItems: featuredContent,
+        mobileCategoryBarVisible: false,
       });
     } else {
       this.setState({
@@ -64,6 +68,28 @@ export class CardListings extends PureComponent {
         currentCategory: "everything",
         currentAuthor: "",
         featuredItems: [],
+        mobileCategoryBarVisible: false,
+      });
+    }
+  }
+
+  /**
+   *
+   * @name toggleMobileCategoryBar
+   * @description Show / hide mobile category bar.
+   *
+   */
+
+  toggleMobileCategoryBar() {
+    let { mobileCategoryBarVisible } = this.state;
+
+    if (mobileCategoryBarVisible) {
+      this.setState({
+        mobileCategoryBarVisible: false,
+      });
+    } else {
+      this.setState({
+        mobileCategoryBarVisible: true,
       });
     }
   }
@@ -86,8 +112,8 @@ export class CardListings extends PureComponent {
       return;
     }
 
-    console.log("HANDLE CATEGORY FIRED");
-    console.log(this.state);
+    // console.log("HANDLE CATEGORY FIRED");
+    // console.log(this.state);
 
     if (availableCategories.includes(category) && category != "everything") {
       // If this category is already selected, unselect it.
@@ -139,8 +165,14 @@ export class CardListings extends PureComponent {
   handleAuthorToggle(author) {
     let { currentAuthor } = this.state;
 
-    console.log("HANDLE AUTHOR FIRED");
-    console.log(this.state);
+    if (window) {
+      window.scrollTo(0, 0);
+    } else {
+      return;
+    }
+
+    // console.log("HANDLE AUTHOR FIRED");
+    // console.log(this.state);
 
     if (currentAuthor != author) {
       this.setState({
@@ -165,8 +197,8 @@ export class CardListings extends PureComponent {
     let { featuredItemIdx } = this.state;
     totalIdx = totalIdx - 1;
 
-    console.log(this.state);
-    console.log("totalIdx:", totalIdx);
+    // console.log(this.state);
+    // console.log("totalIdx:", totalIdx);
 
     if (totalIdx != 0) {
       if (incrementing) {
@@ -210,23 +242,24 @@ export class CardListings extends PureComponent {
       currentCategory,
       currentAuthor,
       featuredItems,
+      mobileCategoryBarVisible,
     } = this.state;
 
     // Put our logic to check for featured items here.
     let showFeaturedItems = featuredItems.length > 0 ? true : false;
 
-    console.log("featuredItems.length: ", featuredItems.length);
-    console.log("showFeaturedItems: ", showFeaturedItems);
+    // console.log("featuredItems.length: ", featuredItems.length);
+    // console.log("showFeaturedItems: ", showFeaturedItems);
 
     /**
      *
-     * @name FilterBar
+     * @name FilterBarDesktop
      * @description Bar to show available filters.
      *
      */
-    const FilterBar = () => {
+    const FilterBarDesktop = () => {
       return (
-        <FilterBarStyle>
+        <FilterBarStyle className="filter-bar __visible-desktop">
           <div className="card-listings-filter-bar-inner">
             <div className="card-listings-filter-bar-col">
               {availableCategories ? (
@@ -282,12 +315,95 @@ export class CardListings extends PureComponent {
 
     /**
      *
+     * @name FilterBarMobile
+     * @description Bar to show available filters.
+     *
+     */
+    const FilterBarMobile = () => {
+      let filterBarText = !mobileCategoryBarVisible ? "Show me ▼" : "Close";
+
+      return (
+        <FilterBarStyle className="filter-bar __visible-mobile __visible-tablet">
+          <div className="card-listings-filter-bar-inner">
+            <div className="card-listings-filter-bar-col">
+              <ul className="card-listings-filter-bar-categories">
+                <li
+                  className={`btn`}
+                  onClick={() => this.toggleMobileCategoryBar()}
+                >
+                  {currentCategory == "everything"
+                    ? filterBarText
+                    : currentCategory + " ▼"}
+                </li>
+              </ul>
+              {availableCategories && mobileCategoryBarVisible ? (
+                <ul className="card-listings-filter-bar-categories-mobile __visible-mobile __visible-tablet">
+                  <li className={`__categories-headline btn`}>
+                    <span>Select a Category...</span>
+                    <span
+                      className="__categories-close"
+                      onClick={() => this.toggleMobileCategoryBar()}
+                    >
+                      X
+                    </span>
+                  </li>
+                  <li
+                    className={`${
+                      currentCategory == "everything" ? "active" : "inactive"
+                    } btn`}
+                    onClick={() => this.handleCategoryToggle("everything")}
+                  >
+                    Everything
+                  </li>
+                  {availableCategories.map((category, idx) => {
+                    return (
+                      <li
+                        className={`${
+                          currentCategory == category ? "active" : "inactive"
+                        } btn`}
+                        key={idx}
+                        onClick={() => this.handleCategoryToggle(category)}
+                      >
+                        {category}
+                      </li>
+                    );
+                  })}
+                </ul>
+              ) : null}
+            </div>
+            <div className="card-listings-filter-bar-col">
+              <ul className="card-listings-filter-bar-categories">
+                <li
+                  className={`${
+                    currentAuthor == "By Us" ? "active" : "inactive"
+                  } btn`}
+                  onClick={() => this.handleAuthorToggle("By Us")}
+                >
+                  By Us
+                </li>
+                <li
+                  className={`${
+                    currentAuthor == "By Others" ? "active" : "inactive"
+                  } btn`}
+                  onClick={() => this.handleAuthorToggle("By Others")}
+                >
+                  By Others
+                </li>
+              </ul>
+            </div>
+          </div>
+        </FilterBarStyle>
+      );
+    };
+
+    /**
+     *
      * @name FeaturedItems
      *
      */
     const FeaturedItems = ({ featuredItems, featuredItemIdx }) => {
-      console.log("featuredItems", featuredItems);
-      console.log("featuredItemIdx", featuredItemIdx);
+      // console.log("featuredItems", featuredItems);
+      // console.log("featuredItemIdx", featuredItemIdx);
 
       return (
         <div className="section-featured-items">
@@ -331,7 +447,8 @@ export class CardListings extends PureComponent {
         {!showPageHero ? null : (
           <PageHero currentHero={this.state.currentCategory} />
         )}
-        {!showFilterBar ? null : <FilterBar />}
+        {!showFilterBar ? null : <FilterBarDesktop />}
+        {!showFilterBar ? null : <FilterBarMobile />}
         {!showFeaturedItems ? null : (
           <FeaturedItems
             featuredItems={featuredItems}

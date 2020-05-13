@@ -138,27 +138,22 @@ export const FilterBarStyle = styled.div`
   @media (max-width: ${Theme.Base.Media.Width.Md}) {
     padding-left: 0;
     padding-right: 0;
-    overflow-x: auto;
-    overflow-y: hidden;
-    -ms-overflow-style: none; /* Internet Explorer 10+ */
-    scrollbar-width: none; /* Firefox */
-
-    &::-webkit-scrollbar {
-      width: 0px; /* Remove scrollbar space */
-      height: 0px;
-      display: none;
-      background: transparent; /* Optional: just make scrollbar invisible */
-    }
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
   }
 
   .card-listings-filter-bar-inner {
     display: flex;
     justify-content: space-between;
 
-    @media (max-width: ${Theme.Base.Media.Width.Md}) {
+    @media (max-width: ${Theme.Base.Media.Width.Sm}) {
       justify-content: flex-end;
-      flex-direction: row-reverse;
-      padding-left: var(--cardPadding);
+      flex-direction: row;
+      padding-left: calc(
+        ${Root.Grid.Gutter.Left} + ${Theme.Base.Grid.SiteFrameWidth} -
+          (${Root.BorderSize} / 2)
+      );
       padding-right: calc(
         ${Root.Grid.Gutter.Right} + ${Theme.Base.Grid.SiteFrameWidth} -
           (${Root.BorderSize} / 2)
@@ -166,10 +161,8 @@ export const FilterBarStyle = styled.div`
     }
 
     @media (max-width: ${Theme.Base.Media.Width.Sm}) {
-      padding-left: calc(
-        ${Root.Grid.Gutter.Left} + ${Theme.Base.Grid.SiteFrameWidth} -
-          (${Root.BorderSize} / 2)
-      );
+      padding-left: var(--cardPadding);
+      padding-right: var(--cardPadding);
     }
 
     .card-listings-filter-bar-col {
@@ -190,6 +183,12 @@ export const FilterBarStyle = styled.div`
         /** Core Pill Button Sizes */
         li {
           flex-shrink: 0;
+
+          @media (max-width: ${Theme.Base.Media.Width.Md}) {
+            font-size: 1.2rem;
+            padding-left: ${Root.BorderSize};
+            padding-right: ${Root.BorderSize};
+          }
         }
       }
 
@@ -202,7 +201,6 @@ export const FilterBarStyle = styled.div`
           padding-right: calc(
             ${Root.Grid.Gutter.Right} - (${Root.BorderSize} / 2)
           );
-          margin-left: var(--toggleSpacing);
         }
 
         ul {
@@ -213,6 +211,10 @@ export const FilterBarStyle = styled.div`
             box-shadow: inset calc(var(--btnShadowSize) * -1)
               calc(var(--btnShadowSize) * -1) 0px var(--btnShadowSize)
               ${Theme.Color.Primary};
+
+            @media (max-width: ${Theme.Base.Media.Width.Md}) {
+              padding-right: calc(${Root.Size} / 4);
+            }
 
             &:hover {
               box-shadow: inset calc(var(--btnShadowSize) * 0)
@@ -283,6 +285,73 @@ export const FilterBarStyle = styled.div`
 
             &:first-child {
               margin-left: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .card-listings-filter-bar-categories-mobile {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+
+    li {
+      box-shadow: none !important;
+      border-bottom: ${Root.BorderSize} solid ${Theme.Color.Primary};
+      height: ${Root.Size};
+      margin: 0 !important;
+      background-color: ${Theme.Color.Dialog} !important;
+
+      &.active {
+        background-color: ${Theme.Color.Background} !important;
+
+        &:active {
+          color: ${Theme.Color.Primary} !important;
+        }
+      }
+
+      &:active {
+        color: ${Theme.Color.Background} !important;
+      }
+
+      &:last-child {
+        height: calc(${Root.Size} * 1.5);
+        padding-bottom: calc(${Root.Size} * 0.5);
+      }
+
+      &.__categories-headline {
+        border-top: ${Root.BorderSize} solid ${Theme.Color.Primary};
+        background: ${Theme.Color.Dialog} !important;
+        color: ${Theme.Color.Background};
+        display: flex;
+        justify-content: space-between;
+        padding: 0 0 0 calc(${Root.DialogPaddingSize} * 2) !important;
+
+        &:active {
+          color: ${Theme.Color.Background} !important;
+        }
+
+        span {
+          height: 100%;
+          display: flex;
+          align-items: center;
+
+          &:last-child {
+            padding-left: calc(${Root.DialogPaddingSize}) !important;
+            padding-right: calc(${Root.DialogPaddingSize} * 2);
+            border-left: ${Root.BorderSize} solid ${Theme.Color.Primary};
+
+            &:hover {
+              background: ${Theme.Color.Background};
+              color: ${Theme.Color.Dialog};
             }
           }
         }

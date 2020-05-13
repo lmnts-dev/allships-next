@@ -1,20 +1,6 @@
-/**
- *
- * /pages/_app_.js
- * @author Peter Laxalt
- * @description The wrapper around every page. This is the best place to load data and
- * @description store it in our React Context to be accessible anywhere, so we are doing
- * @description one call for all data at a time.
- *
- */
-
-// Imports
-//////////////////////////////////////////////////////////////////////
-
 // Core
 import React from "react";
 import App from "next/app";
-import { Sanity } from "../clients";
 import { createGlobalStyle } from "styled-components";
 
 // Components
@@ -26,6 +12,15 @@ import { Theme } from "../constants/Theme";
 // Begin Component
 //////////////////////////////////////////////////////////////////////
 
+/**
+ *
+ * /pages/_app_.js
+ * @author Peter Laxalt
+ * @description The wrapper around every page. This is the best place to load data and
+ * @description store it in our React Context to be accessible anywhere, so we are doing
+ * @description one call for all data at a time.
+ *
+ */
 class MyApp extends App {
   constructor(props) {
     super(props);

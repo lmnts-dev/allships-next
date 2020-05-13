@@ -1,25 +1,24 @@
+// Core
+import React from "react";
+
+// Styles
+import { NavigationStyle } from "./styles.scss";
+
+// Begin Component
+//////////////////////////////////////////////////////////////////////
+
 /**
  *
  * components/Navigation/Navigation.tsx
  * @author Peter Laxalt
  * @description The website navigation.
+ * @param shouldFocus = boolean ? = Passed from our scroll listeners.
+ * @param appState = boolean = this.state from _app.js
+ * @param handleTextChange = void = this.handleTextChange from _app.js
+ * @param handleAddItem = void = this.handleAddItem from _app.js
+ * @param handleCommand = void = this.handleCommand from _app.js
  *
  */
-
-// Core
-import React from "react";
-import Link from "next/link";
-// import { Sanity } from "../../clients";
-
-// Styles
-import { NavigationStyle, NavigationShadowStyle } from "./styles.scss";
-
-// Components
-import { Icon } from "../../lib/Icon";
-
-// Begin Component
-//////////////////////////////////////////////////////////////////////
-
 export const Navigation = ({
   shouldFocus,
   appState,
@@ -58,10 +57,7 @@ export const Navigation = ({
               ) : (
                 <>
                   <span className="label">ASR-MOTHERSHIP:~</span>
-                  <form
-                    className="launcher-input-el"
-                    onSubmit={handleAddItem}
-                  >
+                  <form className="launcher-input-el" onSubmit={handleAddItem}>
                     <input
                       type="text"
                       placeholder="ENTER COMMAND"
