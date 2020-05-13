@@ -58,7 +58,10 @@ export const Navigation = ({
               ) : (
                 <>
                   <span className="label">ASR-MOTHERSHIP:~</span>
-                  <form className="launcher-input-el">
+                  <form
+                    className="launcher-input-el"
+                    onSubmit={handleAddItem}
+                  >
                     <input
                       type="text"
                       placeholder="ENTER COMMAND"

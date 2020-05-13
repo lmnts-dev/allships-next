@@ -64,7 +64,7 @@ export const LauncherDialog = ({
                 <span className="label">ASR-MOTHERSHIP:~</span>
                 <form
                   className="launcher-input-el"
-                  onSubmit={(e) => e.preventDefault()}
+                  onSubmit={handleAddItem}
                 >
                   <input
                     type="text"
