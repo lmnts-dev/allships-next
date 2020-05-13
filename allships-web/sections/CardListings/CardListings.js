@@ -457,7 +457,11 @@ export class CardListings extends PureComponent {
         )}
         <div className="card-listings-list">
           {content
-            .filter((item) => item.fields.Author.includes(currentAuthor))
+            .filter((item) =>
+              item.fields.Author
+                ? item.fields.Author.includes(currentAuthor)
+                : item == true
+            )
             .map((item, idx) => {
               let { fields } = item;
 
