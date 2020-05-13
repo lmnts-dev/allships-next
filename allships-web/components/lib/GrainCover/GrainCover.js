@@ -13,17 +13,11 @@
 // Core
 import React from "react";
 import GrainCoverStyle from "./styles.scss";
-import Draggable from "react-draggable";
 
 // Begin Component
 //////////////////////////////////////////////////////////////////////
 
-export const GrainCover = ({
-  handleCommand,
-  handleTextChange,
-  handleAddItem,
-  appState
-}) => {
+export const GrainCover = () => {
   return (
     <GrainCoverStyle>
       <div className="grain-cover-inner" />

@@ -1,3 +1,17 @@
+// Core
+import React, { Component } from "react";
+
+// Styles
+import {
+  CursorContainerStyle,
+  CursorStyle,
+  CursorPoint,
+  GloballyHideCursor,
+} from "./styles.scss";
+
+// Begin Component
+//////////////////////////////////////////////////////////////////////
+
 /**
  *
  * Cursor.js
@@ -5,17 +19,6 @@
  * @description The website Cursor.
  *
  */
-
-// Core
-import React, { Component } from "react";
-
-// Styles
-import { CursorStyle, CursorPoint } from "./styles.scss";
-
-// Begin Component
-//////////////////////////////////////////////////////////////////////
-
-// Cursor
 export class Cursor extends Component {
   constructor(props) {
     super(props);
@@ -30,7 +33,8 @@ export class Cursor extends Component {
       mouseSize: 0,
       scale: 1,
       opacity: 0,
-      active: false
+      active: false,
+      hoverClass: "idle",
     };
   }
 
@@ -40,7 +44,7 @@ export class Cursor extends Component {
       yPos: window.innerHeight / 2,
       mouseX: window.innerWidth / 2,
       mouseY: window.innerHeight / 2,
-      opacity: 0
+      opacity: 0,
     });
 
     /**
@@ -50,7 +54,7 @@ export class Cursor extends Component {
      * @description This positions the Cursor throughout the page.
      *
      */
-    const setCursorPosition = e => {
+    const setCursorPosition = (e) => {
       let xPos = this.state.mouseX - this.state.mouseSize / 2;
       let yPos = this.state.mouseY - this.state.mouseSize / 2;
 
@@ -62,7 +66,7 @@ export class Cursor extends Component {
         yPos: yPos + dY / 10,
         mouseX: e.clientX,
         mouseY: e.clientY,
-        opacity: 1
+        opacity: 1,
       });
       // console.log("x: " + this.state.mouseX, "y: " + this.state.mouseY);
     };
@@ -77,11 +81,11 @@ export class Cursor extends Component {
     const toggleCursorSize = () => {
       if (this.state.scale === 1) {
         this.setState({
-          scale: 2
+          scale: 2,
         });
       } else {
         this.setState({
-          scale: 1
+          scale: 1,
         });
       }
 
@@ -99,14 +103,14 @@ export class Cursor extends Component {
       if (this.state.active === true) {
         this.setState({
           active: false,
-          scale: 1
+          scale: 1,
         });
 
         toggleCursorSize();
       } else {
         this.setState({
           active: true,
-          scale: 2
+          scale: 2,
         });
 
         toggleCursorSize();
@@ -115,37 +119,115 @@ export class Cursor extends Component {
       return;
     };
 
+    /**
+     *
+     * @name Handle Mouse Over
+     * @param e : Event from "mouseover" event listener.
+     * @description This updates the cursors state when clicked.
+     *
+     */
+    const handleMouseOver = (e) => {
+      // console.log(e);
+
+      // Specific element class changes
+      let sectionHeroEl = document.querySelector(".section-statement-hero");
+      let bodyEl = document.body;
+
+      // Begin Detection
+      if (e.target.offsetParent != null) {
+        /* Slider Detection */
+        if (e.target.offsetParent.classList.contains("__cursor-slider")) {
+          this.setState({
+            hoverClass: "slider",
+          });
+        } else if (
+          e.target.tagName == "A" ||
+          e.target.nodeName == "A" ||
+          e.target.localName == "a" ||
+          e.target.classList.contains("card-inner") ||
+          e.target.classList.contains("card")
+        ) {
+          /* If it's a link */
+
+          if (e.target.classList.length > 0) {
+            /** Focus Links */
+            if (e.target.classList.contains("focus-link")) {
+              if (sectionHeroEl) {
+                sectionHeroEl.classList.add("focus-link-hovered");
+              }
+
+              if (bodyEl) {
+                bodyEl.classList.add("scroll-lock");
+              }
+
+              this.setState({
+                hoverClass: "link focus",
+              });
+            }
+          } else {
+            /** Normal Links */
+            this.setState({
+              hoverClass: "link",
+            });
+          }
+        } else {
+          /* Else set to idle & reset classes*/
+
+          this.setState({
+            hoverClass: "idle",
+          });
+
+          // Resest classes
+          if (sectionHeroEl) {
+            sectionHeroEl.classList.remove("focus-link-hovered");
+          }
+
+          if (bodyEl) {
+            bodyEl.classList.remove("scroll-lock");
+          }
+        }
+      }
+    };
+
     document.addEventListener("mousemove", setCursorPosition, false);
     document.addEventListener("mousedown", toggleCursorState, false);
     document.addEventListener("mouseup", toggleCursorState, false);
+    document.addEventListener("mouseover", handleMouseOver, false);
   }
 
   render() {
     return (
-      <>
+      <CursorContainerStyle className={`cursor ${this.state.hoverClass}`}>
+        <GloballyHideCursor />
         <CursorStyle
-          className={this.state.active ? "active" : undefined}
+          className={
+            this.state.active
+              ? `active ${this.state.hoverClass}`
+              : `${this.state.hoverClass}`
+          }
           style={{
             transform:
               "translate(" + this.state.xPos + "px," + this.state.yPos + "px)",
             width: this.state.mouseSize,
             height: this.state.mouseSize,
-            opacity: this.state.opacity
+            opacity: this.state.opacity,
           }}
         >
-          <div className="cursor-border" />
+          <div className="cursor-border">
+            <div className="cursor-slider-controls" />
+          </div>
         </CursorStyle>
 
         <CursorPoint
           style={{
             transform:
-              "translate(" + this.state.xPos + "px," + this.state.yPos + "px)"
+              "translate(" + this.state.xPos + "px," + this.state.yPos + "px)",
           }}
-          className={this.state.active ? "active" : undefined}
+          className={this.state.active ? "active" : "idle"}
         >
-          <div className="cursor-point" />
+          <div className={`cursor-point ${this.state.hoverClass}`} />
         </CursorPoint>
-      </>
+      </CursorContainerStyle>
     );
   }
 }

@@ -5,6 +5,7 @@ import { createGlobalStyle } from "styled-components";
 
 // Components
 import { Layout } from "../components/core/Layout";
+import { Cursor } from "../components/core/Cursor";
 
 // Constants
 import { Theme } from "../constants/Theme";
@@ -105,9 +106,9 @@ class MyApp extends App {
     };
 
     // Bind functions.
-    this.handleScroll = this.handleScroll.bind(this);
-    this.checkScrollDirection = this.checkScrollDirection.bind(this);
-    this.checkForFocus = this.checkForFocus.bind(this);
+    // this.handleScroll = this.handleScroll.bind(this);
+    // this.checkScrollDirection = this.checkScrollDirection.bind(this);
+    // this.checkForFocus = this.checkForFocus.bind(this);
 
     // Bind MOTHERSHIP functions
     this.handleTextChange = this.handleTextChange.bind(this);
@@ -362,20 +363,20 @@ class MyApp extends App {
    * our Layout Component for easy access.
    *
    */
-  handleScroll() {
-    // console.log(e);
+  // handleScroll() {
+  //   // console.log(e);
 
-    // Check scroll direction.
-    this.checkScrollDirection();
+  //   // Check scroll direction.
+  //   this.checkScrollDirection();
 
-    // Assign our new value.
-    this.setState({
-      lastScrollY: window.scrollY,
-    });
+  //   // Assign our new value.
+  //   this.setState({
+  //     lastScrollY: window.scrollY,
+  //   });
 
-    // Check if we should focus the nav & frame or not.
-    this.checkForFocus();
-  }
+  //   // Check if we should focus the nav & frame or not.
+  //   this.checkForFocus();
+  // }
 
   /**
    *
@@ -383,17 +384,17 @@ class MyApp extends App {
    * @description: This is our function to log last scroll direction.
    *
    */
-  checkScrollDirection() {
-    if (this.state.lastScrollY > window.scrollY) {
-      this.setState({
-        scrollDirection: "up",
-      });
-    } else {
-      this.setState({
-        scrollDirection: "down",
-      });
-    }
-  }
+  // checkScrollDirection() {
+  //   if (this.state.lastScrollY > window.scrollY) {
+  //     this.setState({
+  //       scrollDirection: "up",
+  //     });
+  //   } else {
+  //     this.setState({
+  //       scrollDirection: "down",
+  //     });
+  //   }
+  // }
 
   /**
    *
@@ -402,24 +403,24 @@ class MyApp extends App {
    * the Navigation or the Frame
    *
    */
-  checkForFocus() {
-    // First check if we are not at the top of the page.
-    if (window.scrollY > 10) {
-      if (this.state.scrollDirection === "down") {
-        this.setState({
-          focus: false,
-        });
-      } else {
-        this.setState({
-          focus: true,
-        });
-      }
-    } else {
-      this.setState({
-        focus: true,
-      });
-    }
-  }
+  // checkForFocus() {
+  //   // First check if we are not at the top of the page.
+  //   if (window.scrollY > 10) {
+  //     if (this.state.scrollDirection === "down") {
+  //       this.setState({
+  //         focus: false,
+  //       });
+  //     } else {
+  //       this.setState({
+  //         focus: true,
+  //       });
+  //     }
+  //   } else {
+  //     this.setState({
+  //       focus: true,
+  //     });
+  //   }
+  // }
 
   render() {
     const { Component, pageProps } = this.props;
@@ -446,6 +447,7 @@ class MyApp extends App {
     return (
       <>
         <VariableOverrides />
+        <Cursor />
         <LockBodyScroll />
         <Layout
           handleTextChange={this.handleTextChange}
