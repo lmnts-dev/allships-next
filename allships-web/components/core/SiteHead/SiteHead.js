@@ -12,12 +12,12 @@ import Head from "next/head";
 // Begin Component
 //////////////////////////////////////////////////////////////////////
 
-let siteTitle = "Allships";
-let baseUrl = "https://www.allships.co";
+let siteTitle = "ALLSHIPS";
+let baseUrl = "https://allships.now.sh";
 let description = "A Creative Coalition.";
 let keywords = "podcasts, creative, resources, interview, creativity";
 
-export const SiteHead = ({ title = "This is the default title" }) => {
+export const SiteHead = ({ title = siteTitle }) => {
   return (
     <Head>
       <title>{title}</title>
