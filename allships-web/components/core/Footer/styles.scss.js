@@ -66,6 +66,14 @@ export const FooterStyle = styled.footer`
         &:nth-child(2) {
           border-top: none;
         }
+
+        a {
+          color: ${Theme.Color.Primary};
+
+          &:hover {
+            color: ${Theme.Color.Primary};
+          }
+        }
       }
 
       @media (max-width: ${Theme.Base.Media.Width.Sm}) {

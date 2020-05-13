@@ -1,11 +1,3 @@
-/**
- *
- * Footer.js
- * @author Peter Laxalt
- * @description The website footer.
- *
- */
-
 // Core
 import React, { Component } from "react";
 
@@ -21,6 +13,13 @@ import { FooterStyle } from "./styles.scss";
 
 // Begin Component
 //////////////////////////////////////////////////////////////////////
+
+/**
+ *
+ * @name NewsletterForm
+ * @description Simple form to post to Airtable
+ *
+ */
 
 class NewsletterForm extends Component {
   constructor(props) {
@@ -67,7 +66,15 @@ class NewsletterForm extends Component {
   }
 }
 
-export const Footer = () => {
+/**
+ *
+ * Footer.js
+ * @author Peter Laxalt
+ * @description The website footer.
+ *
+ */
+
+export const Footer = ({ handleCommand }) => {
   return (
     <FooterStyle>
       <InnerGrid>
@@ -81,9 +88,13 @@ export const Footer = () => {
               <div className="footer-brand-tagline">A Creative Coalition</div>
             </div>
             <ul>
-              <li>> Launcher</li>
-              <li>> Help</li>
-              <li>> Contact</li>
+              <li onClick={() => handleCommand("launch launcher")}>
+                > Launcher
+              </li>
+              <li onClick={() => handleCommand("launch launcher")}>> Help</li>
+              <li>
+                <a href="mailto: dave@davekrugman.com ">> Contact</a>
+              </li>
             </ul>
           </div>
 

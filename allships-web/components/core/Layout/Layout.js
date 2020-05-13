@@ -59,7 +59,7 @@ export const Layout = ({
       />
       <Frame shouldFocus={shouldFocus} />
       <LayoutStyle className="main-wrapper">{children}</LayoutStyle>
-      <Footer />
+      <Footer handleCommand={handleCommand} />
     </>
   );
 };
