@@ -39,7 +39,7 @@ export const Layout = ({
     <>
       <GrainCover />
       <GlobalStyle />
-      <SiteHead title="ALLSHIPS" />
+      <SiteHead title="ALLSHIPS | A Creative Coalition." />
       {appState.visibleDialog == "launcher" ? (
         <LauncherDialog
           handleCommand={handleCommand}

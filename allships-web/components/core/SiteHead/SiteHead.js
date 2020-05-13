@@ -17,7 +17,7 @@ let baseUrl = "https://allships.now.sh";
 let description = "A Creative Coalition.";
 let keywords = "podcasts, creative, resources, interview, creativity";
 
-export const SiteHead = ({ title = siteTitle }) => {
+export const SiteHead = ({ title = siteTitle + " | " + description }) => {
   return (
     <Head>
       <title>{title}</title>
