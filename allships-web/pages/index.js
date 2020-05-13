@@ -8,6 +8,7 @@ import {
 
 // Components
 import { InnerGrid } from "../components/core/InnerGrid";
+import { SiteHead } from "../components/core/SiteHead";
 
 // Sections
 import { CardListings } from "../sections/CardListings";
@@ -27,6 +28,7 @@ const FrontPage = (props) => {
 
   return (
     <InnerGrid startBelowNav={true}>
+      <SiteHead title="ALLSHIPS | A Creative Coalition." />
       <CardListings
         availableCategories={availableCategories}
         featuredContent={featuredContent}

@@ -4,7 +4,6 @@ import { GlobalStyle } from "../../../constants/styles/Global";
 // Components
 import { Footer } from "../Footer";
 import { Navigation } from "../Navigation";
-import { SiteHead } from "../SiteHead";
 import { Frame } from "../Frame";
 import { LauncherDialog } from "../../lib/LauncherDialog";
 import { GrainCover } from "../../lib/GrainCover";
@@ -39,7 +38,6 @@ export const Layout = ({
     <>
       <GrainCover />
       <GlobalStyle />
-      <SiteHead title="ALLSHIPS | A Creative Coalition." />
       {appState.visibleDialog == "launcher" ? (
         <LauncherDialog
           handleCommand={handleCommand}

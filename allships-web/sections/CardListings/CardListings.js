@@ -12,6 +12,7 @@ import {
   ContentCard,
   ContentCardGlobalStyles,
 } from "../../components/lib/ContentCard";
+import { SiteHead } from "../../components/core/SiteHead";
 import { PageHero } from "../PageHero";
 
 // Begin Component
@@ -443,6 +444,13 @@ export class CardListings extends PureComponent {
      */
     return (
       <CardListingsStyle className="section-card-listings">
+        <SiteHead
+          title={`ALLSHIPS | ${
+            this.state.currentCategory == "everything"
+              ? " A Creative Coalition."
+              : this.state.currentCategory
+          }`}
+        />
         <ContentCardGlobalStyles />
         {!showPageHero ? null : (
           <PageHero currentHero={this.state.currentCategory} />

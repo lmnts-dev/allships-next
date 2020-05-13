@@ -45,7 +45,7 @@ export const SiteHead = ({ title = siteTitle + " | " + description }) => {
       <meta name="twitter:domain" value={baseUrl} />
       <meta name="twitter:title" value="" />
       <meta name="twitter:description" value={description} />
-      <meta name="twitter:image" content={`${baseUrl}/og.png`} />
+      <meta name="twitter:image" content={`${baseUrl}/og.gif`} />
       <meta name="twitter:url" value={baseUrl} />
 
       {/* Favicon */}
