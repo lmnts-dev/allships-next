@@ -38,7 +38,7 @@ export const SiteHead = ({ title = siteTitle + " | " + description }) => {
       <meta property="og:url" content={baseUrl} />
       <meta property="og:title" content={siteTitle} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content={`${baseUrl}/og.png`} />
+      <meta property="og:image" content={`${baseUrl}/og.gif`} />
       <meta property="og:image:width" content="596" />
       <meta property="og:image:height" content="328" />
       <meta name="twitter:card" content="summary_large_image" />
