@@ -342,7 +342,7 @@ class MyApp extends App {
    *
    */
   handleAddItem(e) {
-    event.preventDefault();
+    e.preventDefault();
 
     var newItem = {
       id: Date.now(),
