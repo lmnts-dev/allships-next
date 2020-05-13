@@ -140,6 +140,15 @@ export const FilterBarStyle = styled.div`
     padding-right: 0;
     overflow-x: auto;
     overflow-y: hidden;
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+
+    &::-webkit-scrollbar {
+      width: 0px; /* Remove scrollbar space */
+      height: 0px;
+      display: none;
+      background: transparent; /* Optional: just make scrollbar invisible */
+    }
   }
 
   .card-listings-filter-bar-inner {
