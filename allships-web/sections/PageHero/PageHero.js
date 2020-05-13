@@ -25,40 +25,14 @@ export const PageHero = ({ currentHero }) => {
 
   return (
     <PageHeroStyle className="section-page-hero">
-      <div
-        style={{
-          paddingTop: !isHomePage ? 40 : 150,
-          paddingBottom: 0,
-          fontSize: "9rem",
-          lineHeight: 0.8,
-          marginBottom: 5,
-          marginTop: 0,
-          color: Theme.Color.Dialog,
-          textAlign: "center",
-        }}
-      >
+      <div className="page-hero-inner">
         {!isHomePage ? (
           <h1 style={{ textTransform: "uppercase" }}>{currentHero}</h1>
         ) : (
-          <LazyImage
-            src="/gradient-logo.svg"
-            style={{ width: "60vw" }}
-            alt="ALLSHIPS"
-          />
+          <LazyImage src="/gradient-logo.svg" alt="ALLSHIPS" />
         )}
+        {!isHomePage ? null : <p>A CREATIVE COALITION</p>}
       </div>
-      {!isHomePage ? null : (
-        <p
-          style={{
-            marginBottom: 60,
-            paddingBottom: 0,
-            fontSize: "2.5rem",
-            textAlign: "center",
-          }}
-        >
-          A CREATIVE COALITION
-        </p>
-      )}
     </PageHeroStyle>
   );
 };
