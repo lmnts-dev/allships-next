@@ -42,6 +42,10 @@ export const CursorContainerStyle = styled.div`
 export const GloballyHideCursor = createGlobalStyle`
   * {
     cursor: none !important;
+
+    @media (max-width: ${Theme.Base.Media.Width.Md}) {
+      cursor: crosshair !important;
+    }
   }
 `;
 
