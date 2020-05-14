@@ -26,6 +26,7 @@ import { CardListings } from "../sections/CardListings";
 const FrontPage = (props) => {
   let { content, featuredContent, availableCategories } = props;
 
+
   return (
     <InnerGrid startBelowNav={true}>
       <SiteHead title="ALLSHIPS | A Creative Coalition." />
