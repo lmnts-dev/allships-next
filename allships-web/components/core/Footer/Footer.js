@@ -123,10 +123,16 @@ export const Footer = ({ handleCommand }) => {
             <div className="footer-social-media-and-copyright">
               <ul className="footer-social-media">
                 <li>
-                  <LazyImage
-                    src="/icons/ic_instagram.svg"
-                    alt="Find us on Instagram"
-                  />
+                  <a
+                    href="https://www.instagram.com/allships.co/"
+                    target="_blank"
+                    rel="nofollow noreferrer"
+                  >
+                    <LazyImage
+                      src="/icons/ic_instagram.svg"
+                      alt="Find us on Instagram"
+                    />
+                  </a>
                 </li>
               </ul>
               <div className="footer-copyright">

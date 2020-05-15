@@ -49,15 +49,27 @@ export const SiteHead = ({ title = siteTitle + " | " + description }) => {
       <meta name="twitter:url" value={baseUrl} />
 
       {/* Favicon */}
-      {/* <link rel="apple-touch-icon" sizes="180x180" href="{{ 'apple-touch-icon.png' | asset_url }}">
-      <link rel="icon" type="image/png" sizes="32x32" href="{{ 'favicon-32x32.png' | asset_url }}">
-      <link rel="icon" type="image/png" sizes="16x16" href="{{ 'favicon-16x16.png' | asset_url }}">
-      <link rel="manifest" href="{{'site.webmanifest' | asset_url }}">
-      <link rel="mask-icon" href="{{'safari-pinned-tab.svg' | asset_url }}" color="#df6b1f">
-      <link rel="shortcut icon" href="{{'favicon.ico' | asset_url }}"> */}
-      <meta name="msapplication-TileColor" content="#EBD048" />
-      {/* <meta name="msapplication-config" content="{{'browserconfig.xml' | asset_url }}"> */}
-      <meta name="theme-color" content="#EBD048" />
+      <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href="/apple-touch-icon.png"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href="/favicon-32x32.png"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="16x16"
+        href="/favicon-16x16.png"
+      />
+      <link rel="manifest" href="/site.webmanifest" />
+      <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ffc40d" />
+      <meta name="msapplication-TileColor" content="#ffc40d" />
+      <meta name="theme-color" content="#ffc40d" />
     </Head>
   );
 };
