@@ -21,7 +21,7 @@ type Props = {
  *
  * @name components/Navigation/Navigation.tsx
  * @author Peter Laxalt
- * @description The website navigation.
+ * @description The website navigation
  * @param shouldFocus = boolean ? = Passed from our scroll listeners.
  * @param appState = boolean = this.state from _app.js
  * @param handleTextChange = void = this.handleTextChange from _app.js
