@@ -100,11 +100,11 @@ export const Footer: React.FunctionComponent<FooterProps> = ({
             </div>
             <ul>
               <li onClick={() => handleCommand("launch launcher")}>
-                > Launcher
+                {'>'} Launcher
               </li>
-              <li onClick={() => handleCommand("launch launcher")}>> Help</li>
+              <li onClick={() => handleCommand("launch launcher")}>{'>'} Help</li>
               <li>
-                <a href="mailto: dave@davekrugman.com ">> Contact</a>
+                <a href="mailto: dave@davekrugman.com ">{'>'} Contact</a>
               </li>
             </ul>
           </div>

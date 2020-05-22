@@ -6,10 +6,6 @@
 // Core
 import styled from "styled-components";
 
-// Constants
-import { Theme } from "../../../constants/Theme";
-import { Root } from "../../../constants/Root";
-
 // Animations
 import { Grain } from "../../../constants/styles/Animation";
 

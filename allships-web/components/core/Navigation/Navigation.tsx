@@ -91,7 +91,7 @@ export const Navigation: React.FunctionComponent<Props> = ({
           {/* Column: Launcher Status */}
           <div className="col launcher-status">
             <span className="launcher-status-wrapper">
-              <span className="label">> SYSTEM STATUS v1.02x OK</span>
+              <span className="label">{'>'} SYSTEM STATUS v1.02x OK</span>
             </span>
           </div>
 

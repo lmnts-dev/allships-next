@@ -448,7 +448,7 @@ export class CardListings extends PureComponent<
                   this.handleFeaturedIdxUpdate(true, featuredItems.length)
                 }
                 className="featured-items-next"
-              >{`>`}</span>
+              >{'>'}</span>
             </div>
           ) : null}
 

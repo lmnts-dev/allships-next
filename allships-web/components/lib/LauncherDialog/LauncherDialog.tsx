@@ -47,14 +47,14 @@ export const LauncherDialog: React.FunctionComponent<Props> = ({
             <ul className="launcher-commands">
               {/* <li className="active" onClick={() => handleCommand("launch launcher")}>> Launcher</li> */}
               <li onClick={() => handleCommand("launch frontpage")}>
-                > Frontpage
+                {'>'} Frontpage
               </li>
               {/* <li onClick={() => handleCommand("launch editorial")}>> Editorial</li>
               <li onClick={() => handleCommand("launch events")}>> Events</li>
               <li onClick={() => handleCommand("launch agency")}>> Agency</li>
               <li onClick={() => handleCommand("launch resources")}>> Resources</li> */}
-              <li onClick={() => handleCommand("help")}>> Help</li>
-              <li onClick={() => handleCommand("reset")}>> Reset</li>
+              <li onClick={() => handleCommand("help")}>{'>'} Help</li>
+              <li onClick={() => handleCommand("reset")}>{'>'} Reset</li>
             </ul>
           </div>
           <div className="dialog-content launcher-dialog-content">

@@ -64,7 +64,7 @@ export class ContentCard extends Component<ContentCardProps, any> {
         return (
           <div className="content-card-inner">
             <LazyImage src={Attachments[0].url} alt={Name} />
-            <div className="content-card-title">{Name} ></div>
+            <div className="content-card-title">{Name} {'>'}</div>
             {Category ? (
               <ul className="content-card-categories">
                 {isFeatured ? <li>Featured</li> : null}
