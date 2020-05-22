@@ -10,7 +10,7 @@ import { GrainCover } from "../../lib/GrainCover";
 
 // Styles
 import { LayoutStyle } from "./styles.scss";
-import { ChangeEvent } from "react";
+import { ChangeEvent, FormEvent, MouseEvent } from "react";
 
 // Begin Component
 //////////////////////////////////////////////////////////////////////
@@ -18,7 +18,9 @@ import { ChangeEvent } from "react";
 type Props = {
   appState: any;
   handleTextChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  handleAddItem: (event: ChangeEvent<HTMLInputElement>) => void;
+  handleAddItem: (
+    event: FormEvent<HTMLFormElement> | MouseEvent<HTMLButtonElement>
+  ) => void;
   handleCommand: (cmd: string) => void;
   shouldFocus: boolean;
   children: any;
