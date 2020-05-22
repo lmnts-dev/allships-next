@@ -1,5 +1,5 @@
 // Core
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, FormEvent, MouseEvent } from "react";
 
 // Styles
 import { NavigationStyle } from "./styles.scss";
@@ -11,7 +11,9 @@ type Props = {
   shouldFocus: boolean;
   appState: any;
   handleTextChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  handleAddItem: (event: ChangeEvent<HTMLInputElement>) => void;
+  handleAddItem: (
+    event: FormEvent<HTMLFormElement> | MouseEvent<HTMLButtonElement>
+  ) => void;
   handleCommand: (cmd: string) => void;
 };
 
@@ -67,7 +69,7 @@ export const Navigation: React.FunctionComponent<Props> = ({
                   <span className="label">ASR-MOTHERSHIP:~</span>
                   <form
                     className="launcher-input-el"
-                    onSubmit={() => handleAddItem}
+                    onSubmit={handleAddItem}
                   >
                     <input
                       type="text"
@@ -78,7 +80,7 @@ export const Navigation: React.FunctionComponent<Props> = ({
                     <span className="fake-cursor" />
                     <button
                       style={{ display: "none" }}
-                      onClick={() => handleAddItem}
+                      onClick={handleAddItem}
                     >
                       Add
                     </button>
@@ -91,7 +93,7 @@ export const Navigation: React.FunctionComponent<Props> = ({
           {/* Column: Launcher Status */}
           <div className="col launcher-status">
             <span className="launcher-status-wrapper">
-              <span className="label">{'>'} SYSTEM STATUS v1.02x OK</span>
+              <span className="label">{">"} SYSTEM STATUS v1.02x OK</span>
             </span>
           </div>
 

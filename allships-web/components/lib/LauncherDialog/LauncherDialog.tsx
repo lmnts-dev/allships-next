@@ -2,7 +2,7 @@
 //////////////////////////////////////////////////////////////////////
 
 // Core
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, FormEvent, MouseEvent } from "react";
 import LauncherDialogStyle from "./styles.scss";
 
 // Begin Component
@@ -11,7 +11,9 @@ import LauncherDialogStyle from "./styles.scss";
 type Props = {
   handleCommand: (cmd: string) => void;
   handleTextChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  handleAddItem: (event: ChangeEvent<HTMLInputElement>) => void;
+  handleAddItem: (
+    event: FormEvent<HTMLFormElement> | MouseEvent<HTMLButtonElement>
+  ) => void;
   appState: any;
 };
 
@@ -47,14 +49,14 @@ export const LauncherDialog: React.FunctionComponent<Props> = ({
             <ul className="launcher-commands">
               {/* <li className="active" onClick={() => handleCommand("launch launcher")}>> Launcher</li> */}
               <li onClick={() => handleCommand("launch frontpage")}>
-                {'>'} Frontpage
+                {">"} Frontpage
               </li>
               {/* <li onClick={() => handleCommand("launch editorial")}>> Editorial</li>
               <li onClick={() => handleCommand("launch events")}>> Events</li>
               <li onClick={() => handleCommand("launch agency")}>> Agency</li>
               <li onClick={() => handleCommand("launch resources")}>> Resources</li> */}
-              <li onClick={() => handleCommand("help")}>{'>'} Help</li>
-              <li onClick={() => handleCommand("reset")}>{'>'} Reset</li>
+              <li onClick={() => handleCommand("help")}>{">"} Help</li>
+              <li onClick={() => handleCommand("reset")}>{">"} Reset</li>
             </ul>
           </div>
           <div className="dialog-content launcher-dialog-content">
@@ -67,10 +69,7 @@ export const LauncherDialog: React.FunctionComponent<Props> = ({
               ))}
               <li className="launcher-input-wrapper">
                 <span className="label">ASR-MOTHERSHIP:~</span>
-                <form
-                  className="launcher-input-el"
-                  onSubmit={() => handleAddItem}
-                >
+                <form className="launcher-input-el" onSubmit={handleAddItem}>
                   <input
                     type="text"
                     placeholder="ENTER COMMAND"
@@ -78,10 +77,7 @@ export const LauncherDialog: React.FunctionComponent<Props> = ({
                     value={appState.text}
                   />
                   <span className="fake-cursor" />
-                  <button
-                    style={{ display: "none" }}
-                    onClick={() => handleAddItem}
-                  >
+                  <button style={{ display: "none" }} onClick={handleAddItem}>
                     Add
                   </button>
                 </form>
