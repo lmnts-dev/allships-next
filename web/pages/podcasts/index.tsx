@@ -13,18 +13,12 @@ import { SiteHead } from "../../components/core/SiteHead";
 // Sections
 import { CardListings } from "../../sections/CardListings";
 import { GetStaticProps } from "next";
-import { LMNTS_ContentItem } from "../../constants/Types";
+
+// Types
+import { FrontPage } from "..";
 
 // Begin Component
 //////////////////////////////////////////////////////////////////////
-
-export type PodcastListings = {
-  availableCategories: string[];
-  featuredContent: LMNTS_ContentItem[];
-  content: LMNTS_ContentItem[];
-  showFilterBar: boolean;
-  showPageHero: boolean;
-};
 
 /**
  *
@@ -33,12 +27,12 @@ export type PodcastListings = {
  * @description The website podcast listings.
  *
  */
-const PodcastListings: React.FunctionComponent<PodcastListings> = ({
-  content,
+const PodcastListings: React.FunctionComponent<FrontPage> = ({
+  airtableContent,
   featuredContent,
   availableCategories,
 }) => {
-  console.log("content", content);
+  console.log("content", airtableContent);
   console.log("featuredContent", featuredContent);
   console.log("availableCategories", availableCategories);
 
@@ -48,7 +42,7 @@ const PodcastListings: React.FunctionComponent<PodcastListings> = ({
       <CardListings
         availableCategories={availableCategories}
         featuredContent={featuredContent}
-        content={content}
+        content={airtableContent}
         showFilterBar
         showPageHero
       />
@@ -65,9 +59,7 @@ export default PodcastListings;
  *
  */
 export const getStaticProps: GetStaticProps = async () => {
-  let content = await loadAllRecords;
-  // let jsonContent = JSON.stringify(content);
-  // let jsonParsedContent = JSON.parse(jsonContent);
+  let airtableContent = await loadAllRecords;
 
   /**
    *
@@ -76,9 +68,9 @@ export const getStaticProps: GetStaticProps = async () => {
    */
   return {
     props: {
-      content: content,
+      airtableContent: airtableContent,
       featuredContent: await loadFeaturedRecords,
-      availableCategories: createAvailableCategories(content),
+      availableCategories: createAvailableCategories(airtableContent),
     },
   };
 };

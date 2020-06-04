@@ -5,11 +5,11 @@ import React, { Component, ChangeEvent } from "react";
 import { InnerGrid } from "../InnerGrid";
 import LazyImage from "../../../utils/lazyImage";
 
-// Data
-import { addToEmailList } from "../../../clients";
-
 // Styles
 import { FooterStyle } from "./styles.scss";
+
+// Utilities
+import { QueryUtils } from "../../../constants/Queries";
 
 // Begin Component
 //////////////////////////////////////////////////////////////////////
@@ -46,7 +46,7 @@ class NewsletterForm extends Component<any, FormState> {
   handleSubmit = async (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
 
-    addToEmailList(this.state.value);
+    QueryUtils.addToEmailList(this.state.value);
 
     this.setState({ complete: true });
   };
@@ -100,11 +100,13 @@ export const Footer: React.FunctionComponent<FooterProps> = ({
             </div>
             <ul>
               <li onClick={() => handleCommand("launch launcher")}>
-                {'>'} Launcher
+                {">"} Launcher
               </li>
-              <li onClick={() => handleCommand("launch launcher")}>{'>'} Help</li>
+              <li onClick={() => handleCommand("launch launcher")}>
+                {">"} Help
+              </li>
               <li>
-                <a href="mailto: dave@davekrugman.com ">{'>'} Contact</a>
+                <a href="mailto: dave@davekrugman.com ">{">"} Contact</a>
               </li>
             </ul>
           </div>

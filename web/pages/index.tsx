@@ -1,10 +1,5 @@
 // Core
 import React from "react";
-import {
-  loadFeaturedRecords,
-  loadAllRecords,
-  createAvailableCategories,
-} from "../clients";
 
 // Components
 import { InnerGrid } from "../components/core/InnerGrid";
@@ -12,8 +7,13 @@ import { SiteHead } from "../components/core/SiteHead";
 
 // Sections
 import { CardListings } from "../sections/CardListings";
+
+// Types
 import { GetStaticProps } from "next";
 import { LMNTS_ContentItem } from "../constants/Types";
+
+// Utilities
+import { QueryUtils } from "../constants/Queries";
 
 // Begin Component
 //////////////////////////////////////////////////////////////////////
@@ -21,7 +21,7 @@ import { LMNTS_ContentItem } from "../constants/Types";
 export type FrontPage = {
   availableCategories: string[];
   featuredContent: LMNTS_ContentItem[];
-  content: LMNTS_ContentItem[];
+  airtableContent: LMNTS_ContentItem[];
   showFilterBar: boolean;
   showPageHero: boolean;
 };
@@ -34,11 +34,11 @@ export type FrontPage = {
  *
  */
 const FrontPage: React.FunctionComponent<FrontPage> = ({
-  content,
+  airtableContent,
   featuredContent,
   availableCategories,
 }) => {
-  console.log("content", content);
+  console.log("content", airtableContent);
   console.log("featuredContent", featuredContent);
   console.log("availableCategories", availableCategories);
 
@@ -48,7 +48,7 @@ const FrontPage: React.FunctionComponent<FrontPage> = ({
       <CardListings
         availableCategories={availableCategories}
         featuredContent={featuredContent}
-        content={content}
+        content={airtableContent}
         showFilterBar
         showPageHero
       />
@@ -66,9 +66,7 @@ export default FrontPage;
  *
  */
 export const getStaticProps: GetStaticProps = async () => {
-  let content = await loadAllRecords;
-  // let jsonContent = JSON.stringify(content);
-  // let jsonParsedContent = JSON.parse(jsonContent);
+  let airtableContent = await QueryUtils.loadAllRecords;
 
   /**
    *
@@ -77,9 +75,11 @@ export const getStaticProps: GetStaticProps = async () => {
    */
   return {
     props: {
-      content: content,
-      featuredContent: await loadFeaturedRecords,
-      availableCategories: createAvailableCategories(content),
+      airtableContent: airtableContent,
+      featuredContent: await QueryUtils.loadFeaturedRecords,
+      availableCategories: QueryUtils.createAvailableCategories(
+        airtableContent
+      ),
     },
   };
 };
