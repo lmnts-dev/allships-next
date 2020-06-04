@@ -9,26 +9,32 @@
  *
  */
 
-import { CenteredTextRegistry } from "./CenteredText";
-import { ColumnContentRegistry } from "./ColumnContent";
-import { FullWidthImageRegistry } from "./FullWidthImage";
-import { GridRowRegistry } from "./GridRow";
-import { HeadlineRowRegistry } from "./HeadlineRow";
-import { MarqueeRowRegistry } from "./MarqueeRow";
-import { SectionBreakRegistry } from "./SectionBreak";
-import { StickySectionRegistry } from "./StickySection";
+import { CenteredTextRegistry } from "../sections/CenteredText";
+import { ColumnContentRegistry } from "../sections/ColumnContent";
+import { FullWidthImageRegistry } from "../sections/FullWidthImage";
+import { GridRowRegistry } from "../sections/GridRow";
+import { HeadlineRowRegistry } from "../sections/HeadlineRow";
+import { MarqueeRowRegistry } from "../sections/MarqueeRow";
+import { SectionBreakRegistry } from "../sections/SectionBreak";
+import { StickySectionRegistry } from "../sections/StickySection";
 
 // __________________________________________________________________________________________
 
+export const SectionRegistryMeta = {
+  title: "Page Sections",
+  name: "content",
+  type: "array",
+};
+
 /**
  *
- * @name SectionRegistry
+ * @name Sections
  * @param includeSections? : array : Section `types` to include.
  * @param excludeSections? : array : Section `types` to exclude.
  * @returns Array back of sections.
  *
  */
-export const SectionRegistry = (includeSections, excludeSections) => {
+export const Sections = (includeSections, excludeSections) => {
   /**
    *
    * Default Variables
@@ -69,7 +75,10 @@ export const SectionRegistry = (includeSections, excludeSections) => {
 
     filteredSections = filteredSections.concat(selectedSections);
 
-    return filteredSections;
+    return {
+      ...SectionRegistryMeta,
+      of: filteredSections,
+    };
   }
 
   /**
@@ -85,7 +94,10 @@ export const SectionRegistry = (includeSections, excludeSections) => {
       );
     });
 
-    return filteredSections;
+    return {
+      ...SectionRegistryMeta,
+      of: filteredSections,
+    };
   }
 
   /**
@@ -106,6 +118,9 @@ export const SectionRegistry = (includeSections, excludeSections) => {
     return handleExcludeSections(excludeSections);
   } else {
     // If none specified
-    return defaultSections;
+    return {
+      ...SectionRegistryMeta,
+      of: defaultSections,
+    };
   }
 };

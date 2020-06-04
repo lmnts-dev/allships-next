@@ -15,7 +15,7 @@ export const GridRowRegistry = {
   type: "object",
 };
 
-export default {
+export const GridRow = {
   ...GridRowRegistry,
   fields: [
     {

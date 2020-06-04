@@ -15,7 +15,7 @@ export const MarqueeRowRegistry = {
   type: "object",
 };
 
-export default {
+export const MarqueeRow = {
   ...MarqueeRowRegistry,
   fields: [
     {

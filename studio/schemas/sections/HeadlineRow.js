@@ -16,7 +16,7 @@ export const HeadlineRowRegistry = {
   type: "object",
 };
 
-export default {
+export const HeadlineRow = {
   ...HeadlineRowRegistry,
   fields: [
     {

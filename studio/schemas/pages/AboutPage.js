@@ -1,8 +1,8 @@
 /**
  *
- * @name Page Sanity.io Schema
+ * @name About Landing Page Schema
  * @author Peter Laxalt
- * @description lmnts-6 Site Page Data Model
+ * @description About Landing Page Data Model
  *
  */
 
@@ -10,14 +10,14 @@ import { DefaultPage } from "../scaffold/DefaultPage";
 
 // __________________________________________________________________________________________
 
-export const PageRegistry = {
-  name: "page",
-  title: "Page",
+export const AboutPageRegistry = {
+  name: "aboutPage",
+  title: "About Page",
   type: "document",
 };
 
-export const Page = {
-  ...PageRegistry,
+export const AboutPage = {
+  ...AboutPageRegistry,
   fields: [...DefaultPage],
 };
 

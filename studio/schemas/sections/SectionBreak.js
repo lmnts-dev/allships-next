@@ -16,7 +16,7 @@ export const SectionBreakRegistry = {
   type: "object",
 };
 
-export default {
+export const SectionBreak = {
   ...SectionBreakRegistry,
   fields: [
     {

@@ -16,7 +16,7 @@ export const StickySectionRegistry = {
   type: "object",
 };
 
-export default {
+export const StickySection = {
   ...StickySectionRegistry,
   fields: [
     {

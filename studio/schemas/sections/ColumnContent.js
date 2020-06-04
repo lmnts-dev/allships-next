@@ -15,7 +15,7 @@ export const ColumnContentRegistry = {
   type: "object",
 };
 
-export default {
+export const ColumnContent = {
   ...ColumnContentRegistry,
   fields: [
     {

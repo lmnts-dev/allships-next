@@ -1,36 +1,39 @@
 /**
  *
- * @name Config Schema
+ * @name Author Sanity.io Schema
  * @author Peter Laxalt
- * @description Site Config Data Model
+ * @description Site Author Data Model
  *
  */
 
 // __________________________________________________________________________________________
 
-export const ConfigRegistry = {
-  name: "config",
-  title: "🤖 Settings",
+export const AuthorRegistry = {
+  name: "author",
+  title: "Author",
   type: "document",
 };
 
-export const Config = {
-  ...ConfigRegistry,
+export const Author = {
+  ...AuthorRegistry,
   fields: [
     {
-      name: "title",
-      title: "Site Title",
+      title: "Name",
+      name: "name",
       type: "string",
     },
     {
-      name: "description",
-      title: "Site Description (SEO Only)",
+      title: "Job Title",
+      name: "job_title",
       type: "string",
     },
     {
-      name: "location",
-      title: "Site Location (eg 'New York City, NY')",
-      type: "string",
+      title: "Author photo",
+      name: "authorPhoto",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
     },
     {
       title: "Twitter",

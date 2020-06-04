@@ -55,16 +55,25 @@ Simply commit to the master branch and our CI processes on Github will deploy th
 - Project ID: `hpvpbfax`
 - URL: `www.`
 
+### Overview
+
+- Articles
+- Events 
+- Podcasts
+- Pages
+- Site Settings
+
 ### Types
 
 #### `<Post>`
 
 - Title: `title: string`
+- Slug: `slug: string`
 - Content: `content: array[]`
 - Author: `author: string`
-- Date: `date: string`
-- Visiblity: `visiblity: boolean`
+- Excerpt: `excerpt: string`
 - Cover Image: `cover_image: object`
+- Featured Image: `featured_image: object`
 - Category: `category: string[]`
 - Tags: `tags: string[]`
 - Theme: `theme: Theme`
@@ -72,6 +81,7 @@ Simply commit to the master branch and our CI processes on Github will deploy th
 #### `<Page>`
 
 - Title: `title: string`
+- Slug: `slug: string`
 - Theme: `theme: Theme`
 - Content: `content: array[]`
 
@@ -144,7 +154,6 @@ Simply commit to the master branch and our CI processes on Github will deploy th
 
 - Site Title: `title: string`
 - Site Description: `description: string`
-- Site Location: `location: string` 
 - Social Media:
   - Instagram: `instagram: string`
 - Contact Information

@@ -16,7 +16,7 @@ export const FullWidthImageRegistry = {
   type: "object",
 };
 
-export default {
+export const FullWidthImage = {
   ...FullWidthImageRegistry,
   fields: [
     {

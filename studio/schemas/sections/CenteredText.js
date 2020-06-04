@@ -16,7 +16,7 @@ export const CenteredTextRegistry = {
   type: "object",
 };
 
-export default {
+export const CenteredText = {
   ...CenteredTextRegistry,
   fields: [
     {

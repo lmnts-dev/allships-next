@@ -15,21 +15,28 @@ import createSchema from "part:@sanity/base/schema-creator";
 import schemaTypes from "all:part:@sanity/base/schema-type";
 
 // Content Schemas
+import { Event } from "./content/Event";
+import { Page } from "./content/Page";
+import { Article } from "./content/Article";
+import { Podcast } from "./content/Podcast";
+import { Author } from "./content/Author";
 
 // Core Page Schemas
+import { FrontPage } from "./pages/Frontpage";
+import { AboutPage } from "./pages/AboutPage";
 
 // Setting Schemas
-import Config from "./settings/config";
+import { Config } from "./settings/Config";
 
 // Core Builder Element Schemas
-import CenteredText from "./sections/CenteredText";
-import ColumnContent from "./sections/ColumnContent";
-import FullWidthImage from "./sections/FullWidthImage";
-import GridRow from "./sections/GridRow";
-import Headline from "./sections/Headline";
-import MarqueeRow from "./sections/MarqueeRow";
-import SectionBreak from "./sections/SectionBreak";
-import StickySection from "./sections/StickySection";
+import { CenteredText } from "./sections/CenteredText";
+import { ColumnContent } from "./sections/ColumnContent";
+import { FullWidthImage } from "./sections/FullWidthImage";
+import { GridRow } from "./sections/GridRow";
+import { HeadlineRow } from "./sections/HeadlineRow";
+import { MarqueeRow } from "./sections/MarqueeRow";
+import { SectionBreak } from "./sections/SectionBreak";
+import { StickySection } from "./sections/StickySection";
 
 // __________________________________________________________________________________________
 
@@ -39,33 +46,44 @@ export default createSchema({
   types: schemaTypes.concat([
     /**
      *
-     * Core Schema Types
+     * Schema Types
      *
      */
     Page,
     Event,
     Article,
     Podcast,
+    Author,
 
     /**
      *
-     * Core Page Builder Sections
+     * Page Builder Sections
      *
      */
+
+    // -- Default Sections
     CenteredText,
     ColumnContent,
     FullWidthImage,
     GridRow,
-    Headline,
+    HeadlineRow,
     MarqueeRow,
     SectionBreak,
     StickySection,
 
-    // Core Pages
+    /**
+     *
+     * Pages
+     *
+     */
     FrontPage,
     AboutPage,
 
-    // Core Settings
+    /**
+     *
+     * Settings
+     *
+     */
     Config,
   ]),
 });
