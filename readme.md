@@ -5,11 +5,42 @@ By Peter Laxalt
 
 ## Architecture
 
-- [Next.js](https://nextjs.org/)
-- [React.js](https://reactjs.org/)
-- [Styled Components](https://styled-components.com/)
-- [Typescript](https://www.typescriptlang.org/)
-- [Sanity](https://www.sanity.io/)
+- Frontend
+  - [Next.js](https://nextjs.org/)
+  - [React.js](https://reactjs.org/)
+  - [Styled Components](https://styled-components.com/)
+  - [Typescript](https://www.typescriptlang.org/)
+- Backend
+  - [Sanity](https://www.sanity.io/)
+- Hosting & serverless deployment
+  - [Vercel](https://vercel.com/laxaltandmciver/allships)
+- Automation of static builds
+  - [Zapier](https://zapier.com/app/dashboard)
+
+## Installation
+
+1. `git clone git@github.com:lmnts-dev/allships-next.git`
+2. `cd allships-next`
+3. `cd web && yarn install && cd ../studio && yarn install`
+
+### Development
+
+To develop on the frontend of the site:
+
+1. `cd web && npm run dev`
+2. Make updates as needed.
+3. Commit your changes back to Github.
+
+To develop on the content model of the site:
+
+1. `npm install -g @sanity/cli`
+2. `cd studio && sanity start`
+3. Make updates as needed.
+4. Commit your changes back to Github.
+
+### Deployment
+
+Simply commit to the master branch and our CI processes on Github will deploy the appropriate URLs to Vercel.
 
 ## Data Sources
 
