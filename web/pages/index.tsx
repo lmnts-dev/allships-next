@@ -13,14 +13,15 @@ import { SiteHead } from "../components/core/SiteHead";
 // Sections
 import { CardListings } from "../sections/CardListings";
 import { GetStaticProps } from "next";
+import { LMNTS_ContentItem } from "../constants/Types";
 
 // Begin Component
 //////////////////////////////////////////////////////////////////////
 
-type Props = {
-  availableCategories: [];
-  featuredContent: [];
-  content: [];
+export type FrontPage = {
+  availableCategories: string[];
+  featuredContent: LMNTS_ContentItem[];
+  content: LMNTS_ContentItem[];
   showFilterBar: boolean;
   showPageHero: boolean;
 };
@@ -32,14 +33,14 @@ type Props = {
  * @description The website homepage.
  *
  */
-const FrontPage: React.FunctionComponent<Props> = ({
+const FrontPage: React.FunctionComponent<FrontPage> = ({
   content,
   featuredContent,
   availableCategories,
 }) => {
-  console.log(content);
-  console.log(featuredContent);
-  console.log(availableCategories);
+  console.log("content", content);
+  console.log("featuredContent", featuredContent);
+  console.log("availableCategories", availableCategories);
 
   return (
     <InnerGrid startBelowNav={true}>

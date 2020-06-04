@@ -25,9 +25,9 @@ import airtableClient from "airtable";
 
 // General Settings
 export const Sanity = sanityClient({
-  projectId: "w2xt1cyc",
+  projectId: "hpvpbfax",
   dataset: "production",
-  useCdn: true, // `false` if you want to ensure fresh data
+  useCdn: false, // `false` if you want to ensure fresh data
 });
 
 //////////////////////////////////////////////////////////////////////

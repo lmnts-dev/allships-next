@@ -23,19 +23,15 @@ import { GlobalStyles } from "./styles.scss";
 // Utils
 import LazyImage from "../../../utils/lazyImage";
 
+// Types
+import { LMNTS_ContentCardFields } from "../../../constants/Types";
+
 // Begin Component
 //////////////////////////////////////////////////////////////////////
 
-type RecordProps = {
-  Attachments?: any;
-  Name?: string;
-  Category?: string;
-  Link?: string;
-};
-
 type ContentCardProps = {
   isLink?: boolean;
-  data: RecordProps;
+  data: LMNTS_ContentCardFields;
   isFeatured?: boolean;
 };
 
@@ -64,7 +60,9 @@ export class ContentCard extends Component<ContentCardProps, any> {
         return (
           <div className="content-card-inner">
             <LazyImage src={Attachments[0].url} alt={Name} />
-            <div className="content-card-title">{Name} {'>'}</div>
+            <div className="content-card-title">
+              {Name} {">"}
+            </div>
             {Category ? (
               <ul className="content-card-categories">
                 {isFeatured ? <li>Featured</li> : null}

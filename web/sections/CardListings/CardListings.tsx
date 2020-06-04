@@ -14,30 +14,31 @@ import {
 } from "../../components/lib/ContentCard";
 import { SiteHead } from "../../components/core/SiteHead";
 import { PageHero } from "../PageHero";
+import { LMNTS_ContentItem } from "../../constants/Types";
 
 // Begin Component
 //////////////////////////////////////////////////////////////////////
 
 type CardListingsProps = {
-  availableCategories: [];
-  featuredContent: [];
-  content: [];
+  availableCategories: string[];
+  featuredContent: LMNTS_ContentItem[];
+  content: LMNTS_ContentItem[];
   showFilterBar: boolean;
   showPageHero: boolean;
 };
 
 type CardListingsState = {
-  content: [];
-  availableCategories: [];
+  content: LMNTS_ContentItem[];
+  availableCategories: string[];
   currentCategory: string;
   currentAuthor: string;
-  featuredItems: [];
+  featuredItems: LMNTS_ContentItem[];
   featuredItemIdx: number;
   mobileCategoryBarVisible: boolean;
 };
 
 type FeaturedItemsProps = {
-  featuredItems: any;
+  featuredItems: LMNTS_ContentItem[];
   featuredItemIdx: number;
 };
 
