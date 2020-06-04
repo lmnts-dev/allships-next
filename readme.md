@@ -3,8 +3,6 @@
 By Peter Laxalt
 [Laxalt & McIver](www.laxaltandmciver.co)
 
----
-
 ## Architecture
 
 - [Next.js](https://nextjs.org/)
@@ -17,8 +15,6 @@ By Peter Laxalt
 
 - [Sanity](https://manage.sanity.io/projects/hpvpbfax/settings/api)
 - [Airtable](https://airtable.com/tblYVYIn8Qvez885Q/viwWlwGYVN7C5kRGB)
-
----
 
 ## Sanity Content Model
 
@@ -56,8 +52,6 @@ By Peter Laxalt
 - Text: `text: string`
 - Dialog: `dialog: string`
 
----
-
 ### Posts
 
 #### Events
@@ -81,8 +75,6 @@ By Peter Laxalt
 - Extends: `<Post>`
   - Podcast Embed
 
----
-
 ### Pages
 
 #### Pages
@@ -104,8 +96,6 @@ By Peter Laxalt
 - Extends: `<Page>`
 - Hero Image: `hero: object`
 - Embellishment: `embellishment: object`
-
----
 
 ### Settings
 
