@@ -150,6 +150,11 @@ export const GlobalStyles = createGlobalStyle`
           &:last-child {
             margin-right: 0;
           }
+
+          &.__is-published-by-us {
+            background: ${Theme.Color.Dialog};
+            color: ${Theme.Color.Background};
+          }
         }
       }
 

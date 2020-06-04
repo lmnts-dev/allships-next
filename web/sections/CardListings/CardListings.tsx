@@ -449,7 +449,9 @@ export class CardListings extends PureComponent<
                   this.handleFeaturedIdxUpdate(true, featuredItems.length)
                 }
                 className="featured-items-next"
-              >{'>'}</span>
+              >
+                {">"}
+              </span>
             </div>
           ) : null}
 
@@ -487,7 +489,11 @@ export class CardListings extends PureComponent<
         {!showFilterBar ? null : <FilterBarMobile />}
         {!showFeaturedItems ? null : (
           <FeaturedItems
-            featuredItems={featuredItems}
+            featuredItems={featuredItems.filter((item: any) =>
+              item.fields.Author
+                ? item.fields.Author.includes(currentAuthor)
+                : item == true
+            )}
             featuredItemIdx={this.state.featuredItemIdx}
           />
         )}

@@ -54,7 +54,9 @@ export class ContentCard extends Component<ContentCardProps, any> {
     let { isLink, data, isFeatured } = this.props;
 
     const Content: React.FunctionComponent<ContentCardProps> = ({ data }) => {
-      let { Attachments, Name, Category } = data;
+      let { Attachments, Name, Category, Author } = data;
+
+      let isPublishedByUs = Author ? Author == "By Us" : false;
 
       if (Attachments && Name) {
         return (
@@ -63,12 +65,21 @@ export class ContentCard extends Component<ContentCardProps, any> {
             <div className="content-card-title">
               {Name} {">"}
             </div>
-            {Category ? (
-              <ul className="content-card-categories">
-                {isFeatured ? <li>Featured</li> : null}
-                <li>{Category}</li>
-              </ul>
-            ) : null}
+
+            <ul className="content-card-categories">
+              {Author ? (
+                isPublishedByUs ? (
+                  <li className="__is-published-by-us">Allships</li>
+                ) : null
+              ) : null}
+
+              {Category ? (
+                <>
+                  {isFeatured ? <li>Featured</li> : null}
+                  <li>{Category}</li>
+                </>
+              ) : null}
+            </ul>
           </div>
         );
       } else {
