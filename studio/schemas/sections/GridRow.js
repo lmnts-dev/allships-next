@@ -9,10 +9,14 @@
 
 // __________________________________________________________________________________________
 
-export default {
+export const GridRowRegistry = {
   title: "Grid Row",
   name: "grid_row",
   type: "object",
+};
+
+export default {
+  ...GridRowRegistry,
   fields: [
     {
       name: "name",

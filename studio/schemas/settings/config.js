@@ -2,7 +2,7 @@
  *
  * @name Config Schema
  * @author Peter Laxalt
- * @description lmnts-6 Site Config Data Model
+ * @description Site Config Data Model
  *
  */
 

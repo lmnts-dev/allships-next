@@ -57,7 +57,7 @@ Simply commit to the master branch and our CI processes on Github will deploy th
 
 ### Types
 
-#### @Post
+#### `<Post>`
 
 - Title: `title: string`
 - Content: `content: array[]`
@@ -69,13 +69,13 @@ Simply commit to the master branch and our CI processes on Github will deploy th
 - Tags: `tags: string[]`
 - Theme: `theme: Theme`
 
-#### @Page
+#### `<Page>`
 
 - Title: `title: string`
 - Theme: `theme: Theme`
 - Content: `content: array[]`
 
-#### @Theme
+#### `<Theme>`
 
 - Primary: `primary: string`
 - Secondary: `secondary: string`
@@ -132,16 +132,21 @@ Simply commit to the master branch and our CI processes on Github will deploy th
 
 #### Footer
 
-- Footer
+- Items: `navigation: array[]`
+- Footer Branding: `branding: object`
+- Footer Image: `altImage: object`
 
 #### Navigation
 
 - Items: `navigation: array[]`
 
-#### Terminal Name
+#### General Information
 
-- Items: `terminal: string`
-
-#### Contact Information
-
-- Items: `terminal: string`
+- Site Title: `title: string`
+- Site Description: `description: string`
+- Site Location: `location: string` 
+- Social Media:
+  - Instagram: `instagram: string`
+- Contact Information
+  - Email: `email: string`
+  - Location: `location: string`

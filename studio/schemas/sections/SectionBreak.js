@@ -10,10 +10,14 @@
 
 // __________________________________________________________________________________________
 
-export default {
+export const SectionBreakRegistry = {
   title: "Section Break",
   name: "section_break",
   type: "object",
+};
+
+export default {
+  ...SectionBreakRegistry,
   fields: [
     {
       name: "style",
@@ -21,8 +25,14 @@ export default {
       type: "string",
       options: {
         list: [
-          { title: "Low Contrast Section Break", value: "Low Contrast Section Break" },
-          { title: "High Contrast Section Break", value: "High Contrast Section Break" },
+          {
+            title: "Low Contrast Section Break",
+            value: "Low Contrast Section Break",
+          },
+          {
+            title: "High Contrast Section Break",
+            value: "High Contrast Section Break",
+          },
         ],
         layout: "dropdown",
       },

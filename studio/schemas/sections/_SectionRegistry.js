@@ -9,10 +9,14 @@
  *
  */
 
-import { DisplayIndustryCategoriesRegistryName } from "./DisplayIndustryCategories";
-import { DisplayServiceCategoriesRegistryName } from "./DisplayServiceCategories";
-import { FeaturedServicesHeroRegistryName } from "./FeaturedServicesHero";
-import { FeaturedIndustriesHeroRegistryName } from "./FeaturedIndustriesHero";
+import { CenteredTextRegistry } from "./CenteredText";
+import { ColumnContentRegistry } from "./ColumnContent";
+import { FullWidthImageRegistry } from "./FullWidthImage";
+import { GridRowRegistry } from "./GridRow";
+import { HeadlineRowRegistry } from "./HeadlineRow";
+import { MarqueeRowRegistry } from "./MarqueeRow";
+import { SectionBreakRegistry } from "./SectionBreak";
+import { StickySectionRegistry } from "./StickySection";
 
 // __________________________________________________________________________________________
 
@@ -31,30 +35,18 @@ export const SectionRegistry = (includeSections, excludeSections) => {
    *
    */
   let defaultSections = [
-    { type: "centered_text" },
-    { type: "column_content" },
-    { type: "fullwidth_image" },
-    { type: "grid_row" },
-    { type: "headline" },
-    { type: "listings_tall_format" },
-    { type: "marquee_row" },
-    { type: "quote_hero" },
-    { type: "section_break" },
-    { type: "stacked_hero" },
-    { type: "sticky_section" },
-    { type: "fullwidth_hero" },
-    { type: "statement_hero" },
-    { type: "featured_project_slider" },
+    { type: CenteredTextRegistry.name },
+    { type: ColumnContentRegistry.name },
+    { type: FullWidthImageRegistry.name },
+    { type: GridRowRegistry.name },
+    { type: HeadlineRowRegistry.name },
+    { type: MarqueeRowRegistry.name },
+    { type: SectionBreakRegistry.name },
+    { type: StickySectionRegistry.name },
   ];
 
-  let optionalSections = [
-    { type: "project_horizontal_listings" },
-    { type: "link_list_navigation" },
-    { type: DisplayIndustryCategoriesRegistryName },
-    { type: DisplayServiceCategoriesRegistryName },
-    { type: FeaturedServicesHeroRegistryName },
-    { type: FeaturedIndustriesHeroRegistryName },
-  ];
+  // Add any optional sections here.
+  let optionalSections = [];
 
   let selectedSections = [];
 

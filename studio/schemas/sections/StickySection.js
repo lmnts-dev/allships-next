@@ -10,10 +10,14 @@
 
 // __________________________________________________________________________________________
 
-export default {
+export const StickySectionRegistry = {
   title: "Sticky Section",
   name: "sticky_section",
   type: "object",
+};
+
+export default {
+  ...StickySectionRegistry,
   fields: [
     {
       name: "headline",

@@ -10,10 +10,14 @@
 
 // __________________________________________________________________________________________
 
-export default {
+export const FullWidthImageRegistry = {
   title: "Fullwidth Image",
   name: "fullwidth_image",
   type: "object",
+};
+
+export default {
+  ...FullWidthImageRegistry,
   fields: [
     {
       name: "image",

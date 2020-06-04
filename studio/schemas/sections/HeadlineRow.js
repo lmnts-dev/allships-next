@@ -1,19 +1,23 @@
 /**
  *
- * @name Headline Section
+ * @name HeadlineRow Section
  * @author Peter Laxalt
  * @description
- * Simple Headline Schema
- * @requires /web/sections/Headline
+ * Simple HeadlineRow Schema
+ * @requires /web/sections/HeadlineRow
  *
  */
 
 // __________________________________________________________________________________________
 
-export default {
-  title: "Headline",
+export const HeadlineRowRegistry = {
+  title: "Headline Row",
   name: "headline",
   type: "object",
+};
+
+export default {
+  ...HeadlineRowRegistry,
   fields: [
     {
       name: "headline",

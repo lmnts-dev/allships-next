@@ -10,10 +10,14 @@
 
 // __________________________________________________________________________________________
 
-export default {
+export const CenteredTextRegistry = {
   title: "Centered Text",
   name: "centered_text",
   type: "object",
+};
+
+export default {
+  ...CenteredTextRegistry,
   fields: [
     {
       name: "content",

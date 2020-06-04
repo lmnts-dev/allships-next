@@ -9,10 +9,14 @@
 
 // __________________________________________________________________________________________
 
-export default {
+export const ColumnContentRegistry = {
   title: "Column Content",
   name: "column_content",
   type: "object",
+};
+
+export default {
+  ...ColumnContentRegistry,
   fields: [
     {
       name: "name",

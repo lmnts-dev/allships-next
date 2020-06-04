@@ -9,10 +9,14 @@
 
 // __________________________________________________________________________________________
 
-export default {
+export const MarqueeRowRegistry = {
   title: "Marquee Row",
   name: "marquee_row",
   type: "object",
+};
+
+export default {
+  ...MarqueeRowRegistry,
   fields: [
     {
       name: "name",
