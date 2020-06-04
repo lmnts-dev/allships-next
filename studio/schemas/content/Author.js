@@ -29,7 +29,7 @@ export const Author = {
     },
     {
       title: "Author photo",
-      name: "authorPhoto",
+      name: "author_photo",
       type: "image",
       options: {
         hotspot: true,

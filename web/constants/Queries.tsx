@@ -9,14 +9,15 @@
  */
 
 import groq from "groq";
-import { Sanity, Airtable, AirtableUtils } from "../clients";
+import { Airtable, AirtableUtils } from "../clients";
 import {
-  LMNTS_Project,
-  LMNTS_ServiceCategory,
-  LMNTS_Service,
-  LMNTS_IndustryCategory,
-  LMNTS_Industry,
-} from "./Types";
+  LMNTS_Sanity_Article,
+  LMNTS_Sanity_Event,
+  LMNTS_Sanity_Podcast,
+  LMNTS_GenericListing,
+  LMNTS_AvailableSanityListings,
+} from "./types";
+import slugify from "../utils/slugify";
 
 // Begin Component
 //////////////////////////////////////////////////////////////////////
@@ -49,7 +50,7 @@ export class Queries {
     return groq`*[_type == "article"]{
       ..., 
       "author": author->,
-       "featured_image": featured_image.asset->,
+      "featured_image": featured_image.asset->,
       "thumbnail_image": thumbnail_image.asset->
     }`;
   };
@@ -64,7 +65,7 @@ export class Queries {
     return groq`*[_type == "event"]{
       ..., 
       "author": author->,
-       "featured_image": featured_image.asset->,
+      "featured_image": featured_image.asset->,
       "thumbnail_image": thumbnail_image.asset->
     }`;
   };
@@ -79,11 +80,13 @@ export class Queries {
     return groq`*[_type == "podcast"]{
       ..., 
       "author": author->,
-       "featured_image": featured_image.asset->,
+      "featured_image": featured_image.asset->,
       "thumbnail_image": thumbnail_image.asset->
     }`;
   };
 }
+
+//////////////////////////////////////////////////////////////////////
 
 /**
  *
@@ -94,7 +97,6 @@ export class Queries {
  * QueryUtils.restructureProjectData(data);
  *
  */
-
 export class QueryUtils {
   /**
    *
@@ -103,23 +105,25 @@ export class QueryUtils {
    * Load all of our records.
    *
    */
-  static loadAllRecords = Airtable(AirtableUtils.allRecords.tableName)
-    .select({
-      // Selecting the first 3 records in Kylie Grid:
-      maxRecords: AirtableUtils.maxRecords,
-      view: AirtableUtils.allRecords.viewName,
-    })
-    .all()
-    .then((record: any) => {
-      let unserializedRecord = record;
-      let stringifiedRecord = JSON.stringify(unserializedRecord);
-      let serializedRecord = JSON.parse(stringifiedRecord);
+  static loadAllRecords = () => {
+    return Airtable(AirtableUtils.allRecords.tableName)
+      .select({
+        // Selecting the first 3 records in Kylie Grid:
+        maxRecords: AirtableUtils.maxRecords,
+        view: AirtableUtils.allRecords.viewName,
+      })
+      .all()
+      .then((record: any) => {
+        let unserializedRecord = record;
+        let stringifiedRecord = JSON.stringify(unserializedRecord);
+        let serializedRecord = JSON.parse(stringifiedRecord);
 
-      return serializedRecord;
-    })
-    .catch((err: any) => {
-      console.error(err);
-    });
+        return serializedRecord;
+      })
+      .catch((err: any) => {
+        console.error(err);
+      });
+  };
 
   /**
    *
@@ -128,23 +132,25 @@ export class QueryUtils {
    * Load all of our featured records.
    *
    */
-  static loadFeaturedRecords = Airtable(AirtableUtils.featuredRecords.tableName)
-    .select({
-      // Selecting the first 3 records in Kylie Grid:
-      maxRecords: AirtableUtils.maxRecords,
-      view: AirtableUtils.featuredRecords.viewName,
-    })
-    .all()
-    .then((record: any) => {
-      let unserializedRecord = record;
-      let stringifiedRecord = JSON.stringify(unserializedRecord);
-      let serializedRecord = JSON.parse(stringifiedRecord);
+  static loadFeaturedRecords = () => {
+    return Airtable(AirtableUtils.featuredRecords.tableName)
+      .select({
+        // Selecting the first 3 records in Kylie Grid:
+        maxRecords: AirtableUtils.maxRecords,
+        view: AirtableUtils.featuredRecords.viewName,
+      })
+      .all()
+      .then((record: any) => {
+        let unserializedRecord = record;
+        let stringifiedRecord = JSON.stringify(unserializedRecord);
+        let serializedRecord = JSON.parse(stringifiedRecord);
 
-      return serializedRecord;
-    })
-    .catch((err: any) => {
-      console.error(err);
-    });
+        return serializedRecord;
+      })
+      .catch((err: any) => {
+        console.error(err);
+      });
+  };
 
   /**
    *
@@ -198,4 +204,129 @@ export class QueryUtils {
       }
     );
   };
+
+  /**
+   *
+   * @name genericizeSanityListing
+   * @description Genericize a Sanity content listing.
+   * @returns A new, generic array of the supplied Sanity listing.
+   * @param {LMNTS_AvailableSanityListings} listings
+   *
+   */
+  static genericizeSanityListing = (
+    listings: LMNTS_AvailableSanityListings[]
+  ) => {
+    // Define our empty array
+    let genericListing: LMNTS_GenericListing[] = [];
+
+    // Re-map our listings
+    if (listings.length > 0) {
+      listings.map((item: LMNTS_AvailableSanityListings) => {
+        // Loop through the categories.
+        let genericCategories: string[] = item.category
+          ? item.category.map((category: string) => {
+              return category;
+            })
+          : [];
+
+        // Loop through the tags.
+        let genericTags: string[] = item.tags
+          ? item.tags.map((tag: string) => {
+              return tag;
+            })
+          : [];
+
+        // Check for slug.
+        let genericSlug: string = item.slug
+          ? item.slug.current
+          : item.title
+          ? slugify(item.title)
+          : "/";
+
+        // Create our generic item.
+        let genericItem: LMNTS_GenericListing = {
+          author: item.author ? item.author.name : "",
+          categories: genericCategories,
+          isFeatured: item.isFeatured ? item.isFeatured : false,
+          isPublishedByUs: true,
+          slug: genericSlug,
+          tags: genericTags,
+          thumbnail_image: item.thumbnail_image
+            ? item.thumbnail_image.url
+            : undefined,
+          title: item.title ? item.title : undefined,
+          published: true,
+          publishedAt: item._createdAt,
+        };
+
+        // Add our newly generic listing to our original array. Repeat.
+        genericListing = genericListing.concat(genericItem);
+      });
+    }
+
+    // Return our nicely generic listings.
+    return genericListing;
+  };
+
+  /**
+   *
+   * @name mergeSanityContentToGenericListings
+   * @description Merge all Sanity content to be listed as content items.
+   * @returns A new array of generic Sanity content items.
+   * @param {LMNTS_Sanity_Article[]} articles
+   * @param {LMNTS_Sanity_Event[]} events
+   * @param {LMNTS_Sanity_Podcast[]} podcasts
+   *
+   */
+
+  static mergeSanityContentToGenericListings = (
+    articles: LMNTS_Sanity_Article[],
+    events: LMNTS_Sanity_Event[],
+    podcasts: LMNTS_Sanity_Podcast[]
+  ) => {
+    // Define our empty array
+    let mergedContent: LMNTS_GenericListing[] = [];
+
+    // Genericize Content
+    let genericArticles = QueryUtils.genericizeSanityListing(articles);
+    let genericEvents = QueryUtils.genericizeSanityListing(events);
+    let genericPodcasts = QueryUtils.genericizeSanityListing(podcasts);
+
+    // Add our generic content to our empty array
+    genericArticles.map((article: LMNTS_GenericListing) => {
+      mergedContent = mergedContent.concat(article);
+    });
+    genericEvents.map((event: LMNTS_GenericListing) => {
+      mergedContent = mergedContent.concat(event);
+    });
+    genericPodcasts.map((podcast: LMNTS_GenericListing) => {
+      mergedContent = mergedContent.concat(podcast);
+    });
+
+    // @todo: Sort our new content by published time.
+
+    // Return our newly merged array.
+    return mergedContent;
+  };
+
+  /**
+   *
+   * @name createSanityFeaturedContent
+   * @description Create a featured content array from genericized Sanity data.
+   * @returns A new array of generic Sanity content items that are.
+   * @param {LMNTS_GenericListing[]} genericListings
+   *
+   */
+
+  static createSanityFeaturedContent = (
+    genericListings: LMNTS_GenericListing[]
+  ) => {
+    return genericListings.filter((listing) => listing.isFeatured);
+  };
+
+  static createGenericContent = () => {};
+
+  static createGenericCategories = () => {};
+
+  static createGenericFeaturedItems = () => {};
 }

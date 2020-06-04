@@ -24,7 +24,7 @@ import { GlobalStyles } from "./styles.scss";
 import LazyImage from "../../../utils/lazyImage";
 
 // Types
-import { LMNTS_ContentCardFields } from "../../../constants/Types";
+import { LMNTS_ContentCardFields } from "../../../constants/types";
 
 // Begin Component
 //////////////////////////////////////////////////////////////////////

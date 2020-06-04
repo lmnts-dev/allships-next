@@ -34,6 +34,11 @@ export const DefaultPost = [
     to: [{ type: "author" }],
   },
   {
+    name: "isFeatured",
+    title: "Feature this post?",
+    type: "boolean",
+  },
+  {
     name: "category",
     title: "Category",
     type: "array",

@@ -14,7 +14,7 @@ import {
 } from "../../components/lib/ContentCard";
 import { SiteHead } from "../../components/core/SiteHead";
 import { PageHero } from "../PageHero";
-import { LMNTS_ContentItem } from "../../constants/Types";
+import { LMNTS_ContentItem } from "../../constants/types/Types";
 
 // Begin Component
 //////////////////////////////////////////////////////////////////////
