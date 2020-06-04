@@ -1,7 +1,7 @@
 {
   "root": true,
   "project": {
-    "name": "Outpost"
+    "name": "Allships"
   },
   "api": {
     "projectId": "hpvpbfax",
@@ -12,12 +12,22 @@
     "@sanity/components",
     "@sanity/default-layout",
     "@sanity/default-login",
-    "@sanity/desk-tool"
+    "@sanity/desk-tool",
+    "@sanity/dashboard",
+    "@sanity/vision",
+    "content-model-graph",
+    "media",
+    "seo-tools",
+    "@sanity/color-input"
   ],
   "parts": [
     {
       "name": "part:@sanity/base/schema",
       "path": "./schemas/schema.js"
+    },
+    {
+      "name": "part:@sanity/desk-tool/structure",
+      "path": "./structure/deskStructure.js"
     }
   ]
 }
