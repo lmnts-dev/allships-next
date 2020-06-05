@@ -22,19 +22,19 @@ import { QueryUtils } from "../../constants/Queries";
 
 /**
  *
- * pages/podcasts/index.tsx
+ * pages/articles/index.tsx
  * @author Peter Laxalt
- * @description The website PodcastListings.
+ * @description The website ArticleListings.
  *
  */
-const PodcastListings: React.FunctionComponent<LMNTS_AppData> = ({
+const ArticleListings: React.FunctionComponent<LMNTS_AppData> = ({
   allContent,
   allFeaturedContent,
   allCategories,
 }) => {
   return (
     <InnerGrid startBelowNav={true}>
-      <SiteHead title="ALLSHIPS | Podcasts" />
+      <SiteHead title="ALLSHIPS | Articles" />
       <AddEmbellishments />
       <GrainCover />
       <CardListings
@@ -48,7 +48,7 @@ const PodcastListings: React.FunctionComponent<LMNTS_AppData> = ({
   );
 };
 
-export default PodcastListings;
+export default ArticleListings;
 
 /**
  *

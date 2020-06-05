@@ -474,13 +474,19 @@ export class CardListings extends PureComponent<
      * @returns Our Card Listings, FilterBar, and FeaturedItems.
      *
      */
+
+    // Capitalize our current category.
+    let capitalCategory =
+      this.state.currentCategory.charAt(0).toUpperCase() +
+      this.state.currentCategory.slice(1);
+
     return (
       <CardListingsStyle className="section-card-listings">
         <SiteHead
           title={`ALLSHIPS | ${
             this.state.currentCategory == "everything"
               ? " A Creative Coalition."
-              : this.state.currentCategory
+              : capitalCategory
           }`}
         />
         <ContentCardGlobalStyles />

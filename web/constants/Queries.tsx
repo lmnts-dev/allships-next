@@ -9,7 +9,7 @@
  */
 
 import groq from "groq";
-import { Airtable, AirtableUtils } from "../clients";
+import { Airtable, AirtableUtils, Sanity } from "../clients";
 import {
   LMNTS_Sanity_Article,
   LMNTS_Sanity_Event,
@@ -230,13 +230,13 @@ export class QueryUtils {
         // Create generic category based on content type
         let genericCategories: string[] = [];
 
-        let isPodcast = (item._type == "podcast");
-        let isArticle = (item._type == "article");
-        let isEvent = (item._type == "event");
+        let isPodcast = item._type == "podcast";
+        let isArticle = item._type == "article";
+        let isEvent = item._type == "event";
 
-        if (isPodcast) genericCategories[0] = "podcast";
-        if (isArticle) genericCategories[0] = "article";
-        if (isEvent) genericCategories[0] = "event";
+        if (isPodcast) genericCategories[0] = "podcasts";
+        if (isArticle) genericCategories[0] = "articles";
+        if (isEvent) genericCategories[0] = "events";
 
         // Loop through the tags.
         let genericTags: string[] = item.tags
@@ -244,6 +244,9 @@ export class QueryUtils {
               return tag;
             })
           : [];
+
+        // Create subcategories
+        let subCategories = item.category ? item.category : [];
 
         // Check for slug.
         let genericSlug: string = item.slug
@@ -256,6 +259,7 @@ export class QueryUtils {
         let genericItem: LMNTS_GenericListing = {
           author: item.author ? "By Us" : "By Us",
           categories: genericCategories,
+          subCategories: subCategories,
           isFeatured: item.isFeatured ? item.isFeatured : false,
           isPublishedByUs: true,
           link: null,
@@ -364,7 +368,12 @@ export class QueryUtils {
         // Create our generic item.
         let genericItem: LMNTS_GenericListing = {
           author: item.fields["Author"] ? item.fields["Author"] : "",
-          categories: [item.fields["Category"] ? item.fields["Category"].toLowerCase() : ""],
+          categories: [
+            item.fields["Category"]
+              ? item.fields["Category"].toLowerCase()
+              : "",
+          ],
+          subCategories: [],
           isFeatured: item.fields["Featured"] ? item.fields["Featured"] : false,
           isPublishedByUs: isPublishedByUs,
           slug: null,
@@ -441,5 +450,84 @@ export class QueryUtils {
 
     // Return our Categories
     return categories;
+  };
+
+  /**
+   *
+   * @name initAppData
+   * @description Load all of our data.
+   * @returns All of our available data.
+   *
+   */
+  static initAppData = async () => {
+    // Load all Airtable content
+    let allAirtableContent = await QueryUtils.loadAllRecords();
+    let allAirtableFeaturedContent = await QueryUtils.loadFeaturedRecords();
+    let allAirtableCategories = QueryUtils.createAvailableCategories(
+      allAirtableContent
+    );
+
+    // Genericize Airtable Content
+    let allGenericAirtableContent = QueryUtils.genericizeAirtableListings(
+      allAirtableContent
+    );
+    let allGenericAirtableFeaturedContent = QueryUtils.findFeaturedContent(
+      allGenericAirtableContent
+    );
+
+    // Load all Sanity content
+    let allSanityArticles = await Sanity.fetch(Queries.AllArticles());
+    let allSanityEvents = await Sanity.fetch(Queries.AllEvents());
+    let allSanityPodcasts = await Sanity.fetch(Queries.AllPodcasts());
+    let allSanityContent = QueryUtils.mergeSanityContentToGenericListings(
+      allSanityArticles,
+      allSanityEvents,
+      allSanityPodcasts
+    );
+    let allSanityFeaturedContent = QueryUtils.findFeaturedContent(
+      allSanityContent
+    );
+
+    // Merge Airtable & Sanity Content
+    let allContent: LMNTS_GenericListing[] = QueryUtils.mergeGenericContent([
+      allSanityContent,
+      allGenericAirtableContent,
+    ]);
+    let allFeaturedContent: LMNTS_GenericListing[] = QueryUtils.mergeGenericContent(
+      [allSanityFeaturedContent, allGenericAirtableFeaturedContent]
+    );
+    let allCategories: string[] = QueryUtils.getCategoriesFromContent(
+      allContent
+    );
+
+    /**
+     *
+     * Return our Server Data
+     *
+     */
+    return {
+      props: {
+        // Export Airtable Content
+        allAirtableContent: allAirtableContent,
+        allAirtableFeaturedContent: allAirtableFeaturedContent,
+        allAirtableCategories: allAirtableCategories,
+
+        // Export Generic Airtable Content
+        allGenericAirtableContent: allGenericAirtableContent,
+        allGenericAirtableFeaturedContent: allGenericAirtableFeaturedContent,
+
+        // Export Sanity Content
+        allSanityArticles: allSanityArticles,
+        allSanityEvents: allSanityEvents,
+        allSanityPodcasts: allSanityPodcasts,
+        allSanityContent: allSanityContent,
+        allSanityFeaturedContent: allSanityFeaturedContent,
+
+        // Export Merged Content & Categories
+        allContent: allContent,
+        allFeaturedContent: allFeaturedContent,
+        allCategories: allCategories,
+      },
+    };
   };
 }

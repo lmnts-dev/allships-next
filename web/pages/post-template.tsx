@@ -4,11 +4,9 @@ import React from "react";
 // Components
 import { InnerGrid } from "../components/core/InnerGrid";
 import { SiteHead } from "../components/core/SiteHead";
-import { AddEmbellishments } from "../components/core/AddEmbellishments";
-import { GrainCover } from "../components/lib/GrainCover";
 
 // Sections
-import { CardListings } from "../sections/CardListings";
+import { PostBody } from "../sections/PostBody";
 
 // Types
 import { GetStaticProps } from "next";
@@ -27,28 +25,16 @@ import { QueryUtils } from "../constants/Queries";
  * @description The website homepage.
  *
  */
-const FrontPage: React.FunctionComponent<LMNTS_AppData> = ({
-  allContent,
-  allFeaturedContent,
-  allCategories,
-}) => {
+const PostTemplate: React.FunctionComponent<LMNTS_AppData> = ({}) => {
   return (
     <InnerGrid startBelowNav={true}>
       <SiteHead title="ALLSHIPS | A Creative Coalition." />
-      <AddEmbellishments />
-      <GrainCover />
-      <CardListings
-        availableCategories={allCategories}
-        featuredContent={allFeaturedContent}
-        content={allContent}
-        showFilterBar
-        showPageHero
-      />
+      <PostBody />
     </InnerGrid>
   );
 };
 
-export default FrontPage;
+export default PostTemplate;
 
 /**
  *

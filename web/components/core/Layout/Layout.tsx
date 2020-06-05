@@ -6,7 +6,6 @@ import { Footer } from "../Footer";
 import { Navigation } from "../Navigation";
 import { Frame } from "../Frame";
 import { LauncherDialog } from "../../lib/LauncherDialog";
-import { GrainCover } from "../../lib/GrainCover";
 
 // Styles
 import { LayoutStyle } from "./styles.scss";
@@ -48,7 +47,6 @@ export const Layout: React.FunctionComponent<Props> = ({
 }) => {
   return (
     <>
-      <GrainCover />
       <GlobalStyle />
       {appState.visibleDialog == "launcher" ? (
         <LauncherDialog
@@ -67,7 +65,7 @@ export const Layout: React.FunctionComponent<Props> = ({
         shouldFocus={shouldFocus}
         handleCommand={handleCommand}
       />
-      <Frame shouldFocus={shouldFocus} />
+      <Frame />
       <LayoutStyle className="main-wrapper">{children}</LayoutStyle>
       <Footer handleCommand={handleCommand} />
     </>

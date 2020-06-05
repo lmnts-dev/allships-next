@@ -139,6 +139,7 @@ export type LMNTS_AvailableSanityListings =
 export type LMNTS_GenericListing = {
   author?: string | null;
   categories?: string[] | null;
+  subCategories?: string[] | null;
   isFeatured?: boolean | null;
   isPublishedByUs?: boolean | null;
   slug?: string | null;
@@ -148,4 +149,32 @@ export type LMNTS_GenericListing = {
   title?: string | null;
   published?: boolean | null;
   publishedAt?: string | null;
+};
+
+/**
+ *
+ * @name LMNTS_AppData
+ *
+ */
+export type LMNTS_AppData = {
+  // Airtable Data
+  allAirtableCategories: string[];
+  allAirtableFeaturedContent: LMNTS_Airtable_ContentRecord[];
+  allAirtableContent: LMNTS_Airtable_ContentRecord[];
+
+  // Generic Airtable Data
+  allGenericAirtableContent: LMNTS_GenericListing[];
+  allGenericAirtableFeaturedContent: LMNTS_GenericListing[];
+
+  // Sanity Data
+  allSanityArticles: LMNTS_Sanity_Article[];
+  allSanityEvents: LMNTS_Sanity_Event[];
+  allSanityPodcasts: LMNTS_Sanity_Podcast[];
+  allSanityFeaturedContent: LMNTS_GenericListing[];
+  allSanityContent: LMNTS_GenericListing[];
+
+  // Generic Data
+  allContent: LMNTS_GenericListing[];
+  allFeaturedContent: LMNTS_GenericListing[];
+  allCategories: string[];
 };
