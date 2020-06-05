@@ -37,7 +37,7 @@ export class Queries {
    * Navigation Bar
    *
    */
-  
+
   static NavigationData = () => {
     return groq`*[_id == "siteNav"][0]`;
   };
@@ -228,11 +228,22 @@ export class QueryUtils {
     if (listings.length > 0) {
       listings.map((item: LMNTS_AvailableSanityListings) => {
         // Loop through the categories.
-        let genericCategories: string[] = item.category
-          ? item.category.map((category: string) => {
-              return category;
-            })
-          : [];
+        // let genericCategories: string[] = item.category
+        //   ? item.category.map((category: string) => {
+        //       return category;
+        //     })
+        //   : [];
+
+        // Create generic category
+        let genericCategories: string[] = [];
+
+        let isPodcast = (item._type == "podcast");
+        let isArticle = (item._type == "article");
+        let isEvent = (item._type == "event");
+
+        if (isPodcast) genericCategories[0] = "podcast";
+        if (isArticle) genericCategories[0] = "article";
+        if (isEvent) genericCategories[0] = "event";
 
         // Loop through the tags.
         let genericTags: string[] = item.tags
@@ -250,10 +261,11 @@ export class QueryUtils {
 
         // Create our generic item.
         let genericItem: LMNTS_GenericListing = {
-          author: item.author ? item.author.name : "",
+          author: item.author ? "By Us" : "By Us",
           categories: genericCategories,
           isFeatured: item.isFeatured ? item.isFeatured : false,
           isPublishedByUs: true,
+          link: null,
           slug: genericSlug,
           tags: genericTags,
           thumbnail_image: item.thumbnail_image
@@ -363,6 +375,7 @@ export class QueryUtils {
           isFeatured: item.fields["Featured"] ? item.fields["Featured"] : false,
           isPublishedByUs: isPublishedByUs,
           slug: null,
+          link: item.fields.Link ? item.fields.Link : null,
           tags: genericTags,
           thumbnail_image: item.fields["Attachments"]
             ? item.fields["Attachments"][0].url

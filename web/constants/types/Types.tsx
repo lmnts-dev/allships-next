@@ -22,7 +22,9 @@ import {
  */
 
 export type LMNTS_Sanity_Article = Sanity_DefaultItem &
-  LMNTS_Sanity_DefaultPost;
+  LMNTS_Sanity_DefaultPost & {
+    _type: "article";
+  };
 
 /**
  *
@@ -33,6 +35,7 @@ export type LMNTS_Sanity_Event = Sanity_DefaultItem &
   LMNTS_Sanity_DefaultPost & {
     startsAt?: string;
     endsAt?: string;
+    _type: "event";
   };
 
 /**
@@ -43,6 +46,7 @@ export type LMNTS_Sanity_Event = Sanity_DefaultItem &
 export type LMNTS_Sanity_Podcast = Sanity_DefaultItem &
   LMNTS_Sanity_DefaultPost & {
     podcastUrl?: string;
+    _type: "podcast";
   };
 
 /**
@@ -121,11 +125,10 @@ export type LMNTS_Sanity_DefaultPost = Sanity_DefaultItem & {
  *
  */
 
-export type LMNTS_AvailableSanityListings = (
+export type LMNTS_AvailableSanityListings =
   | LMNTS_Sanity_Article
   | LMNTS_Sanity_Event
-  | LMNTS_Sanity_Podcast
-);
+  | LMNTS_Sanity_Podcast;
 
 /**
  *

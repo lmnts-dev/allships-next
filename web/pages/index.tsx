@@ -43,8 +43,8 @@ export type FrontPage = {
   allSanityContent: LMNTS_GenericListing[];
 
   // Generic Data
-  allContent: LMNTS_Airtable_ContentRecord[];
-  allFeaturedContent: LMNTS_Airtable_ContentRecord[];
+  allContent: LMNTS_GenericListing[];
+  allFeaturedContent: LMNTS_GenericListing[];
   allCategories: string[];
 };
 
@@ -105,9 +105,9 @@ const FrontPage: React.FunctionComponent<FrontPage> = ({
     <InnerGrid startBelowNav={true}>
       <SiteHead title="ALLSHIPS | A Creative Coalition." />
       <CardListings
-        availableCategories={allAirtableCategories}
-        featuredContent={allAirtableFeaturedContent}
-        content={allAirtableContent}
+        availableCategories={allCategories}
+        featuredContent={allFeaturedContent}
+        content={allContent}
         showFilterBar
         showPageHero
       />

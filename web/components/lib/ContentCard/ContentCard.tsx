@@ -24,14 +24,14 @@ import { GlobalStyles } from "./styles.scss";
 import LazyImage from "../../../utils/lazyImage";
 
 // Types
-import { LMNTS_ContentCardFields } from "../../../constants/types";
+import { LMNTS_GenericListing } from "../../../constants/types";
 
 // Begin Component
 //////////////////////////////////////////////////////////////////////
 
 type ContentCardProps = {
   isLink?: boolean;
-  data: LMNTS_ContentCardFields;
+  data: LMNTS_GenericListing;
   isFeatured?: boolean;
 };
 
@@ -54,29 +54,35 @@ export class ContentCard extends Component<ContentCardProps, any> {
     let { isLink, data, isFeatured } = this.props;
 
     const Content: React.FunctionComponent<ContentCardProps> = ({ data }) => {
-      let { Attachments, Name, Category, Author } = data;
+      let { thumbnail_image, title, categories, author } = data;
 
-      let isPublishedByUs = Author ? Author == "By Us" : false;
+      let isPublishedByUs = author ? author !== "By Others" : false;
 
-      if (Attachments && Name) {
+      if (thumbnail_image && title) {
         return (
           <div className="content-card-inner">
-            <LazyImage src={Attachments[0].url} alt={Name} />
+            {thumbnail_image ? (
+              <LazyImage src={thumbnail_image} alt={title} />
+            ) : null}
             <div className="content-card-title">
-              {Name} {">"}
+              {title} {">"}
             </div>
 
             <ul className="content-card-categories">
-              {Author ? (
+              {author ? (
                 isPublishedByUs ? (
                   <li className="__is-published-by-us">Allships</li>
                 ) : null
               ) : null}
 
-              {Category ? (
+              {categories ? (
                 <>
                   {isFeatured ? <li>Featured</li> : null}
-                  <li>{Category}</li>
+                  {categories.length > 0
+                    ? categories.map((category: string) => {
+                        return <li>{category}</li>;
+                      })
+                    : null}
                 </>
               ) : null}
             </ul>
@@ -89,21 +95,29 @@ export class ContentCard extends Component<ContentCardProps, any> {
 
     if (!isLink) {
       return (
-        <div className="content-card">
+        <div className="content-card howdy">
           <Content data={data} />
         </div>
       );
     } else {
-      return (
-        <a
-          href={data.Link}
-          className="content-card __isLink"
-          target="_blank"
-          rel="nofollow noreferrer"
-        >
-          <Content data={data} />
-        </a>
-      );
+      if (data.link) {
+        return (
+          <a
+            href={data.link}
+            className="content-card __isLink hello"
+            target="_blank"
+            rel="nofollow noreferrer"
+          >
+            <Content data={data} />
+          </a>
+        );
+      } else {
+        return (
+          <div className="content-card goodbye">
+            <Content data={data} />
+          </div>
+        );
+      }
     }
   }
 }

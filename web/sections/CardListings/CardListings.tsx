@@ -14,31 +14,31 @@ import {
 } from "../../components/lib/ContentCard";
 import { SiteHead } from "../../components/core/SiteHead";
 import { PageHero } from "../PageHero";
-import { LMNTS_Airtable_ContentRecord } from "../../constants/types";
+import { LMNTS_GenericListing } from "../../constants/types";
 
 // Begin Component
 //////////////////////////////////////////////////////////////////////
 
 type CardListingsProps = {
   availableCategories: string[];
-  featuredContent: LMNTS_Airtable_ContentRecord[];
-  content: LMNTS_Airtable_ContentRecord[];
+  featuredContent: LMNTS_GenericListing[];
+  content: LMNTS_GenericListing[];
   showFilterBar: boolean;
   showPageHero: boolean;
 };
 
 type CardListingsState = {
-  content: LMNTS_Airtable_ContentRecord[];
+  content: LMNTS_GenericListing[];
   availableCategories: string[];
   currentCategory: string;
   currentAuthor: string;
-  featuredItems: LMNTS_Airtable_ContentRecord[];
+  featuredItems: LMNTS_GenericListing[];
   featuredItemIdx: number;
   mobileCategoryBarVisible: boolean;
 };
 
 type FeaturedItemsProps = {
-  featuredItems: LMNTS_Airtable_ContentRecord[];
+  featuredItems: LMNTS_GenericListing[];
   featuredItemIdx: number;
 };
 
@@ -156,12 +156,14 @@ export class CardListings extends PureComponent<
       }
       // If this category is not selected, select it.
       else {
-        let filteredContent: any = content.filter(
-          (item: any) => item.fields.Category == category
+        let filteredContent: LMNTS_GenericListing[] = content.filter(
+          (item: LMNTS_GenericListing) =>
+            item.categories ? item.categories.includes(category) : false
         );
 
-        let filteredFeaturedContent: any = featuredContent.filter(
-          (item: any) => item.fields.Category == category
+        let filteredFeaturedContent: LMNTS_GenericListing[] = featuredContent.filter(
+          (item: LMNTS_GenericListing) =>
+            item.categories ? item.categories.includes(category) : false
         );
 
         this.setState({
@@ -205,7 +207,7 @@ export class CardListings extends PureComponent<
 
     if (currentAuthor != author) {
       this.setState({
-        currentAuthor: author,
+        currentAuthor: author !== "By Others" ? "By Us" : "By Others",
       });
     } else {
       this.setState({
@@ -457,8 +459,8 @@ export class CardListings extends PureComponent<
 
           {featuredItems[featuredItemIdx] ? (
             <ContentCard
-              data={featuredItems[featuredItemIdx].fields}
-              isLink={featuredItems[featuredItemIdx].fields.Link ? true : false}
+              data={featuredItems[featuredItemIdx]}
+              isLink={featuredItems[featuredItemIdx].link ? true : false}
               isFeatured
             />
           ) : null}
@@ -489,31 +491,25 @@ export class CardListings extends PureComponent<
         {!showFilterBar ? null : <FilterBarMobile />}
         {!showFeaturedItems ? null : (
           <FeaturedItems
-            featuredItems={featuredItems.filter((item: any) =>
-              item.fields.Author
-                ? item.fields.Author.includes(currentAuthor)
-                : item == true
+            featuredItems={featuredItems.filter((item: LMNTS_GenericListing) =>
+              item.author ? item.author.includes(currentAuthor) : item == true
             )}
             featuredItemIdx={this.state.featuredItemIdx}
           />
         )}
         <div className="card-listings-list">
           {content
-            .filter((item: any) =>
-              item.fields.Author
-                ? item.fields.Author.includes(currentAuthor)
-                : item == true
+            .filter((item: LMNTS_GenericListing) =>
+              item.author ? item.author.includes(currentAuthor) : item == true
             )
-            .map((item: any, idx: number) => {
-              let { fields } = item;
-
+            .map((item: LMNTS_GenericListing, idx: number) => {
               if (showFeaturedItems) {
                 if (idx !== 0) {
-                  if (item.fields.Name && item.fields.Attachments) {
+                  if (item.title && item.thumbnail_image) {
                     return (
                       <ContentCard
-                        data={fields}
-                        isLink={fields.Link ? true : false}
+                        data={item}
+                        isLink={item.link ? true : false}
                         key={idx}
                       />
                     );
@@ -528,11 +524,11 @@ export class CardListings extends PureComponent<
                   return null;
                 }
               } else {
-                if (item.fields.Name && item.fields.Attachments) {
+                if (item.title && item.thumbnail_image) {
                   return (
                     <ContentCard
-                      data={fields}
-                      isLink={fields.Link ? true : false}
+                      data={item}
+                      isLink={item.link ? true : false}
                       key={idx}
                     />
                   );
