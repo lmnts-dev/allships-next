@@ -227,14 +227,7 @@ export class QueryUtils {
     // Re-map our listings
     if (listings.length > 0) {
       listings.map((item: LMNTS_AvailableSanityListings) => {
-        // Loop through the categories.
-        // let genericCategories: string[] = item.category
-        //   ? item.category.map((category: string) => {
-        //       return category;
-        //     })
-        //   : [];
-
-        // Create generic category
+        // Create generic category based on content type
         let genericCategories: string[] = [];
 
         let isPodcast = (item._type == "podcast");
@@ -371,7 +364,7 @@ export class QueryUtils {
         // Create our generic item.
         let genericItem: LMNTS_GenericListing = {
           author: item.fields["Author"] ? item.fields["Author"] : "",
-          categories: [item.fields["Category"] ? item.fields["Category"] : ""],
+          categories: [item.fields["Category"] ? item.fields["Category"].toLowerCase() : ""],
           isFeatured: item.fields["Featured"] ? item.fields["Featured"] : false,
           isPublishedByUs: isPublishedByUs,
           slug: null,
