@@ -14,31 +14,31 @@ import {
 } from "../../components/lib/ContentCard";
 import { SiteHead } from "../../components/core/SiteHead";
 import { PageHero } from "../PageHero";
-import { LMNTS_ContentItem } from "../../constants/types/Types";
+import { LMNTS_Airtable_ContentRecord } from "../../constants/types";
 
 // Begin Component
 //////////////////////////////////////////////////////////////////////
 
 type CardListingsProps = {
   availableCategories: string[];
-  featuredContent: LMNTS_ContentItem[];
-  content: LMNTS_ContentItem[];
+  featuredContent: LMNTS_Airtable_ContentRecord[];
+  content: LMNTS_Airtable_ContentRecord[];
   showFilterBar: boolean;
   showPageHero: boolean;
 };
 
 type CardListingsState = {
-  content: LMNTS_ContentItem[];
+  content: LMNTS_Airtable_ContentRecord[];
   availableCategories: string[];
   currentCategory: string;
   currentAuthor: string;
-  featuredItems: LMNTS_ContentItem[];
+  featuredItems: LMNTS_Airtable_ContentRecord[];
   featuredItemIdx: number;
   mobileCategoryBarVisible: boolean;
 };
 
 type FeaturedItemsProps = {
-  featuredItems: LMNTS_ContentItem[];
+  featuredItems: LMNTS_Airtable_ContentRecord[];
   featuredItemIdx: number;
 };
 

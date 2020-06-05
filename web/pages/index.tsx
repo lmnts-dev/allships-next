@@ -11,7 +11,7 @@ import { CardListings } from "../sections/CardListings";
 // Types
 import { GetStaticProps } from "next";
 import {
-  LMNTS_ContentItem,
+  LMNTS_Airtable_ContentRecord,
   LMNTS_GenericListing,
   LMNTS_Sanity_Article,
   LMNTS_Sanity_Event,
@@ -28,8 +28,12 @@ import { Sanity } from "../clients";
 export type FrontPage = {
   // Airtable Data
   allAirtableCategories: string[];
-  allAirtableFeaturedContent: LMNTS_ContentItem[];
-  allAirtableContent: LMNTS_ContentItem[];
+  allAirtableFeaturedContent: LMNTS_Airtable_ContentRecord[];
+  allAirtableContent: LMNTS_Airtable_ContentRecord[];
+
+  // Generic Airtable Data
+  allGenericAirtableContent: LMNTS_GenericListing[];
+  allGenericAirtableFeaturedContent: LMNTS_GenericListing[];
 
   // Sanity Data
   allSanityArticles: LMNTS_Sanity_Article[];
@@ -39,8 +43,8 @@ export type FrontPage = {
   allSanityContent: LMNTS_GenericListing[];
 
   // Generic Data
-  allContent: LMNTS_ContentItem[];
-  allFeaturedContent: LMNTS_ContentItem[];
+  allContent: LMNTS_Airtable_ContentRecord[];
+  allFeaturedContent: LMNTS_Airtable_ContentRecord[];
   allCategories: string[];
 };
 
@@ -56,6 +60,10 @@ const FrontPage: React.FunctionComponent<FrontPage> = ({
   allAirtableContent,
   allAirtableFeaturedContent,
   allAirtableCategories,
+
+  // Generic Airtable Data
+  allGenericAirtableContent,
+  allGenericAirtableFeaturedContent,
 
   // Sanity Data
   allSanityArticles,
@@ -73,6 +81,13 @@ const FrontPage: React.FunctionComponent<FrontPage> = ({
   console.log("allAirtableContent", allAirtableContent);
   console.log("allAirtableFeaturedContent", allAirtableFeaturedContent);
   console.log("allAirtableCategories", allAirtableCategories);
+
+  // Generic Airtable Data
+  console.log("allGenericAirtableContent", allGenericAirtableContent);
+  console.log(
+    "allGenericAirtableFeaturedContent",
+    allGenericAirtableFeaturedContent
+  );
 
   // Sanity Data
   console.log("allSanityArticles", allSanityArticles);
@@ -117,6 +132,14 @@ export const getStaticProps: GetStaticProps = async () => {
     allAirtableContent
   );
 
+  // Genericize Airtable Content
+  let allGenericAirtableContent = QueryUtils.genericizeAirtableListings(
+    allAirtableContent
+  );
+  let allGenericAirtableFeaturedContent = QueryUtils.findFeaturedContent(
+    allGenericAirtableContent
+  );
+
   // Load all Sanity content
   let allSanityArticles = await Sanity.fetch(Queries.AllArticles());
   let allSanityEvents = await Sanity.fetch(Queries.AllEvents());
@@ -126,14 +149,19 @@ export const getStaticProps: GetStaticProps = async () => {
     allSanityEvents,
     allSanityPodcasts
   );
-  let allSanityFeaturedContent = QueryUtils.createSanityFeaturedContent(
+  let allSanityFeaturedContent = QueryUtils.findFeaturedContent(
     allSanityContent
   );
 
   // Merge Airtable & Sanity Content
-  let allContent: any = [];
-  let allFeaturedContent: any = [];
-  let allCategories: any = [];
+  let allContent: LMNTS_GenericListing[] = QueryUtils.mergeGenericContent([
+    allGenericAirtableContent,
+    allSanityContent,
+  ]);
+  let allFeaturedContent: LMNTS_GenericListing[] = QueryUtils.mergeGenericContent(
+    [allGenericAirtableFeaturedContent, allSanityFeaturedContent]
+  );
+  let allCategories: string[] = QueryUtils.getCategoriesFromContent(allContent);
 
   /**
    *
@@ -146,6 +174,10 @@ export const getStaticProps: GetStaticProps = async () => {
       allAirtableContent: allAirtableContent,
       allAirtableFeaturedContent: allAirtableFeaturedContent,
       allAirtableCategories: allAirtableCategories,
+
+      // Export Generic Airtable Content
+      allGenericAirtableContent: allGenericAirtableContent,
+      allGenericAirtableFeaturedContent: allGenericAirtableFeaturedContent,
 
       // Export Sanity Content
       allSanityArticles: allSanityArticles,

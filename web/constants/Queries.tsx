@@ -16,6 +16,7 @@ import {
   LMNTS_Sanity_Podcast,
   LMNTS_GenericListing,
   LMNTS_AvailableSanityListings,
+  LMNTS_Airtable_ContentRecord,
 } from "./types";
 import slugify from "../utils/slugify";
 
@@ -36,6 +37,7 @@ export class Queries {
    * Navigation Bar
    *
    */
+  
   static NavigationData = () => {
     return groq`*[_id == "siteNav"][0]`;
   };
@@ -105,6 +107,7 @@ export class QueryUtils {
    * Load all of our records.
    *
    */
+
   static loadAllRecords = () => {
     return Airtable(AirtableUtils.allRecords.tableName)
       .select({
@@ -132,6 +135,7 @@ export class QueryUtils {
    * Load all of our featured records.
    *
    */
+
   static loadFeaturedRecords = () => {
     return Airtable(AirtableUtils.featuredRecords.tableName)
       .select({
@@ -213,6 +217,7 @@ export class QueryUtils {
    * @param {LMNTS_AvailableSanityListings} listings
    *
    */
+
   static genericizeSanityListing = (
     listings: LMNTS_AvailableSanityListings[]
   ) => {
@@ -253,8 +258,8 @@ export class QueryUtils {
           tags: genericTags,
           thumbnail_image: item.thumbnail_image
             ? item.thumbnail_image.url
-            : undefined,
-          title: item.title ? item.title : undefined,
+            : null,
+          title: item.title ? item.title : null,
           published: true,
           publishedAt: item._createdAt,
         };
@@ -311,22 +316,124 @@ export class QueryUtils {
 
   /**
    *
-   * @name createSanityFeaturedContent
-   * @description Create a featured content array from genericized Sanity data.
-   * @returns A new array of generic Sanity content items that are.
+   * @name findFeaturedContent
+   * @description Create a featured content array from genericized data.
+   * @returns A new array of generic content items that are.
    * @param {LMNTS_GenericListing[]} genericListings
    *
    */
 
-  static createSanityFeaturedContent = (
-    genericListings: LMNTS_GenericListing[]
-  ) => {
+  static findFeaturedContent = (genericListings: LMNTS_GenericListing[]) => {
     return genericListings.filter((listing) => listing.isFeatured);
   };
 
-  static createGenericContent = () => {};
+  /**
+   *
+   * @name genericizeAirtableListings
+   * @description Genericize a Airtable content listing.
+   * @returns A new, generic array of the supplied Airtable listing.
+   * @param {Airtable} listings
+   *
+   */
+  static genericizeAirtableListings = (
+    listings: LMNTS_Airtable_ContentRecord[]
+  ) => {
+    // Define our empty array
+    let genericListing: LMNTS_GenericListing[] = [];
 
-  static createGenericCategories = () => {};
+    // Re-map our listings
+    if (listings.length > 0) {
+      listings.map((item: LMNTS_Airtable_ContentRecord) => {
+        // Loop through the tags.
+        let genericTags: string[] = item.fields["Tags"]
+          ? item.fields["Tags"].map((tag: string) => {
+              return tag;
+            })
+          : [];
 
-  static createGenericFeaturedItems = () => {};
+        // Check if it's published by us
+        let isPublishedByUs = item.fields["Author"]
+          ? item.fields["Author"] == "By Us"
+          : false;
+
+        // Create our generic item.
+        let genericItem: LMNTS_GenericListing = {
+          author: item.fields["Author"] ? item.fields["Author"] : "",
+          categories: [item.fields["Category"] ? item.fields["Category"] : ""],
+          isFeatured: item.fields["Featured"] ? item.fields["Featured"] : false,
+          isPublishedByUs: isPublishedByUs,
+          slug: null,
+          tags: genericTags,
+          thumbnail_image: item.fields["Attachments"]
+            ? item.fields["Attachments"][0].url
+            : null,
+          title: item.fields["Name"] ? item.fields["Name"] : null,
+          published: item.fields["Published"] ? item.fields["Published"] : true,
+          publishedAt: item.fields["Date Added"],
+        };
+
+        // Add our newly generic listing to our original array. Repeat.
+        genericListing = genericListing.concat(genericItem);
+      });
+    }
+
+    // Return our nicely generic listings.
+    return genericListing;
+  };
+
+  /**
+   *
+   * @name mergeGenericContent
+   * @description Merge two or more arrays of Generic Content.
+   * @returns A new, generic array of the supplied Airtable listing.
+   * @param {LMNTS_GenericListing[][]} listings
+   *
+   */
+  static mergeGenericContent = (listings: LMNTS_GenericListing[][]) => {
+    // Create our empty listings array.
+    let mergedListings: LMNTS_GenericListing[] = [];
+
+    // Check if our array is valid first.
+    if (listings.length > 0) {
+      listings.map((listing: LMNTS_GenericListing[]) => {
+        mergedListings = mergedListings.concat(listing);
+      });
+    }
+
+    // Return our listings.
+    return mergedListings;
+  };
+
+  /**
+   *
+   * @name getCategoriesFromContent
+   * @description Generate categories from a subset of listings.
+   * @returns {string[]} An array of category strings.
+   * @param {LMNTS_GenericListing[]} listings
+   *
+   */
+  static getCategoriesFromContent = (listings: LMNTS_GenericListing[]) => {
+    // Create our empty categories array.
+    let categories: string[] = [];
+
+    // Check if our array is valid first.
+    if (listings.length > 0) {
+      // Map our supplied listings.
+      listings.map((listing) => {
+        // Check for categories in the individual listings.
+        listing.categories
+          ? // Map categories if they exist.
+            listing.categories.map((category) => {
+              categories = categories.concat(category);
+            })
+          : null;
+      });
+
+      // Remove Duplicates
+      categories = Array.from(new Set(categories));
+    }
+
+    // Return our Categories
+    return categories;
+  };
 }

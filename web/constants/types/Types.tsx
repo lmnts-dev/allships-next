@@ -70,7 +70,7 @@ export type LMNTS_ContentCardFields = {
  *
  */
 
-export type LMNTS_ContentItem = Airtable_DefaultRecord & {
+export type LMNTS_Airtable_ContentRecord = Airtable_DefaultRecord & {
   fields: LMNTS_ContentCardFields;
 };
 
@@ -134,15 +134,15 @@ export type LMNTS_AvailableSanityListings = (
  */
 
 export type LMNTS_GenericListing = {
-  author?: string;
-  categories?: string[];
-  isFeatured?: boolean;
-  isPublishedByUs?: boolean;
-  slug?: string;
-  link?: string;
-  tags?: string[];
-  thumbnail_image?: string;
-  title?: string;
-  published?: boolean;
-  publishedAt?: string;
+  author?: string | null;
+  categories?: string[] | null;
+  isFeatured?: boolean | null;
+  isPublishedByUs?: boolean | null;
+  slug?: string | null;
+  link?: string | null;
+  tags?: string[] | null;
+  thumbnail_image?: string | null;
+  title?: string | null;
+  published?: boolean | null;
+  publishedAt?: string | null;
 };
