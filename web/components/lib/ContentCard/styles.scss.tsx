@@ -123,38 +123,23 @@ export const GlobalStyles = createGlobalStyle`
         user-select: none;
       }
 
-      /** Card Category */
-      .content-card-categories {
-        position: absolute;
-        left: 0;
-        top: 0;
-        max-width: 100%;
-        z-index: 10;
-        padding: ${Root.BorderSize};
-        display: flex;
-        pointer-events: none;
-        -webkit-touch-callout: none; 
-        -webkit-user-select: none; 
-        -khtml-user-select: none; 
-        -moz-user-select: none; 
-        -ms-user-select: none; 
-        user-select: none;
-
-        li {
-          background: ${Theme.Color.White};
+      /** Card Categories */
+      .category-list {
+        &.__content-card-categories {
+          position: absolute;
+          left: 0;
+          top: 0;
+          max-width: 100%;
+          z-index: 10;
           padding: ${Root.BorderSize};
-          margin-right: ${Root.BorderSize};
-          text-transform: uppercase;
-          color: ${Theme.Color.Primary};
-
-          &:last-child {
-            margin-right: 0;
-          }
-
-          &.__is-published-by-us {
-            background: ${Theme.Color.Dialog};
-            color: ${Theme.Color.Background};
-          }
+          display: flex;
+          pointer-events: none;
+          -webkit-touch-callout: none; 
+          -webkit-user-select: none; 
+          -khtml-user-select: none; 
+          -moz-user-select: none; 
+          -ms-user-select: none; 
+          user-select: none;
         }
       }
 

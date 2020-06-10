@@ -46,6 +46,9 @@ export const Typography = createGlobalStyle`
 
   /* Base Text Styles */
   body {
+    --appBodyText: ${Font.Body};
+    --appHeaderText: ${Font.Body};
+
     line-height: 1;
     font-size: 1rem;
     font-family: ${Font.Body};

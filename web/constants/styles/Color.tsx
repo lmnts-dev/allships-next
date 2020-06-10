@@ -72,14 +72,14 @@ export const Palette = createGlobalStyle`
     scrollbar-width: auto;
   }
 
-  body::-webkit-scrollbar {
+  *::-webkit-scrollbar {
     width: 25px;
   }
 
-  body::-webkit-scrollbar-track {
+  *::-webkit-scrollbar-track {
     background: ${Color.Dialog};
   }
-  body::-webkit-scrollbar-thumb {
+  *::-webkit-scrollbar-thumb {
     background-color: ${Color.Primary} ;
     border-radius: 0px;
     border: 3px solid ${Color.Dialog};

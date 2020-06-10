@@ -68,7 +68,7 @@ export class ContentCard extends Component<ContentCardProps, any> {
               {title} {">"}
             </div>
 
-            <ul className="content-card-categories">
+            <ul className="category-list __content-card-categories">
               {author ? (
                 isPublishedByUs ? (
                   <li className="__is-published-by-us">Allships</li>

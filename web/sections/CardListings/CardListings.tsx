@@ -25,6 +25,8 @@ type CardListingsProps = {
   content: LMNTS_GenericListing[];
   showFilterBar: boolean;
   showPageHero: boolean;
+  showFeaturedListing: boolean;
+  authorFilterOverride?: "By Us" | "By Others";
 };
 
 type CardListingsState = {
@@ -85,7 +87,9 @@ export class CardListings extends PureComponent<
         content: content,
         availableCategories: availableCategories,
         currentCategory: "everything",
-        currentAuthor: "",
+        currentAuthor: this.props.authorFilterOverride
+          ? this.props.authorFilterOverride
+          : "",
         featuredItems: featuredContent,
         mobileCategoryBarVisible: false,
       });
@@ -94,7 +98,9 @@ export class CardListings extends PureComponent<
         content: [],
         availableCategories: [],
         currentCategory: "everything",
-        currentAuthor: "",
+        currentAuthor: this.props.authorFilterOverride
+          ? this.props.authorFilterOverride
+          : "",
         featuredItems: [],
         mobileCategoryBarVisible: false,
       });
@@ -277,7 +283,11 @@ export class CardListings extends PureComponent<
     } = this.state;
 
     // Put our logic to check for featured items here.
-    let showFeaturedItems = featuredItems.length > 0 ? true : false;
+    let showFeaturedItems = this.props.showFeaturedListing
+      ? featuredItems.length > 0
+        ? true
+        : false
+      : false;
 
     // console.log("featuredItems.length: ", featuredItems.length);
     // console.log("showFeaturedItems: ", showFeaturedItems);

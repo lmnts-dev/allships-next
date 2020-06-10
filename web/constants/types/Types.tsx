@@ -43,6 +43,7 @@ export type LMNTS_Sanity_Event = Sanity_DefaultItem &
  * @name LMNTS_Sanity_Podcast
  *
  */
+
 export type LMNTS_Sanity_Podcast = Sanity_DefaultItem &
   LMNTS_Sanity_DefaultPost & {
     podcastUrl?: string;
@@ -113,7 +114,7 @@ export type LMNTS_Sanity_DefaultPost = Sanity_DefaultItem & {
   excerpt?: string;
   featured_image?: Sanity_ImageAsset;
   isFeatured?: boolean;
-  slug?: Sanity_Slug;
+  slug: Sanity_Slug;
   tags?: string[];
   thumbnail_image?: Sanity_ImageAsset;
   title?: string;
@@ -125,7 +126,7 @@ export type LMNTS_Sanity_DefaultPost = Sanity_DefaultItem & {
  *
  */
 
-export type LMNTS_AvailableSanityListings =
+export type LMNTS_Sanity_AvailableListings =
   | LMNTS_Sanity_Article
   | LMNTS_Sanity_Event
   | LMNTS_Sanity_Podcast;

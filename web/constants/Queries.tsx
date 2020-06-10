@@ -15,7 +15,7 @@ import {
   LMNTS_Sanity_Event,
   LMNTS_Sanity_Podcast,
   LMNTS_GenericListing,
-  LMNTS_AvailableSanityListings,
+  LMNTS_Sanity_AvailableListings,
   LMNTS_Airtable_ContentRecord,
 } from "./types";
 import slugify from "../utils/slugify";
@@ -57,6 +57,23 @@ export class Queries {
     }`;
   };
 
+  static CurrentArticle = () => {
+    return groq`*[_type == "article" && slug.current == $slug][0]{
+      ..., 
+      "author": author->,
+      "featured_image": featured_image.asset->,
+      "thumbnail_image": thumbnail_image.asset->
+      "content": content[]{ 
+          ..., 
+          "image": image.asset->,
+          "images": images[].asset->, 
+          "items": items[]{ 
+            ..., "image" : image.asset-> 
+          } 
+       }
+    }`;
+  };
+
   /**
    *
    * Events
@@ -72,6 +89,23 @@ export class Queries {
     }`;
   };
 
+  static CurrentEvent = () => {
+    return groq`*[_type == "event" && slug.current == $slug][0]{
+      ..., 
+      "author": author->,
+      "featured_image": featured_image.asset->,
+      "thumbnail_image": thumbnail_image.asset->
+      "content": content[]{ 
+          ..., 
+          "image": image.asset->,
+          "images": images[].asset->, 
+          "items": items[]{ 
+            ..., "image" : image.asset-> 
+          } 
+       }
+    }`;
+  };
+
   /**
    *
    * Podcasts
@@ -84,6 +118,23 @@ export class Queries {
       "author": author->,
       "featured_image": featured_image.asset->,
       "thumbnail_image": thumbnail_image.asset->
+    }`;
+  };
+
+  static CurrentPodcast = () => {
+    return groq`*[_type == "podcast" && slug.current == $slug][0]{
+      ..., 
+      "author": author->,
+      "featured_image": featured_image.asset->,
+      "thumbnail_image": thumbnail_image.asset->,
+      "content": content[]{ 
+          ..., 
+          "image": image.asset->,
+          "images": images[].asset->, 
+          "items": items[]{ 
+            ..., "image" : image.asset-> 
+          } 
+       }
     }`;
   };
 }
@@ -158,29 +209,6 @@ export class QueryUtils {
 
   /**
    *
-   * @name createAvailableCategories
-   * @returns All categories in current use from `content` parameter.
-   * @param content : array : Records returned from `loadFeaturedRecords()`
-   *
-   */
-
-  static createAvailableCategories = (content: any) => {
-    // Remap all existing categories & remove null/undefined records.
-    let availableCategories = content
-      .map((item: any) => {
-        return item.fields.Category ? item.fields.Category : undefined;
-      })
-      .filter((item: any) => item != null || item != undefined);
-
-    // Remove Duplicates
-    availableCategories = new Set(availableCategories);
-    availableCategories = [...availableCategories];
-
-    return availableCategories;
-  };
-
-  /**
-   *
    * @name addToEmailList
    * @returns A response of true or false if the new email has been added
    * @param email : string : Email address to add
@@ -214,19 +242,19 @@ export class QueryUtils {
    * @name genericizeSanityListing
    * @description Genericize a Sanity content listing.
    * @returns A new, generic array of the supplied Sanity listing.
-   * @param {LMNTS_AvailableSanityListings} listings
+   * @param {LMNTS_Sanity_AvailableListings} listings
    *
    */
 
   static genericizeSanityListing = (
-    listings: LMNTS_AvailableSanityListings[]
+    listings: LMNTS_Sanity_AvailableListings[]
   ) => {
     // Define our empty array
     let genericListing: LMNTS_GenericListing[] = [];
 
     // Re-map our listings
     if (listings.length > 0) {
-      listings.map((item: LMNTS_AvailableSanityListings) => {
+      listings.map((item: LMNTS_Sanity_AvailableListings) => {
         // Create generic category based on content type
         let genericCategories: string[] = [];
 
@@ -450,6 +478,62 @@ export class QueryUtils {
 
     // Return our Categories
     return categories;
+  };
+
+  /**
+   *
+   * @name getSubCategoriesFromContent
+   * @description Generate categories from a subset of listings.
+   * @returns {string[]} An array of category strings.
+   * @param {LMNTS_GenericListing[]} listings
+   *
+   */
+  static getSubCategoriesFromContent = (listings: LMNTS_GenericListing[]) => {
+    // Create our empty categories array.
+    let subCategories: string[] = [];
+
+    // Check if our array is valid first.
+    if (listings.length > 0) {
+      // Map our supplied listings.
+      listings.map((listing) => {
+        // Check for subCategories in the individual listings.
+        listing.subCategories
+          ? // Map subCategories if they exist.
+            listing.subCategories.map((category) => {
+              subCategories = subCategories.concat(category);
+            })
+          : null;
+      });
+
+      // Remove Duplicates
+      subCategories = Array.from(new Set(subCategories));
+    }
+
+    // Return our subCategories
+    return subCategories;
+  };
+
+  /**
+   *
+   * @name createAvailableCategories
+   * @returns All categories in current use from `content` parameter.
+   * @param content : array : Records returned from `loadFeaturedRecords()`
+   *
+   */
+
+  static createAvailableCategories = (content: any) => {
+    // Remap all existing categories & remove null/undefined records.
+    let availableCategories = content
+      .map((item: any) => {
+        return item.fields.Category ? item.fields.Category : undefined;
+      })
+      .filter((item: any) => item != null || item != undefined);
+
+    // Remove Duplicates
+    availableCategories = new Set(availableCategories);
+    availableCategories = [...availableCategories];
+
+    return availableCategories;
   };
 
   /**

@@ -60,6 +60,7 @@ const GlobalClasses = createGlobalStyle`
 
     .dialog-header {
       display: flex;
+      text-transform: uppercase;
       border-bottom: ${Root.BorderSize} solid ${Theme.Color.Primary};
 
       .col {
@@ -91,8 +92,169 @@ const GlobalClasses = createGlobalStyle`
       }
     }
 
+    &.__route-dialog {
+      .dialog-header {
+        background: ${Theme.Color.Primary};
+        -webkit-touch-callout: none; 
+        -webkit-user-select: none; 
+        -khtml-user-select: none; 
+        -moz-user-select: none; 
+        -ms-user-select: none; 
+        user-select: none;
+        
+        .col {
+          &.title {
+            color: ${Theme.Color.Dialog}
+          }
+
+          &.toggle {
+            background: ${Theme.Color.Dialog};
+
+            &:hover {
+              background: ${Theme.Color.Secondary};
+              color: ${Theme.Color.Dialog};
+            }
+          }
+        }
+      }
+
+      .launcher-dialog-structure {
+        display: flex;
+        flex-direction: column;
+
+        .dialog-tabs {
+          width: 100%;
+          -webkit-touch-callout: none; 
+          -webkit-user-select: none; 
+          -khtml-user-select: none; 
+          -moz-user-select: none; 
+          -ms-user-select: none; 
+          user-select: none;
+          
+          ul {
+            display: flex;
+            justify-content: flex-start;
+            width: 100%;
+            border-bottom: ${Root.BorderSize} solid ${Theme.Color.Primary};
+
+            li {
+              border-right: ${Root.BorderSize} solid ${Theme.Color.Primary};
+              text-transform: uppercase;
+              cursor: pointer;
+
+              a {
+                display: block;
+                padding: ${Root.DialogPaddingSize};
+                color: ${Theme.Color.Primary};
+
+                &:hover {
+                  text-decoration: none;
+                }
+              }
+
+              &:not(.__active) {
+                &:hover {
+                  a {
+                    background: ${Theme.Color.Secondary};
+                    color: ${Theme.Color.Dialog};
+                  }
+                }
+              }
+
+              &.__active {
+                position: relative;
+
+                &:before {
+                  content: '';
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  bottom:  calc(${Root.BorderSize} * -1);
+                  height: calc(${Root.BorderSize} * 2);
+                  background: ${Theme.Color.Black};
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
     .dialog-content {
       padding: ${Root.DialogPaddingSize};
+    }
+  }
+
+  /** Article Listings */
+  .article-listing-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 calc(${Root.DialogPaddingSize} * -1);
+    width: calc(100% + (${Root.DialogPaddingSize} * 2));
+
+    .article-listing {
+      width: 33%;
+    }
+  }
+
+  .article-listing {
+    padding: ${Root.DialogPaddingSize};
+    color: ${Theme.Color.Secondary};
+
+    .article-listing-inner {
+
+      .article-listing-media {
+        position: relative;
+      }
+
+      .article-listing-details {
+        span {
+          display: block;
+          text-transform: uppercase;
+
+          &.__date {
+            margin-top: calc(${Root.Size} / 4);
+          }
+
+          &.__title {
+            font-size: 2rem;
+          }
+        }
+      }
+    }
+
+    &:hover {
+      text-decoration: none;
+
+      .article-listing-media {
+        &:before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          z-index: 5;
+          width: 100%;
+          height: 100%;
+          box-shadow: inset 0px 0px 0px ${Root.BorderSize} ${Theme.Color.Secondary};
+        }
+      }
+    }
+
+    &:active {
+      color: ${Theme.Color.Primary};
+
+      .article-listing-media {
+        &:before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          z-index: 5;
+          width: 100%;
+          height: 100%;
+          box-shadow: inset 0px 0px 0px ${Root.BorderSize} ${Theme.Color.Primary};
+        }
+      }
     }
   }
 
@@ -118,6 +280,35 @@ const GlobalClasses = createGlobalStyle`
     -ms-user-select: none; 
     user-select: none;
   }
+
+      /** Category List */
+      .category-list {
+        display: flex;
+        -webkit-touch-callout: none; 
+        -webkit-user-select: none; 
+        -khtml-user-select: none; 
+        -moz-user-select: none; 
+        -ms-user-select: none; 
+        user-select: none;
+        font-family: var(--appBodyText);
+
+        li {
+          background: ${Theme.Color.White};
+          padding: ${Root.BorderSize};
+          margin-right: ${Root.BorderSize};
+          text-transform: uppercase;
+          font-family: var(--appBodyText);
+
+          &:last-child {
+            margin-right: 0;
+          }
+
+          &.__is-published-by-us {
+            background: ${Theme.Color.Dialog};
+            color: ${Theme.Color.Background};
+          }
+        }
+      }
 
 
 `;

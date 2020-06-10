@@ -43,6 +43,7 @@ const FrontPage: React.FunctionComponent<LMNTS_AppData> = ({
         content={allContent}
         showFilterBar
         showPageHero
+        showFeaturedListing
       />
     </InnerGrid>
   );
