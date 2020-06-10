@@ -1,5 +1,3 @@
-// CardListings Styles
-
 // Imports
 //////////////////////////////////////////////////////////////////////
 
@@ -15,6 +13,11 @@ import { Root } from "../../constants/Root";
 // Begin Styles
 //////////////////////////////////////////////////////////////////////
 
+/**
+ * 
+ * @name PageHeroStyle
+ * 
+ */
 export const PageHeroStyle = styled.div`
   width: 100%;
   margin: 0 auto;

@@ -13,6 +13,8 @@ type Props = {
   width?: string;
   height?: string;
   style?: object;
+  title?: string;
+  aspectRatio?: string;
 };
 
 /**
@@ -26,7 +28,6 @@ type Props = {
 export class LazyImage extends React.Component<Props, any> {
   // Update lazyLoad after first rendering of every image
   componentDidMount() {
-    // @ts-ignore
     if (!document.lazyLoadInstance) {
       // @ts-ignore
       document.lazyLoadInstance = new LazyLoad({
@@ -47,7 +48,16 @@ export class LazyImage extends React.Component<Props, any> {
   // Just render the image with data-src
   render() {
     // @ts-ignore
-    const { alt, src, srcset, sizes, width, height, style } = this.props;
+    const {
+      alt,
+      src,
+      srcset,
+      sizes,
+      width,
+      height,
+      aspectRatio,
+      style,
+    } = this.props;
 
     return (
       <img
@@ -59,6 +69,7 @@ export class LazyImage extends React.Component<Props, any> {
         width={width}
         height={height}
         style={style}
+        data-aspect-ratio={aspectRatio}
       />
     );
   }

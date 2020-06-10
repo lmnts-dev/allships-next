@@ -58,6 +58,19 @@ const GlobalClasses = createGlobalStyle`
     color: ${Theme.Color.Primary};
     font-size: 1.3rem;
 
+    &.__maximized {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100vw;
+      height: 100vh;
+      min-width: 100vw;
+      max-width: 100vw;
+      min-height: 100vh;
+      max-height: 100vh;
+    }
+
     .dialog-header {
       display: flex;
       text-transform: uppercase;
@@ -87,6 +100,21 @@ const GlobalClasses = createGlobalStyle`
           &:hover {
             background: ${Theme.Color.Secondary};
             color: ${Theme.Color.Dialog};
+          }
+
+          &.__maximize {
+            figure {
+              padding: 0;
+              margin: 0;
+              width: calc(${Root.Nav.Size} * .5);
+              height: calc(${Root.Nav.Size} * .5);
+              border-top: 6px;
+              border-right: 3px;
+              border-bottom: 3px;
+              border-left: 3px;
+              border-style: solid;
+              border-color:  ${Theme.Color.Primary};
+            }
           }
         }
       }
@@ -194,6 +222,14 @@ const GlobalClasses = createGlobalStyle`
 
     .article-listing {
       width: 33%;
+    }
+  }
+
+  .__maximized {
+    .article-listing-wrapper {
+      .article-listing {
+        width: 25%;
+      }
     }
   }
 

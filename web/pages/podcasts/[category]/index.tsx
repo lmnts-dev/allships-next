@@ -39,6 +39,9 @@ const PodcastCategoryTemplate: React.FunctionComponent<LMNTS_AppData> = ({
   allSanityPodcasts,
 }) => {
   let router = useRouter();
+  let isMaximized = router.query.isMaximized ? router.query.isMaximized : "";
+
+  console.log("router.query:", router.query);
 
   return (
     <InnerGrid startBelowNav={true}>
@@ -50,6 +53,7 @@ const PodcastCategoryTemplate: React.FunctionComponent<LMNTS_AppData> = ({
         baseRoute="/podcasts"
         currentRoute={router.query.category ? router.query.category : ""}
         categoryDynamicRoute="[category]"
+        isMaximized={isMaximized}
         categoriesAsTabs={QueryUtils.getSubCategoriesFromContent(
           QueryUtils.genericizeSanityListing(allSanityPodcasts)
         )}

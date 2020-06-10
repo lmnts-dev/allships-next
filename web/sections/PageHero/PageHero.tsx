@@ -10,9 +10,9 @@ import LazyImage from "../../utils/lazyImage";
 // Begin Component
 //////////////////////////////////////////////////////////////////////
 
-type Props = {
+type LMNTS_Section_PageHero = {
   currentHero: string;
-}
+};
 
 /**
  *
@@ -21,8 +21,9 @@ type Props = {
  * @param currentHero : string : The current visible section.
  *
  */
-
-export const PageHero: React.FunctionComponent<Props> = ({ currentHero }) => {
+export const PageHero: React.FunctionComponent<LMNTS_Section_PageHero> = ({
+  currentHero,
+}) => {
   let isHomePage = currentHero == "everything" ? true : false;
 
   return (
