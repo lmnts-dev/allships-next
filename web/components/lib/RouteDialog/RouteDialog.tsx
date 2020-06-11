@@ -7,7 +7,7 @@ import RouteDialogStyle from "./styles.scss";
 import slugify from "../../../utils/slugify";
 import { createGlobalStyle } from "styled-components";
 import Link from "next/link";
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 // Begin Component
 // __________________________________________________________________________________________
@@ -45,7 +45,9 @@ export const RouteDialog: React.FunctionComponent<RouteDialogProps> = ({
   categoriesAsTabs,
 }) => {
   let router = useRouter();
-  let isMaximized = router.query.isMaximized ? router.query.isMaximized : "NOPE";
+  let isMaximized = router.query.isMaximized
+    ? router.query.isMaximized
+    : "NOPE";
 
   class RouteDialogClass extends PureComponent<
     RouteDialogProps,

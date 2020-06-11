@@ -28,6 +28,7 @@ type Props = {
 export class LazyImage extends React.Component<Props, any> {
   // Update lazyLoad after first rendering of every image
   componentDidMount() {
+    // @ts-ignore
     if (!document.lazyLoadInstance) {
       // @ts-ignore
       document.lazyLoadInstance = new LazyLoad({
