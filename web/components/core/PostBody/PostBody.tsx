@@ -1,29 +1,35 @@
 // Imports
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 // Core
 import React, { PureComponent } from "react";
 
 // Styles
 import { PostBodyStyle } from "./styles.scss";
+import { createGlobalStyle } from "styled-components";
 
 // Types
-import { LMNTS_Sanity_AvailableListings } from "../../constants/types";
+import { LMNTS_Sanity_AvailableListings } from "../../../constants/types";
 
 // Constants
-import { Theme } from "../../constants/Theme";
+import { Theme } from "../../../constants/Theme";
 
 // Components
-import { SiteHead } from "../../components/core/SiteHead";
-import { createGlobalStyle } from "styled-components";
+import { SiteHead } from "../SiteHead";
 import Link from "next/link";
-import { InnerGrid } from "../../components/core/InnerGrid";
+import { InnerGrid } from "../InnerGrid";
+import { SectionLoop } from "../SectionLoop";
+
+// Utils
+import slugify from "../../../utils/slugify";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 type PostBodyProps = {
   post: LMNTS_Sanity_AvailableListings;
+  baseRoute: string;
+  categoryDynamicRoute: string;
 };
 
 type PostBodyState = {};
@@ -44,8 +50,8 @@ export class PostBody extends PureComponent<PostBodyProps, PostBodyState> {
   componentDidMount() {}
 
   render() {
-    // @ts-ignore
-    let { title, author, category, tags, content, excerpt } = this.props.post;
+    let { baseRoute, post, categoryDynamicRoute } = this.props;
+    let { title, category, content, excerpt } = post;
 
     // Variable Overrides
     const VariableOverrides = createGlobalStyle`
@@ -70,7 +76,10 @@ export class PostBody extends PureComponent<PostBodyProps, PostBodyState> {
                   ? category.map((categoryItem: string, idx: number) => {
                       return (
                         <li key={idx}>
-                          <Link href="/">
+                          <Link
+                            as={`${baseRoute}/${slugify(categoryItem)}`}
+                            href={`${baseRoute}/${categoryDynamicRoute}`}
+                          >
                             <a>{categoryItem}</a>
                           </Link>
                         </li>
@@ -82,6 +91,7 @@ export class PostBody extends PureComponent<PostBodyProps, PostBodyState> {
               <p>{excerpt}</p>
             </section>
           </InnerGrid>
+          <SectionLoop content={content} />
         </article>
       </PostBodyStyle>
     );

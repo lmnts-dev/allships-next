@@ -5,7 +5,7 @@ import React from "react";
 import { HeadlineStyle } from "./styles.scss";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 export type LMNTS_Section_Headline = {
   schema: {
@@ -52,4 +52,4 @@ export const Headline: React.FunctionComponent<LMNTS_Section_Headline> = ({
 };
 
 // End Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________

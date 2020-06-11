@@ -7,7 +7,7 @@ import { InnerGrid } from "../../components/core/InnerGrid";
 import Link from "next/link";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 export type LMNTS_Section_ColumnContent = {
   schema: {
@@ -115,4 +115,4 @@ export const ColumnContent: React.FunctionComponent<LMNTS_Section_ColumnContent>
 };
 
 // End Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________

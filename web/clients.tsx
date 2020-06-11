@@ -7,13 +7,13 @@
  */
 
 // Imports
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 import sanityClient from "@sanity/client";
 import airtableClient from "airtable";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 /**
  *
@@ -24,13 +24,20 @@ import airtableClient from "airtable";
  */
 
 // General Settings
-export const Sanity = sanityClient({
+
+export const SanityUtils = {
   projectId: "hpvpbfax",
   dataset: "production",
-  useCdn: false, // `false` if you want to ensure fresh data
+  useCdn: false,
+};
+
+export const Sanity = sanityClient({
+  projectId: SanityUtils.projectId,
+  dataset: SanityUtils.dataset,
+  useCdn: SanityUtils.useCdn,
 });
 
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 /**
  *

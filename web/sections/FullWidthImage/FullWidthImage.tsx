@@ -15,9 +15,9 @@ import { urlFor } from "../../utils/urlFor";
 import { calcAspectRatio } from "../../utils/calcAspectRatio";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
-export type LMNTS_Section_ColumnContent = {
+export type LMNTS_Section_FullWidthImage = {
   schema: {
     image?: Sanity_ImageAsset;
     alt?: string;
@@ -32,7 +32,7 @@ export type LMNTS_Section_ColumnContent = {
  * @requires /studio/sections/FullWidthImage
  *
  */
-export const FullWidthImage: React.FunctionComponent<LMNTS_Section_ColumnContent> = ({
+export const FullWidthImage: React.FunctionComponent<LMNTS_Section_FullWidthImage> = ({
   schema,
 }) => {
   let { image, alt } = schema;
@@ -71,4 +71,4 @@ export const FullWidthImage: React.FunctionComponent<LMNTS_Section_ColumnContent
 };
 
 // End Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________

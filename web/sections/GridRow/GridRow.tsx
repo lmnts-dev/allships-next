@@ -11,7 +11,7 @@ import { calcAspectRatio } from "../../utils/calcAspectRatio";
 import { Sanity_ImageAsset } from "../../constants/types/Sanity";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 export type LMNTS_Section_GridRow = {
   schema: {
@@ -24,10 +24,9 @@ export type LMNTS_Section_GridRow = {
  * @name GridRow
  * @author Peter Laxalt
  * @description Grid row for display items.
- * @requires studio/schema/GridRow
+ * @requires studio/sections/GridRow
  *
  */
-
 export const GridRow: React.FunctionComponent<LMNTS_Section_GridRow> = ({
   schema,
 }) => {
@@ -84,4 +83,4 @@ export const GridRow: React.FunctionComponent<LMNTS_Section_GridRow> = ({
 };
 
 // End Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________

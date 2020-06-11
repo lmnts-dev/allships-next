@@ -5,7 +5,7 @@ import React, { ChangeEvent, FormEvent, MouseEvent } from "react";
 import { NavigationStyle } from "./styles.scss";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 type Props = {
   shouldFocus: boolean;
@@ -110,4 +110,4 @@ export const Navigation: React.FunctionComponent<Props> = ({
 };
 
 // End Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________

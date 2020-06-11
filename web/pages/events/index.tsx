@@ -8,7 +8,7 @@ import { AddEmbellishments } from "../../components/core/AddEmbellishments";
 import { GrainCover } from "../../components/lib/GrainCover";
 
 // Sections
-import { CardListings } from "../../sections/CardListings";
+import { CardListings } from "../../components/core/CardListings";
 
 // Types
 import { GetStaticProps } from "next";
@@ -18,7 +18,7 @@ import { LMNTS_AppData } from "../../constants/types";
 import { QueryUtils } from "../../constants/Queries";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 /**
  *
@@ -41,6 +41,7 @@ const EventListings: React.FunctionComponent<LMNTS_AppData> = ({
         availableCategories={allCategories}
         featuredContent={allFeaturedContent}
         content={allContent}
+        showFeaturedListing
         showFilterBar
         showPageHero
       />

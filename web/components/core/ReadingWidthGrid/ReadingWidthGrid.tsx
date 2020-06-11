@@ -13,7 +13,7 @@ import React from "react";
 import { ReadingWidthGridStyle } from "./styles.scss";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 type ReadingWidthGridProps = {
   startBelowNav?: boolean;
@@ -31,4 +31,4 @@ export const ReadingWidthGrid: React.FunctionComponent<ReadingWidthGridProps> = 
 };
 
 // End Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________

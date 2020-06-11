@@ -1,5 +1,5 @@
 // Imports
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 // Core
 import React, { ReactNode, PureComponent } from "react";
@@ -10,7 +10,7 @@ import Link from "next/link";
 import Router, { useRouter } from "next/router";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 export type RouteDialogProps = {
   title: string;
@@ -45,7 +45,7 @@ export const RouteDialog: React.FunctionComponent<RouteDialogProps> = ({
   categoriesAsTabs,
 }) => {
   let router = useRouter();
-  let isMaximized = router.query.isMaximized ? router.query.isMaximized : "";
+  let isMaximized = router.query.isMaximized ? router.query.isMaximized : "NOPE";
 
   class RouteDialogClass extends PureComponent<
     RouteDialogProps,

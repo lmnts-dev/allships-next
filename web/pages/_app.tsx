@@ -11,7 +11,7 @@ import { Layout } from "../components/core/Layout";
 import { Theme } from "../constants/Theme";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 type MothershipCmd = {
   id: string;

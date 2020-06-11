@@ -13,7 +13,7 @@ import { LazyImage } from "../../utils/lazyImage";
 import { calcAspectRatio } from "../../utils/calcAspectRatio";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 export type LMNTS_Section_StickySection = {
   schema: {
@@ -107,4 +107,4 @@ export const StickySection: React.FunctionComponent<LMNTS_Section_StickySection>
 };
 
 // End Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________

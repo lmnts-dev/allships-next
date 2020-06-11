@@ -5,7 +5,7 @@ import React from "react";
 import { MarqueeRowStyle } from "./styles.scss";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 export type LMNTS_Section_MarqueeRow = {
   schema: {
@@ -67,4 +67,4 @@ export const MarqueeRow: React.FunctionComponent<LMNTS_Section_MarqueeRow> = ({
 };
 
 // End Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________

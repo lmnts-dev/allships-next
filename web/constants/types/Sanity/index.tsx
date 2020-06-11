@@ -131,7 +131,24 @@ export type Sanity_ImageAsset = Sanity_DefaultItem & {
  *
  */
 
- export type Sanity_Slug = { 
-   current: string;
-   _type: string;
- }
+export type Sanity_Slug = {
+  current: string;
+  _type: string;
+};
+
+/**
+ *
+ * @name Sanity_BlockContent
+ *
+ */
+
+export type Sanity_BlockContent = Sanity_DefaultItem & {
+  style: string;
+  markDefs: [];
+  children: Sanity_DefaultItem &
+    {
+      marks: [];
+      text: string;
+      _key: string;
+    }[];
+};

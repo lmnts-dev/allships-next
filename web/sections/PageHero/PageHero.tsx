@@ -8,7 +8,7 @@ import { PageHeroStyle } from "./styles.scss";
 import LazyImage from "../../utils/lazyImage";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 type LMNTS_Section_PageHero = {
   currentHero: string;

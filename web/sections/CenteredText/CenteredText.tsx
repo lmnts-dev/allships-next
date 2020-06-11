@@ -7,7 +7,7 @@ import React from "react";
 import { CenteredTextStyle } from "./styles.scss";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 export type LMNTS_Section_CenteredText = {
   schema: {
@@ -39,4 +39,4 @@ export const CenteredText: React.FunctionComponent<LMNTS_Section_CenteredText> =
 };
 
 // End Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________

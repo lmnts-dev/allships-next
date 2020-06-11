@@ -5,7 +5,7 @@ import React from "react";
 import { SiteHead } from "../../../components/core/SiteHead";
 
 // Sections
-import { PostBody } from "../../../sections/PostBody";
+import { PostBody } from "../../../components/core/PostBody";
 
 // Types
 import { GetStaticProps, GetStaticPaths } from "next";
@@ -13,20 +13,22 @@ import { LMNTS_AppData, LMNTS_Sanity_Podcast } from "../../../constants/types";
 
 // Utilities
 import { QueryUtils, Queries } from "../../../constants/Queries";
-import { CardListings } from "../../../sections/CardListings";
+import { CardListings } from "../../../components/core/CardListings";
 import { InnerGrid } from "../../../components/core/InnerGrid";
 import { Sanity } from "../../../clients";
 import slugify from "../../../utils/slugify";
+import { createGlobalStyle } from "styled-components";
+import { Theme } from "../../../constants/Theme";
 
 // Component Typing
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 export type LMNTS_Podcast_Post = LMNTS_AppData & {
   _document: LMNTS_Sanity_Podcast;
 };
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 /**
  *
@@ -41,10 +43,22 @@ const PostTemplate: React.FunctionComponent<LMNTS_Podcast_Post> = ({
   allCategories,
   _document,
 }) => {
+  // Variable Overrides
+  const VariableOverrides = createGlobalStyle`
+  body {
+    --bgColor: ${Theme.Color.Black};
+  }
+`;
+
   return (
     <>
-      <SiteHead title="ALLSHIPS | A Creative Coalition." />
-      <PostBody post={_document} />
+      <VariableOverrides />
+      <SiteHead title={`${_document.title} | ALLSHIPS`} />
+      <PostBody
+        post={_document}
+        baseRoute="/podcasts"
+        categoryDynamicRoute="[category]"
+      />
       <InnerGrid>
         <CardListings
           availableCategories={allCategories}

@@ -5,7 +5,7 @@ import React from "react";
 import { SectionBreakStyle } from "./styles.scss";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 export type LMNTS_Section_SectionBreak = {
   schema: {
@@ -37,4 +37,4 @@ export const SectionBreak: React.FunctionComponent<LMNTS_Section_SectionBreak> =
 };
 
 // End Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________

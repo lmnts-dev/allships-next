@@ -5,7 +5,7 @@
 import React from "react";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 const Intercom: React.FunctionComponent = () => (
   <svg width="28px" height="33px" viewBox="0 0 28 33" version="1.1">

@@ -1,18 +1,17 @@
 // CardListings Styles
 
 // Imports
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 // Core
 import styled from "styled-components";
 
 // Constants
-import { Theme } from "../../constants/Theme";
-import { Root } from "../../constants/Root";
-
+import { Theme } from "../../../constants/Theme";
+import { Root } from "../../../constants/Root";
 
 // Begin Styles
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 export const CardListingsStyle = styled.div`
   width: 100%;

@@ -5,7 +5,7 @@
 import React from "react";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 const YouTube: React.FunctionComponent = () => (
   <svg version="1.1" width="423.1px" height="511.6px" viewBox="0 0 423.1 511.6">

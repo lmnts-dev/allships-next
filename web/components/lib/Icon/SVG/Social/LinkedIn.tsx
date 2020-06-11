@@ -5,7 +5,7 @@
 import React from "react";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 const LinkedIn: React.FunctionComponent = () => (
   <svg version="1.1" width="512px" height="512px" viewBox="0 0 512 512">

@@ -3,7 +3,7 @@ import React from "react";
 import LazyLoad from "vanilla-lazyload";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 type Props = {
   alt?: string;

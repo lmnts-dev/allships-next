@@ -1,5 +1,5 @@
 // Imports
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 // Core
 import React, { PureComponent } from "react";
@@ -8,16 +8,13 @@ import React, { PureComponent } from "react";
 import { CardListingsStyle, FilterBarStyle } from "./styles.scss";
 
 // Components
-import {
-  ContentCard,
-  ContentCardGlobalStyles,
-} from "../../components/lib/ContentCard";
-import { SiteHead } from "../../components/core/SiteHead";
-import { PageHero } from "../PageHero";
-import { LMNTS_GenericListing } from "../../constants/types";
+import { ContentCard, ContentCardGlobalStyles } from "../../lib/ContentCard";
+import { SiteHead } from "../SiteHead";
+import { PageHero } from "../../../sections/PageHero";
+import { LMNTS_GenericListing } from "../../../constants/types";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 type CardListingsProps = {
   availableCategories: string[];

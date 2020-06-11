@@ -11,9 +11,10 @@ import {
   Airtable_ImageAssetReference,
   Airtable_DefaultRecord,
 } from "./Airtable";
+import { LMNTS_SectionLoop } from "../../components/core/SectionLoop";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 /**
  *
@@ -96,29 +97,22 @@ export type LMNTS_Sanity_Author = Sanity_DefaultItem & {
 
 /**
  *
- * @name LMNTS_Sanity_Content
- *
- */
-export type LMNTS_Sanity_Content = [];
-
-/**
- *
  * @name LMNTS_Sanity_DefaultPost
  *
  */
 
-export type LMNTS_Sanity_DefaultPost = Sanity_DefaultItem & {
-  author?: LMNTS_Sanity_Author;
-  category?: string[];
-  content?: LMNTS_Sanity_Content;
-  excerpt?: string;
-  featured_image?: Sanity_ImageAsset;
-  isFeatured?: boolean;
-  slug: Sanity_Slug;
-  tags?: string[];
-  thumbnail_image?: Sanity_ImageAsset;
-  title?: string;
-};
+export type LMNTS_Sanity_DefaultPost = LMNTS_SectionLoop &
+  Sanity_DefaultItem & {
+    author?: LMNTS_Sanity_Author;
+    category?: string[];
+    excerpt?: string;
+    featured_image?: Sanity_ImageAsset;
+    isFeatured?: boolean;
+    slug: Sanity_Slug;
+    tags?: string[];
+    thumbnail_image?: Sanity_ImageAsset;
+    title?: string;
+  };
 
 /**
  *

@@ -12,7 +12,7 @@
  */
 
 // Imports
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 // Core
 import React, { Component } from "react";
@@ -27,7 +27,7 @@ import LazyImage from "../../../utils/lazyImage";
 import { LMNTS_GenericListing } from "../../../constants/types";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 type ContentCardProps = {
   isLink?: boolean;
@@ -79,8 +79,8 @@ export class ContentCard extends Component<ContentCardProps, any> {
                 <>
                   {isFeatured ? <li>Featured</li> : null}
                   {categories.length > 0
-                    ? categories.map((category: string) => {
-                        return <li>{category}</li>;
+                    ? categories.map((category: string, idx: number) => {
+                        return <li key={idx}>{category}</li>;
                       })
                     : null}
                 </>

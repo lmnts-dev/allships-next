@@ -12,7 +12,7 @@ import { FooterStyle } from "./styles.scss";
 import { QueryUtils } from "../../../constants/Queries";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 type FooterProps = {
   handleCommand: (cmd: string) => void;
@@ -160,4 +160,4 @@ export const Footer: React.FunctionComponent<FooterProps> = ({
 };
 
 // End Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________

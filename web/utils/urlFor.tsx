@@ -18,7 +18,7 @@ import { Sanity } from "../clients";
 import imageUrlBuilder from "@sanity/image-url";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 export const urlFor = (source: any) => {
   return imageUrlBuilder(Sanity).image(source);

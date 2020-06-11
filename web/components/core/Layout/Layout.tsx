@@ -12,7 +12,7 @@ import { LayoutStyle } from "./styles.scss";
 import { ChangeEvent, FormEvent, MouseEvent } from "react";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 type Props = {
   appState: any;

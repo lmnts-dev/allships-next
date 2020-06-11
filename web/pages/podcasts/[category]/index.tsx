@@ -11,7 +11,7 @@ import { RouteDialog } from "../../../components/lib/RouteDialog";
 import { PodcastLoop } from "..";
 
 // Sections
-import { CardListings } from "../../../sections/CardListings";
+import { CardListings } from "../../../components/core/CardListings";
 
 // Types
 import { GetStaticProps, GetStaticPaths } from "next";
@@ -23,7 +23,7 @@ import slugify from "../../../utils/slugify";
 import { useRouter } from "next/router";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 /**
  *
@@ -39,7 +39,6 @@ const PodcastCategoryTemplate: React.FunctionComponent<LMNTS_AppData> = ({
   allSanityPodcasts,
 }) => {
   let router = useRouter();
-  let isMaximized = router.query.isMaximized ? router.query.isMaximized : "";
 
   console.log("router.query:", router.query);
 
@@ -53,7 +52,6 @@ const PodcastCategoryTemplate: React.FunctionComponent<LMNTS_AppData> = ({
         baseRoute="/podcasts"
         currentRoute={router.query.category ? router.query.category : ""}
         categoryDynamicRoute="[category]"
-        isMaximized={isMaximized}
         categoriesAsTabs={QueryUtils.getSubCategoriesFromContent(
           QueryUtils.genericizeSanityListing(allSanityPodcasts)
         )}

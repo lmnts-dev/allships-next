@@ -1,14 +1,15 @@
 // Imports
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 // Core
 import styled from "styled-components";
-import { Root } from "../../constants/Root";
+import { Root } from "../../../constants/Root";
+import { Theme } from "../../../constants/Theme";
 
 // Constants
 
 // Begin Styles
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 /**
  *
@@ -29,8 +30,8 @@ export const PostBodyStyle = styled.div`
 
   /* Core Styles */
   padding-top: var(--articlePadding);
+  padding-bottom: var(--articlePadding);
   font-family: var(--articleFont);
-  background: green;
   margin-left: calc(${Root.Grid.Gutter.Left} * -1);
   margin-right: calc(${Root.Grid.Gutter.Right} * -1);
   width: calc(100% + (${Root.Grid.Gutter.Right} + ${Root.Grid.Gutter.Left}));
@@ -47,11 +48,13 @@ export const PostBodyStyle = styled.div`
     font-family: var(--articleFont);
     max-width: var(--articleMaxWidth);
     margin: 0 auto;
+    color: ${Theme.Color.White};
   }
 
   p {
     font-size: var(--articleReadingFontSize);
     line-height: 1.5;
+    color: ${Theme.Color.White};
   }
 
   /* Core Elements */

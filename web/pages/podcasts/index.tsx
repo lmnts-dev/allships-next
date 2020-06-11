@@ -9,7 +9,7 @@ import { GrainCover } from "../../components/lib/GrainCover";
 import { RouteDialog } from "../../components/lib/RouteDialog";
 
 // Sections
-import { CardListings } from "../../sections/CardListings";
+import { CardListings } from "../../components/core/CardListings";
 
 // Types
 import { GetStaticProps } from "next";
@@ -28,7 +28,7 @@ import { parseDateTime } from "../../utils/parseDateTime";
 import { useRouter } from "next/router";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 type LMNTS_PodcastLoop = {
   allSanityPodcasts: LMNTS_Sanity_Podcast[];

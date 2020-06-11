@@ -1,5 +1,5 @@
 // Imports
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 // Core
 import React from "react";
@@ -13,7 +13,7 @@ import { Theme } from "../Theme";
 import { Root } from "../Root";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 let dialogShadowSize = "calc(" + Root.BorderSize + " * 2)";
 
@@ -59,6 +59,7 @@ const GlobalClasses = createGlobalStyle`
     font-size: 1.3rem;
 
     &.__maximized {
+      position: fixed;
       top: 0;
       left: 0;
       right: 0;
@@ -334,6 +335,14 @@ const GlobalClasses = createGlobalStyle`
           margin-right: ${Root.BorderSize};
           text-transform: uppercase;
           font-family: var(--appBodyText);
+
+          a {
+            color: ${Theme.Color.Primary};
+            
+            &:hover {
+              text-decoration: none;
+            }
+          }
 
           &:last-child {
             margin-right: 0;

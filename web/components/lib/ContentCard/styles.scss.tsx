@@ -1,7 +1,7 @@
 // ContentCard Styles
 
 // Imports
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 // Core
 import { createGlobalStyle } from "styled-components";
@@ -11,7 +11,7 @@ import { Theme } from "../../../constants/Theme";
 import { Root } from "../../../constants/Root";
 
 // Begin Styles
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 export const GlobalStyles = createGlobalStyle`
   :root {
