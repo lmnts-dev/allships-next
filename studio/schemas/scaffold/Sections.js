@@ -17,6 +17,7 @@ import { HeadlineRowRegistry } from "../sections/HeadlineRow";
 import { MarqueeRowRegistry } from "../sections/MarqueeRow";
 import { SectionBreakRegistry } from "../sections/SectionBreak";
 import { StickySectionRegistry } from "../sections/StickySection";
+import { ArticleTextRegistry } from "../sections/ArticleText";
 
 // __________________________________________________________________________________________
 
@@ -41,6 +42,7 @@ export const Sections = (includeSections, excludeSections) => {
    *
    */
   let defaultSections = [
+    { type: ArticleTextRegistry.name },
     { type: CenteredTextRegistry.name },
     { type: ColumnContentRegistry.name },
     { type: FullWidthImageRegistry.name },
