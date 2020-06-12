@@ -19,12 +19,14 @@ import { Sanity } from "../../../clients";
 import slugify from "../../../utils/slugify";
 import { createGlobalStyle } from "styled-components";
 import { Theme } from "../../../constants/Theme";
+import { useRouter } from "next/router";
 
 // Component Typing
 // __________________________________________________________________________________________
 
 export type LMNTS_Podcast_Post = LMNTS_AppData & {
   _document: LMNTS_Sanity_Podcast;
+  previewMode: boolean;
 };
 
 // Begin Component
@@ -41,6 +43,7 @@ const PostTemplate: React.FunctionComponent<LMNTS_Podcast_Post> = ({
   allContent,
   allFeaturedContent,
   allCategories,
+  previewMode,
   _document,
 }) => {
   // Variable Overrides
@@ -50,10 +53,19 @@ const PostTemplate: React.FunctionComponent<LMNTS_Podcast_Post> = ({
   }
 `;
 
+  // Check for preview mode
+  if (previewMode) {
+    console.log("👀 Preview mode enabled");
+  }
+
   return (
     <>
       <VariableOverrides />
-      <SiteHead title={`${_document.title} | ALLSHIPS`} />
+      <SiteHead
+        title={`${previewMode ? "👀 Preview Mode: " : ""}${
+          _document.title
+        } | ALLSHIPS`}
+      />
       <PostBody
         post={_document}
         baseRoute="/podcasts"
@@ -70,6 +82,24 @@ const PostTemplate: React.FunctionComponent<LMNTS_Podcast_Post> = ({
           authorFilterOverride="By Us"
         />
       </InnerGrid>
+      {previewMode ? (
+        <a
+          href={`/api/exit-preview`}
+          style={{
+            position: "fixed",
+            bottom: 20,
+            right: 20,
+            background: "red",
+            color: "white",
+            padding: 20,
+            fontWeight: "bold",
+            zIndex: 999999999,
+            textTransform: "uppercase",
+          }}
+        >
+          Close preview mode
+        </a>
+      ) : null}
     </>
   );
 };
@@ -134,8 +164,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   console.log("currentSlug", currentSlug);
 
-  let appData = await QueryUtils.initAppData();
-  let _document = await Sanity.fetch(Queries.CurrentPodcast(), {
+  let appData = await QueryUtils.initAppData(context.preview ? true : false);
+  let _document = await QueryUtils.getSanityClient(
+    context.preview ? true : false
+  ).fetch(Queries.CurrentPodcast(), {
     slug: currentSlug,
   });
 
@@ -143,6 +175,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     props: {
       ...appData.props,
       _document: _document,
+      previewMode: context.preview ? true : false,
     },
   };
 };

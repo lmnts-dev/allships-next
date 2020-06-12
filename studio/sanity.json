@@ -18,7 +18,8 @@
     "content-model-graph",
     "media",
     "seo-tools",
-    "@sanity/color-input"
+    "@sanity/color-input",
+    "@sanity/production-preview"
   ],
   "parts": [
     {
@@ -28,6 +29,10 @@
     {
       "name": "part:@sanity/desk-tool/structure",
       "path": "./structure/deskStructure.js"
+    },
+    {
+      "implements": "part:@sanity/production-preview/resolve-production-url",
+      "path": "./utils/resolveProductionUrl.js"
     }
   ]
 }

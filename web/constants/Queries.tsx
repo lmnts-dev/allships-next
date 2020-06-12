@@ -9,7 +9,7 @@
  */
 
 import groq from "groq";
-import { Airtable, AirtableUtils, Sanity } from "../clients";
+import { Airtable, AirtableUtils, Sanity, SanityPreview } from "../clients";
 import {
   LMNTS_Sanity_Article,
   LMNTS_Sanity_Event,
@@ -151,6 +151,25 @@ export class Queries {
  *
  */
 export class QueryUtils {
+  /**
+   *
+   * @name getSanityClient
+   * @param {boolean} preview : Whether preview mode is true or not.
+   * @returns Either a production Sanity Client or a preview mode Sanity Client.
+   *
+   */
+  static getSanityClient = (preview: boolean) => {
+    if (preview) {
+      console.log("👀 Loading Preview Data");
+      
+      return SanityPreview;
+    } else {
+      console.log("⚡️ Loading Production Data");
+
+      return Sanity;
+    }
+  };
+
   /**
    *
    * @name loadAllRecords
@@ -543,7 +562,9 @@ export class QueryUtils {
    * @returns All of our available data.
    *
    */
-  static initAppData = async () => {
+  static initAppData = async (preview: boolean) => {
+    let SanityClient = QueryUtils.getSanityClient(preview);
+
     // Load all Airtable content
     let allAirtableContent = await QueryUtils.loadAllRecords();
     let allAirtableFeaturedContent = await QueryUtils.loadFeaturedRecords();
@@ -560,9 +581,9 @@ export class QueryUtils {
     );
 
     // Load all Sanity content
-    let allSanityArticles = await Sanity.fetch(Queries.AllArticles());
-    let allSanityEvents = await Sanity.fetch(Queries.AllEvents());
-    let allSanityPodcasts = await Sanity.fetch(Queries.AllPodcasts());
+    let allSanityArticles = await SanityClient.fetch(Queries.AllArticles());
+    let allSanityEvents = await SanityClient.fetch(Queries.AllEvents());
+    let allSanityPodcasts = await SanityClient.fetch(Queries.AllPodcasts());
     let allSanityContent = QueryUtils.mergeSanityContentToGenericListings(
       allSanityArticles,
       allSanityEvents,

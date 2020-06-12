@@ -1,12 +1,12 @@
 /**
  *
- * @name slugify.tsx
+ * @name slugify.js
  * @author Peter Laxalt
  * @description Turn strings into slugs.
  * @example slugify("String Name Here") outputs "string-name-here"
  *
  */
-const slugify = (string: string) => {
+export const slugify = (string) => {
   const a = "àáäâãåăæçèéëêǵḧìíïîḿńǹñòóöôœṕŕßśșțùúüûǘẃẍÿź·/_,:;";
   const b = "aaaaaaaaceeeeghiiiimnnnoooooprssstuuuuuwxyz------";
   const p = new RegExp(a.split("").join("|"), "g");
@@ -22,4 +22,3 @@ const slugify = (string: string) => {
     .replace(/-+$/, ""); // Trim - from end of text
 };
 
-export default slugify;

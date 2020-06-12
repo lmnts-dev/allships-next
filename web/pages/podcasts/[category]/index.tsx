@@ -113,7 +113,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
  */
 export const getStaticProps: GetStaticProps = async (context) => {
   let currentSlug = context.params ? context.params.category : "";
-  let appData = await QueryUtils.initAppData();
+  let appData = await QueryUtils.initAppData(context.preview ? true : false);
 
   return {
     props: {

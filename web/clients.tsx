@@ -25,16 +25,23 @@ import airtableClient from "airtable";
 
 // General Settings
 
-export const SanityUtils = {
+export const SanityOptions = {
   projectId: "hpvpbfax",
   dataset: "production",
   useCdn: false,
+  // useCdn == true gives fast, cheap responses using a globally distributed cache.
+  // Set this to false to require the freshest possible
+  // data always (potentially slightly slower and a bit more expensive).
 };
 
-export const Sanity = sanityClient({
-  projectId: SanityUtils.projectId,
-  dataset: SanityUtils.dataset,
-  useCdn: SanityUtils.useCdn,
+// This is our main Sanity client to fetch Sanity data.
+export const Sanity = sanityClient(SanityOptions);
+
+// We have to pass a token to Sanity to authenticate us in retrieving
+// draft data from Sanity for preview mode.
+export const SanityPreview = sanityClient({
+  ...SanityOptions,
+  token: process.env.SANITY_API_TOKEN,
 });
 
 // __________________________________________________________________________________________

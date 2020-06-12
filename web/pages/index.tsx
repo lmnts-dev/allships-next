@@ -16,6 +16,7 @@ import { LMNTS_AppData } from "../constants/types";
 
 // Utilities
 import { QueryUtils } from "../constants/Queries";
+import { useRouter } from "next/router";
 
 // Begin Component
 // __________________________________________________________________________________________
@@ -32,20 +33,48 @@ const FrontPage: React.FunctionComponent<LMNTS_AppData> = ({
   allFeaturedContent,
   allCategories,
 }) => {
+  let router = useRouter();
+  let fromPreviewMode = router.query.fromPreviewMode
+    ? router.query.fromPreviewMode == "yerr"
+      ? true
+      : false
+    : false;
+
   return (
-    <InnerGrid startBelowNav={true}>
-      <SiteHead title="ALLSHIPS | A Creative Coalition." />
-      <AddEmbellishments />
-      <GrainCover />
-      <CardListings
-        availableCategories={allCategories}
-        featuredContent={allFeaturedContent}
-        content={allContent}
-        showFilterBar
-        showPageHero
-        showFeaturedListing
-      />
-    </InnerGrid>
+    <>
+      <InnerGrid startBelowNav={true}>
+        <SiteHead title="ALLSHIPS | A Creative Coalition." />
+        <AddEmbellishments />
+        <GrainCover />
+        <CardListings
+          availableCategories={allCategories}
+          featuredContent={allFeaturedContent}
+          content={allContent}
+          showFilterBar
+          showPageHero
+          showFeaturedListing
+        />
+      </InnerGrid>
+
+      {fromPreviewMode ? (
+        <a
+          href={`/`}
+          style={{
+            position: "fixed",
+            bottom: 20,
+            right: 20,
+            background: "green",
+            color: "white",
+            padding: 20,
+            fontWeight: "bold",
+            zIndex: 999999999,
+            textTransform: "uppercase",
+          }}
+        >
+          Preview mode closed
+        </a>
+      ) : null}
+    </>
   );
 };
 
@@ -59,5 +88,5 @@ export default FrontPage;
  *
  */
 export const getStaticProps: GetStaticProps = async () => {
-  return await QueryUtils.initAppData();
+  return await QueryUtils.initAppData(false);
 };

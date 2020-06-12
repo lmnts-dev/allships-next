@@ -173,6 +173,6 @@ export default PodcastListings;
  * @description Try to do as many data-specific tasks here as possible.
  *
  */
-export const getStaticProps: GetStaticProps = async () => {
-  return await QueryUtils.initAppData();
+export const getStaticProps: GetStaticProps = async (context) => {
+  return await QueryUtils.initAppData(context.preview ? true : false);
 };

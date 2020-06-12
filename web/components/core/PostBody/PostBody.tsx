@@ -15,7 +15,6 @@ import { LMNTS_Sanity_AvailableListings } from "../../../constants/types";
 import { Theme } from "../../../constants/Theme";
 
 // Components
-import { SiteHead } from "../SiteHead";
 import Link from "next/link";
 import { InnerGrid } from "../InnerGrid";
 import { SectionLoop } from "../SectionLoop";
@@ -67,7 +66,6 @@ export class PostBody extends PureComponent<PostBodyProps, PostBodyState> {
     return (
       <PostBodyStyle className="post-body">
         <VariableOverrides />
-        <SiteHead title={`ALLSHIPS | Post Name`} />
         <article>
           <InnerGrid>
             <section className="post-intro-section">

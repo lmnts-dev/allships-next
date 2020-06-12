@@ -8,7 +8,7 @@ import { ArticleTextStyle } from "./styles.scss";
 import BlockContent from "@sanity/block-content-to-react";
 // Types
 import { Sanity_BlockContent } from "../../constants/types/Sanity";
-import { SanityUtils } from "../../clients";
+import { SanityOptions } from "../../clients";
 
 // Begin Component
 //////////////////////////////////////////////////////////////////////
@@ -30,14 +30,12 @@ export type LMNTS_Section_ArticleText = {
 export const ArticleText: React.FunctionComponent<LMNTS_Section_ArticleText> = ({
   schema,
 }) => {
-  console.log(schema);
-
   return (
     <ArticleTextStyle className={`section section-centered-text`}>
       <BlockContent
         blocks={schema.text_content}
-        projectId={SanityUtils.projectId}
-        dataset={SanityUtils.dataset}
+        projectId={SanityOptions.projectId}
+        dataset={SanityOptions.dataset}
       />
     </ArticleTextStyle>
   );
