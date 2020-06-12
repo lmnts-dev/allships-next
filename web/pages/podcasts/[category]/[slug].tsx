@@ -19,7 +19,6 @@ import { Sanity } from "../../../clients";
 import slugify from "../../../utils/slugify";
 import { createGlobalStyle } from "styled-components";
 import { Theme } from "../../../constants/Theme";
-import { useRouter } from "next/router";
 
 // Component Typing
 // __________________________________________________________________________________________
