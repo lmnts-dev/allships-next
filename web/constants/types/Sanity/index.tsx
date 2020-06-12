@@ -82,7 +82,6 @@ export type Sanity_ImagePalette = {
  *
  * @name Sanity_ImageDimensions
  * 
- *
  */
 
 export type Sanity_ImageDimensions = {
