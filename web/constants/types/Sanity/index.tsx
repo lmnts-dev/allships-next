@@ -93,6 +93,7 @@ export type Sanity_ImageDimensions = {
 
 /**
  *
+ * 
  * @name Sanity_ImageMetadata
  *
  */
