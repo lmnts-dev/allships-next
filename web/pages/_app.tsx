@@ -102,7 +102,7 @@ class MyApp extends App<MothershipProps, MothershipState> {
       prevCommand: "",
       primaryColor: Theme.Color.UltraRed,
       secondaryColor: Theme.Color.HackerGold,
-      bgColor: Theme.Color.HackerGold,
+      bgColor: Theme.Color.Black,
       dialogColor: Theme.Color.Black,
       textColor: Theme.Color.UltraRed,
     };
@@ -262,7 +262,7 @@ class MyApp extends App<MothershipProps, MothershipState> {
         ],
         primaryColor: Theme.Color.UltraRed,
         secondaryColor: Theme.Color.HackerGold,
-        bgColor: Theme.Color.HackerGold,
+        bgColor: Theme.Color.Black,
         dialogColor: Theme.Color.Black,
         textColor: Theme.Color.UltraRed,
       });
