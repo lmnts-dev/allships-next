@@ -105,7 +105,6 @@ export const RouteDialog: React.FunctionComponent<RouteDialogProps> = ({
         categoryDynamicRoute,
         baseRoute,
         currentRoute,
-        isMaximized,
       } = this.props;
 
       // console.log("isMaximized render():", isMaximized);
