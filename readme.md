@@ -49,7 +49,7 @@ Simply commit to the master branch and our CI processes on Github will deploy th
 #### To deploy both in one swing
 You have to make sure you haven't committed anything yet as this bash script runs `git add . && git commit` as well.
 
-`bash deploy.sh sanity-integration`
+`bash deploy.sh <branch-name | defaults to 'master' if not specified>`
 
 ## Data Sources
 
