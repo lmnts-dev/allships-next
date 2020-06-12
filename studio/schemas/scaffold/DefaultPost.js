@@ -17,6 +17,7 @@ export const DefaultPost = [
     name: "title",
     title: "Title",
     type: "string",
+    validation: (Rule) => Rule.required(),
   },
   {
     name: "slug",
@@ -26,12 +27,14 @@ export const DefaultPost = [
       source: "title",
       maxLength: 96,
     },
+    validation: (Rule) => Rule.required(),
   },
   {
     name: "author",
     title: "Author",
     type: "reference",
     to: [{ type: "author" }],
+    validation: (Rule) => Rule.required(),
   },
   {
     name: "isFeatured",
@@ -44,6 +47,7 @@ export const DefaultPost = [
     title: "Category",
     type: "array",
     of: [{ type: "string" }],
+    validation: (Rule) => Rule.required(),
   },
   {
     name: "featured_image",

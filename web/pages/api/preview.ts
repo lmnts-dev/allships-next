@@ -26,7 +26,7 @@ export default async function preview(
     !req.query.slug
   ) {
     return res.status(401).json({
-      message: "🚫 Invalid token: " + req.query.secret,
+      message: "🚫 Invalid secret: " + req.query.secret,
       slug: "🚫 Slug: " + req.query.slug,
     });
   } else {
