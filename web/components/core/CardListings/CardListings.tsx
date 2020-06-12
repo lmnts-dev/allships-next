@@ -20,6 +20,7 @@ type CardListingsProps = {
   availableCategories: string[];
   featuredContent: LMNTS_GenericListing[];
   content: LMNTS_GenericListing[];
+  isFrontPage?: boolean;
   showFilterBar: boolean;
   showPageHero: boolean;
   showFeaturedListing: boolean;
@@ -137,16 +138,10 @@ export class CardListings extends PureComponent<
     let { availableCategories } = this.state;
     let { content, featuredContent } = this.props;
 
-    if (window) {
+    if (window && this.props.isFrontPage) {
       window.scrollTo(0, 0);
-    } else {
-      return;
     }
 
-    // console.log("HANDLE CATEGORY FIRED");
-    // console.log(this.state);
-
-    // @ts-ignore
     if (availableCategories.includes(category) && category != "everything") {
       // If this category is already selected, unselect it.
       if (this.state.currentCategory == category) {
@@ -199,14 +194,9 @@ export class CardListings extends PureComponent<
   handleAuthorToggle(author: string) {
     let { currentAuthor } = this.state;
 
-    if (window) {
+    if (window && this.props.isFrontPage) {
       window.scrollTo(0, 0);
-    } else {
-      return;
     }
-
-    // console.log("HANDLE AUTHOR FIRED");
-    // console.log(this.state);
 
     if (currentAuthor != author) {
       this.setState({
@@ -230,9 +220,6 @@ export class CardListings extends PureComponent<
   handleFeaturedIdxUpdate(incrementing: boolean, totalIdx: number) {
     let { featuredItemIdx } = this.state;
     totalIdx = totalIdx - 1;
-
-    // console.log(this.state);
-    // console.log("totalIdx:", totalIdx);
 
     if (totalIdx != 0) {
       if (incrementing) {
@@ -285,9 +272,6 @@ export class CardListings extends PureComponent<
         ? true
         : false
       : false;
-
-    // console.log("featuredItems.length: ", featuredItems.length);
-    // console.log("showFeaturedItems: ", showFeaturedItems);
 
     /**
      *
@@ -492,7 +476,7 @@ export class CardListings extends PureComponent<
         <SiteHead
           title={`ALLSHIPS | ${
             this.state.currentCategory == "everything"
-              ? " A Creative Coalition."
+              ? " A Creative Community."
               : capitalCategory
           }`}
         />

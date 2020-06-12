@@ -96,7 +96,7 @@ export const Footer: React.FunctionComponent<FooterProps> = ({
               <div className="footer-brand-image">
                 <LazyImage src="/gradient-logo.svg" alt="ALLSHIPS" />
               </div>
-              <div className="footer-brand-tagline">A Creative Coalition</div>
+              <div className="footer-brand-tagline">A Creative Community</div>
             </div>
             <ul>
               <li onClick={() => handleCommand("launch launcher")}>

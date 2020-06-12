@@ -200,11 +200,11 @@ export const FooterStyle = styled.footer`
               &:focus,
               &:active {
                 outline: 0;
-                border: ${Root.BorderSize} solid ${Theme.Color.Background};
-                color: ${Theme.Color.Background};
+                border: ${Root.BorderSize} solid ${Theme.Color.Secondary};
+                color: ${Theme.Color.Secondary};
 
                 &::placeholder {
-                  color: ${Theme.Color.Background};
+                  color: ${Theme.Color.Secondary};
                 }
               }
             }
@@ -219,7 +219,7 @@ export const FooterStyle = styled.footer`
 
               &:after {
                 content: "PRESS ENTER TO SUBMIT";
-                color: ${Theme.Color.Background};
+                color: ${Theme.Color.Secondary};
                 padding-top: 10px;
                 font-size: 1.4rem;
               }

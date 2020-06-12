@@ -59,17 +59,17 @@ const GlobalClasses = createGlobalStyle`
     font-size: 1.3rem;
 
     &.__maximized {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      width: 100vw;
-      height: 100vh;
-      min-width: 100vw;
-      max-width: 100vw;
-      min-height: 100vh;
-      max-height: 100vh;
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      min-width: 100vw !important;
+      max-width: 100vw !important;
+      min-height: 100vh !important;
+      max-height: 100vh !important;
     }
 
     .dialog-header {
@@ -338,7 +338,7 @@ const GlobalClasses = createGlobalStyle`
 
           a {
             color: ${Theme.Color.Primary};
-            
+
             &:hover {
               text-decoration: none;
             }
@@ -350,7 +350,7 @@ const GlobalClasses = createGlobalStyle`
 
           &.__is-published-by-us {
             background: ${Theme.Color.Dialog};
-            color: ${Theme.Color.Background};
+            color: ${Theme.Color.Secondary};
           }
         }
       }

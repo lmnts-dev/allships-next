@@ -9,7 +9,7 @@ import { PostBody } from "../../../components/core/PostBody";
 
 // Types
 import { GetStaticProps, GetStaticPaths } from "next";
-import { LMNTS_AppData, LMNTS_Sanity_Podcast } from "../../../constants/types";
+import { LMNTS_AppData, LMNTS_Sanity_Podcast, LMNTS_Sanity_Article } from "../../../constants/types";
 
 // Utilities
 import { QueryUtils, Queries } from "../../../constants/Queries";
@@ -20,8 +20,8 @@ import slugify from "../../../utils/slugify";
 // Component Typing
 // __________________________________________________________________________________________
 
-export type LMNTS_Podcast_Post = LMNTS_AppData & {
-  _document: LMNTS_Sanity_Podcast;
+export type LMNTS_Article_Post = LMNTS_AppData & {
+  _document: LMNTS_Sanity_Article;
   previewMode: boolean;
 };
 
@@ -32,10 +32,10 @@ export type LMNTS_Podcast_Post = LMNTS_AppData & {
  *
  * pages/index.tsx
  * @author Peter Laxalt
- * @description The website homepage.
+ * @description The website Article Post Template.
  *
  */
-const PostTemplate: React.FunctionComponent<LMNTS_Podcast_Post> = ({
+const ArticlePostTemplate: React.FunctionComponent<LMNTS_Article_Post> = ({
   allContent,
   allFeaturedContent,
   allCategories,
@@ -56,7 +56,7 @@ const PostTemplate: React.FunctionComponent<LMNTS_Podcast_Post> = ({
       />
       <PostBody
         post={_document}
-        baseRoute="/podcasts"
+        baseRoute="/articles"
         categoryDynamicRoute="[category]"
       />
       <InnerGrid>
@@ -92,7 +92,7 @@ const PostTemplate: React.FunctionComponent<LMNTS_Podcast_Post> = ({
   );
 };
 
-export default PostTemplate;
+export default ArticlePostTemplate;
 
 /**
  *
@@ -105,15 +105,15 @@ export default PostTemplate;
  *
  */
 export const getStaticPaths: GetStaticPaths = async () => {
-  let allPodcasts = await QueryUtils.getSanityClient(true).fetch(
-    Queries.AllPodcasts()
+  let allArticles = await QueryUtils.getSanityClient(true).fetch(
+    Queries.AllArticles()
   );
 
   let allPathsIncludingCategories: {
     params: { slug: string; category: string };
   }[] = [];
 
-  allPodcasts.map((item: LMNTS_Sanity_Podcast) => {
+  allArticles.map((item: LMNTS_Sanity_Article) => {
     // Check if item has categories
     if (item.category) {
       item.category.map((category: string) => {
@@ -155,7 +155,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   let appData = await QueryUtils.initAppData(context.preview ? true : false);
   let _document = await QueryUtils.getSanityClient(
     context.preview ? true : false
-  ).fetch(Queries.CurrentPodcast(), {
+  ).fetch(Queries.CurrentArticle(), {
     slug: currentSlug,
   });
 

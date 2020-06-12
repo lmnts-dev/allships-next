@@ -54,9 +54,21 @@ export class CssUtils {
         height: calc(${Root.Size} / 3);
         border-radius: 50%;
         background: ${Theme.Color.Secondary};
-        transition: opacity ${Theme.Base.Transition.Duration} ${Theme.Base.Transition.CssEase};
+        transition: opacity ${Theme.Base.Transition.Duration}
+          ${Theme.Base.Transition.CssEase};
         z-index: 10;
       }
+    `;
+  };
+
+  static DisableUserSelect = () => {
+    return css`
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     `;
   };
 }

@@ -7,6 +7,7 @@ import styled from "styled-components";
 // Constants
 import { Theme } from "../../constants/Theme";
 import { Root } from "../../constants/Root";
+import { CssUtils } from "../../constants/styles/CssUtils";
 
 // Animations
 
@@ -14,9 +15,9 @@ import { Root } from "../../constants/Root";
 // __________________________________________________________________________________________
 
 /**
- * 
+ *
  * @name PageHeroStyle
- * 
+ *
  */
 export const PageHeroStyle = styled.div`
   width: 100%;
@@ -51,7 +52,8 @@ export const PageHeroStyle = styled.div`
     }
 
     h1 {
-      color: ${Theme.Color.Dialog};
+      color: ${Theme.Color.Secondary};
+      ${CssUtils.DisableUserSelect()};
     }
   }
 `;

@@ -14,7 +14,7 @@ import Head from "next/head";
 
 let siteTitle = "ALLSHIPS";
 let baseUrl = "https://allships.co";
-let description = "A Creative Coalition.";
+let description = "A Creative Community.";
 let keywords = "podcasts, creative, resources, interview, creativity";
 
 export const SiteHead = ({ title = siteTitle + " | " + description }) => {

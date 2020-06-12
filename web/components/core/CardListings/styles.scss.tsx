@@ -274,10 +274,16 @@ export const FilterBarStyle = styled.div`
               color: ${Theme.Color.Background};
             }
 
-            &:active,
-            &.active {
-              background: ${Theme.Color.Dialog};
+            &:active {
+              background: ${Theme.Color.Secondary};
               color: ${Theme.Color.Background};
+              border: calc(var(--btnShadowSize) * 2) solid ${Theme.Color.Primary};
+            }
+
+            &.active {
+              background: ${Theme.Color.Background};
+              color: ${Theme.Color.Secondary};
+              border: calc(var(--btnShadowSize) * 2) solid ${Theme.Color.Secondary};
             }
 
             &:first-child {

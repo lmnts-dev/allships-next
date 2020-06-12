@@ -62,7 +62,7 @@ export class Queries {
       ..., 
       "author": author->,
       "featured_image": featured_image.asset->,
-      "thumbnail_image": thumbnail_image.asset->
+      "thumbnail_image": thumbnail_image.asset->,
       "content": content[]{ 
           ..., 
           "image": image.asset->,

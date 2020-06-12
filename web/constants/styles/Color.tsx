@@ -60,7 +60,7 @@ export const Palette = createGlobalStyle`
   body {
     --primaryColor: ${Color.UltraRed};
     --secondaryColor: ${Color.HackerGold};
-    --bgColor: ${Color.HackerGold};
+    --bgColor: ${Color.Black};
     --dialogColor: ${Color.Black};
     --textColor: ${Color.UltraRed};
 

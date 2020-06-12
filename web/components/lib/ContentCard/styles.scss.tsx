@@ -33,9 +33,9 @@ export const GlobalStyles = createGlobalStyle`
       right: calc(var(--cardPadding));
       bottom: calc(var(--cardPadding));
       top: calc(var(--cardPadding));
-      background: ${Theme.Color.Primary};
+      background: ${Theme.Color.Secondary};
       transform: translate(0, 0);
-      mix-blend-mode: difference;
+      /* mix-blend-mode: difference; */
     }
 
     &.__isLink {

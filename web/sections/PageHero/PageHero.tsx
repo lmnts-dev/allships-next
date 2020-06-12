@@ -34,7 +34,7 @@ export const PageHero: React.FunctionComponent<LMNTS_Section_PageHero> = ({
         ) : (
           <LazyImage src="/gradient-logo.svg" alt="ALLSHIPS" />
         )}
-        {!isHomePage ? null : <p>A CREATIVE COALITION</p>}
+        {!isHomePage ? null : <p>A CREATIVE COMMUNITY</p>}
       </div>
     </PageHeroStyle>
   );
