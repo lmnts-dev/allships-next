@@ -9,7 +9,7 @@ import { PostBody } from "../../../components/core/PostBody";
 
 // Types
 import { GetStaticProps, GetStaticPaths } from "next";
-import { LMNTS_AppData, LMNTS_Sanity_Podcast, LMNTS_Sanity_Article } from "../../../constants/types";
+import { LMNTS_AppData, LMNTS_Sanity_Article } from "../../../constants/types";
 
 // Utilities
 import { QueryUtils, Queries } from "../../../constants/Queries";
