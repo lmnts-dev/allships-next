@@ -38,6 +38,7 @@ export const DefaultPost = [
     title: "Feature this post?",
     type: "boolean",
   },
+  Sections(),
   {
     name: "category",
     title: "Category",
@@ -60,13 +61,12 @@ export const DefaultPost = [
       hotspot: true,
     },
   },
-  Sections(),
-  ...Theme,
   {
     name: "excerpt",
     title: "Excerpt (SEO Only)",
     type: "text",
   },
+  ...Theme,
   {
     name: "tags",
     title: "Tags (SEO Only)",
