@@ -50,8 +50,8 @@ export const PodcastLoop: React.FunctionComponent<LMNTS_PodcastLoop> = ({
     allSanityPodcasts
   );
 
-  console.log("allPodcasts:", allPodcasts);
-  console.log("filterBy:", filterBy);
+  // console.log("allPodcasts:", allPodcasts);
+  // console.log("filterBy:", filterBy);
 
   if (filterBy) {
     let allPodcastsWithSubCategorySlugs: LMNTS_GenericListing[] = allPodcasts.map(
@@ -67,10 +67,10 @@ export const PodcastLoop: React.FunctionComponent<LMNTS_PodcastLoop> = ({
       }
     );
 
-    console.log(
-      "allPodcastsWithSubCategorySlugs:",
-      allPodcastsWithSubCategorySlugs
-    );
+    // console.log(
+    //   "allPodcastsWithSubCategorySlugs:",
+    //   allPodcastsWithSubCategorySlugs
+    // );
 
     allPodcasts = allPodcastsWithSubCategorySlugs.filter(
       (podcast: LMNTS_GenericListing) =>

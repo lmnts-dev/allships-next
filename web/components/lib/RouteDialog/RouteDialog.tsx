@@ -108,8 +108,8 @@ export const RouteDialog: React.FunctionComponent<RouteDialogProps> = ({
         isMaximized,
       } = this.props;
 
-      console.log("isMaximized render():", isMaximized);
-      console.log(currentRoute ? currentRoute : "/");
+      // console.log("isMaximized render():", isMaximized);
+      // console.log(currentRoute ? currentRoute : "/");
 
       const LockBodyScroll = createGlobalStyle`
         body {

@@ -143,8 +143,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }
   });
 
-  console.log("allPathsIncludingCategories:", allPathsIncludingCategories);
-
+  console.log("🤠 Loading static paths...")
   return { paths: allPathsIncludingCategories, fallback: false };
 };
 
@@ -160,8 +159,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
  */
 export const getStaticProps: GetStaticProps = async (context) => {
   let currentSlug = context.params ? context.params.slug : "";
-
-  console.log("currentSlug", currentSlug);
 
   let appData = await QueryUtils.initAppData(context.preview ? true : false);
   let _document = await QueryUtils.getSanityClient(

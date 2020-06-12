@@ -160,10 +160,12 @@ export class QueryUtils {
    */
   static getSanityClient = (preview: boolean) => {
     if (preview) {
+      // Logs to the server.
       console.log("👀 Loading Preview Data");
-      
+
       return SanityPreview;
     } else {
+      // Logs to the server.
       console.log("⚡️ Loading Production Data");
 
       return Sanity;

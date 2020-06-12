@@ -40,8 +40,6 @@ const PodcastCategoryTemplate: React.FunctionComponent<LMNTS_AppData> = ({
 }) => {
   let router = useRouter();
 
-  console.log("router.query:", router.query);
-
   return (
     <InnerGrid startBelowNav={true}>
       <SiteHead title="ALLSHIPS | Podcasts" />
