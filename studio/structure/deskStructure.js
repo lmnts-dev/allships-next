@@ -57,15 +57,15 @@ export default () =>
         // of the type “project"
         .child(S.documentTypeList(ArticleRegistry.name).title("Articles")),
 
-      // Events
-      S.listItem()
-        // Give it a title
-        .title("Events")
-        .icon(FaCalendar)
-        .schemaType(EventRegistry.name)
-        // When you open this list item, list out the documents
-        // of the type “project"
-        .child(S.documentTypeList(EventRegistry.name).title("Events")),
+      // // Events
+      // S.listItem()
+      //   // Give it a title
+      //   .title("Events")
+      //   .icon(FaCalendar)
+      //   .schemaType(EventRegistry.name)
+      //   // When you open this list item, list out the documents
+      //   // of the type “project"
+      //   .child(S.documentTypeList(EventRegistry.name).title("Events")),
 
       // Create List Item
       S.listItem()

@@ -2,14 +2,14 @@
 import React from "react";
 
 // Components
-import { InnerGrid } from "../../components/core/InnerGrid";
-import { SiteHead } from "../../components/core/SiteHead";
-import { AddEmbellishments } from "../../components/core/AddEmbellishments";
-import { GrainCover } from "../../components/lib/GrainCover";
-import { RouteDialog } from "../../components/lib/RouteDialog";
+import { InnerGrid } from "../../../components/core/InnerGrid";
+import { SiteHead } from "../../../components/core/SiteHead";
+import { AddEmbellishments } from "../../../components/core/AddEmbellishments";
+import { GrainCover } from "../../../components/lib/GrainCover";
+import { RouteDialog } from "../../../components/lib/RouteDialog";
 
 // Sections
-import { CardListings } from "../../components/core/CardListings";
+import { CardListings } from "../../../components/core/CardListings";
 
 // Types
 import { GetStaticProps } from "next";
@@ -17,14 +17,14 @@ import {
   LMNTS_AppData,
   LMNTS_GenericListing,
   LMNTS_Sanity_Podcast,
-} from "../../constants/types";
+} from "../../../constants/types";
 
 // Utilities
-import { QueryUtils } from "../../constants/Queries";
+import { QueryUtils } from "../../../constants/Queries";
 import Link from "next/link";
-import slugify from "../../utils/slugify";
-import LazyImage from "../../utils/lazyImage";
-import { parseDateTime } from "../../utils/parseDateTime";
+import slugify from "../../../utils/slugify";
+import LazyImage from "../../../utils/lazyImage";
+import { parseDateTime } from "../../../utils/parseDateTime";
 import { useRouter } from "next/router";
 
 // Begin Component
@@ -85,12 +85,8 @@ export const PodcastLoop: React.FunctionComponent<LMNTS_PodcastLoop> = ({
           ? allPodcasts.map((podcast: LMNTS_GenericListing, idx: number) => {
               return (
                 <Link
-                  href={`/podcasts/[category]/[slug]`}
-                  as={`/podcasts/${
-                    podcast.subCategories
-                      ? slugify(podcast.subCategories[0])
-                      : "all"
-                  }/${podcast.slug}`}
+                  href={`/podcast/[slug]`}
+                  as={`/podcast/${podcast.slug}`}
                   key={idx}
                 >
                   <a className="article-listing __podcast-listing">
@@ -141,7 +137,7 @@ const PodcastListings: React.FunctionComponent<LMNTS_AppData> = ({
       <GrainCover />
       <RouteDialog
         title="Podcasts"
-        baseRoute="/podcasts"
+        baseRoute="/launcher/podcasts"
         currentRoute={router.query.category ? router.query.category : ""}
         categoryDynamicRoute="[category]"
         categoriesAsTabs={QueryUtils.getSubCategoriesFromContent(

@@ -59,6 +59,12 @@ export const GlobalStyles = createGlobalStyle`
           transform-origin: bottom left;
           z-index: 15;
         }
+
+        .__isLinkPublishedByUs { 
+          &:after {
+            display: none;
+          }
+        }
       }
 
       @media (min-width: ${Theme.Base.Media.Width.Md}) {

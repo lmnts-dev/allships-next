@@ -308,6 +308,7 @@ export class QueryUtils {
         let genericItem: LMNTS_GenericListing = {
           author: item.author ? "By Us" : "By Us",
           categories: genericCategories,
+          type: item._type,
           subCategories: subCategories,
           isFeatured: item.isFeatured ? item.isFeatured : false,
           isPublishedByUs: true,
@@ -422,6 +423,7 @@ export class QueryUtils {
               ? item.fields["Category"].toLowerCase()
               : "",
           ],
+          type: "record",
           subCategories: [],
           isFeatured: item.fields["Featured"] ? item.fields["Featured"] : false,
           isPublishedByUs: isPublishedByUs,

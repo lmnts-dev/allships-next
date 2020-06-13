@@ -54,6 +54,7 @@ const FrontPage: React.FunctionComponent<LMNTS_AppData> = ({
           showFilterBar
           showPageHero
           showFeaturedListing
+          authorFilterOverride="By Us"
         />
       </InnerGrid>
 

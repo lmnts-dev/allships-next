@@ -69,7 +69,8 @@ const LauncherDialogStyle = styled.div`
 
       .launcher-dialog-sidebar {
         border-right: ${Root.BorderSize} solid ${Theme.Color.Primary};
-        overflow-y: scroll;
+        max-height: calc(100vh - (${Root.Nav.Size} + (${Root.BorderSize} * 3)));
+        overflow-y: auto;
         min-width: ${sideBarSize};
         text-transform: uppercase;
 
@@ -79,7 +80,8 @@ const LauncherDialogStyle = styled.div`
 
         ul {
           list-style-type: none;
-          overflow-y: scroll;
+          overflow-y: auto;
+          width: 100%;
 
           li {
             border-bottom: ${Root.BorderSize} solid ${Theme.Color.Primary};
@@ -88,6 +90,7 @@ const LauncherDialogStyle = styled.div`
             align-items: center;
             padding: ${Root.DialogPaddingSize};
             cursor: pointer;
+            width: 100%;
 
             @media (max-width: ${Theme.Base.Media.Width.Sm}) {
               padding: calc(${Root.DialogPaddingSize} * 2)
@@ -111,6 +114,9 @@ const LauncherDialogStyle = styled.div`
 
       .launcher-dialog-content {
         flex: 1;
+        max-height: calc(100vh - (${Root.Nav.Size} + (${Root.BorderSize} * 3)));
+        overflow-y: auto;
+        padding-bottom: ${Root.Size};
 
         .cmd-list {
           text-transform: uppercase;

@@ -2,14 +2,14 @@
 import React from "react";
 
 // Components
-import { InnerGrid } from "../../components/core/InnerGrid";
-import { SiteHead } from "../../components/core/SiteHead";
-import { AddEmbellishments } from "../../components/core/AddEmbellishments";
-import { GrainCover } from "../../components/lib/GrainCover";
-import { RouteDialog } from "../../components/lib/RouteDialog";
+import { InnerGrid } from "../../../components/core/InnerGrid";
+import { SiteHead } from "../../../components/core/SiteHead";
+import { AddEmbellishments } from "../../../components/core/AddEmbellishments";
+import { GrainCover } from "../../../components/lib/GrainCover";
+import { RouteDialog } from "../../../components/lib/RouteDialog";
 
 // Sections
-import { CardListings } from "../../components/core/CardListings";
+import { CardListings } from "../../../components/core/CardListings";
 
 // Types
 import { GetStaticProps } from "next";
@@ -17,14 +17,14 @@ import {
   LMNTS_AppData,
   LMNTS_GenericListing,
   LMNTS_Sanity_Article,
-} from "../../constants/types";
+} from "../../../constants/types";
 
 // Utilities
-import { QueryUtils } from "../../constants/Queries";
+import { QueryUtils } from "../../../constants/Queries";
 import Link from "next/link";
-import slugify from "../../utils/slugify";
-import LazyImage from "../../utils/lazyImage";
-import { parseDateTime } from "../../utils/parseDateTime";
+import slugify from "../../../utils/slugify";
+import LazyImage from "../../../utils/lazyImage";
+import { parseDateTime } from "../../../utils/parseDateTime";
 import { useRouter } from "next/router";
 
 // Begin Component
@@ -50,16 +50,13 @@ export const ArticleLoop: React.FunctionComponent<LMNTS_ArticleLoop> = ({
     allSanityArticles
   );
 
-  // console.log("allArticles:", allArticles);
-  // console.log("filterBy:", filterBy);
-
   if (filterBy) {
     let allArticlesWithSubCategorySlugs: LMNTS_GenericListing[] = allArticles.map(
-      (podcast: LMNTS_GenericListing) => {
+      (article: LMNTS_GenericListing) => {
         return {
-          ...podcast,
-          subCategories: podcast.subCategories
-            ? podcast.subCategories.map((subCategory: string) => {
+          ...article,
+          subCategories: article.subCategories
+            ? article.subCategories.map((subCategory: string) => {
                 return slugify(subCategory);
               })
             : [],
@@ -68,8 +65,8 @@ export const ArticleLoop: React.FunctionComponent<LMNTS_ArticleLoop> = ({
     );
 
     allArticles = allArticlesWithSubCategorySlugs.filter(
-      (podcast: LMNTS_GenericListing) =>
-        podcast.subCategories ? podcast.subCategories.includes(filterBy) : false
+      (article: LMNTS_GenericListing) =>
+        article.subCategories ? article.subCategories.includes(filterBy) : false
     );
   }
 
@@ -80,12 +77,8 @@ export const ArticleLoop: React.FunctionComponent<LMNTS_ArticleLoop> = ({
           ? allArticles.map((article: LMNTS_GenericListing, idx: number) => {
               return (
                 <Link
-                  href={`/articles/[category]/[slug]`}
-                  as={`/articles/${
-                    article.subCategories
-                      ? slugify(article.subCategories[0])
-                      : "all"
-                  }/${article.slug}`}
+                  href={`/article/[slug]`}
+                  as={`/article/${article.slug}`}
                   key={idx}
                 >
                   <a className="article-listing __podcast-listing">
@@ -136,7 +129,7 @@ const ArticleListings: React.FunctionComponent<LMNTS_AppData> = ({
       <GrainCover />
       <RouteDialog
         title="Articles"
-        baseRoute="/articles"
+        baseRoute="/launcher/articles"
         currentRoute={router.query.category ? router.query.category : ""}
         categoryDynamicRoute="[category]"
         categoriesAsTabs={QueryUtils.getSubCategoriesFromContent(

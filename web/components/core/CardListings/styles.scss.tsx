@@ -221,20 +221,20 @@ export const FilterBarStyle = styled.div`
 
             &:active,
             &.active {
-              background: ${Theme.Color.Primary};
-              color: ${Theme.Color.Dialog};
+              background: ${Theme.Color.Secondary};
+              color: ${Theme.Color.Background};
               box-shadow: inset calc(var(--btnShadowSize) * 1)
                 calc(var(--btnShadowSize) * 1) 0px var(--btnShadowSize)
-                ${Theme.Color.Dialog};
+                ${Theme.Color.Primary};
             }
 
             &.active {
               &:active {
-                background: ${Theme.Color.Dialog};
-                color: ${Theme.Color.Background};
+                background: ${Theme.Color.Primary};
+                color: ${Theme.Color.Dialog};
                 box-shadow: inset calc(var(--btnShadowSize) * 1)
                   calc(var(--btnShadowSize) * 1) 0px var(--btnShadowSize)
-                  ${Theme.Color.Primary};
+                  ${Theme.Color.Secondary};
               }
             }
 
@@ -277,13 +277,15 @@ export const FilterBarStyle = styled.div`
             &:active {
               background: ${Theme.Color.Secondary};
               color: ${Theme.Color.Background};
-              border: calc(var(--btnShadowSize) * 2) solid ${Theme.Color.Primary};
+              border: calc(var(--btnShadowSize) * 2) solid
+                ${Theme.Color.Primary};
             }
 
             &.active {
               background: ${Theme.Color.Background};
               color: ${Theme.Color.Secondary};
-              border: calc(var(--btnShadowSize) * 2) solid ${Theme.Color.Secondary};
+              border: calc(var(--btnShadowSize) * 2) solid
+                ${Theme.Color.Secondary};
             }
 
             &:first-child {

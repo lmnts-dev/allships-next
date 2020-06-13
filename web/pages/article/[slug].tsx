@@ -2,20 +2,19 @@
 import React from "react";
 
 // Components
-import { SiteHead } from "../../../components/core/SiteHead";
+import { SiteHead } from "../../components/core/SiteHead";
 
 // Sections
-import { PostBody } from "../../../components/core/PostBody";
+import { PostBody } from "../../components/core/PostBody";
 
 // Types
 import { GetStaticProps, GetStaticPaths } from "next";
-import { LMNTS_AppData, LMNTS_Sanity_Article } from "../../../constants/types";
+import { LMNTS_AppData, LMNTS_Sanity_Article } from "../../constants/types";
 
 // Utilities
-import { QueryUtils, Queries } from "../../../constants/Queries";
-import { CardListings } from "../../../components/core/CardListings";
-import { InnerGrid } from "../../../components/core/InnerGrid";
-import slugify from "../../../utils/slugify";
+import { QueryUtils, Queries } from "../../constants/Queries";
+import { CardListings } from "../../components/core/CardListings";
+import { InnerGrid } from "../../components/core/InnerGrid";
 
 // Component Typing
 // __________________________________________________________________________________________
@@ -56,7 +55,7 @@ const ArticlePostTemplate: React.FunctionComponent<LMNTS_Article_Post> = ({
       />
       <PostBody
         post={_document}
-        baseRoute="/articles"
+        baseRoute="/launcher/articles"
         categoryDynamicRoute="[category]"
       />
       <InnerGrid>
@@ -109,34 +108,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
     Queries.AllArticles()
   );
 
-  let allPathsIncludingCategories: {
-    params: { slug: string; category: string };
-  }[] = [];
-
-  allArticles.map((item: LMNTS_Sanity_Article) => {
-    // Check if item has categories
-    if (item.category) {
-      item.category.map((category: string) => {
-        let newPath = {
-          params: { slug: item.slug.current, category: slugify(category) },
-        };
-
-        // Push new category paths
-        allPathsIncludingCategories.unshift(newPath);
-      });
-    } else {
-      // If not, default to "all"
-      let newPath = {
-        params: { slug: item.slug.current, category: "all" },
-      };
-
-      // Push default category path
-      allPathsIncludingCategories.unshift(newPath);
-    }
-  });
+  let allArticlePaths = allArticles.map((item: LMNTS_Sanity_Article) => ({
+    params: {
+      slug: item.slug.current,
+    },
+  }));
 
   console.log("🤠 Loading static paths...");
-  return { paths: allPathsIncludingCategories, fallback: false };
+  return { paths: allArticlePaths, fallback: false };
 };
 
 /**

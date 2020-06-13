@@ -2,20 +2,19 @@
 import React from "react";
 
 // Components
-import { SiteHead } from "../../../components/core/SiteHead";
+import { SiteHead } from "../../components/core/SiteHead";
 
 // Sections
-import { PostBody } from "../../../components/core/PostBody";
+import { PostBody } from "../../components/core/PostBody";
 
 // Types
 import { GetStaticProps, GetStaticPaths } from "next";
-import { LMNTS_AppData, LMNTS_Sanity_Podcast } from "../../../constants/types";
+import { LMNTS_AppData, LMNTS_Sanity_Podcast } from "../../constants/types";
 
 // Utilities
-import { QueryUtils, Queries } from "../../../constants/Queries";
-import { CardListings } from "../../../components/core/CardListings";
-import { InnerGrid } from "../../../components/core/InnerGrid";
-import slugify from "../../../utils/slugify";
+import { QueryUtils, Queries } from "../../constants/Queries";
+import { CardListings } from "../../components/core/CardListings";
+import { InnerGrid } from "../../components/core/InnerGrid";
 
 // Component Typing
 // __________________________________________________________________________________________
@@ -56,7 +55,7 @@ const PostTemplate: React.FunctionComponent<LMNTS_Podcast_Post> = ({
       />
       <PostBody
         post={_document}
-        baseRoute="/podcasts"
+        baseRoute="/launcher/podcasts"
         categoryDynamicRoute="[category]"
       />
       <InnerGrid>
@@ -109,34 +108,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
     Queries.AllPodcasts()
   );
 
-  let allPathsIncludingCategories: {
-    params: { slug: string; category: string };
-  }[] = [];
-
-  allPodcasts.map((item: LMNTS_Sanity_Podcast) => {
-    // Check if item has categories
-    if (item.category) {
-      item.category.map((category: string) => {
-        let newPath = {
-          params: { slug: item.slug.current, category: slugify(category) },
-        };
-
-        // Push new category paths
-        allPathsIncludingCategories.unshift(newPath);
-      });
-    } else {
-      // If not, default to "all"
-      let newPath = {
-        params: { slug: item.slug.current, category: "all" },
-      };
-
-      // Push default category path
-      allPathsIncludingCategories.unshift(newPath);
-    }
-  });
+  let allPodcastPaths = allPodcasts.map((item: LMNTS_Sanity_Podcast) => ({
+    params: { slug: item.slug.current },
+  }));
 
   console.log("🤠 Loading static paths...");
-  return { paths: allPathsIncludingCategories, fallback: false };
+  return { paths: allPodcastPaths, fallback: false };
 };
 
 /**

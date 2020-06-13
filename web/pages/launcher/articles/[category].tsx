@@ -8,7 +8,7 @@ import { InnerGrid } from "../../../components/core/InnerGrid";
 import { AddEmbellishments } from "../../../components/core/AddEmbellishments";
 import { GrainCover } from "../../../components/lib/GrainCover";
 import { RouteDialog } from "../../../components/lib/RouteDialog";
-import { PodcastLoop } from "..";
+import { ArticleLoop } from ".";
 
 // Sections
 import { CardListings } from "../../../components/core/CardListings";
@@ -32,32 +32,32 @@ import { useRouter } from "next/router";
  * @description The website homepage.
  *
  */
-const PodcastCategoryTemplate: React.FunctionComponent<LMNTS_AppData> = ({
+const ArticleCategoryTemplate: React.FunctionComponent<LMNTS_AppData> = ({
   allContent,
   allFeaturedContent,
   allCategories,
-  allSanityPodcasts,
+  allSanityArticles,
 }) => {
   let router = useRouter();
 
   return (
     <InnerGrid startBelowNav={true}>
-      <SiteHead title="ALLSHIPS | Podcasts" />
+      <SiteHead title="ALLSHIPS | Articles" />
       <AddEmbellishments />
       <GrainCover />
       <RouteDialog
-        title="Podcasts"
-        baseRoute="/podcasts"
+        title="Articles"
+        baseRoute="/launcher/articles"
         currentRoute={router.query.category ? router.query.category : ""}
         categoryDynamicRoute="[category]"
         categoriesAsTabs={QueryUtils.getSubCategoriesFromContent(
-          QueryUtils.genericizeSanityListing(allSanityPodcasts)
+          QueryUtils.genericizeSanityListing(allSanityArticles)
         )}
       >
         <div className="article-listing-wrapper">
-          <PodcastLoop
+          <ArticleLoop
             filterBy={router.query.category ? router.query.category : ""}
-            allSanityPodcasts={allSanityPodcasts}
+            allSanityArticles={allSanityArticles}
           />
         </div>
       </RouteDialog>
@@ -73,7 +73,7 @@ const PodcastCategoryTemplate: React.FunctionComponent<LMNTS_AppData> = ({
   );
 };
 
-export default PodcastCategoryTemplate;
+export default ArticleCategoryTemplate;
 
 /**
  *
@@ -86,17 +86,17 @@ export default PodcastCategoryTemplate;
  *
  */
 export const getStaticPaths: GetStaticPaths = async () => {
-  let allPodcasts = await Sanity.fetch(Queries.AllPodcasts());
-  let allGenericPodcasts = QueryUtils.genericizeSanityListing(allPodcasts);
-  let allPodcastSubCategories = QueryUtils.getSubCategoriesFromContent(
-    allGenericPodcasts
+  let allArticles = await Sanity.fetch(Queries.AllArticles());
+  let allGenericArticles = QueryUtils.genericizeSanityListing(allArticles);
+  let allArticleSubCategories = QueryUtils.getSubCategoriesFromContent(
+    allGenericArticles
   );
 
-  let allPodcastCategoryPaths = allPodcastSubCategories.map((item: string) => ({
+  let allArticleCategoryPaths = allArticleSubCategories.map((item: string) => ({
     params: { category: slugify(item) },
   }));
 
-  return { paths: allPodcastCategoryPaths, fallback: false };
+  return { paths: allArticleCategoryPaths, fallback: false };
 };
 
 /**

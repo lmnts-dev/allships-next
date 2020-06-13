@@ -489,7 +489,7 @@ export class CardListings extends PureComponent<
         {!showFeaturedItems ? null : (
           <FeaturedItems
             featuredItems={featuredItems.filter((item: LMNTS_GenericListing) =>
-              item.author ? item.author.includes(currentAuthor) : item == true
+              item.author ? item.author.includes(currentAuthor) : item
             )}
             featuredItemIdx={this.state.featuredItemIdx}
           />
@@ -497,7 +497,7 @@ export class CardListings extends PureComponent<
         <div className="card-listings-list">
           {content
             .filter((item: LMNTS_GenericListing) =>
-              item.author ? item.author.includes(currentAuthor) : item == true
+              item.author ? item.author.includes(currentAuthor) : item
             )
             .map((item: LMNTS_GenericListing, idx: number) => {
               if (showFeaturedItems) {

@@ -137,6 +137,7 @@ export type LMNTS_GenericListing = {
   subCategories?: string[] | null;
   isFeatured?: boolean | null;
   isPublishedByUs?: boolean | null;
+  type: string;
   slug?: string | null;
   link?: string | null;
   tags?: string[] | null;

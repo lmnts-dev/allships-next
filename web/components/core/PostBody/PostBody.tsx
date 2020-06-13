@@ -75,8 +75,8 @@ export class PostBody extends PureComponent<PostBodyProps, PostBodyState> {
                       return (
                         <li key={idx}>
                           <Link
-                            as={`${baseRoute}/${slugify(categoryItem)}`}
-                            href={`${baseRoute}/${categoryDynamicRoute}`}
+                            as={`${baseRoute}/${slugify(categoryItem)}?isMaximized=yerr`}
+                            href={`${baseRoute}/${categoryDynamicRoute}?isMaximized=yerr`}
                           >
                             <a>{categoryItem}</a>
                           </Link>

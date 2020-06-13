@@ -25,6 +25,8 @@ import LazyImage from "../../../utils/lazyImage";
 
 // Types
 import { LMNTS_GenericListing } from "../../../constants/types";
+import slugify from "../../../utils/slugify";
+import Link from "next/link";
 
 // Begin Component
 // __________________________________________________________________________________________
@@ -94,11 +96,26 @@ export class ContentCard extends Component<ContentCardProps, any> {
     };
 
     if (!isLink) {
-      return (
-        <div className="content-card howdy">
-          <Content data={data} />
-        </div>
-      );
+      if (!data.isPublishedByUs) {
+        return (
+          <div className="content-card howdy">
+            <Content data={data} />
+          </div>
+        );
+      } else {
+        return (
+          <Link
+            href={`/${slugify(data.type)}/[slug]`}
+            as={`/${slugify(data.type)}/${slugify(
+              data.title ? data.title : "null"
+            )}`}
+          >
+            <a className="content-card __isLink __isLinkPublishedByUs">
+              <Content data={data} />
+            </a>
+          </Link>
+        );
+      }
     } else {
       if (data.link) {
         return (
