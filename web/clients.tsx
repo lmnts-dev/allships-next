@@ -41,7 +41,7 @@ export const Sanity = sanityClient(SanityOptions);
 // draft data from Sanity for preview mode.
 export const SanityPreview = sanityClient({
   ...SanityOptions,
-  token: process.env.SANITY_API_TOKEN,
+  token: "skskjGEok61svIEZK5vP85kGV5metCKC7wXSQrbINNsYQLOUyNs7zcEAXlQXZhY4MI8GFGuB8r0B9tQdvo0naEaRslYYHp6n7mh4Q1XLoFkeqSCFEY6xbex1ZDR1hpYGRIae8ZsmBEl3ijW8fUwAkdcrQUryZ0urworJEhsHmdO2RGjEytZv",
 });
 
 // __________________________________________________________________________________________
