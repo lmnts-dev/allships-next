@@ -20,3 +20,4 @@ export default function resolveProductionUrl(document) {
     document.slug.current
   }`;
 }
+
