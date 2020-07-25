@@ -26,6 +26,7 @@ import { parseDateTime } from "../../../utils/parseDateTime";
 // Begin Component
 // __________________________________________________________________________________________
 
+
 type PostBodyProps = {
   post: LMNTS_Sanity_AvailableListings;
   baseRoute: string;
