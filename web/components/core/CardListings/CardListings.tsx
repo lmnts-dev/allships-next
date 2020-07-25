@@ -80,6 +80,8 @@ export class CardListings extends PureComponent<
   componentDidMount() {
     let { content, availableCategories, featuredContent } = this.props;
 
+    console.log(content);
+
     if (content) {
       this.setState({
         content: content,
@@ -452,6 +454,7 @@ export class CardListings extends PureComponent<
             <ContentCard
               data={featuredItems[featuredItemIdx]}
               isLink={featuredItems[featuredItemIdx].link ? true : false}
+              isSanityContent={featuredItems[featuredItemIdx].isSanityContent}
               isFeatured
             />
           ) : null}
@@ -507,6 +510,7 @@ export class CardListings extends PureComponent<
                       <ContentCard
                         data={item}
                         isLink={item.link ? true : false}
+                        isSanityContent={item.isSanityContent}
                         key={idx}
                       />
                     );
@@ -526,6 +530,7 @@ export class CardListings extends PureComponent<
                     <ContentCard
                       data={item}
                       isLink={item.link ? true : false}
+                      isSanityContent={item.isSanityContent}
                       key={idx}
                     />
                   );

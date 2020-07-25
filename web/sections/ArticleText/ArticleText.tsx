@@ -31,7 +31,7 @@ export const ArticleText: React.FunctionComponent<LMNTS_Section_ArticleText> = (
   schema,
 }) => {
   return (
-    <ArticleTextStyle className={`section section-centered-text`}>
+    <ArticleTextStyle className={`section section-article-text`}>
       <BlockContent
         blocks={schema.text_content}
         projectId={SanityOptions.projectId}

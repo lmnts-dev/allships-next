@@ -68,6 +68,7 @@ export type LMNTS_ContentCardFields = {
   Featured?: boolean;
   Published?: boolean;
   "Date Added": string;
+  isSanityContent?: boolean;
 };
 
 /**
@@ -137,6 +138,7 @@ export type LMNTS_GenericListing = {
   subCategories?: string[] | null;
   isFeatured?: boolean | null;
   isPublishedByUs?: boolean | null;
+  isSanityContent?: boolean | null;
   type: string;
   slug?: string | null;
   link?: string | null;

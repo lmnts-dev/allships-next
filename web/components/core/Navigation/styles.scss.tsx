@@ -16,7 +16,7 @@ import { Blink } from "../../../constants/styles/Animation";
 
 type Props = {
   shouldFocus?: boolean;
-}
+};
 
 let gridIconScale = 0.8;
 let navPadding = Root.DialogPaddingSize;
@@ -56,16 +56,22 @@ export const NavigationStyle = styled.nav<Props>`
       align-items: center;
 
       /* Launcher Button */
-      &.launcher-btn {
+      &.launcher-btn,
+      &.home-btn {
         display: flex;
 
         .launcher-btn-wrapper {
           display: flex;
+          height: ${Root.Nav.Size};
           align-items: center;
           padding: 0;
           cursor: pointer;
           color: ${Theme.Color.Secondary};
           border-right: ${Root.BorderSize} solid ${Theme.Color.Primary};
+
+          &:hover {
+            text-decoration: none;
+          }
 
           .icon {
             position: relative;
@@ -113,7 +119,11 @@ export const NavigationStyle = styled.nav<Props>`
           }
 
           .label {
-            padding: 0 ${navPadding} 0 0;
+            padding: 0 ${navPadding};
+
+            /* .__hidden {
+              opacity: 0;
+            } */
 
             @media (max-width: ${Theme.Base.Media.Width.Sm}) {
               padding-left: ${navPadding};

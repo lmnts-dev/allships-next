@@ -21,6 +21,7 @@ import { SectionLoop } from "../SectionLoop";
 
 // Utils
 import slugify from "../../../utils/slugify";
+import { parseDateTime } from "../../../utils/parseDateTime";
 
 // Begin Component
 // __________________________________________________________________________________________
@@ -49,7 +50,8 @@ export class PostBody extends PureComponent<PostBodyProps, PostBodyState> {
   componentDidMount() {}
 
   render() {
-    let { baseRoute, post, categoryDynamicRoute } = this.props;
+    // let { baseRoute, post, categoryDynamicRoute } = this.props;
+    let { post } = this.props;
     let { title, category, content, excerpt } = post;
 
     // Variable Overrides
@@ -69,21 +71,13 @@ export class PostBody extends PureComponent<PostBodyProps, PostBodyState> {
         <article>
           <InnerGrid>
             <section className="post-intro-section">
-              <ul className="category-list __post-intro-categories">
+              <ul>
                 {category
                   ? category.map((categoryItem: string, idx: number) => {
-                      return (
-                        <li key={idx}>
-                          <Link
-                            as={`${baseRoute}/${slugify(categoryItem)}?isMaximized=yerr`}
-                            href={`${baseRoute}/${categoryDynamicRoute}?isMaximized=yerr`}
-                          >
-                            <a>{categoryItem}</a>
-                          </Link>
-                        </li>
-                      );
+                      return <li key={idx}>{categoryItem}</li>;
                     })
                   : null}
+                <li>{parseDateTime(post._updatedAt)}</li>
               </ul>
               <h1>{title}</h1>
               <p>{excerpt}</p>

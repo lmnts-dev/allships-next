@@ -50,7 +50,7 @@ export class Queries {
 
   static AllArticles = () => {
     return groq`*[_type == "article"]{
-      ..., 
+      ...,
       "author": author->,
       "featured_image": featured_image.asset->,
       "thumbnail_image": thumbnail_image.asset->
@@ -59,17 +59,17 @@ export class Queries {
 
   static CurrentArticle = () => {
     return groq`*[_type == "article" && slug.current == $slug][0]{
-      ..., 
+      ...,
       "author": author->,
       "featured_image": featured_image.asset->,
       "thumbnail_image": thumbnail_image.asset->,
-      "content": content[]{ 
-          ..., 
+      "content": content[]{
+          ...,
           "image": image.asset->,
-          "images": images[].asset->, 
-          "items": items[]{ 
-            ..., "image" : image.asset-> 
-          } 
+          "images": images[].asset->,
+          "items": items[]{
+            ..., "image" : image.asset->
+          }
        }
     }`;
   };
@@ -82,7 +82,7 @@ export class Queries {
 
   static AllEvents = () => {
     return groq`*[_type == "event"]{
-      ..., 
+      ...,
       "author": author->,
       "featured_image": featured_image.asset->,
       "thumbnail_image": thumbnail_image.asset->
@@ -91,17 +91,17 @@ export class Queries {
 
   static CurrentEvent = () => {
     return groq`*[_type == "event" && slug.current == $slug][0]{
-      ..., 
+      ...,
       "author": author->,
       "featured_image": featured_image.asset->,
       "thumbnail_image": thumbnail_image.asset->
-      "content": content[]{ 
-          ..., 
+      "content": content[]{
+          ...,
           "image": image.asset->,
-          "images": images[].asset->, 
-          "items": items[]{ 
-            ..., "image" : image.asset-> 
-          } 
+          "images": images[].asset->,
+          "items": items[]{
+            ..., "image" : image.asset->
+          }
        }
     }`;
   };
@@ -114,7 +114,7 @@ export class Queries {
 
   static AllPodcasts = () => {
     return groq`*[_type == "podcast"]{
-      ..., 
+      ...,
       "author": author->,
       "featured_image": featured_image.asset->,
       "thumbnail_image": thumbnail_image.asset->
@@ -123,17 +123,17 @@ export class Queries {
 
   static CurrentPodcast = () => {
     return groq`*[_type == "podcast" && slug.current == $slug][0]{
-      ..., 
+      ...,
       "author": author->,
       "featured_image": featured_image.asset->,
       "thumbnail_image": thumbnail_image.asset->,
-      "content": content[]{ 
-          ..., 
+      "content": content[]{
+          ...,
           "image": image.asset->,
-          "images": images[].asset->, 
-          "items": items[]{ 
-            ..., "image" : image.asset-> 
-          } 
+          "images": images[].asset->,
+          "items": items[]{
+            ..., "image" : image.asset->
+          }
        }
     }`;
   };
@@ -321,12 +321,15 @@ export class QueryUtils {
           title: item.title ? item.title : null,
           published: true,
           publishedAt: item._createdAt,
+          isSanityContent: true,
         };
 
         // Add our newly generic listing to our original array. Repeat.
         genericListing = genericListing.concat(genericItem);
       });
     }
+
+    console.log("Sanity genericListing:", genericListing);
 
     // Return our nicely generic listings.
     return genericListing;
@@ -436,6 +439,7 @@ export class QueryUtils {
           title: item.fields["Name"] ? item.fields["Name"] : null,
           published: item.fields["Published"] ? item.fields["Published"] : true,
           publishedAt: item.fields["Date Added"],
+          isSanityContent: false,
         };
 
         // Add our newly generic listing to our original array. Repeat.

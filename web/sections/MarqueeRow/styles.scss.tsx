@@ -1,5 +1,13 @@
+/**
+ *
+ * MarqueeRow.js/styles.scss.tsx
+ * @author Peter Laxalt
+ * @description The website MarqueeRow Styles.
+ *
+ */
+
 // Imports
-// __________________________________________________________________________________________
+//////////////////////////////////////////////////////////////////////
 
 // Core
 import styled from "styled-components";
@@ -11,13 +19,8 @@ import { Theme } from "../../constants/Theme";
 // Helpers
 
 // Begin Styles
-// __________________________________________________________________________________________
+//////////////////////////////////////////////////////////////////////
 
-/**
- * 
- * @name MarqueeRowStyle
- * 
- */
 export const MarqueeRowStyle = styled.section`
   max-width: 100%;
   display: flex;
@@ -46,6 +49,7 @@ export const MarqueeRowStyle = styled.section`
       position: relative;
       padding: ${Root.Size} 0;
       animation: marquee 30s linear infinite;
+      max-width: unset !important;
 
       li {
         width: auto;
@@ -105,7 +109,6 @@ export const MarqueeRowStyle = styled.section`
 
   @media (max-width: ${Theme.Base.Media.Width.Md}) {
     .section-marquee-container {
-
       ul {
         font-size: 14vw;
         padding: calc(${Root.Size}) 0;

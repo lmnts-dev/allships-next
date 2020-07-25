@@ -42,7 +42,21 @@ export const PostBodyStyle = styled.div`
   h3,
   h4,
   h5,
-  h6,
+  h6 {
+    font-family: ${Theme.Font.Header};
+    text-transform: uppercase;
+    line-height: 0.8;
+  }
+
+  a {
+    color: ${Theme.Color.Secondary};
+
+    &:hover {
+      text-decoration: none;
+      background: ${Theme.Color.Primary};
+    }
+  }
+
   p,
   ul {
     font-family: var(--articleFont);
@@ -59,9 +73,24 @@ export const PostBodyStyle = styled.div`
 
   /* Core Elements */
   .post-intro-section {
+    h1 {
+      font-family: ${Theme.Font.Header};
+      text-align: center;
+    }
+
     ul {
       list-style-type: none;
       display: flex;
+      justify-content: center;
+      padding-bottom: ${Root.Size};
+      font-family: ${Theme.Font.Header};
+      text-transform: uppercase;
+      font-size: 1.4rem;
+      color: ${Theme.Color.White};
+
+      li {
+        margin: 0 calc(${Root.Size} / 4);
+      }
     }
   }
 

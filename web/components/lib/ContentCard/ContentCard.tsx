@@ -33,6 +33,7 @@ import Link from "next/link";
 
 type ContentCardProps = {
   isLink?: boolean;
+  isSanityContent?: boolean | null;
   data: LMNTS_GenericListing;
   isFeatured?: boolean;
 };
@@ -98,23 +99,36 @@ export class ContentCard extends Component<ContentCardProps, any> {
     if (!isLink) {
       if (!data.isPublishedByUs) {
         return (
-          <div className="content-card howdy">
+          <div className="content-card __isNotLink __isNotPublishedByUs">
             <Content data={data} />
           </div>
         );
       } else {
-        return (
-          <Link
-            href={`/${slugify(data.type)}/[slug]`}
-            as={`/${slugify(data.type)}/${slugify(
-              data.title ? data.title : "null"
-            )}`}
-          >
-            <a className="content-card __isLink __isLinkPublishedByUs">
-              <Content data={data} />
-            </a>
-          </Link>
-        );
+        if (!data.isSanityContent) {
+          return (
+            <Link
+              href={`/${slugify(data.type)}/[slug]`}
+              as={`/${slugify(data.type)}/${slugify(
+                data.title ? data.title : "null"
+              )}`}
+            >
+              <a className="content-card __isLink __isLinkPublishedByUs __isNotSanityContent">
+                <Content data={data} />
+              </a>
+            </Link>
+          );
+        } else {
+          return (
+            <Link
+              href={`/${slugify(data.type)}/[slug]`}
+              as={`/${slugify(data.type)}/${data.slug}`}
+            >
+              <a className="content-card __isLink __isLinkPublishedByUs __isSanityContent">
+                <Content data={data} />
+              </a>
+            </Link>
+          );
+        }
       }
     } else {
       if (data.link) {

@@ -3,6 +3,8 @@ import React, { ChangeEvent, FormEvent, MouseEvent } from "react";
 
 // Styles
 import { NavigationStyle } from "./styles.scss";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 // Begin Component
 // __________________________________________________________________________________________
@@ -34,29 +36,34 @@ export const Navigation: React.FunctionComponent<Props> = ({
   appState,
   handleTextChange,
   handleAddItem,
-  handleCommand,
+  // handleCommand,
 }) => {
   // console.log(appState);
+
+  let router = useRouter();
+
+  console.log(router);
 
   return (
     <>
       <NavigationStyle shouldFocus={shouldFocus}>
         <div className="nav-inner">
           {/* Column: Launcher Button */}
-          <div className="col launcher-btn">
-            <span className="launcher-btn-wrapper">
-              <span className="icon">
-                <figure />
-                <figure />
-                <figure />
-              </span>
-              <span
-                className="label"
-                onClick={() => handleCommand("launch launcher")}
-              >
-                Open Launcher
-              </span>
-            </span>
+          <div className="col home-btn">
+            <Link href="/">
+              <a className="launcher-btn-wrapper">
+                <span className="label">
+                  <span
+                    className={`${
+                      router.pathname == "/" ? `__hidden` : `__visible`
+                    }`}
+                  >
+                    {router.pathname == "/" ? "* " : "< "}
+                  </span>
+                  ALLSHIPS
+                </span>
+              </a>
+            </Link>
           </div>
 
           {/* Column: Launcher Input */}
@@ -67,10 +74,7 @@ export const Navigation: React.FunctionComponent<Props> = ({
               ) : (
                 <>
                   <span className="label">ASR-MOTHERSHIP:~</span>
-                  <form
-                    className="launcher-input-el"
-                    onSubmit={handleAddItem}
-                  >
+                  <form className="launcher-input-el" onSubmit={handleAddItem}>
                     <input
                       type="text"
                       placeholder="ENTER COMMAND"
@@ -78,10 +82,7 @@ export const Navigation: React.FunctionComponent<Props> = ({
                       value={appState.text}
                     />
                     <span className="fake-cursor" />
-                    <button
-                      style={{ display: "none" }}
-                      onClick={handleAddItem}
-                    >
+                    <button style={{ display: "none" }} onClick={handleAddItem}>
                       Add
                     </button>
                   </form>
@@ -99,9 +100,7 @@ export const Navigation: React.FunctionComponent<Props> = ({
 
           {/* Column: Time */}
           <div className="col launcher-time">
-            <span className="launcher-time-wrapper">
-              <span className="label">13:23:12:2414</span>
-            </span>
+            <span className="launcher-time-wrapper">OUR MISSION {">"}</span>
           </div>
         </div>
       </NavigationStyle>
