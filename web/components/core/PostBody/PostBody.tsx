@@ -15,12 +15,12 @@ import { LMNTS_Sanity_AvailableListings } from "../../../constants/types";
 import { Theme } from "../../../constants/Theme";
 
 // Components
-import Link from "next/link";
+// import Link from "next/link";
 import { InnerGrid } from "../InnerGrid";
 import { SectionLoop } from "../SectionLoop";
 
 // Utils
-import slugify from "../../../utils/slugify";
+// import slugify from "../../../utils/slugify";
 import { parseDateTime } from "../../../utils/parseDateTime";
 
 // Begin Component
