@@ -132,7 +132,9 @@ const DeployVercel = () => {
       {/* Production column */}
       <div className={styles.column}>
         <header className={styles.header}>
-          <h2 className={styles.title}>Deploy Latest Published Content to Production</h2>
+          <h2 className={styles.title}>
+            Deploy Latest Published Content to Production
+          </h2>
         </header>
         <div className={styles.content}>
           <h4>Trigger a Production build with the freshest published data.</h4>
@@ -167,7 +169,10 @@ const DeployVercel = () => {
           <div className={styles.content}>
             <ul className={styles.deploymentList}>
               {deployments.map((deployment, idx) => {
-                if (deployment.target == "production") {
+                if (
+                  deployment.target == "production" &&
+                  deployment.name == siteSettings.vercelProjectId
+                ) {
                   return (
                     <li key={idx}>
                       <span className={styles.deploymentLabel}>
@@ -197,7 +202,9 @@ const DeployVercel = () => {
       {/* Staging column */}
       <div className={styles.column}>
         <header className={styles.header} onClick={showState}>
-          <h2 className={styles.title}>Deploy Latest Published Content to Staging</h2>
+          <h2 className={styles.title}>
+            Deploy Latest Published Content to Staging
+          </h2>
         </header>
         <div className={styles.content}>
           <h4>Trigger a Staging build with the freshest published data.</h4>
@@ -229,8 +236,10 @@ const DeployVercel = () => {
           <div className={styles.content}>
             <ul className={styles.deploymentList}>
               {deployments.map((deployment, idx) => {
-
-                if (deployment.target !== "production") {
+                if (
+                  deployment.target !== "production" &&
+                  deployment.name == siteSettings.vercelProjectId
+                ) {
                   return (
                     <li key={idx}>
                       <span className={styles.deploymentLabel}>

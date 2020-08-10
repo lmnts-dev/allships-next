@@ -316,7 +316,8 @@ export const FilterBarStyle = styled.div`
       background-color: ${Theme.Color.Dialog} !important;
 
       &.active {
-        background-color: ${Theme.Color.Background} !important;
+        background-color: ${Theme.Color.Secondary} !important;
+        color: ${Theme.Color.Dialog} !important;
 
         &:active {
           color: ${Theme.Color.Primary} !important;
@@ -335,13 +336,13 @@ export const FilterBarStyle = styled.div`
       &.__categories-headline {
         border-top: ${Root.BorderSize} solid ${Theme.Color.Primary};
         background: ${Theme.Color.Dialog} !important;
-        color: ${Theme.Color.Background};
+        color: ${Theme.Color.Secondary};
         display: flex;
         justify-content: space-between;
         padding: 0 0 0 calc(${Root.DialogPaddingSize} * 2) !important;
 
         &:active {
-          color: ${Theme.Color.Background} !important;
+          color: ${Theme.Color.Secondary} !important;
         }
 
         span {
@@ -355,7 +356,7 @@ export const FilterBarStyle = styled.div`
             border-left: ${Root.BorderSize} solid ${Theme.Color.Primary};
 
             &:hover {
-              background: ${Theme.Color.Background};
+              background: ${Theme.Color.Secondary};
               color: ${Theme.Color.Dialog};
             }
           }

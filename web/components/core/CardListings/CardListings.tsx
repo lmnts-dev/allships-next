@@ -80,7 +80,6 @@ export class CardListings extends PureComponent<
   componentDidMount() {
     let { content, availableCategories, featuredContent } = this.props;
 
-
     if (content) {
       this.setState({
         content: content,
@@ -473,6 +472,8 @@ export class CardListings extends PureComponent<
       this.state.currentCategory.charAt(0).toUpperCase() +
       this.state.currentCategory.slice(1);
 
+    console.log(content);
+
     return (
       <CardListingsStyle className="section-card-listings">
         <SiteHead
@@ -503,24 +504,17 @@ export class CardListings extends PureComponent<
             )
             .map((item: LMNTS_GenericListing, idx: number) => {
               if (showFeaturedItems) {
-                if (idx !== 0) {
-                  if (item.title && item.thumbnail_image) {
-                    return (
-                      <ContentCard
-                        data={item}
-                        isLink={item.link ? true : false}
-                        isSanityContent={item.isSanityContent}
-                        key={idx}
-                      />
-                    );
-                  } else {
-                    console.log(
-                      "🛑 Record missing required information:",
-                      item
-                    );
-                    return null;
-                  }
+                if (item.title && item.thumbnail_image) {
+                  return (
+                    <ContentCard
+                      data={item}
+                      isLink={item.link ? true : false}
+                      isSanityContent={item.isSanityContent}
+                      key={idx}
+                    />
+                  );
                 } else {
+                  console.log("🛑 Record missing required information:", item);
                   return null;
                 }
               } else {
