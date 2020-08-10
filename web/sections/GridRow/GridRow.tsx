@@ -39,40 +39,46 @@ export const GridRow: React.FunctionComponent<LMNTS_Section_GridRow> = ({
         {items.map((item: any, idx: number) => {
           let { width, orientation, image, meta } = item;
 
-          return (
-            <div
-              className={`io section-grid-col section-grid-item section-grid-item-${width}w section-grid-item-orientation-${orientation}`}
-              key={idx}
-            >
+          if (image) {
+            return (
               <div
-                className={`section-grid-img-wrapper ${
-                  image.metadata
-                    ? image.metadata.hasAlpha
-                      ? "__hide-placeholder-bg"
-                      : false
-                    : false
-                }`}
-                data-aspect-ratio={`${
-                  image.metadata ? image.metadata.dimensions.aspectRatio : -1
-                }`}
-                style={
-                  image.metadata.dimensions
-                    ? {
-                        paddingBottom: calcAspectRatio(
-                          image.metadata.dimensions
-                        ),
-                      }
-                    : {}
-                }
+                className={`io section-grid-col section-grid-item section-grid-item-${width}w section-grid-item-orientation-${orientation}`}
+                key={idx}
               >
-                <LazyImage
-                  src={`${urlFor(image).width(2000).auto("format").url()}`}
-                  alt={meta}
-                  title={meta}
-                />
+                <div
+                  className={`section-grid-img-wrapper ${
+                    image && image.metadata
+                      ? image.metadata.hasAlpha
+                        ? "__hide-placeholder-bg"
+                        : false
+                      : false
+                  }`}
+                  data-aspect-ratio={`${
+                    image && image.metadata
+                      ? image.metadata.dimensions.aspectRatio
+                      : -1
+                  }`}
+                  style={
+                    image && image.metadata.dimensions
+                      ? {
+                          paddingBottom: calcAspectRatio(
+                            image.metadata.dimensions
+                          ),
+                        }
+                      : {}
+                  }
+                >
+                  <LazyImage
+                    src={`${urlFor(image).width(2000).auto("format").url()}`}
+                    alt={meta}
+                    title={meta}
+                  />
+                </div>
               </div>
-            </div>
-          );
+            );
+          } else {
+            return null;
+          }
         })}
       </GridRowStyle>
     );
