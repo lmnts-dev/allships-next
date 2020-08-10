@@ -80,7 +80,6 @@ export class CardListings extends PureComponent<
   componentDidMount() {
     let { content, availableCategories, featuredContent } = this.props;
 
-    console.log(content);
 
     if (content) {
       this.setState({

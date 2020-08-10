@@ -5,6 +5,7 @@ import React, { ChangeEvent, FormEvent, MouseEvent } from "react";
 import { NavigationStyle } from "./styles.scss";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { Icon } from "../../lib/Icon";
 
 // Begin Component
 // __________________________________________________________________________________________
@@ -60,7 +61,7 @@ export const Navigation: React.FunctionComponent<Props> = ({
                   >
                     {router.pathname == "/" ? "* " : "< "}
                   </span>
-                  ALLSHIPS
+                  <Icon name="logotype" />
                 </span>
               </a>
             </Link>
@@ -94,7 +95,7 @@ export const Navigation: React.FunctionComponent<Props> = ({
           {/* Column: Launcher Status */}
           <div className="col launcher-status">
             <span className="launcher-status-wrapper">
-              <span className="label">{">"} SYSTEM STATUS v1.02x OK</span>
+              <span className="label">SYSTEM STATUS v1.02x OK</span>
             </span>
           </div>
 

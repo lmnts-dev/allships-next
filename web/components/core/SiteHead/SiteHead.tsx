@@ -14,7 +14,7 @@ import Head from "next/head";
 
 let siteTitle = "ALLSHIPS";
 let baseUrl = "https://allships.co";
-let description = "A Creative Community.";
+let description = "A Creative Community";
 let keywords = "podcasts, creative, resources, interview, creativity";
 
 export const SiteHead = ({ title = siteTitle + " | " + description }) => {
@@ -36,7 +36,7 @@ export const SiteHead = ({ title = siteTitle + " | " + description }) => {
       {/* Opengraph */}
       <meta property="og:type" content="website" />
       <meta property="og:url" content={baseUrl} />
-      <meta property="og:title" content={siteTitle} />
+      <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={`${baseUrl}/og.gif`} />
       <meta property="og:image:width" content="596" />
@@ -50,7 +50,7 @@ export const SiteHead = ({ title = siteTitle + " | " + description }) => {
       <meta
         name="twitter:title"
         // @ts-ignore
-        value=""
+        value={`${title}`}
       />
       <meta
         name="twitter:description"

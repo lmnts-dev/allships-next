@@ -100,13 +100,10 @@ export const Footer: React.FunctionComponent<FooterProps> = ({
             </div>
             <ul>
               <li onClick={() => handleCommand("launch launcher")}>
-                {">"} Launcher
-              </li>
-              <li onClick={() => handleCommand("launch launcher")}>
-                {">"} Help
+                {">"} Console
               </li>
               <li>
-                <a href="mailto: dave@davekrugman.com ">{">"} Contact</a>
+                <a href="mailto: dave@allships.co">{">"} Contact</a>
               </li>
             </ul>
           </div>
@@ -117,6 +114,7 @@ export const Footer: React.FunctionComponent<FooterProps> = ({
             </div>
           </div>
 
+          {/* _______________________________________________ */}
           {/* Right Column */}
           <div className="footer-col __footer-right-col">
             {/* Right Column __TOP */}
@@ -132,6 +130,7 @@ export const Footer: React.FunctionComponent<FooterProps> = ({
               </div>
             </div>
 
+            {/* _______________________________________________ */}
             {/* Right Column __Bottom */}
             <div className="footer-social-media-and-copyright">
               <ul className="footer-social-media">

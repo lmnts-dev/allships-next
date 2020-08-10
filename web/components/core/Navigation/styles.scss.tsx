@@ -55,6 +55,27 @@ export const NavigationStyle = styled.nav<Props>`
       display: flex;
       align-items: center;
 
+      &.home-btn {
+        .launcher-btn-wrapper {
+          .ico-logotype {
+            svg {
+              fill: ${Theme.Color.Secondary};
+              width: 100px;
+              max-width: 100%;
+              height: auto;
+            }
+          }
+
+          &:hover {
+            .ico-logotype {
+              svg {
+                fill: ${Theme.Color.Dialog};
+              }
+            }
+          }
+        }
+      }
+
       /* Launcher Button */
       &.launcher-btn,
       &.home-btn {

@@ -422,7 +422,7 @@ const Reset = createGlobalStyle`
     -webkit-text-size-adjust: 100%; /* 2 */
     margin: 0;
     padding: 0;
-    height: 100%;
+    /* height: 100%; */
     overflow: auto;
     /* overflow: hidden; */
   }

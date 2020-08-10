@@ -9,7 +9,6 @@ import React, {
   PureComponent,
 } from "react";
 import LauncherDialogStyle from "./styles.scss";
-import Link from "next/link";
 
 // Begin Component
 // __________________________________________________________________________________________
@@ -96,15 +95,15 @@ export class LauncherDialog extends PureComponent<
             <div className="launcher-dialog-sidebar">
               <ul className="launcher-commands">
                 {/* <li className="active" onClick={() => handleCommand("launch launcher")}>> Launcher</li> */}
-                <li onClick={() => handleCommand("launch frontpage")}>
+                {/* <li onClick={() => handleCommand("launch frontpage")}>
                   {">"} Frontpage
-                </li>
-                <Link href="/launcher/podcasts">
+                </li> */}
+                {/* <Link href="/launcher/podcasts">
                   <li>{">"} Podcasts</li>
                 </Link>
                 <Link href="/launcher/articles">
                   <li>{">"} Articles</li>
-                </Link>
+                </Link> */}
                 <li onClick={() => handleCommand("launch agency")}>
                   {">"} About Us
                 </li>

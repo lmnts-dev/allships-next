@@ -1,0 +1,155 @@
+@import "part:@sanity/base/theme/variables-style";
+
+.container {
+  composes: container from "part:@sanity/dashboard/widget-styles";
+  display: flex;
+  flex-direction: row;
+  background: none;
+}
+
+.column {
+  flex: 1;
+  background: white;
+  margin-right: 1rem;
+
+  &:last-child {
+    margin-right: 0rem;
+  }
+}
+
+.header {
+  composes: header from "part:@sanity/dashboard/widget-styles";
+}
+
+.title {
+  composes: title from "part:@sanity/dashboard/widget-styles";
+}
+
+.content {
+  composes: content from "part:@sanity/dashboard/widget-styles";
+  border-top: 1px solid var(--hairline-color);
+  padding: var(--small-padding) 0;
+  min-height: unset;
+  background: none;
+}
+
+.lmntsButton {
+  appearance: none;
+  border: 0;
+  outline: 0;
+  margin: 0;
+  line-height: 0;
+
+  font-size: 1rem;
+  border-radius: 4px;
+  background: var(--brand-primary);
+  color: #fff;
+  cursor: pointer;
+  margin-left: 1rem;
+  margin-bottom: 0.5rem;
+  min-width: 200px;
+  height: 50px;
+  box-shadow: 0px 0px 0px 4px rgba(0, 0, 0, 0);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+
+  &:hover {
+    box-shadow: 0px 0px 0px 4px rgba(0, 0, 0, 0.04);
+  }
+
+  &:disabled {
+    color: black;
+    background: rgba(0, 0, 0, 0.04);
+    cursor: default;
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+}
+
+.lmntsAltButton {
+  background: #fff;
+  border: 1px solid var(--hairline-color);
+  font-weight: bold;
+  color: var(--brand-primary);
+}
+
+.content p {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 2rem;
+  margin-bottom: 1rem;
+  opacity: 0.6;
+}
+
+.content h4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ___________________________________ */
+/* Deployments */
+
+.deploymentList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+}
+
+.deploymentList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  opacity: .65;
+
+  &:first-child {
+    opacity: 1;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.deploymentLabel span {
+  opacity: 0.65;
+}
+
+.deploymentStatus {
+  background: rgba(0, 0, 0, 0.04);
+  padding: 5px;
+  border-radius: 5px;
+
+  &[data-status="ready"] {
+    background: var(--state-success-color);
+    color: white;
+  }
+
+  &[data-status="queued"] {
+    background: var(--state-warning-color);
+    color: white;
+  }
+
+  &[data-status="building"] {
+    background: var(--state-info-color);
+    color: white;
+  }
+
+  &[data-status="error"] {
+    background: var(--state-danger-color);
+    color: white;
+  }
+}
