@@ -36,6 +36,7 @@ type ContentCardProps = {
   isSanityContent?: boolean | null;
   data: LMNTS_GenericListing;
   isFeatured?: boolean;
+  isExternal?: boolean;
 };
 
 export class ContentCard extends Component<ContentCardProps, any> {
@@ -56,7 +57,10 @@ export class ContentCard extends Component<ContentCardProps, any> {
   render() {
     let { isLink, data, isFeatured } = this.props;
 
-    const Content: React.FunctionComponent<ContentCardProps> = ({ data }) => {
+    const Content: React.FunctionComponent<ContentCardProps> = ({
+      data,
+      isExternal,
+    }) => {
       let { thumbnail_image, title, categories, author } = data;
 
       let isPublishedByUs = author ? author !== "By Others" : false;
@@ -80,10 +84,19 @@ export class ContentCard extends Component<ContentCardProps, any> {
 
               {categories ? (
                 <>
-                  {isFeatured ? <li>Featured</li> : null}
+                  {isFeatured ? (
+                    <li className="__category-pill">Featured</li>
+                  ) : null}
+                  {isExternal ? (
+                    <li className="__category-pill">External</li>
+                  ) : null}
                   {categories.length > 0
                     ? categories.map((category: string, idx: number) => {
-                        return <li key={idx}>{category}</li>;
+                        return (
+                          <li className="__category-pill" key={idx}>
+                            {category}
+                          </li>
+                        );
                       })
                     : null}
                 </>
@@ -135,11 +148,11 @@ export class ContentCard extends Component<ContentCardProps, any> {
         return (
           <a
             href={data.link}
-            className="content-card __isLink hello"
+            className="content-card __isLink __isExternalLink"
             target="_blank"
             rel="nofollow noreferrer"
           >
-            <Content data={data} />
+            <Content data={data} isExternal />
           </a>
         );
       } else {

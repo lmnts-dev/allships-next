@@ -9,6 +9,7 @@ import styled from "styled-components";
 // Constants
 import { Theme } from "../../../constants/Theme";
 import { Root } from "../../../constants/Root";
+import { Base } from "../../../constants/styles/Base";
 
 // Begin Styles
 // __________________________________________________________________________________________
@@ -36,11 +37,15 @@ export const CardListingsStyle = styled.div`
     .content-card {
       width: 25%;
 
-      @media (max-width: ${Theme.Base.Media.Width.Md}) {
+      @media (max-width: ${`${Base.Media.Width.Md * 1.5}px`}) {
+        width: 33.333333%;
+      }
+
+      @media (max-width: ${`${Base.Media.Width.Md * 1.25}px`}) {
         width: 50%;
       }
 
-      @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+      @media (max-width: ${`${Base.Media.Width.Sm * 1.25}px`}) {
         width: 100%;
       }
     }
@@ -192,6 +197,8 @@ export const FilterBarStyle = styled.div`
       /** Left Column */
       &:first-child {
         flex: 1;
+        overflow-x: auto;
+        margin-right: calc(${Root.Size} / 2);
 
         @media (max-width: ${Theme.Base.Media.Width.Md}) {
           flex-shrink: 0;
@@ -252,6 +259,7 @@ export const FilterBarStyle = styled.div`
       /** Right Column */
       &:last-child {
         flex: unset;
+        flex-shrink: 0;
 
         @media (max-width: ${Theme.Base.Media.Width.Md}) {
           flex-shrink: 0;

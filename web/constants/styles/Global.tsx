@@ -362,6 +362,10 @@ const GlobalClasses = createGlobalStyle`
             background: ${Theme.Color.Dialog};
             color: ${Theme.Color.Secondary};
           }
+
+          &.__category-pill {
+            color: ${Theme.Color.Primary};
+          }
         }
       }
 

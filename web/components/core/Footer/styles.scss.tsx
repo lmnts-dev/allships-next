@@ -141,6 +141,22 @@ export const FooterStyle = styled.footer`
             -ms-user-select: none;
             user-select: none;
 
+            color: ${Theme.Color.Primary};
+
+            &:hover {
+              text-decoration: none;
+              color: ${Theme.Color.Secondary};
+            }
+
+            a {
+              color: ${Theme.Color.Primary};
+
+              &:hover {
+                text-decoration: none;
+                color: ${Theme.Color.Secondary};
+              }
+            }
+
             &:last-child {
               margin-bottom: 0;
             }

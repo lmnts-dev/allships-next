@@ -143,6 +143,7 @@ export class CardListings extends PureComponent<
     }
 
     if (availableCategories.includes(category) && category != "everything") {
+      // ___________________________________
       // If this category is already selected, unselect it.
       if (this.state.currentCategory == category) {
         this.setState({
@@ -152,12 +153,13 @@ export class CardListings extends PureComponent<
           currentCategory: "everything",
         });
       }
+      // ___________________________________
       // If this category is not selected, select it.
       else {
-        let filteredContent: LMNTS_GenericListing[] = content.filter(
-          (item: LMNTS_GenericListing) =>
-            item.categories ? item.categories.includes(category) : false
-        );
+        // let filteredContent: LMNTS_GenericListing[] = content.filter(
+        //   (item: LMNTS_GenericListing) =>
+        //     item.categories ? item.categories.includes(category) : false
+        // );
 
         let filteredFeaturedContent: LMNTS_GenericListing[] = featuredContent.filter(
           (item: LMNTS_GenericListing) =>
@@ -165,13 +167,14 @@ export class CardListings extends PureComponent<
         );
 
         this.setState({
-          content: filteredContent,
+          // content: filteredContent,
           featuredItems: filteredFeaturedContent,
           featuredItemIdx: 0,
           currentCategory: category,
         });
       }
     }
+    // ___________________________________
     // If none of the above, select everything.
     else {
       this.setState({
@@ -280,6 +283,8 @@ export class CardListings extends PureComponent<
      *
      */
     const FilterBarDesktop = () => {
+      console.log(this.state);
+
       return (
         <FilterBarStyle className="filter-bar __visible-desktop">
           <div className="card-listings-filter-bar-inner">
@@ -294,18 +299,31 @@ export class CardListings extends PureComponent<
                   >
                     Everything
                   </li>
-                  {availableCategories.map((category, idx) => {
-                    return (
-                      <li
-                        className={`${
-                          currentCategory == category ? "active" : "inactive"
-                        } btn`}
-                        key={idx}
-                        onClick={() => this.handleCategoryToggle(category)}
-                      >
-                        {category}
-                      </li>
-                    );
+                  {availableCategories.map((category: string, idx: number) => {
+                    if (
+                      content &&
+                      content.filter(
+                        (item: LMNTS_GenericListing) =>
+                          item &&
+                          item.categories &&
+                          item.categories.includes(category) &&
+                          item.author == currentAuthor
+                      ).length > 0
+                    ) {
+                      return (
+                        <li
+                          className={`${
+                            currentCategory == category ? "active" : "inactive"
+                          } btn`}
+                          key={idx}
+                          onClick={() => this.handleCategoryToggle(category)}
+                        >
+                          {category}
+                        </li>
+                      );
+                    } else {
+                      return null;
+                    }
                   })}
                 </ul>
               ) : null}
@@ -342,7 +360,44 @@ export class CardListings extends PureComponent<
      *
      */
     const FilterBarMobile = () => {
-      let filterBarText = !mobileCategoryBarVisible ? "Show me ▼" : "Close";
+      // _________________________________________________________
+      // Get the current available categories of the content
+      let availableCategoriesWithDuplicates = content
+        ? content
+            .filter(
+              (item: LMNTS_GenericListing) =>
+                item.author &&
+                item &&
+                item.author.includes(currentAuthor) &&
+                (currentCategory == "everything"
+                  ? true
+                  : item.categories &&
+                    item.categories.includes(currentCategory))
+            )
+            .map((item: LMNTS_GenericListing) => {
+              if (item.categories) {
+                return item.categories.map((category: string) => {
+                  return category;
+                })[0];
+              } else {
+                return null;
+              }
+            })
+        : [];
+
+      // _________________________________________________________
+      // Remove duplicates and get the count
+      let availableCategoriesWithoutDuplicates =
+        availableCategoriesWithDuplicates.length > 0
+          ? Array.from(new Set(availableCategoriesWithDuplicates))
+          : [];
+
+      let availableCategoriesCount =
+        availableCategoriesWithoutDuplicates.length + 1; // Add one for "everything"
+
+      let filterBarText = !mobileCategoryBarVisible
+        ? `${availableCategoriesCount} Categories ▼`
+        : "Close";
 
       return (
         <FilterBarStyle className="filter-bar __visible-mobile __visible-tablet">
@@ -378,17 +433,30 @@ export class CardListings extends PureComponent<
                     Everything
                   </li>
                   {availableCategories.map((category, idx) => {
-                    return (
-                      <li
-                        className={`${
-                          currentCategory == category ? "active" : "inactive"
-                        } btn`}
-                        key={idx}
-                        onClick={() => this.handleCategoryToggle(category)}
-                      >
-                        {category}
-                      </li>
-                    );
+                    if (
+                      content &&
+                      content.filter(
+                        (item: LMNTS_GenericListing) =>
+                          item &&
+                          item.categories &&
+                          item.categories.includes(category) &&
+                          item.author == currentAuthor
+                      ).length > 0
+                    ) {
+                      return (
+                        <li
+                          className={`${
+                            currentCategory == category ? "active" : "inactive"
+                          } btn`}
+                          key={idx}
+                          onClick={() => this.handleCategoryToggle(category)}
+                        >
+                          {category}
+                        </li>
+                      );
+                    } else {
+                      return null;
+                    }
                   })}
                 </ul>
               ) : null}
@@ -472,8 +540,6 @@ export class CardListings extends PureComponent<
       this.state.currentCategory.charAt(0).toUpperCase() +
       this.state.currentCategory.slice(1);
 
-    console.log(content);
-
     return (
       <CardListingsStyle className="section-card-listings">
         <SiteHead
@@ -499,8 +565,15 @@ export class CardListings extends PureComponent<
         )}
         <div className="card-listings-list">
           {content
-            .filter((item: LMNTS_GenericListing) =>
-              item.author ? item.author.includes(currentAuthor) : item
+            .filter(
+              (item: LMNTS_GenericListing) =>
+                item.author &&
+                item &&
+                item.author.includes(currentAuthor) &&
+                (currentCategory == "everything"
+                  ? true
+                  : item.categories &&
+                    item.categories.includes(currentCategory))
             )
             .map((item: LMNTS_GenericListing, idx: number) => {
               if (showFeaturedItems) {
