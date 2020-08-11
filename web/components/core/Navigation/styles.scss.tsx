@@ -74,6 +74,14 @@ export const NavigationStyle = styled.nav<Props>`
             }
           }
         }
+
+        @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+          width: 50%;
+
+          .launcher-btn-wrapper {
+            width: 100%;
+          }
+        }
       }
 
       /* Launcher Button */

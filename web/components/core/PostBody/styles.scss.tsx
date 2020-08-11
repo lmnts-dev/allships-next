@@ -30,11 +30,20 @@ export const PostBodyStyle = styled.div`
 
   /* Core Styles */
   padding-top: var(--articlePadding);
-  padding-bottom: var(--articlePadding);
+  padding-bottom: 0;
+  margin-bottom: calc(var(--articlePadding) / 2);
   font-family: var(--articleFont);
   margin-left: calc(${Root.Grid.Gutter.Left} * -1);
   margin-right: calc(${Root.Grid.Gutter.Right} * -1);
   width: calc(100% + (${Root.Grid.Gutter.Right} + ${Root.Grid.Gutter.Left}));
+
+  border-bottom: 2px ${Theme.Color.Primary} solid;
+
+  @media (max-width: ${Theme.Base.Media.Width.Md}) {
+    --articlePadding: calc(${Root.Size} * 2);
+
+    padding-top: calc(var(--articlePadding) * 1.5);
+  }
 
   /* Reset Fonts */
   h1,
@@ -76,6 +85,19 @@ export const PostBodyStyle = styled.div`
     h1 {
       font-family: ${Theme.Font.Header};
       text-align: center;
+
+      .typed-wrapper {
+        display: block;
+        min-height: calc(6rem * 2);
+      }
+
+      @media (max-width: ${Theme.Base.Media.Width.Md}) {
+        font-size: 3rem;
+
+        .typed-wrapper {
+          min-height: calc(3rem * 2);
+        }
+      }
     }
 
     ul {
@@ -93,7 +115,8 @@ export const PostBodyStyle = styled.div`
       }
 
       @media (max-width: ${Theme.Base.Media.Width.Md}) {
-        font-size: .9rem;
+        font-size: 0.9rem;
+        padding-bottom: calc(${Root.Size} / 4);
       }
     }
   }

@@ -39,7 +39,7 @@ export const SectionLoopStyle = styled.section`
       font-size: 1.5em;
 
       @media (max-width: ${Theme.Base.Media.Width.Md}) {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
       }
     }
 

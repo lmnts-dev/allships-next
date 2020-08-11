@@ -15,15 +15,20 @@ import { CssUtils } from "../../constants/styles/CssUtils";
 // __________________________________________________________________________________________
 
 /**
- * 
+ *
  * @name GridRowStyle
- * 
+ *
  */
 export const GridRowStyle = styled.section`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   padding: calc(${Root.Size} * 2) 0;
+
+  + .section-grid-row {
+    /* padding: 0; */
+    margin-top: calc(${Root.Size} * -2);
+  }
 
   .section-grid-col {
     &.section-grid-item {
@@ -143,27 +148,33 @@ export const GridRowStyle = styled.section`
 
         /* Sizing */
         &-25w {
-          width: 25%;
+          /* width: 25%; */
+          width:100%;
         }
 
         &-33w {
-          width: 33.333333333%;
+          /* width: 33.333333333%; */
+          width:100%;
         }
 
         &-50w {
-          width: 50%;
+          /* width: 50%; */
+          width:100%;
         }
 
         &-66w {
-          width: 66.666666666%;
+          /* width: 66.666666666%; */
+          width:100%;
         }
 
         &-75w {
-          width: 75%;
+          /* width: 75%; */
+          width:100%;
         }
 
         &-100w {
-          width: 100%;
+          /* width: 100%; */
+          width:100%;
         }
 
         &-fillw {

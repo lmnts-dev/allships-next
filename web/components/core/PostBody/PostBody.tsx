@@ -14,6 +14,9 @@ import { LMNTS_Sanity_AvailableListings } from "../../../constants/types";
 // Constants
 import { Theme } from "../../../constants/Theme";
 
+// Libraries
+import Typed from "react-typed";
+
 // Components
 // import Link from "next/link";
 import { InnerGrid } from "../InnerGrid";
@@ -25,7 +28,6 @@ import { parseDateTime } from "../../../utils/parseDateTime";
 
 // Begin Component
 // __________________________________________________________________________________________
-
 
 type PostBodyProps = {
   post: LMNTS_Sanity_AvailableListings;
@@ -80,7 +82,19 @@ export class PostBody extends PureComponent<PostBodyProps, PostBodyState> {
                   : null}
                 <li>{parseDateTime(post._updatedAt)}</li>
               </ul>
-              <h1>{title}</h1>
+
+              <h1>
+                {title ? (
+                  <Typed
+                    strings={[title]}
+                    typeSpeed={50}
+                    backSpeed={40}
+                    className={`typed-wrapper`}
+                    loop={false}
+                    showCursor={true}
+                  />
+                ) : null}
+              </h1>
               <p>{excerpt}</p>
             </section>
           </InnerGrid>
