@@ -83,7 +83,12 @@ export class PostBody extends PureComponent<PostBodyProps, PostBodyState> {
                 <li>{parseDateTime(post._updatedAt)}</li>
               </ul>
 
-              <h1>
+              <h1
+                key={
+                  Math.random().toString(36).substring(2, 15) +
+                  Math.random().toString(36).substring(2, 15)
+                }
+              >
                 {title ? (
                   <Typed
                     strings={[title]}
@@ -92,6 +97,10 @@ export class PostBody extends PureComponent<PostBodyProps, PostBodyState> {
                     className={`typed-wrapper`}
                     loop={false}
                     showCursor={true}
+                    key={
+                      Math.random().toString(36).substring(2, 15) +
+                      Math.random().toString(36).substring(2, 15)
+                    }
                   />
                 ) : null}
               </h1>
