@@ -121,7 +121,7 @@ export const FilterBarStyle = styled.div`
   --offsetSize: var(--cardPadding);
   --stickyTopSize: calc(
     ${Theme.Base.Grid.SiteFrameWidth} + ${Root.Nav.Size} + ${Root.BorderSize}
-  );
+   - 1px);
   --btnShadowSize: 2px;
   --toggleSpacing: calc(${Root.Size} / 4);
 
@@ -160,6 +160,8 @@ export const FilterBarStyle = styled.div`
         ${Root.Grid.Gutter.Right} + ${Theme.Base.Grid.SiteFrameWidth} -
           (${Root.BorderSize} / 2)
       );
+
+      font-size: 1rem;
     }
 
     @media (max-width: ${Theme.Base.Media.Width.Sm}) {
@@ -187,7 +189,7 @@ export const FilterBarStyle = styled.div`
           flex-shrink: 0;
 
           @media (max-width: ${Theme.Base.Media.Width.Md}) {
-            font-size: 1.2rem;
+            font-size: 1rem;
             padding-left: ${Root.BorderSize};
             padding-right: ${Root.BorderSize};
           }
@@ -205,6 +207,7 @@ export const FilterBarStyle = styled.div`
           padding-right: calc(
             ${Root.Grid.Gutter.Right} - (${Root.BorderSize} / 2)
           );
+          font-size: 1rem;
         }
 
         ul {
@@ -263,6 +266,7 @@ export const FilterBarStyle = styled.div`
 
         @media (max-width: ${Theme.Base.Media.Width.Md}) {
           flex-shrink: 0;
+          font-size: 1rem;
         }
 
         ul {

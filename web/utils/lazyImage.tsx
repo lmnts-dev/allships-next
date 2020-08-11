@@ -15,6 +15,7 @@ type Props = {
   style?: object;
   title?: string;
   aspectRatio?: string;
+  uniqueKey?: string;
 };
 
 /**
@@ -58,6 +59,7 @@ export class LazyImage extends React.Component<Props, any> {
       height,
       aspectRatio,
       style,
+      uniqueKey,
     } = this.props;
 
     return (
@@ -71,6 +73,7 @@ export class LazyImage extends React.Component<Props, any> {
         height={height}
         style={style}
         data-aspect-ratio={aspectRatio}
+        key={uniqueKey}
       />
     );
   }

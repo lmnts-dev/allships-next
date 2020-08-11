@@ -72,6 +72,10 @@ export const GridRow: React.FunctionComponent<LMNTS_Section_GridRow> = ({
                     src={`${urlFor(image).width(2000).auto("format").url()}`}
                     alt={meta}
                     title={meta}
+                    uniqueKey={
+                      Math.random().toString(36).substring(2, 15) +
+                      Math.random().toString(36).substring(2, 15)
+                    }
                   />
                 </div>
               </div>

@@ -104,7 +104,7 @@ export default ArticlePostTemplate;
  *
  */
 export const getStaticPaths: GetStaticPaths = async () => {
-  let allArticles = await QueryUtils.getSanityClient(true).fetch(
+  let allArticles = await QueryUtils.getSanityClient(false).fetch(
     Queries.AllArticles()
   );
 

@@ -91,6 +91,10 @@ export const PostBodyStyle = styled.div`
       li {
         margin: 0 calc(${Root.Size} / 4);
       }
+
+      @media (max-width: ${Theme.Base.Media.Width.Md}) {
+        font-size: .9rem;
+      }
     }
   }
 

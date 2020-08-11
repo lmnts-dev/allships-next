@@ -48,7 +48,7 @@ export const MarqueeRowStyle = styled.section`
       flex-shrink: 0;
       position: relative;
       padding: ${Root.Size} 0;
-      animation: marquee 30s linear infinite;
+      animation: marquee 15s linear infinite;
       max-width: unset !important;
 
       li {
@@ -112,7 +112,7 @@ export const MarqueeRowStyle = styled.section`
       ul {
         font-size: 14vw;
         padding: calc(${Root.Size}) 0;
-        animation: marquee 30s linear infinite;
+        animation: marquee 15s linear infinite;
 
         li {
           margin-right: calc(${Root.Size} / 2);
