@@ -178,7 +178,7 @@ class MyApp extends App<MothershipProps, MothershipState> {
       });
     }
 
-    // CMD: Mission
+    // CMD: yes
     else if (currentCmd.includes("yes")) {
       let helpMsg = [
         {
@@ -195,26 +195,105 @@ class MyApp extends App<MothershipProps, MothershipState> {
           id: Math.random().toString(36).substring(7),
           text: "Let's do this!",
           done: false,
+          addClass: "__string-clr-secondary",
         },
         {
           id: Math.random().toString(36).substring(7),
           text: "You can support in any way you can.",
           done: false,
+          addClass: "__string-long-form",
         },
         {
           id: Math.random().toString(36).substring(7),
           text:
-            "- Submit your work or your friend's work to be included in the mothership",
+            "- We are only as strong as our network. Tell your friends. Share allships.co far and wide. ",
+          done: false,
+          addClass: "__string-clr-secondary __string-long-form",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text:
+            "- Contribute to our platform. Type command 'submit' or 'help' for information.",
+          done: false,
+          addClass: "__string-clr-secondary __string-long-form",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "~~~~~~~~~~~~~~~~~~~~~~~~~",
           done: false,
         },
         {
           id: Math.random().toString(36).substring(7),
-          text: "- Advocate & educate against social media algorithms",
+          text: "",
+          done: false,
+        },
+      ];
+
+      this.setState((prevState: MothershipState) => ({
+        items: prevState.items.concat(helpMsg),
+      }));
+    }
+
+    // CMD: nope
+    else if (currentCmd.includes("nope")) {
+      let helpMsg = [
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "",
           done: false,
         },
         {
           id: Math.random().toString(36).substring(7),
-          text: "- Share our website & cause",
+          text: "~~~~~~~~~~~~~~~~~~~~~~~~~",
+          done: false,
+        },
+
+        {
+          text: String.raw`    __|__ |___| |\ `,
+          done: false,
+          addClass: "__string-clr-secondary",
+          id: Math.random().toString(36).substring(7),
+        },
+        {
+          text: String.raw`    |o__| |___| | \ `,
+          done: false,
+          addClass: "__string-clr-secondary",
+          id: Math.random().toString(36).substring(7),
+        },
+        {
+          text: String.raw`    |___| |___| |o \ `,
+          done: false,
+          addClass: "__string-clr-secondary",
+          id: Math.random().toString(36).substring(7),
+        },
+        {
+          text: String.raw`   _|___| |___| |__o\ `,
+          done: false,
+          addClass: "__string-clr-secondary",
+          id: Math.random().toString(36).substring(7),
+        },
+        {
+          text: String.raw`  /...\_____|___|____\_/ `,
+          done: false,
+          addClass: "__string-clr-secondary",
+          id: Math.random().toString(36).substring(7),
+        },
+        {
+          text: String.raw`  \   o * o * * o o  / `,
+          done: false,
+          addClass: "__string-clr-secondary",
+          id: Math.random().toString(36).substring(7),
+        },
+        {
+          text: String.raw`~~~~~~~~~~~~~~~~~~~~~~~~~~ `,
+          done: false,
+          addClass: "__string-clr-secondary",
+          id: Math.random().toString(36).substring(7),
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "Setting sail! Come back soon, we’re better off together.",
+          addClass: "__string-clr-secondary __string-long-form",
           done: false,
         },
         {
@@ -484,6 +563,157 @@ class MyApp extends App<MothershipProps, MothershipState> {
       this.setState((prevState: MothershipState) => ({
         items: prevState.items.concat(helpMsg),
       }));
+    }
+
+    // CMD: Submit
+    else if (currentCmd.includes("submit")) {
+      let msg = [
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "~~~~~~~~~~~~~~~~~~~~~~~~~",
+          done: false,
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`                      '. ___`,
+          done: false,
+          addClass: "__mobile-hidden __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`                      __,' __'.                _..----....____`,
+          done: false,
+          addClass: "__mobile-hidden __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`          __...--.''';.   ,.   ;''--..__     .'    ,-._    _.-'`,
+          done: false,
+          addClass: "__mobile-hidden __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`    _..-''-------'   ''   ''   ''     O ''-''._   (,;') _,'`,
+          done: false,
+          addClass: "__mobile-hidden __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`  ,'________________                          \'-._'-','`,
+          done: false,
+          addClass: "__mobile-hidden __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`  '._              '''''''''''------...___   '-.._'-:`,
+          done: false,
+          addClass: "__mobile-hidden __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`      '''--.._      ,.                     ''''--...__\-.`,
+          done: false,
+          addClass: "__mobile-hidden __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`              '.--. '-'                       ____    |  |'`,
+          done: false,
+          addClass: "__mobile-hidden __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`                '. '.                       ,''''''.  ;  ;'`,
+          done: false,
+          addClass: "__mobile-hidden __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`                  '._'.        __________   '.      \'__/'`,
+          done: false,
+          addClass: "__mobile-hidden __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`                    '-:._____/______/___/____'.     \  '`,
+          done: false,
+          addClass: "__mobile-hidden __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`                                |       '._    '.    \ `,
+          done: false,
+          addClass: "__mobile-hidden __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`                                '._________'-.   '.   '.___`,
+          done: false,
+          addClass: "__mobile-hidden __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "~~~~~~~~~~~~~~~~~~~~~~~~~",
+          addClass: "__mobile-hidden __string-clr-secondary",
+          done: false,
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text:
+            "The goal of our platform is to elevate artists, and we would love to hear what you have in mind.",
+          done: false,
+          addClass: "__string-long-form",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text:
+            "Send any ideas and submissions to dave@allships.co for consideration.",
+          done: false,
+          addClass: "__string-long-form __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "~~~~~~~~~~~~~~~~~~~~~~~~~",
+          done: false,
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "",
+          done: false,
+        },
+      ];
+
+      this.setState({
+        items: msg,
+      });
+    }
+
+    // CMD: contact
+    else if (currentCmd.includes("contact")) {
+      let msg = [
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "Email us: dave@allships.co",
+          addClass: "__string-long-form __string-clr-secondary",
+          done: false,
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "Instagram: @allships.co",
+          addClass: "__string-long-form __string-clr-secondary",
+          done: false,
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "Twitter: @allshipsco",
+          addClass: "__string-long-form __string-clr-secondary",
+          done: false,
+        },
+      ];
+
+      this.setState({
+        items: msg,
+      });
     }
 
     // CMD: Reset

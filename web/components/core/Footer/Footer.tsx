@@ -102,11 +102,21 @@ export const Footer: React.FunctionComponent<FooterProps> = ({
               <li onClick={() => handleCommand("launch launcher")}>
                 {">"} Console
               </li>
-              <li>
-                <a href="mailto: dave@allships.co">{">"} Submit Work</a>
+              <li
+                onClick={() => {
+                  handleCommand("launch launcher");
+                  handleCommand("submit");
+                }}
+              >
+                {">"} Submit Work
               </li>
-              <li>
-                <a href="mailto: dave@allships.co">{">"} Contact</a>
+              <li
+                onClick={() => {
+                  handleCommand("launch launcher");
+                  handleCommand("contact");
+                }}
+              >
+                {">"} Contact
               </li>
             </ul>
           </div>

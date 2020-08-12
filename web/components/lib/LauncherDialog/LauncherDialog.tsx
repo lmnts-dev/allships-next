@@ -137,33 +137,40 @@ export class LauncherDialog extends PureComponent<
                       ? `__mobile-menu-visible`
                       : `__mobile-menu-hidden`
                   }`}
-                  onClick={() => handleCommand("mission")}
+                  onClick={() => {
+                    handleCommand("mission");
+                    this.toggleMenu();
+                  }}
                 >
-                  {">"} Our Mission
+                  {">"} Mission
                 </li>
                 <li
-                  className={`__alt __is-link ${
+                  className={`__alt ${
                     this.state.showMenu
                       ? `__mobile-menu-visible`
                       : `__mobile-menu-hidden`
                   }`}
+                  onClick={() => {
+                    handleCommand("submit");
+                    this.toggleMenu();
+                  }}
                 >
-                  <a href="mailto: dave@allships.co" target="_blank">
-                    {">"} Submit Work
-                  </a>
+                  {">"} Submit
                 </li>
                 <li
-                  className={`__alt __is-link ${
+                  className={`__alt ${
                     this.state.showMenu
                       ? `__mobile-menu-visible`
                       : `__mobile-menu-hidden`
                   }`}
+                  onClick={() => {
+                    handleCommand("contact");
+                    this.toggleMenu();
+                  }}
                 >
-                  <a href="mailto: dave@allships.co" target="_blank">
-                    {">"} Get in touch
-                  </a>
+                  {">"} Contact
                 </li>
-                <li
+                {/* <li
                   className={`__alt __is-link ${
                     this.state.showMenu
                       ? `__mobile-menu-visible`
@@ -176,14 +183,17 @@ export class LauncherDialog extends PureComponent<
                   >
                     {">"} Follow Us
                   </a>
-                </li>
+                </li> */}
                 <li
                   className={`${
                     this.state.showMenu
                       ? `__mobile-menu-visible`
                       : `__mobile-menu-hidden`
                   }`}
-                  onClick={() => handleCommand("help")}
+                  onClick={() => {
+                    handleCommand("help");
+                    this.toggleMenu();
+                  }}
                 >
                   {">"} Help
                 </li>
@@ -193,7 +203,10 @@ export class LauncherDialog extends PureComponent<
                       ? `__mobile-menu-visible`
                       : `__mobile-menu-hidden`
                   }`}
-                  onClick={() => handleCommand("reset")}
+                  onClick={() => {
+                    handleCommand("reset");
+                    this.toggleMenu();
+                  }}
                 >
                   {">"} Reset
                 </li>
