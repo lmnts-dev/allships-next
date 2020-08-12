@@ -59,7 +59,7 @@ export const Author = {
       title: "Bio",
       name: "bio",
       type: "text",
-      lines: 4,
+      rows: 4,
     },
   ],
 };

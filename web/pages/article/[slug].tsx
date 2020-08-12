@@ -46,12 +46,17 @@ const ArticlePostTemplate: React.FunctionComponent<LMNTS_Article_Post> = ({
     console.log("👀 Preview mode enabled");
   }
 
+  console.log(_document);
+
   return (
     <>
       <SiteHead
         title={`${previewMode ? "👀 Preview Mode: " : ""}${
           _document.title
         } | ALLSHIPS`}
+        opengraph={
+          _document.featured_image ? _document.featured_image.url : undefined
+        }
       />
       <PostBody
         post={_document}
