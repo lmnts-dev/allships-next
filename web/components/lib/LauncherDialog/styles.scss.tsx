@@ -26,8 +26,8 @@ const LauncherDialogStyle = styled.div`
   transform: translate(-50%, -50%); */
   left: 0;
   top: 0;
-  bottom: 0;
-  right: 0;
+  height: 100vh;
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
