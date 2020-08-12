@@ -141,7 +141,7 @@ export class PostBody extends PureComponent<PostBodyProps, PostBodyState> {
                   <div className="author-name">By {author.name}</div>
                   {/* ___________________________________________ */}
                   {/* Post Author Title */}
-                  <div className="author-title">{author.job_title}</div>
+                  {/* <div className="author-title">{author.job_title}</div> */}
                 </div>
               </div>
             </section>

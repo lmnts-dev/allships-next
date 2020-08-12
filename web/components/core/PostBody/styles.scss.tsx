@@ -198,6 +198,7 @@ export const PostBodyStyle = styled.div`
       &.__name {
         .author-name {
           font-size: 1.3rem;
+          white-space: nowrap;
         }
 
         .author-title {
@@ -239,6 +240,11 @@ export const PostBodyStyle = styled.div`
           .author-photo-wrapper {
             width: calc(${Root.Size});
             height: calc(${Root.Size});
+
+            @media (max-width: ${Theme.Base.Media.Width.Md}) {
+              width: calc(${Root.Size} * .65);
+              height: calc(${Root.Size} * .65);
+            }
           }
         }
 

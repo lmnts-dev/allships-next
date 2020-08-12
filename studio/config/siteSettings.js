@@ -13,7 +13,7 @@ export default class siteSettings {
   static previewApiRoute = "preview";
   static baseUrl = "https://allships.co";
   static vercelProjectId = "allships";
-  static baseUrlHook = "https://api.vercel.com/v1/integrations/deploy/QmUcSnSD2s4xbbwHGVBJFYXcaLegbYo9GQQaUYhCQD4vYD/gcnS6mZ3NN";
-  static stagingUrl = "https://allships-staging.now.sh";
+  static baseUrlHook = "https://api.vercel.com/v1/integrations/deploy/QmUcSnSD2s4xbbwHGVBJFYXcaLegbYo9GQQaUYhCQD4vYD/pnGi9mfb1l";
+  static stagingUrl = "https://allships-alpha.now.sh";
   static stagingUrlHook = "`https://api.vercel.com/v1/integrations/deploy/QmUcSnSD2s4xbbwHGVBJFYXcaLegbYo9GQQaUYhCQD4vYD/gcnS6mZ3NN";
 }
