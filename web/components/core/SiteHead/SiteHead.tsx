@@ -8,16 +8,20 @@
 
 // Core
 import Head from "next/head";
+import { Settings } from "../../../constants/site/Settings";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
-let siteTitle = "ALLSHIPS";
-let baseUrl = "https://allships.co";
-let description = "A Creative Coalition.";
-let keywords = "podcasts, creative, resources, interview, creativity";
+let siteTitle = Settings.siteTitle;
+let baseUrl = Settings.siteUrl;
+let description = Settings.siteDescription;
+let keywords = Settings.siteBaseKeywords;
 
-export const SiteHead = ({ title = siteTitle + " | " + description }) => {
+export const SiteHead = ({
+  title = siteTitle + " | " + description,
+  opengraph = `${baseUrl}/og.gif`,
+}) => {
   return (
     <Head>
       <title>{title}</title>
@@ -36,9 +40,9 @@ export const SiteHead = ({ title = siteTitle + " | " + description }) => {
       {/* Opengraph */}
       <meta property="og:type" content="website" />
       <meta property="og:url" content={baseUrl} />
-      <meta property="og:title" content={siteTitle} />
+      <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content={`${baseUrl}/og.gif`} />
+      <meta property="og:image" content={`${opengraph}`} />
       <meta property="og:image:width" content="596" />
       <meta property="og:image:height" content="328" />
       <meta name="twitter:card" content="summary_large_image" />
@@ -50,14 +54,14 @@ export const SiteHead = ({ title = siteTitle + " | " + description }) => {
       <meta
         name="twitter:title"
         // @ts-ignore
-        value=""
+        value={`${title}`}
       />
       <meta
         name="twitter:description"
         // @ts-ignore
         value={description}
       />
-      <meta name="twitter:image" content={`${baseUrl}/og.gif`} />
+      <meta name="twitter:image" content={`${opengraph}`} />
       <meta
         name="twitter:url"
         // @ts-ignore

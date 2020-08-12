@@ -1,7 +1,7 @@
 // ContentCard Styles
 
 // Imports
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 // Core
 import { createGlobalStyle } from "styled-components";
@@ -11,7 +11,7 @@ import { Theme } from "../../../constants/Theme";
 import { Root } from "../../../constants/Root";
 
 // Begin Styles
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 export const GlobalStyles = createGlobalStyle`
   :root {
@@ -33,9 +33,9 @@ export const GlobalStyles = createGlobalStyle`
       right: calc(var(--cardPadding));
       bottom: calc(var(--cardPadding));
       top: calc(var(--cardPadding));
-      background: ${Theme.Color.Primary};
+      background: ${Theme.Color.Secondary};
       transform: translate(0, 0);
-      mix-blend-mode: difference;
+      /* mix-blend-mode: difference; */
     }
 
     &.__isLink {
@@ -58,6 +58,12 @@ export const GlobalStyles = createGlobalStyle`
           transform: rotate(-45deg);
           transform-origin: bottom left;
           z-index: 15;
+        }
+
+        .__isLinkPublishedByUs { 
+          &:after {
+            display: none;
+          }
         }
       }
 
@@ -123,33 +129,23 @@ export const GlobalStyles = createGlobalStyle`
         user-select: none;
       }
 
-      /** Card Category */
-      .content-card-categories {
-        position: absolute;
-        left: 0;
-        top: 0;
-        max-width: 100%;
-        z-index: 10;
-        padding: ${Root.BorderSize};
-        display: flex;
-        pointer-events: none;
-        -webkit-touch-callout: none; 
-        -webkit-user-select: none; 
-        -khtml-user-select: none; 
-        -moz-user-select: none; 
-        -ms-user-select: none; 
-        user-select: none;
-
-        li {
-          background: ${Theme.Color.White};
+      /** Card Categories */
+      .category-list {
+        &.__content-card-categories {
+          position: absolute;
+          left: 0;
+          top: 0;
+          max-width: 100%;
+          z-index: 10;
           padding: ${Root.BorderSize};
-          margin-right: ${Root.BorderSize};
-          text-transform: uppercase;
-          color: ${Theme.Color.Primary};
-
-          &:last-child {
-            margin-right: 0;
-          }
+          display: flex;
+          pointer-events: none;
+          -webkit-touch-callout: none; 
+          -webkit-user-select: none; 
+          -khtml-user-select: none; 
+          -moz-user-select: none; 
+          -ms-user-select: none; 
+          user-select: none;
         }
       }
 

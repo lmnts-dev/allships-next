@@ -3,7 +3,7 @@ import React from "react";
 import LazyLoad from "vanilla-lazyload";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 type Props = {
   alt?: string;
@@ -13,6 +13,9 @@ type Props = {
   width?: string;
   height?: string;
   style?: object;
+  title?: string;
+  aspectRatio?: string;
+  uniqueKey?: string;
 };
 
 /**
@@ -47,7 +50,17 @@ export class LazyImage extends React.Component<Props, any> {
   // Just render the image with data-src
   render() {
     // @ts-ignore
-    const { alt, src, srcset, sizes, width, height, style } = this.props;
+    const {
+      alt,
+      src,
+      srcset,
+      sizes,
+      width,
+      height,
+      aspectRatio,
+      style,
+      uniqueKey,
+    } = this.props;
 
     return (
       <img
@@ -59,6 +72,8 @@ export class LazyImage extends React.Component<Props, any> {
         width={width}
         height={height}
         style={style}
+        data-aspect-ratio={aspectRatio}
+        key={uniqueKey}
       />
     );
   }

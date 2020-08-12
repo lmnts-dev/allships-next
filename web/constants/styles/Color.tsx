@@ -1,10 +1,10 @@
 // Imports
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 import { createGlobalStyle } from "styled-components";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 /**
  *
@@ -60,7 +60,7 @@ export const Palette = createGlobalStyle`
   body {
     --primaryColor: ${Color.UltraRed};
     --secondaryColor: ${Color.HackerGold};
-    --bgColor: ${Color.HackerGold};
+    --bgColor: ${Color.Black};
     --dialogColor: ${Color.Black};
     --textColor: ${Color.UltraRed};
 
@@ -72,14 +72,14 @@ export const Palette = createGlobalStyle`
     scrollbar-width: auto;
   }
 
-  body::-webkit-scrollbar {
+  *::-webkit-scrollbar {
     width: 25px;
   }
 
-  body::-webkit-scrollbar-track {
+  *::-webkit-scrollbar-track {
     background: ${Color.Dialog};
   }
-  body::-webkit-scrollbar-thumb {
+  *::-webkit-scrollbar-thumb {
     background-color: ${Color.Primary} ;
     border-radius: 0px;
     border: 3px solid ${Color.Dialog};
@@ -90,5 +90,5 @@ export const Palette = createGlobalStyle`
   ::selection { background: ${Color.Primary}; color: ${Color.Black} }
 `;
 
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 // End Component

@@ -1,9 +1,9 @@
 // Imports
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 import { Color } from "../styles/Color";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 /**
  *
@@ -15,12 +15,12 @@ import { Color } from "../styles/Color";
  */
 export const Settings = {
   siteTitle:
-    "Allships",
-  siteTitleShort: "Allships",
-  siteDescription: "Kids are natural engineers. We help them realize it.",
+    "ALLSHIPS",
+  siteTitleShort: "ALLSHIPS",
+  siteDescription: "A Creative Community",
   siteBaseKeywords:
-    "lego, engineering, engineering, classes, summer, camps, spring, learning, learn, play, education, knowledge",
-  siteUrl: "https://play-well-staging.netlify.com/",
+    "podcasts, creative, resources, interview, creativity",
+  siteUrl: "https://allships.co",
   themeColor: Color.Primary,
   secondaryColor: Color.Secondary,
   backgroundColor: Color.Background,
@@ -29,9 +29,9 @@ export const Settings = {
   logoLight: "src/assets/images/icon.png",
   logoDark: "src/assets/images/icon.png",
   social: {
-    twitter: "PlayWell_TEK",
-    facebook: "PlayWellTEK",
-    instagram: "playwellteknologies",
-    fbAppId: "56639339020281",
+    twitter: "ALLSHIPS",
+    facebook: "ALLSHIPS",
+    instagram: "ALLSHIPS",
+    fbAppId: "ALLSHIPS",
   },
 };

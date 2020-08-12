@@ -1,5 +1,5 @@
 // Imports
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 // Core
 import styled from "styled-components";
@@ -12,11 +12,11 @@ import { Root } from "../../../constants/Root";
 import { Blink } from "../../../constants/styles/Animation";
 
 // Begin Styles
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 type Props = {
   shouldFocus?: boolean;
-}
+};
 
 let gridIconScale = 0.8;
 let navPadding = Root.DialogPaddingSize;
@@ -55,17 +55,52 @@ export const NavigationStyle = styled.nav<Props>`
       display: flex;
       align-items: center;
 
+      &.home-btn {
+        .launcher-btn-wrapper {
+          .ico-logotype {
+            svg {
+              fill: ${Theme.Color.Secondary};
+              width: 100px;
+              max-width: 100%;
+              height: auto;
+            }
+          }
+
+          &:hover {
+            .ico-logotype {
+              svg {
+                fill: ${Theme.Color.Dialog};
+              }
+            }
+          }
+        }
+
+        @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+          width: 50%;
+
+          .launcher-btn-wrapper {
+            width: 100%;
+          }
+        }
+      }
+
       /* Launcher Button */
-      &.launcher-btn {
+      &.launcher-btn,
+      &.home-btn {
         display: flex;
 
         .launcher-btn-wrapper {
           display: flex;
+          height: ${Root.Nav.Size};
           align-items: center;
           padding: 0;
           cursor: pointer;
           color: ${Theme.Color.Secondary};
           border-right: ${Root.BorderSize} solid ${Theme.Color.Primary};
+
+          &:hover {
+            text-decoration: none;
+          }
 
           .icon {
             position: relative;
@@ -113,7 +148,11 @@ export const NavigationStyle = styled.nav<Props>`
           }
 
           .label {
-            padding: 0 ${navPadding} 0 0;
+            padding: 0 ${navPadding};
+
+            /* .__hidden {
+              opacity: 0;
+            } */
 
             @media (max-width: ${Theme.Base.Media.Width.Sm}) {
               padding-left: ${navPadding};
@@ -216,14 +255,25 @@ export const NavigationStyle = styled.nav<Props>`
       }
 
       /* Launcher Time */
-      &.launcher-time {
+      &.launcher-time,
+      &.launcher-mission {
         display: flex;
         align-items: center;
         padding: 0 ${navPadding};
+        cursor: pointer;
         border-left: ${Root.BorderSize} solid ${Theme.Color.Primary};
 
         @media (max-width: ${Theme.Base.Media.Width.Sm}) {
           border-left: unset;
+          width: 100%;
+          flex: 1;
+          display: flex;
+          justify-content: flex-end;
+        }
+
+        &:hover {
+          background-color: ${Theme.Color.Secondary};
+          color: ${Theme.Color.Black};
         }
       }
     }

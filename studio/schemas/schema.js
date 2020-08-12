@@ -37,6 +37,7 @@ import { HeadlineRow } from "./sections/HeadlineRow";
 import { MarqueeRow } from "./sections/MarqueeRow";
 import { SectionBreak } from "./sections/SectionBreak";
 import { StickySection } from "./sections/StickySection";
+import { ArticleText } from "./sections/ArticleText";
 
 // __________________________________________________________________________________________
 
@@ -62,6 +63,7 @@ export default createSchema({
      */
 
     // -- Default Sections
+    ArticleText,
     CenteredText,
     ColumnContent,
     FullWidthImage,

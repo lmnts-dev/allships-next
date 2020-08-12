@@ -1,7 +1,7 @@
 // GrainCover Styles
 
 // Imports
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 // Core
 import styled from "styled-components";
@@ -10,7 +10,7 @@ import styled from "styled-components";
 import { Grain } from "../../../constants/styles/Animation";
 
 // Begin Styles
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 
 const GrainCoverStyle = styled.div`
@@ -21,7 +21,8 @@ const GrainCoverStyle = styled.div`
   bottom: 0;
   pointer-events: none;
   overflow: hidden;
-  display: flex;
+  /* display: flex; */
+  display: none;
   z-index: 999;
   mix-blend-mode: multiply;
 

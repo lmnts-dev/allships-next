@@ -8,11 +8,11 @@ import { PageHeroStyle } from "./styles.scss";
 import LazyImage from "../../utils/lazyImage";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
-type Props = {
+type LMNTS_Section_PageHero = {
   currentHero: string;
-}
+};
 
 /**
  *
@@ -21,8 +21,9 @@ type Props = {
  * @param currentHero : string : The current visible section.
  *
  */
-
-export const PageHero: React.FunctionComponent<Props> = ({ currentHero }) => {
+export const PageHero: React.FunctionComponent<LMNTS_Section_PageHero> = ({
+  currentHero,
+}) => {
   let isHomePage = currentHero == "everything" ? true : false;
 
   return (
@@ -33,7 +34,7 @@ export const PageHero: React.FunctionComponent<Props> = ({ currentHero }) => {
         ) : (
           <LazyImage src="/gradient-logo.svg" alt="ALLSHIPS" />
         )}
-        {!isHomePage ? null : <p>A CREATIVE COALITION</p>}
+        {!isHomePage ? null : <p>A CREATIVE COMMUNITY</p>}
       </div>
     </PageHeroStyle>
   );

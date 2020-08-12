@@ -12,13 +12,15 @@
     "@sanity/components",
     "@sanity/default-layout",
     "@sanity/default-login",
-    "@sanity/desk-tool",
     "@sanity/dashboard",
+    "@sanity/desk-tool",
     "@sanity/vision",
     "content-model-graph",
     "media",
     "seo-tools",
-    "@sanity/color-input"
+    "@sanity/color-input",
+    "@sanity/production-preview",
+    "deploy-vercel"
   ],
   "parts": [
     {
@@ -28,6 +30,14 @@
     {
       "name": "part:@sanity/desk-tool/structure",
       "path": "./structure/deskStructure.js"
+    },
+    {
+      "implements": "part:@sanity/production-preview/resolve-production-url",
+      "path": "./utils/resolveProductionUrl.js"
+    },
+    {
+      "implements": "part:@sanity/dashboard/config",
+      "path": "./dashboard/dashboardConfig.js"
     }
   ]
 }

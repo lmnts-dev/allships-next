@@ -5,14 +5,14 @@ import React, { Component, ChangeEvent } from "react";
 import { InnerGrid } from "../InnerGrid";
 import LazyImage from "../../../utils/lazyImage";
 
-// Data
-import { addToEmailList } from "../../../clients";
-
 // Styles
 import { FooterStyle } from "./styles.scss";
 
+// Utilities
+import { QueryUtils } from "../../../constants/Queries";
+
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 type FooterProps = {
   handleCommand: (cmd: string) => void;
@@ -46,7 +46,7 @@ class NewsletterForm extends Component<any, FormState> {
   handleSubmit = async (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
 
-    addToEmailList(this.state.value);
+    QueryUtils.addToEmailList(this.state.value);
 
     this.setState({ complete: true });
   };
@@ -62,7 +62,7 @@ class NewsletterForm extends Component<any, FormState> {
           <form onSubmit={() => this.handleSubmit}>
             <input
               type="email"
-              placeholder="> Enter your email address"
+              placeholder="> Enter your email"
               value={this.state.value}
               onChange={() => this.handleChange}
             />
@@ -96,15 +96,27 @@ export const Footer: React.FunctionComponent<FooterProps> = ({
               <div className="footer-brand-image">
                 <LazyImage src="/gradient-logo.svg" alt="ALLSHIPS" />
               </div>
-              <div className="footer-brand-tagline">A Creative Coalition</div>
+              <div className="footer-brand-tagline">A Creative Community</div>
             </div>
             <ul>
               <li onClick={() => handleCommand("launch launcher")}>
-                {'>'} Launcher
+                {">"} Console
               </li>
-              <li onClick={() => handleCommand("launch launcher")}>{'>'} Help</li>
-              <li>
-                <a href="mailto: dave@davekrugman.com ">{'>'} Contact</a>
+              <li
+                onClick={() => {
+                  handleCommand("launch launcher");
+                  handleCommand("submit");
+                }}
+              >
+                {">"} Submit Work
+              </li>
+              <li
+                onClick={() => {
+                  handleCommand("launch launcher");
+                  handleCommand("contact");
+                }}
+              >
+                {">"} Contact
               </li>
             </ul>
           </div>
@@ -115,6 +127,7 @@ export const Footer: React.FunctionComponent<FooterProps> = ({
             </div>
           </div>
 
+          {/* _______________________________________________ */}
           {/* Right Column */}
           <div className="footer-col __footer-right-col">
             {/* Right Column __TOP */}
@@ -130,6 +143,7 @@ export const Footer: React.FunctionComponent<FooterProps> = ({
               </div>
             </div>
 
+            {/* _______________________________________________ */}
             {/* Right Column __Bottom */}
             <div className="footer-social-media-and-copyright">
               <ul className="footer-social-media">
@@ -158,4 +172,4 @@ export const Footer: React.FunctionComponent<FooterProps> = ({
 };
 
 // End Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________

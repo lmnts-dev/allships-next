@@ -5,7 +5,7 @@
 import React from "react";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 const Wordpress: React.FunctionComponent = () => (
   <svg version="1.1" width="96.7px" height="96.7px" viewBox="0 0 96.7 96.7">

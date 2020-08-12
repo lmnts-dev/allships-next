@@ -5,7 +5,7 @@
 import React from "react";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 const Pinterest: React.FunctionComponent = () => (
   <svg version="1.1" width="438.5px" height="438.5px" viewBox="0 0 438.5 438.5">

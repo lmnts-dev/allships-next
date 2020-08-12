@@ -21,19 +21,22 @@ export const Author = {
       title: "Name",
       name: "name",
       type: "string",
+      validation: (Rule) => Rule.required(),
     },
     {
       title: "Job Title",
       name: "job_title",
       type: "string",
+      validation: (Rule) => Rule.required(),
     },
     {
       title: "Author photo",
-      name: "authorPhoto",
+      name: "author_photo",
       type: "image",
       options: {
         hotspot: true,
       },
+      validation: (Rule) => Rule.required(),
     },
     {
       title: "Twitter",
@@ -49,6 +52,18 @@ export const Author = {
       title: "Email",
       name: "email",
       type: "string",
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      title: "Website",
+      name: "web",
+      type: "string",
+    },
+    {
+      title: "Bio",
+      name: "bio",
+      type: "text",
+      rows: 4,
     },
   ],
 };

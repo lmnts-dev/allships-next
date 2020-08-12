@@ -12,7 +12,7 @@
  */
 
 // Imports
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 // Core
 import React, { Component } from "react";
@@ -24,15 +24,19 @@ import { GlobalStyles } from "./styles.scss";
 import LazyImage from "../../../utils/lazyImage";
 
 // Types
-import { LMNTS_ContentCardFields } from "../../../constants/Types";
+import { LMNTS_GenericListing } from "../../../constants/types";
+import slugify from "../../../utils/slugify";
+import Link from "next/link";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 type ContentCardProps = {
   isLink?: boolean;
-  data: LMNTS_ContentCardFields;
+  isSanityContent?: boolean | null;
+  data: LMNTS_GenericListing;
   isFeatured?: boolean;
+  isExternal?: boolean;
 };
 
 export class ContentCard extends Component<ContentCardProps, any> {
@@ -53,22 +57,51 @@ export class ContentCard extends Component<ContentCardProps, any> {
   render() {
     let { isLink, data, isFeatured } = this.props;
 
-    const Content: React.FunctionComponent<ContentCardProps> = ({ data }) => {
-      let { Attachments, Name, Category } = data;
+    const Content: React.FunctionComponent<ContentCardProps> = ({
+      data,
+      isExternal,
+    }) => {
+      let { thumbnail_image, title, categories, author } = data;
 
-      if (Attachments && Name) {
+      let isPublishedByUs = author ? author !== "By Others" : false;
+
+      if (thumbnail_image && title) {
         return (
           <div className="content-card-inner">
-            <LazyImage src={Attachments[0].url} alt={Name} />
-            <div className="content-card-title">
-              {Name} {">"}
-            </div>
-            {Category ? (
-              <ul className="content-card-categories">
-                {isFeatured ? <li>Featured</li> : null}
-                <li>{Category}</li>
-              </ul>
+            {thumbnail_image ? (
+              <LazyImage src={thumbnail_image} alt={title} />
             ) : null}
+            <div className="content-card-title">
+              {title} {">"}
+            </div>
+
+            <ul className="category-list __content-card-categories">
+              {author ? (
+                isPublishedByUs ? (
+                  <li className="__is-published-by-us">Allships</li>
+                ) : null
+              ) : null}
+
+              {categories ? (
+                <>
+                  {isFeatured ? (
+                    <li className="__category-pill">Featured</li>
+                  ) : null}
+                  {isExternal ? (
+                    <li className="__category-pill">External</li>
+                  ) : null}
+                  {categories.length > 0
+                    ? categories.map((category: string, idx: number) => {
+                        return (
+                          <li className="__category-pill" key={idx}>
+                            {category}
+                          </li>
+                        );
+                      })
+                    : null}
+                </>
+              ) : null}
+            </ul>
           </div>
         );
       } else {
@@ -77,22 +110,58 @@ export class ContentCard extends Component<ContentCardProps, any> {
     };
 
     if (!isLink) {
-      return (
-        <div className="content-card">
-          <Content data={data} />
-        </div>
-      );
+      if (!data.isPublishedByUs) {
+        return (
+          <div className="content-card __isNotLink __isNotPublishedByUs">
+            <Content data={data} />
+          </div>
+        );
+      } else {
+        if (!data.isSanityContent) {
+          return (
+            <Link
+              href={`/${slugify(data.type)}/[slug]`}
+              as={`/${slugify(data.type)}/${slugify(
+                data.title ? data.title : "null"
+              )}`}
+            >
+              <a className="content-card __isLink __isLinkPublishedByUs __isNotSanityContent">
+                <Content data={data} />
+              </a>
+            </Link>
+          );
+        } else {
+          return (
+            <Link
+              href={`/${slugify(data.type)}/[slug]`}
+              as={`/${slugify(data.type)}/${data.slug}`}
+            >
+              <a className="content-card __isLink __isLinkPublishedByUs __isSanityContent">
+                <Content data={data} />
+              </a>
+            </Link>
+          );
+        }
+      }
     } else {
-      return (
-        <a
-          href={data.Link}
-          className="content-card __isLink"
-          target="_blank"
-          rel="nofollow noreferrer"
-        >
-          <Content data={data} />
-        </a>
-      );
+      if (data.link) {
+        return (
+          <a
+            href={data.link}
+            className="content-card __isLink __isExternalLink"
+            target="_blank"
+            rel="nofollow noreferrer"
+          >
+            <Content data={data} isExternal />
+          </a>
+        );
+      } else {
+        return (
+          <div className="content-card goodbye">
+            <Content data={data} />
+          </div>
+        );
+      }
     }
   }
 }

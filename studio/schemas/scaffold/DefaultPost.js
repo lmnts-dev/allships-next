@@ -17,6 +17,7 @@ export const DefaultPost = [
     name: "title",
     title: "Title",
     type: "string",
+    validation: (Rule) => Rule.required(),
   },
   {
     name: "slug",
@@ -26,18 +27,27 @@ export const DefaultPost = [
       source: "title",
       maxLength: 96,
     },
+    validation: (Rule) => Rule.required(),
   },
   {
     name: "author",
     title: "Author",
     type: "reference",
     to: [{ type: "author" }],
+    validation: (Rule) => Rule.required(),
   },
+  {
+    name: "isFeatured",
+    title: "Feature this post?",
+    type: "boolean",
+  },
+  Sections(),
   {
     name: "category",
     title: "Category",
     type: "array",
     of: [{ type: "string" }],
+    validation: (Rule) => Rule.required(),
   },
   {
     name: "featured_image",
@@ -55,13 +65,12 @@ export const DefaultPost = [
       hotspot: true,
     },
   },
-  Sections(),
-  ...Theme,
   {
     name: "excerpt",
     title: "Excerpt (SEO Only)",
     type: "text",
   },
+  ...Theme,
   {
     name: "tags",
     title: "Tags (SEO Only)",

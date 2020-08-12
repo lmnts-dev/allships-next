@@ -1,12 +1,11 @@
 /**
  *
- * slugify.tsx
+ * @name slugify.tsx
  * @author Peter Laxalt
  * @description Turn strings into slugs.
  * @example slugify("String Name Here") outputs "string-name-here"
  *
  */
-
 const slugify = (string: string) => {
   const a = "àáäâãåăæçèéëêǵḧìíïîḿńǹñòóöôœṕŕßśșțùúüûǘẃẍÿź·/_,:;";
   const b = "aaaaaaaaceeeeghiiiimnnnoooooprssstuuuuuwxyz------";

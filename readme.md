@@ -23,7 +23,7 @@ By Peter Laxalt
 2. `cd allships-next`
 3. `cd web && yarn install && cd ../studio && yarn install`
 
-### Development
+## Development
 
 To develop on the frontend of the site:
 
@@ -38,11 +38,20 @@ To develop on the content model of the site:
 3. Make updates as needed.
 4. Commit your changes back to Github.
 
-### Deployment
+## Deployment
 
+### To deploy just the frontend
 Simply commit to the master branch and our CI processes on Github will deploy the appropriate URLs to Vercel.
 
-## Data Sources
+### To deploy Sanity Studio
+`cd studio && sanity deploy`
+
+### To deploy both in one swing
+You have to make sure you haven't committed anything yet as this bash script runs `git add . && git commit` as well.
+
+`bash deploy.sh <branch-name | defaults to 'master' if not specified>`
+
+# Data Sources
 
 - [Sanity](https://manage.sanity.io/projects/hpvpbfax/settings/api)
 - [Airtable](https://airtable.com/tblYVYIn8Qvez885Q/viwWlwGYVN7C5kRGB)
@@ -114,7 +123,7 @@ Simply commit to the master branch and our CI processes on Github will deploy th
 `/podcasts/[category]/[podcast].tsx`
 
 - Extends: `<Post>`
-  - Podcast Embed
+  - `podcast_url: string`
 
 ### Pages
 

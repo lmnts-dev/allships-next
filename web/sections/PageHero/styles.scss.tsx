@@ -1,7 +1,5 @@
-// CardListings Styles
-
 // Imports
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 // Core
 import styled from "styled-components";
@@ -9,12 +7,18 @@ import styled from "styled-components";
 // Constants
 import { Theme } from "../../constants/Theme";
 import { Root } from "../../constants/Root";
+import { CssUtils } from "../../constants/styles/CssUtils";
 
 // Animations
 
 // Begin Styles
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
+/**
+ *
+ * @name PageHeroStyle
+ *
+ */
 export const PageHeroStyle = styled.div`
   width: 100%;
   margin: 0 auto;
@@ -48,7 +52,8 @@ export const PageHeroStyle = styled.div`
     }
 
     h1 {
-      color: ${Theme.Color.Dialog};
+      color: ${Theme.Color.Secondary};
+      ${CssUtils.DisableUserSelect()};
     }
   }
 `;

@@ -5,7 +5,7 @@
 import React from "react";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 const Twitter: React.FunctionComponent = () => (
   <svg version="1.1" x="0px" y="0px" viewBox="0 0 512 512" xmlSpace="preserve">

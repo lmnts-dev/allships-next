@@ -1,5 +1,5 @@
 // Imports
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 // Core
 import styled from "styled-components";
@@ -9,7 +9,7 @@ import { Theme } from "../../../constants/Theme";
 import { Root } from "../../../constants/Root";
 
 // Begin Styles
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 /**
  *
@@ -141,6 +141,22 @@ export const FooterStyle = styled.footer`
             -ms-user-select: none;
             user-select: none;
 
+            color: ${Theme.Color.Primary};
+
+            &:hover {
+              text-decoration: none;
+              color: ${Theme.Color.Secondary};
+            }
+
+            a {
+              color: ${Theme.Color.Primary};
+
+              &:hover {
+                text-decoration: none;
+                color: ${Theme.Color.Secondary};
+              }
+            }
+
             &:last-child {
               margin-bottom: 0;
             }
@@ -200,11 +216,11 @@ export const FooterStyle = styled.footer`
               &:focus,
               &:active {
                 outline: 0;
-                border: ${Root.BorderSize} solid ${Theme.Color.Background};
-                color: ${Theme.Color.Background};
+                border: ${Root.BorderSize} solid ${Theme.Color.Secondary};
+                color: ${Theme.Color.Secondary};
 
                 &::placeholder {
-                  color: ${Theme.Color.Background};
+                  color: ${Theme.Color.Secondary};
                 }
               }
             }
@@ -219,7 +235,7 @@ export const FooterStyle = styled.footer`
 
               &:after {
                 content: "PRESS ENTER TO SUBMIT";
-                color: ${Theme.Color.Background};
+                color: ${Theme.Color.Secondary};
                 padding-top: 10px;
                 font-size: 1.4rem;
               }

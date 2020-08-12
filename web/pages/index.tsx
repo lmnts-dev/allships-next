@@ -1,30 +1,25 @@
 // Core
 import React from "react";
-import {
-  loadFeaturedRecords,
-  loadAllRecords,
-  createAvailableCategories,
-} from "../clients";
 
 // Components
 import { InnerGrid } from "../components/core/InnerGrid";
 import { SiteHead } from "../components/core/SiteHead";
+import { AddEmbellishments } from "../components/core/AddEmbellishments";
+import { GrainCover } from "../components/lib/GrainCover";
 
 // Sections
-import { CardListings } from "../sections/CardListings";
+import { CardListings } from "../components/core/CardListings";
+
+// Types
 import { GetStaticProps } from "next";
-import { LMNTS_ContentItem } from "../constants/Types";
+import { LMNTS_AppData } from "../constants/types";
+
+// Utilities
+import { QueryUtils } from "../constants/Queries";
+import { useRouter } from "next/router";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
-
-export type FrontPage = {
-  availableCategories: string[];
-  featuredContent: LMNTS_ContentItem[];
-  content: LMNTS_ContentItem[];
-  showFilterBar: boolean;
-  showPageHero: boolean;
-};
+// __________________________________________________________________________________________
 
 /**
  *
@@ -33,26 +28,55 @@ export type FrontPage = {
  * @description The website homepage.
  *
  */
-const FrontPage: React.FunctionComponent<FrontPage> = ({
-  content,
-  featuredContent,
-  availableCategories,
+const FrontPage: React.FunctionComponent<LMNTS_AppData> = ({
+  allContent,
+  allFeaturedContent,
+  allCategories,
 }) => {
-  console.log("content", content);
-  console.log("featuredContent", featuredContent);
-  console.log("availableCategories", availableCategories);
+  let router = useRouter();
+  let fromPreviewMode = router.query.fromPreviewMode
+    ? router.query.fromPreviewMode == "yerr"
+      ? true
+      : false
+    : false;
 
   return (
-    <InnerGrid startBelowNav={true}>
-      <SiteHead title="ALLSHIPS | A Creative Coalition." />
-      <CardListings
-        availableCategories={availableCategories}
-        featuredContent={featuredContent}
-        content={content}
-        showFilterBar
-        showPageHero
-      />
-    </InnerGrid>
+    <>
+      <InnerGrid startBelowNav={true}>
+        <SiteHead title="ALLSHIPS | A Creative Community." />
+        <AddEmbellishments />
+        <GrainCover />
+        <CardListings
+          availableCategories={allCategories}
+          featuredContent={allFeaturedContent}
+          content={allContent}
+          isFrontPage
+          showFilterBar
+          showPageHero
+          showFeaturedListing
+          authorFilterOverride="By Us"
+        />
+      </InnerGrid>
+
+      {fromPreviewMode ? (
+        <a
+          href={`/`}
+          style={{
+            position: "fixed",
+            bottom: 20,
+            right: 20,
+            background: "green",
+            color: "white",
+            padding: 20,
+            fontWeight: "bold",
+            zIndex: 999999999,
+            textTransform: "uppercase",
+          }}
+        >
+          Preview mode closed
+        </a>
+      ) : null}
+    </>
   );
 };
 
@@ -66,20 +90,5 @@ export default FrontPage;
  *
  */
 export const getStaticProps: GetStaticProps = async () => {
-  let content = await loadAllRecords;
-  // let jsonContent = JSON.stringify(content);
-  // let jsonParsedContent = JSON.parse(jsonContent);
-
-  /**
-   *
-   * Return our Server Data
-   *
-   */
-  return {
-    props: {
-      content: content,
-      featuredContent: await loadFeaturedRecords,
-      availableCategories: createAvailableCategories(content),
-    },
-  };
+  return await QueryUtils.initAppData(false);
 };

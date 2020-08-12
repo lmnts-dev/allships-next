@@ -3,9 +3,12 @@ import React, { ChangeEvent, FormEvent, MouseEvent } from "react";
 
 // Styles
 import { NavigationStyle } from "./styles.scss";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { Icon } from "../../lib/Icon";
 
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
 
 type Props = {
   shouldFocus: boolean;
@@ -38,25 +41,30 @@ export const Navigation: React.FunctionComponent<Props> = ({
 }) => {
   // console.log(appState);
 
+  let router = useRouter();
+
+  console.log(router);
+
   return (
     <>
       <NavigationStyle shouldFocus={shouldFocus}>
         <div className="nav-inner">
           {/* Column: Launcher Button */}
-          <div className="col launcher-btn">
-            <span className="launcher-btn-wrapper">
-              <span className="icon">
-                <figure />
-                <figure />
-                <figure />
-              </span>
-              <span
-                className="label"
-                onClick={() => handleCommand("launch launcher")}
-              >
-                Open Launcher
-              </span>
-            </span>
+          <div className="col home-btn">
+            <Link href="/">
+              <a className="launcher-btn-wrapper">
+                <span className="label">
+                  <span
+                    className={`${
+                      router.pathname == "/" ? `__hidden` : `__visible`
+                    }`}
+                  >
+                    {router.pathname == "/" ? "* " : "< "}
+                  </span>
+                  <Icon name="logotype" />
+                </span>
+              </a>
+            </Link>
           </div>
 
           {/* Column: Launcher Input */}
@@ -67,10 +75,7 @@ export const Navigation: React.FunctionComponent<Props> = ({
               ) : (
                 <>
                   <span className="label">ASR-MOTHERSHIP:~</span>
-                  <form
-                    className="launcher-input-el"
-                    onSubmit={handleAddItem}
-                  >
+                  <form className="launcher-input-el" onSubmit={handleAddItem}>
                     <input
                       type="text"
                       placeholder="ENTER COMMAND"
@@ -78,10 +83,7 @@ export const Navigation: React.FunctionComponent<Props> = ({
                       value={appState.text}
                     />
                     <span className="fake-cursor" />
-                    <button
-                      style={{ display: "none" }}
-                      onClick={handleAddItem}
-                    >
+                    <button style={{ display: "none" }} onClick={handleAddItem}>
                       Add
                     </button>
                   </form>
@@ -93,14 +95,26 @@ export const Navigation: React.FunctionComponent<Props> = ({
           {/* Column: Launcher Status */}
           <div className="col launcher-status">
             <span className="launcher-status-wrapper">
-              <span className="label">{">"} SYSTEM STATUS v1.02x OK</span>
+              <span className="label">SYSTEM STATUS v1.02x OK</span>
             </span>
           </div>
 
           {/* Column: Time */}
-          <div className="col launcher-time">
-            <span className="launcher-time-wrapper">
-              <span className="label">13:23:12:2414</span>
+          <div
+            className="col launcher-mission"
+            onClick={() => {
+              handleCommand("launch launcher");
+              handleCommand("mission");
+            }}
+          >
+            <span
+              className="launcher-mission-wrapper"
+              onClick={() => {
+                handleCommand("launch launcher");
+                handleCommand("mission");
+              }}
+            >
+              OUR MISSION {">"}
             </span>
           </div>
         </div>
@@ -110,4 +124,4 @@ export const Navigation: React.FunctionComponent<Props> = ({
 };
 
 // End Component
-//////////////////////////////////////////////////////////////////////
+// __________________________________________________________________________________________
