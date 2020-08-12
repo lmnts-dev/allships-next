@@ -172,13 +172,15 @@ const LauncherDialogStyle = styled.div`
       .launcher-dialog-content {
         flex: 1;
         max-height: calc(100vh - (${Root.Nav.Size} + (${Root.BorderSize} * 3)));
+
         overflow-y: auto;
         overflow-x: hidden;
+
         padding-bottom: ${Root.Size};
 
-        @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+        /* @media (max-width: ${Theme.Base.Media.Width.Sm}) {
           padding-bottom: calc(${Root.Size} * 3);
-        }
+        } */
 
         .cmd-list {
           text-transform: uppercase;
@@ -262,6 +264,10 @@ const LauncherDialogStyle = styled.div`
             bottom: calc((${Root.Nav.Size} + ${Root.DialogPaddingSize}) * -1);
             background: ${Theme.Color.Dialog};
             border-top: 1px solid ${Theme.Color.Primary};
+
+            @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+              padding-bottom: calc(${Root.DialogPaddingSize} * 3);
+            }
 
             .label {
               color: ${Theme.Color.Secondary};
