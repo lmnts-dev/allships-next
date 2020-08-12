@@ -345,20 +345,8 @@ class MyApp extends App<MothershipProps, MothershipState> {
         },
         {
           id: Math.random().toString(36).substring(7),
-          text: "",
-          done: false,
-          addClass: "__string-clr-secondary",
-        },
-        {
-          id: Math.random().toString(36).substring(7),
           text: "~~~~~~~~~~~~~~~~~~~~~~~~~",
           done: false,
-        },
-        {
-          id: Math.random().toString(36).substring(7),
-          text: "",
-          done: false,
-          addClass: "__string-clr-secondary",
         },
         {
           id: Math.random().toString(36).substring(7),
@@ -453,6 +441,7 @@ class MyApp extends App<MothershipProps, MothershipState> {
           id: Math.random().toString(36).substring(7),
           text: "NEED HELP?",
           done: false,
+          addClass: "__string-clr-secondary",
         },
         {
           id: Math.random().toString(36).substring(7),

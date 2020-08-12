@@ -108,6 +108,25 @@ const LauncherDialogStyle = styled.div`
             }
             }
 
+            &.__mobile-visible {
+              display: none;
+
+              @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+                display: flex;
+              }
+            }
+
+            @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+              &.__mobile-menu-hidden {
+                display: none;
+              }
+
+              &.__mobile-menu-visible {
+                display: flex;
+              }
+            }
+
+
             &.__alt {
               color: ${Theme.Color.Secondary};
 

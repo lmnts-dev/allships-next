@@ -9,6 +9,7 @@ import React, {
   PureComponent,
 } from "react";
 import LauncherDialogStyle from "./styles.scss";
+import { createGlobalStyle } from "styled-components";
 
 // Begin Component
 // __________________________________________________________________________________________
@@ -83,9 +84,20 @@ export class LauncherDialog extends PureComponent<
       appState,
     } = this.props;
 
+    const BodyScrollLock = createGlobalStyle`
+      body, html {
+        overflow: hidden !important;
+      }
+    `;
+
     return (
       <LauncherDialogStyle>
-        {/* <Draggable> */}
+        {/* ___________________________________________ */}
+        {/* Lock Body Scroll */}
+        <BodyScrollLock />
+
+        {/* ___________________________________________ */}
+        {/* Dialog Itself */}
         <div
           className={`dialog launcher-dialog-inner ${
             this.state.isMaximized ? "__maximized" : ""
@@ -109,20 +121,55 @@ export class LauncherDialog extends PureComponent<
           <div className="launcher-dialog-structure">
             <div className="launcher-dialog-sidebar">
               <ul className="launcher-commands">
-                <li className="__alt" onClick={() => handleCommand("mission")}>
+                <li
+                  className={`__mobile-visible ${
+                    this.state.showMenu ? `active` : ``
+                  }`}
+                  onClick={() => this.toggleMenu()}
+                >
+                  {this.state.showMenu
+                    ? `${"-"} Hide Menu Commands`
+                    : `${">"} Show Menu Commands`}
+                </li>
+                <li
+                  className={`__alt ${
+                    this.state.showMenu
+                      ? `__mobile-menu-visible`
+                      : `__mobile-menu-hidden`
+                  }`}
+                  onClick={() => handleCommand("mission")}
+                >
                   {">"} Our Mission
                 </li>
-                <li className="__alt __is-link">
+                <li
+                  className={`__alt __is-link ${
+                    this.state.showMenu
+                      ? `__mobile-menu-visible`
+                      : `__mobile-menu-hidden`
+                  }`}
+                >
                   <a href="mailto: dave@allships.co" target="_blank">
                     {">"} Submit Work
                   </a>
                 </li>
-                <li className="__alt __is-link">
+                <li
+                  className={`__alt __is-link ${
+                    this.state.showMenu
+                      ? `__mobile-menu-visible`
+                      : `__mobile-menu-hidden`
+                  }`}
+                >
                   <a href="mailto: dave@allships.co" target="_blank">
                     {">"} Get in touch
                   </a>
                 </li>
-                <li className="__alt __is-link">
+                <li
+                  className={`__alt __is-link ${
+                    this.state.showMenu
+                      ? `__mobile-menu-visible`
+                      : `__mobile-menu-hidden`
+                  }`}
+                >
                   <a
                     href="https://www.instagram.com/allships.co/"
                     target="_blank"
@@ -130,22 +177,50 @@ export class LauncherDialog extends PureComponent<
                     {">"} Follow Us
                   </a>
                 </li>
-                <li onClick={() => handleCommand("help")}>{">"} Help</li>
-                <li onClick={() => handleCommand("reset")}>{">"} Reset</li>
+                <li
+                  className={`${
+                    this.state.showMenu
+                      ? `__mobile-menu-visible`
+                      : `__mobile-menu-hidden`
+                  }`}
+                  onClick={() => handleCommand("help")}
+                >
+                  {">"} Help
+                </li>
+                <li
+                  className={`${
+                    this.state.showMenu
+                      ? `__mobile-menu-visible`
+                      : `__mobile-menu-hidden`
+                  }`}
+                  onClick={() => handleCommand("reset")}
+                >
+                  {">"} Reset
+                </li>
               </ul>
             </div>
             <div className="dialog-content launcher-dialog-content">
               <ul className="cmd-list">
-                {appState.items.map((item: any, idx: number) => (
-                  <li key={idx} className={item.addClass || false}>
-                    <span className="label">
-                      <span>ASR</span>
-                      <span className="__mobile-hidden">-MOTHERSHIP</span>
-                      <span>:~</span>
-                    </span>
-                    <span className="string">{item.text}</span>
-                  </li>
-                ))}
+                {appState.items.map((item: any, idx: number) => {
+                  if (item.text.length > 0) {
+                    return (
+                      <li key={idx} className={item.addClass || false}>
+                        <span className="label">
+                          <span>ASR</span>
+                          <span className="__mobile-hidden">-MOTHERSHIP</span>
+                          <span>:~</span>
+                        </span>
+                        <span className="string">{item.text}</span>
+                      </li>
+                    );
+                  } else {
+                    return (
+                      <li key={idx} className="__line-break">
+                        <br />
+                      </li>
+                    );
+                  }
+                })}
                 <li className="launcher-input-wrapper">
                   <span className="label">ASR-MOTHERSHIP:~</span>
                   <form className="launcher-input-el" onSubmit={handleAddItem}>
