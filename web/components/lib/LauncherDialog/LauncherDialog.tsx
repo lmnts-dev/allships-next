@@ -204,7 +204,7 @@ export class LauncherDialog extends PureComponent<
                 {appState.items.map((item: any, idx: number) => {
                   if (item.text.length > 0) {
                     return (
-                      <li key={idx} className={item.addClass || false}>
+                      <li key={idx} className={item.addClass || undefined}>
                         <span className="label">
                           <span>ASR</span>
                           <span className="__mobile-hidden">-MOTHERSHIP</span>

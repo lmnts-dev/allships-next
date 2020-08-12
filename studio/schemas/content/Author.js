@@ -21,11 +21,13 @@ export const Author = {
       title: "Name",
       name: "name",
       type: "string",
+      validation: (Rule) => Rule.required(),
     },
     {
       title: "Job Title",
       name: "job_title",
       type: "string",
+      validation: (Rule) => Rule.required(),
     },
     {
       title: "Author photo",
@@ -34,6 +36,7 @@ export const Author = {
       options: {
         hotspot: true,
       },
+      validation: (Rule) => Rule.required(),
     },
     {
       title: "Twitter",
@@ -49,6 +52,7 @@ export const Author = {
       title: "Email",
       name: "email",
       type: "string",
+      validation: (Rule) => Rule.required(),
     },
     {
       title: "Website",

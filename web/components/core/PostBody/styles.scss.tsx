@@ -5,6 +5,7 @@
 import styled from "styled-components";
 import { Root } from "../../../constants/Root";
 import { Theme } from "../../../constants/Theme";
+import { CssUtils } from "../../../constants/styles/CssUtils";
 
 // Constants
 
@@ -132,12 +133,15 @@ export const PostBodyStyle = styled.div`
     padding-left: ${Root.Grid.Gutter.Left};
     padding-right: ${Root.Grid.Gutter.Right};
     padding-bottom: ${Root.Size};
-    padding-top: ${Root.Size};
-
-    border-top: 2px ${Theme.Color.Primary} solid;
 
     .post-outro-header {
       font-size: 1.5rem;
+      width: 100%;
+      text-align: center;
+      display: block;
+      padding-top: ${Root.Size};
+
+      border-top: 2px ${Theme.Color.Primary} solid;
     }
 
     .post-outro-social,
@@ -164,6 +168,84 @@ export const PostBodyStyle = styled.div`
 
         a {
           font-family: ${Theme.Font.Header} !important;
+        }
+      }
+    }
+
+    .post-outro-header {
+      margin-top: ${Root.Size};
+    }
+  }
+
+  /* _______________________________________________ */
+  /* Post Author Section */
+  .post-author-section {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    max-width: calc(${Root.Site.Width} * 0.5);
+    margin: 0 auto;
+    font-family: ${Theme.Font.Header} !important;
+    text-transform: uppercase;
+
+    p {
+      font-family: ${Theme.Font.Header} !important;
+      line-height: 1;
+    }
+
+    .post-author-col {
+      &.__name {
+        .author-name {
+          font-size: 1.3rem;
+        }
+
+        .author-title {
+          margin-bottom: calc(${Root.Size} / 4);
+        }
+
+        .author-contact {
+          a {
+            margin-right: calc(${Root.Size} / 4);
+            display: inline-block;
+
+            &:last-child {
+              margin-right: 0;
+            }
+          }
+        }
+      }
+
+      &.__photo {
+        .author-photo-wrapper {
+          display: flex;
+          width: calc(${Root.Size} * 1.5);
+          height: calc(${Root.Size} * 1.5);
+          position: relative;
+          margin-right: calc(${Root.Size} / 4);
+
+          img {
+            ${CssUtils.ObjectFit()};
+          }
+        }
+      }
+    }
+
+    &.__small-author {
+      align-items: center;
+
+      .post-author-col {
+        &.__photo {
+          .author-photo-wrapper {
+            width: calc(${Root.Size});
+            height: calc(${Root.Size});
+          }
+        }
+
+        &.__name {
+          .author-title {
+            margin-bottom: 0;
+          }
         }
       }
     }

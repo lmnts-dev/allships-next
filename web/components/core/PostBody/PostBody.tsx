@@ -26,6 +26,8 @@ import { SectionLoop } from "../SectionLoop";
 // import slugify from "../../../utils/slugify";
 import { parseDateTime } from "../../../utils/parseDateTime";
 import { Settings } from "../../../constants/site/Settings";
+import { urlFor } from "../../../utils/urlFor";
+import LazyImage from "../../../utils/lazyImage";
 
 // Begin Component
 // __________________________________________________________________________________________
@@ -56,7 +58,7 @@ export class PostBody extends PureComponent<PostBodyProps, PostBodyState> {
   render() {
     // let { baseRoute, post, categoryDynamicRoute } = this.props;
     let { post } = this.props;
-    let { title, category, content, excerpt } = post;
+    let { title, category, content, author } = post;
 
     // Variable Overrides
     const VariableOverrides = createGlobalStyle`
@@ -77,6 +79,8 @@ export class PostBody extends PureComponent<PostBodyProps, PostBodyState> {
             {/* ___________________________________________ */}
             {/* Post Intro  */}
             <section className="post-intro-section">
+              {/* ___________________________________________ */}
+              {/* Post Meta  */}
               <ul>
                 {category
                   ? category.map((categoryItem: string, idx: number) => {
@@ -85,7 +89,8 @@ export class PostBody extends PureComponent<PostBodyProps, PostBodyState> {
                   : null}
                 <li>{parseDateTime(post._updatedAt)}</li>
               </ul>
-
+              {/* ___________________________________________ */}
+              {/* Post Title  */}
               <h1
                 key={
                   Math.random().toString(36).substring(2, 15) +
@@ -107,7 +112,38 @@ export class PostBody extends PureComponent<PostBodyProps, PostBodyState> {
                   />
                 ) : null}
               </h1>
-              <p>{excerpt}</p>
+              {/* ___________________________________________ */}
+              {/* Post Author  */}
+              <div className="post-author-section __small-author">
+                {/* ___________________________________________ */}
+                {/* Post Author Photo */}
+                <div className="post-author-col __photo">
+                  <span className="author-photo-wrapper">
+                    <LazyImage
+                      src={`${urlFor(author.author_photo)
+                        .width(250)
+                        .auto("format")
+                        .url()}`}
+                      alt={author.name}
+                      title={author.name}
+                      uniqueKey={
+                        Math.random().toString(36).substring(2, 15) +
+                        Math.random().toString(36).substring(2, 15)
+                      }
+                    />
+                  </span>
+                </div>
+                {/* ___________________________________________ */}
+                {/* Post Author Name */}
+                <div className="post-author-col __name">
+                  {/* ___________________________________________ */}
+                  {/* Post Author Name Itself */}
+                  <div className="author-name">By {author.name}</div>
+                  {/* ___________________________________________ */}
+                  {/* Post Author Title */}
+                  <div className="author-title">{author.job_title}</div>
+                </div>
+              </div>
             </section>
           </InnerGrid>
           {/* ___________________________________________ */}
@@ -118,6 +154,87 @@ export class PostBody extends PureComponent<PostBodyProps, PostBodyState> {
           {/* Post Outro  */}
           <section className="post-outro-section">
             <InnerGrid>
+              {/* ___________________________________________ */}
+              {/* Post Author  */}
+              <div className="post-author-section">
+                {/* ___________________________________________ */}
+                {/* Post Author Photo */}
+                <div className="post-author-col __photo">
+                  <span className="author-photo-wrapper">
+                    <LazyImage
+                      src={`${urlFor(author.author_photo)
+                        .width(250)
+                        .auto("format")
+                        .url()}`}
+                      alt={author.name}
+                      title={author.name}
+                      uniqueKey={
+                        Math.random().toString(36).substring(2, 15) +
+                        Math.random().toString(36).substring(2, 15)
+                      }
+                    />
+                  </span>
+                </div>
+                {/* ___________________________________________ */}
+                {/* Post Author Name */}
+                <div className="post-author-col __name">
+                  {/* ___________________________________________ */}
+                  {/* Post Author Name Itself */}
+                  <div className="author-name">Written by {author.name}</div>
+
+                  {/* ___________________________________________ */}
+                  {/* Post Author Title */}
+                  <div className="author-title">{author.job_title}</div>
+
+                  {/* ___________________________________________ */}
+                  {/* Post Author Bio */}
+                  {author.bio ? <p>{author.bio}</p> : null}
+
+                  {/* ___________________________________________ */}
+                  {/* Post Author Contact */}
+                  <div className="author-contact">
+                    {author.twitter ? (
+                      <a
+                        target="_blank"
+                        rel="nofollow noreferrer"
+                        href={author.twitter}
+                      >
+                        Twitter
+                      </a>
+                    ) : null}
+                    {author.instagram ? (
+                      <a
+                        target="_blank"
+                        rel="nofollow noreferrer"
+                        href={author.instagram}
+                      >
+                        Instagram
+                      </a>
+                    ) : null}
+                    {author.email ? (
+                      <a
+                        target="_blank"
+                        rel="nofollow noreferrer"
+                        href={`mailto: ${author.email}`}
+                      >
+                        Email
+                      </a>
+                    ) : null}
+                    {author.web ? (
+                      <a
+                        target="_blank"
+                        rel="nofollow noreferrer"
+                        href={author.web}
+                      >
+                        Website
+                      </a>
+                    ) : null}
+                  </div>
+                </div>
+              </div>
+
+              {/* ___________________________________________ */}
+              {/* Share Section */}
               <div className="post-outro-header">Spread the word</div>
               <div className="post-outro-social">
                 <ul>

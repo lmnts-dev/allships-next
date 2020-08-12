@@ -60,7 +60,10 @@ export class Queries {
   static CurrentArticle = () => {
     return groq`*[_type == "article" && slug.current == $slug][0]{
       ...,
-      "author": author->,
+      "author": {
+        ...author->,
+        "author_photo": author.author_photo.asset->
+      },
       "featured_image": featured_image.asset->,
       "thumbnail_image": thumbnail_image.asset->,
       "content": content[]{

@@ -88,12 +88,14 @@ export type LMNTS_Airtable_ContentRecord = Airtable_DefaultRecord & {
  */
 
 export type LMNTS_Sanity_Author = Sanity_DefaultItem & {
-  name?: string;
-  job_title?: string;
+  name: string;
+  job_title: string;
   twitter?: string;
   instagram?: string;
+  web: string;
+  bio?: string;
   email?: string;
-  author_photo?: Sanity_ImageAsset;
+  author_photo: Sanity_ImageAsset;
 };
 
 /**
@@ -104,7 +106,7 @@ export type LMNTS_Sanity_Author = Sanity_DefaultItem & {
 
 export type LMNTS_Sanity_DefaultPost = LMNTS_SectionLoop &
   Sanity_DefaultItem & {
-    author?: LMNTS_Sanity_Author;
+    author: LMNTS_Sanity_Author;
     category?: string[];
     excerpt?: string;
     featured_image?: Sanity_ImageAsset;
