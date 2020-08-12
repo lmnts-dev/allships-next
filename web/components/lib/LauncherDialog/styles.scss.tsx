@@ -176,6 +176,10 @@ const LauncherDialogStyle = styled.div`
         overflow-x: hidden;
         padding-bottom: ${Root.Size};
 
+        @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+          padding-bottom: calc(${Root.Size} * 3);
+        }
+
         .cmd-list {
           text-transform: uppercase;
           width: 100%;
