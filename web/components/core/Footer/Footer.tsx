@@ -62,7 +62,7 @@ class NewsletterForm extends Component<any, FormState> {
           <form onSubmit={() => this.handleSubmit}>
             <input
               type="email"
-              placeholder="> Enter your email address"
+              placeholder="> Enter your email"
               value={this.state.value}
               onChange={() => this.handleChange}
             />
@@ -101,6 +101,9 @@ export const Footer: React.FunctionComponent<FooterProps> = ({
             <ul>
               <li onClick={() => handleCommand("launch launcher")}>
                 {">"} Console
+              </li>
+              <li>
+                <a href="mailto: dave@allships.co">{">"} Submit Work</a>
               </li>
               <li>
                 <a href="mailto: dave@allships.co">{">"} Contact</a>
