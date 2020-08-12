@@ -8,14 +8,15 @@
 
 // Core
 import Head from "next/head";
+import { Settings } from "../../../constants/site/Settings"
 
 // Begin Component
 // __________________________________________________________________________________________
 
-let siteTitle = "ALLSHIPS";
-let baseUrl = "https://allships.co";
-let description = "A Creative Community";
-let keywords = "podcasts, creative, resources, interview, creativity";
+let siteTitle = Settings.siteTitle;
+let baseUrl = Settings.siteUrl;
+let description = Settings.siteDescription;
+let keywords = Settings.siteBaseKeywords;
 
 export const SiteHead = ({ title = siteTitle + " | " + description }) => {
   return (

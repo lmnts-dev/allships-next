@@ -542,13 +542,15 @@ export class CardListings extends PureComponent<
 
     return (
       <CardListingsStyle className="section-card-listings">
-        <SiteHead
-          title={`ALLSHIPS | ${
-            this.state.currentCategory == "everything"
-              ? " A Creative Community."
-              : capitalCategory
-          }`}
-        />
+        {!showPageHero ? null : (
+          <SiteHead
+            title={`ALLSHIPS | ${
+              this.state.currentCategory == "everything"
+                ? " A Creative Community."
+                : capitalCategory
+            }`}
+          />
+        )}
         <ContentCardGlobalStyles />
         {!showPageHero ? null : (
           <PageHero currentHero={this.state.currentCategory} />

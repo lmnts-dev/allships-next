@@ -125,4 +125,43 @@ export const PostBodyStyle = styled.div`
     padding-left: ${Root.Grid.Gutter.Left};
     padding-right: ${Root.Grid.Gutter.Right};
   }
+
+  /* ___________________________________ */
+  /* Outro Section */
+  .post-outro-section {
+    padding-left: ${Root.Grid.Gutter.Left};
+    padding-right: ${Root.Grid.Gutter.Right};
+    padding-bottom: ${Root.Size};
+    padding-top: ${Root.Size};
+
+    border-top: 2px ${Theme.Color.Primary} solid;
+
+    .post-outro-social,
+    .post-outro-header {
+      margin: 0 auto;
+      font-family: ${Theme.Font.Header} !important;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: center;
+
+      ul {
+        display: flex;
+        margin: 0;
+        padding: 0;
+
+        li {
+          margin: calc(${Root.Size} / 4);
+          font-size: 4.5rem;
+
+          @media (max-width: ${Theme.Base.Media.Width.Md}) {
+            font-size: 8vw;
+          }
+        }
+
+        a {
+          font-family: ${Theme.Font.Header} !important;
+        }
+      }
+    }
+  }
 `;

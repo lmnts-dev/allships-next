@@ -25,6 +25,7 @@ import { SectionLoop } from "../SectionLoop";
 // Utils
 // import slugify from "../../../utils/slugify";
 import { parseDateTime } from "../../../utils/parseDateTime";
+import { Settings } from "../../../constants/site/Settings";
 
 // Begin Component
 // __________________________________________________________________________________________
@@ -73,6 +74,8 @@ export class PostBody extends PureComponent<PostBodyProps, PostBodyState> {
         <VariableOverrides />
         <article>
           <InnerGrid>
+            {/* ___________________________________________ */}
+            {/* Post Intro  */}
             <section className="post-intro-section">
               <ul>
                 {category
@@ -107,7 +110,36 @@ export class PostBody extends PureComponent<PostBodyProps, PostBodyState> {
               <p>{excerpt}</p>
             </section>
           </InnerGrid>
+          {/* ___________________________________________ */}
+          {/* Section Loop  */}
           <SectionLoop content={content} />
+
+          {/* ___________________________________________ */}
+          {/* Post Outro  */}
+          <section className="post-outro-section">
+            <InnerGrid>
+              <div className="post-outro-header">Share this post</div>
+              <div className="post-outro-social">
+                <ul>
+                  <li>
+                    <a href={`https://reddit.com/submit?url=${Settings.siteUrl}/${post._type}/${post.slug.current}&title=${title}`} target="_blank" rel="nofollow noreferrer">
+                      Reddit
+                    </a>
+                  </li>
+                  <li>
+                    <a href={`https://twitter.com/intent/tweet?url=${Settings.siteUrl}/${post._type}/${post.slug.current}`} target="_blank" rel="nofollow noreferrer">
+                      Twitter
+                    </a>
+                  </li>
+                  <li>
+                    <a href={`https://www.tumblr.com/widgets/share/tool?canonicalUrl=${Settings.siteUrl}/${post._type}/${post.slug.current}&title=${title}`} target="_blank" rel="nofollow noreferrer">
+                      Tumblr
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </InnerGrid>
+          </section>
         </article>
       </PostBodyStyle>
     );
