@@ -266,7 +266,7 @@ const LauncherDialogStyle = styled.div`
             border-top: 1px solid ${Theme.Color.Primary};
 
             @media (max-width: ${Theme.Base.Media.Width.Sm}) {
-              padding-bottom: calc(${Root.DialogPaddingSize} * 3);
+              padding-bottom: calc(${Root.DialogPaddingSize} * 5);
             }
 
             .label {
