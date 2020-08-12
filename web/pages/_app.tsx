@@ -568,6 +568,8 @@ class MyApp extends App<MothershipProps, MothershipState> {
     // CMD: Submit
     else if (currentCmd.includes("submit")) {
       let msg = [
+        // ____________________________________________
+        // Desktop ASCII
         {
           id: Math.random().toString(36).substring(7),
           text: "~~~~~~~~~~~~~~~~~~~~~~~~~",
@@ -657,6 +659,153 @@ class MyApp extends App<MothershipProps, MothershipState> {
           addClass: "__mobile-hidden __string-clr-secondary",
           done: false,
         },
+        // ____________________________________________
+        // Mobile ASCII
+        {
+          text: String.raw`       _________ `,
+          done: false,
+          addClass: "__mobile-visible __string-clr-secondary",
+          id: Math.random().toString(36).substring(7),
+        },
+        {
+          text: String.raw`      (=========) `,
+          done: false,
+          addClass: "__mobile-visible __string-clr-secondary",
+          id: Math.random().toString(36).substring(7),
+        },
+        {
+          text: String.raw`      |=========| `,
+          done: false,
+          addClass: "__mobile-visible __string-clr-secondary",
+          id: Math.random().toString(36).substring(7),
+        },
+        {
+          text: String.raw`      |====_====| `,
+          done: false,
+          addClass: "__mobile-visible __string-clr-secondary",
+          id: Math.random().toString(36).substring(7),
+        },
+        {
+          text: String.raw`      |== / \ ==| `,
+          done: false,
+          addClass: "__mobile-visible __string-clr-secondary",
+          id: Math.random().toString(36).substring(7),
+        },
+        {
+          text: String.raw`      |= / _ \ =| `,
+          done: false,
+          addClass: "__mobile-visible __string-clr-secondary",
+          id: Math.random().toString(36).substring(7),
+        },
+        {
+          text: String.raw`   _  |=| ( ) |=| `,
+          done: false,
+          addClass: "__mobile-visible __string-clr-secondary",
+          id: Math.random().toString(36).substring(7),
+        },
+        {
+          text: String.raw`  /=\ |=|     |=| /=\ `,
+          done: false,
+          addClass: "__mobile-visible __string-clr-secondary",
+          id: Math.random().toString(36).substring(7),
+        },
+        {
+          text: String.raw`  |=| |=| ASR |=| |=| `,
+          done: false,
+          addClass: "__mobile-visible __string-clr-secondary",
+          id: Math.random().toString(36).substring(7),
+        },
+        {
+          text: String.raw`  |=| |=|  _  |=| |=| `,
+          done: false,
+          addClass: "__mobile-visible __string-clr-secondary",
+          id: Math.random().toString(36).substring(7),
+        },
+        {
+          text: String.raw`  |=| |=| | | |=| |=| `,
+          done: false,
+          addClass: "__mobile-visible __string-clr-secondary",
+          id: Math.random().toString(36).substring(7),
+        },
+        {
+          text: String.raw`  |=| |=| | | |=| |=| `,
+          done: false,
+          addClass: "__mobile-visible __string-clr-secondary",
+          id: Math.random().toString(36).substring(7),
+        },
+        {
+          text: String.raw`  |=| |=| | | |=| |=| `,
+          done: false,
+          addClass: "__mobile-visible __string-clr-secondary",
+          id: Math.random().toString(36).substring(7),
+        },
+        {
+          text: String.raw`  |=| |/  | |  \| |=| `,
+          done: false,
+          addClass: "__mobile-visible __string-clr-secondary",
+          id: Math.random().toString(36).substring(7),
+        },
+        {
+          text: String.raw`  |=|/    | |    \|=| `,
+          done: false,
+          addClass: "__mobile-visible __string-clr-secondary",
+          id: Math.random().toString(36).substring(7),
+        },
+        {
+          text: String.raw`  |=/OPEN |_| EYES\=| `,
+          done: false,
+          addClass: "__mobile-visible __string-clr-secondary",
+          id: Math.random().toString(36).substring(7),
+        },
+        {
+          text: String.raw`  |(_______________)| `,
+          done: false,
+          addClass: "__mobile-visible __string-clr-secondary",
+          id: Math.random().toString(36).substring(7),
+        },
+        {
+          text: String.raw`  |=| |_|__|__|_| |=| `,
+          done: false,
+          addClass: "__mobile-visible __string-clr-secondary",
+          id: Math.random().toString(36).substring(7),
+        },
+        {
+          text: String.raw`  |=|   ( ) ( )   |=| `,
+          done: false,
+          addClass: "__mobile-visible __string-clr-secondary",
+          id: Math.random().toString(36).substring(7),
+        },
+        {
+          text: String.raw` /===\           /===\ `,
+          done: false,
+          addClass: "__mobile-visible __string-clr-secondary",
+          id: Math.random().toString(36).substring(7),
+        },
+        {
+          text: String.raw`|||||||         ||||||| `,
+          done: false,
+          addClass: "__mobile-visible __string-clr-secondary",
+          id: Math.random().toString(36).substring(7),
+        },
+        {
+          text: String.raw`-------         ------- `,
+          done: false,
+          addClass: "__mobile-visible __string-clr-secondary",
+          id: Math.random().toString(36).substring(7),
+        },
+        {
+          text: String.raw` (~~~)           (~~~) `,
+          done: false,
+          addClass: "__mobile-visible __string-clr-secondary",
+          id: Math.random().toString(36).substring(7),
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "",
+          done: false,
+          addClass: "__string-long-form __string-clr-secondary",
+        },
+        // ______________________________________
         {
           id: Math.random().toString(36).substring(7),
           text:
@@ -693,22 +842,153 @@ class MyApp extends App<MothershipProps, MothershipState> {
       let msg = [
         {
           id: Math.random().toString(36).substring(7),
-          text: "Email us: dave@allships.co",
-          addClass: "__string-long-form __string-clr-secondary",
+          text: "~~~~~~~~~~~~~~~~~~~~~~~~~",
           done: false,
         },
         {
           id: Math.random().toString(36).substring(7),
-          text: "Instagram: @allships.co",
-          addClass: "__string-long-form __string-clr-secondary",
+          text: String.raw` _n____________________ `,
           done: false,
+          addClass: "__string-long-form __string-clr-secondary",
         },
         {
           id: Math.random().toString(36).substring(7),
-          text: "Twitter: @allshipsco",
+          text: String.raw`|_|__________________|_| `,
+          done: false,
           addClass: "__string-long-form __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`|  ,-----------------. | `,
+          done: false,
+          addClass: "__string-long-form __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`| |      EMAIL       | | `,
+          done: false,
+          addClass: "__string-long-form __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`| | dave@allships.co | | `,
+          done: false,
+          addClass: "__string-long-form __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`| |      INSTA       | | `,
+          done: false,
+          addClass: "__string-long-form __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`| |   @allships.co   | | `,
+          done: false,
+          addClass: "__string-long-form __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`| |     TWITTER      | | `,
+          done: false,
+          addClass: "__string-long-form __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`| |   @allshipsco    | | `,
+          done: false,
+          addClass: "__string-long-form __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`| '------------------' | `,
+          done: false,
+          addClass: "__string-long-form __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`|     _ ALLSHIPS _     | `,
+          done: false,
+          addClass: "__string-long-form __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`|   _| |_         ,-.  | `,
+          done: false,
+          addClass: "__string-long-form __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`|  |_ O _|   ,-. "._," | `,
+          done: false,
+          addClass: "__string-long-form __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`|    |_|    "._,"   A  |  `,
+          done: false,
+          addClass: "__string-long-form __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`|      _  _    B       |  `,
+          done: false,
+          addClass: "__string-long-form __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`|      // //           | `,
+          done: false,
+          addClass: "__string-long-form __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`|     // //    \\\\\\  | `,
+          done: false,
+          addClass: "__string-long-form __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`|     '  '      \\\\\\ , `,
+          done: false,
+          addClass: "__string-long-form __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`|___________...______," `,
+          done: false,
+          addClass: "__string-long-form __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "",
+          done: false,
+          addClass: "__string-long-form __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "~~~~~~~~~~~~~~~~~~~~~~~~~",
           done: false,
         },
+
+        // {
+        //   id: Math.random().toString(36).substring(7),
+        //   text: "Email us: dave@allships.co",
+        //   addClass: "__string-long-form __string-clr-secondary",
+        //   done: false,
+        // },
+        // {
+        //   id: Math.random().toString(36).substring(7),
+        //   text: "Instagram: @allships.co",
+        //   addClass: "__string-long-form __string-clr-secondary",
+        //   done: false,
+        // },
+        // {
+        //   id: Math.random().toString(36).substring(7),
+        //   text: "Twitter: @allshipsco",
+        //   addClass: "__string-long-form __string-clr-secondary",
+        //   done: false,
+        // },
       ];
 
       this.setState({
