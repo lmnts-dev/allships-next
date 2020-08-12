@@ -118,22 +118,43 @@ export class PostBody extends PureComponent<PostBodyProps, PostBodyState> {
           {/* Post Outro  */}
           <section className="post-outro-section">
             <InnerGrid>
-              <div className="post-outro-header">Share this post</div>
+              <div className="post-outro-header">Spread the word</div>
               <div className="post-outro-social">
                 <ul>
                   <li>
-                    <a href={`https://reddit.com/submit?url=${Settings.siteUrl}/${post._type}/${post.slug.current}&title=${title}`} target="_blank" rel="nofollow noreferrer">
-                      Reddit
-                    </a>
-                  </li>
-                  <li>
-                    <a href={`https://twitter.com/intent/tweet?url=${Settings.siteUrl}/${post._type}/${post.slug.current}`} target="_blank" rel="nofollow noreferrer">
+                    <a
+                      href={`https://twitter.com/intent/tweet?url=${Settings.siteUrl}/${post._type}/${post.slug.current}`}
+                      target="_blank"
+                      rel="nofollow noreferrer"
+                    >
                       Twitter
                     </a>
                   </li>
                   <li>
-                    <a href={`https://www.tumblr.com/widgets/share/tool?canonicalUrl=${Settings.siteUrl}/${post._type}/${post.slug.current}&title=${title}`} target="_blank" rel="nofollow noreferrer">
+                    <a
+                      href={`https://reddit.com/submit?url=${Settings.siteUrl}/${post._type}/${post.slug.current}&title=${title}`}
+                      target="_blank"
+                      rel="nofollow noreferrer"
+                    >
+                      Reddit
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={`https://www.tumblr.com/widgets/share/tool?canonicalUrl=${Settings.siteUrl}/${post._type}/${post.slug.current}&title=${title}`}
+                      target="_blank"
+                      rel="nofollow noreferrer"
+                    >
                       Tumblr
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={`https://www.facebook.com/sharer.php?u=${Settings.siteUrl}`}
+                      target="_blank"
+                      rel="nofollow noreferrer"
+                    >
+                      FB
                     </a>
                   </li>
                 </ul>

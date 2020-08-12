@@ -50,6 +50,17 @@ export const Author = {
       name: "email",
       type: "string",
     },
+    {
+      title: "Website",
+      name: "web",
+      type: "string",
+    },
+    {
+      title: "Bio",
+      name: "bio",
+      type: "text",
+      lines: 4,
+    },
   ],
 };
 

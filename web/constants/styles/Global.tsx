@@ -62,12 +62,12 @@ const GlobalClasses = createGlobalStyle`
       position: fixed !important;
       top: 0 !important;
       left: 0 !important;
-      right: 0 !important;
+      right: 25px !important;
       bottom: 0 !important;
-      width: 100vw !important;
+      width: calc(100vw - 25px) !important;
       height: 100vh !important;
-      min-width: 100vw !important;
-      max-width: 100vw !important;
+      min-width: calc(100vw - 25px) !important;
+      max-width: calc(100vw - 25px) !important;
       min-height: 100vh !important;
       max-height: 100vh !important;
     }

@@ -136,6 +136,10 @@ export const PostBodyStyle = styled.div`
 
     border-top: 2px ${Theme.Color.Primary} solid;
 
+    .post-outro-header {
+      font-size: 1.5rem;
+    }
+
     .post-outro-social,
     .post-outro-header {
       margin: 0 auto;

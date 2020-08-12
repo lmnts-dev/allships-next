@@ -255,14 +255,25 @@ export const NavigationStyle = styled.nav<Props>`
       }
 
       /* Launcher Time */
-      &.launcher-time {
+      &.launcher-time,
+      &.launcher-mission {
         display: flex;
         align-items: center;
         padding: 0 ${navPadding};
+        cursor: pointer;
         border-left: ${Root.BorderSize} solid ${Theme.Color.Primary};
 
         @media (max-width: ${Theme.Base.Media.Width.Sm}) {
           border-left: unset;
+          width: 100%;
+          flex: 1;
+          display: flex;
+          justify-content: flex-end;
+        }
+
+        &:hover {
+          background-color: ${Theme.Color.Secondary};
+          color: ${Theme.Color.Black};
         }
       }
     }

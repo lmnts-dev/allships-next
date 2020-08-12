@@ -37,7 +37,7 @@ export const Navigation: React.FunctionComponent<Props> = ({
   appState,
   handleTextChange,
   handleAddItem,
-  // handleCommand,
+  handleCommand,
 }) => {
   // console.log(appState);
 
@@ -100,8 +100,22 @@ export const Navigation: React.FunctionComponent<Props> = ({
           </div>
 
           {/* Column: Time */}
-          <div className="col launcher-time">
-            <span className="launcher-time-wrapper">OUR MISSION {">"}</span>
+          <div
+            className="col launcher-mission"
+            onClick={() => {
+              handleCommand("launch launcher");
+              handleCommand("mission");
+            }}
+          >
+            <span
+              className="launcher-mission-wrapper"
+              onClick={() => {
+                handleCommand("launch launcher");
+                handleCommand("mission");
+              }}
+            >
+              OUR MISSION {">"}
+            </span>
           </div>
         </div>
       </NavigationStyle>

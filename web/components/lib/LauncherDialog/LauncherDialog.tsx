@@ -24,6 +24,7 @@ type LauncherDialogProps = {
 
 type LauncherDialogState = {
   isMaximized: boolean;
+  showMenu: boolean;
 };
 
 /**
@@ -43,9 +44,11 @@ export class LauncherDialog extends PureComponent<
 
     this.state = {
       isMaximized: false,
+      showMenu: false,
     };
 
     this.maximizeDialog = this.maximizeDialog.bind(this);
+    this.toggleMenu = this.toggleMenu.bind(this);
   }
 
   maximizeDialog = () => {
@@ -56,6 +59,18 @@ export class LauncherDialog extends PureComponent<
     } else {
       this.setState({
         isMaximized: true,
+      });
+    }
+  };
+
+  toggleMenu = () => {
+    if (this.state.showMenu) {
+      this.setState({
+        showMenu: false,
+      });
+    } else {
+      this.setState({
+        showMenu: true,
       });
     }
   };
@@ -94,22 +109,27 @@ export class LauncherDialog extends PureComponent<
           <div className="launcher-dialog-structure">
             <div className="launcher-dialog-sidebar">
               <ul className="launcher-commands">
-                {/* <li className="active" onClick={() => handleCommand("launch launcher")}>> Launcher</li> */}
-                {/* <li onClick={() => handleCommand("launch frontpage")}>
-                  {">"} Frontpage
-                </li> */}
-                {/* <Link href="/launcher/podcasts">
-                  <li>{">"} Podcasts</li>
-                </Link>
-                <Link href="/launcher/articles">
-                  <li>{">"} Articles</li>
-                </Link> */}
-                <li onClick={() => handleCommand("launch agency")}>
-                  {">"} About Us
+                <li className="__alt" onClick={() => handleCommand("mission")}>
+                  {">"} Our Mission
                 </li>
-                {/* <li onClick={() => handleCommand("launch editorial")}>> Editorial</li>
-                <li onClick={() => handleCommand("launch events")}>> Events</li>
-                <li onClick={() => handleCommand("launch resources")}>> Resources</li> */}
+                <li className="__alt __is-link">
+                  <a href="mailto: dave@allships.co" target="_blank">
+                    {">"} Submit Work
+                  </a>
+                </li>
+                <li className="__alt __is-link">
+                  <a href="mailto: dave@allships.co" target="_blank">
+                    {">"} Get in touch
+                  </a>
+                </li>
+                <li className="__alt __is-link">
+                  <a
+                    href="https://www.instagram.com/allships.co/"
+                    target="_blank"
+                  >
+                    {">"} Follow Us
+                  </a>
+                </li>
                 <li onClick={() => handleCommand("help")}>{">"} Help</li>
                 <li onClick={() => handleCommand("reset")}>{">"} Reset</li>
               </ul>
@@ -117,9 +137,13 @@ export class LauncherDialog extends PureComponent<
             <div className="dialog-content launcher-dialog-content">
               <ul className="cmd-list">
                 {appState.items.map((item: any, idx: number) => (
-                  <li key={idx}>
-                    <span className="label">ASR-MOTHERSHIP:~</span>
-                    <span>{item.text}</span>
+                  <li key={idx} className={item.addClass || false}>
+                    <span className="label">
+                      <span>ASR</span>
+                      <span className="__mobile-hidden">-MOTHERSHIP</span>
+                      <span>:~</span>
+                    </span>
+                    <span className="string">{item.text}</span>
                   </li>
                 ))}
                 <li className="launcher-input-wrapper">

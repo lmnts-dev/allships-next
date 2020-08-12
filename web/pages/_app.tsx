@@ -178,14 +178,261 @@ class MyApp extends App<MothershipProps, MothershipState> {
       });
     }
 
-    // CMD: Invert
-    else if (currentCmd.includes("invert")) {
-      // console.log("VALID");
+    // CMD: Mission
+    else if (currentCmd.includes("yes")) {
+      let helpMsg = [
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "",
+          done: false,
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "~~~~~~~~~~~~~~~~~~~~~~~~~",
+          done: false,
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "Let's do this!",
+          done: false,
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "You can support in any way you can.",
+          done: false,
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text:
+            "- Submit your work or your friend's work to be included in the mothership",
+          done: false,
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "- Advocate & educate against social media algorithms",
+          done: false,
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "- Share our website & cause",
+          done: false,
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "~~~~~~~~~~~~~~~~~~~~~~~~~",
+          done: false,
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "",
+          done: false,
+        },
+      ];
 
-      let color = currentCmd.split("invert ")[1];
+      this.setState((prevState: MothershipState) => ({
+        items: prevState.items.concat(helpMsg),
+      }));
+    }
+
+    // CMD: Mission
+    else if (currentCmd.includes("mission")) {
+      let paragraphOne =
+        "Creativity is the fuel that propels us into a higher plane of consciousness. When we unlock our imaginations, we open new portals into worlds that only exist because we make it so. The process of creation is inherently collaborative, and if we work to support and uplift each other, there is no limit to heights we can reach. A rising tide raises all ships, and the aim of this community is to encourage and reward that mode of thinking. It is the duty of an artist to be a bridge between those they learned from and those learning from them, and ALLSHIPS exists to be a living proof of that ideal.";
+
+      let paragraphTwo =
+        "For too long, we have let behemoth tech companies dominate our online space and control our conversations. But their goals are not to uplift and encourage the individual- their goals are to keep our attention no matter the cost, so they can sell more advertisements. The system they created rewards conflict, feeds drama, encourages manipulation of information, and sets neighbor against neighbor in the name of limitless profit.  Now is the time to take a stand, to resist the algorithmic narrowing of our perspective, to quash the fabricated conflict, and to stand together in defense of our creative community.";
+
+      let paragraphThree =
+        "We stand for quality over quantity, substance over numbers, cohesion over conflict, opinion over algorithms, thoughtful content over snackable, sugary, viral hits. We stand together, not apart.";
+
+      // _____________________________________
+      // Our message
+      let missionMsg = [
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "~~~~~~~~~~~~~~~~~~~~~~~~~",
+          done: false,
+        },
+        // _____________________________________
+        // Desktop ASCII
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`          _      _       _____ _    _ _____ _____   _____ `,
+          done: false,
+          addClass: "__mobile-hidden __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`    /\   | |    | |     / ____| |  | |_   _|  __ \ / ____|`,
+          done: false,
+          addClass: "__mobile-hidden __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`   /  \  | |    | |    | (___ | |__| | | | | |__) | (___  `,
+          done: false,
+          addClass: "__mobile-hidden __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`  / /\ \ | |    | |     \___ \|  __  | | | |  ___/ \___ \ `,
+          done: false,
+          addClass: "__mobile-hidden __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw` / ____ \| |____| |____ ____) | |  | |_| |_| |     ____) |`,
+          done: false,
+          addClass: "__mobile-hidden __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`/_/    \_\______|______|_____/|_|  |_|_____|_|    |_____/ `,
+          done: false,
+          addClass: "__mobile-hidden __string-clr-secondary",
+        },
+        // _____________________________________
+        // Mobile ASCII
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`   ___   __   __   ______ _________  ____`,
+          done: false,
+          addClass: "__mobile-visible __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`  / _ | / /  / /  / __/ // /  _/ _ \/ __/`,
+          done: false,
+          addClass: "__mobile-visible __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw` / __ |/ /__/ /___\ \/ _  // // ___/\ \  `,
+          done: false,
+          addClass: "__mobile-visible __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: String.raw`/_/ |_/____/____/___/_//_/___/_/  /___/  `,
+          done: false,
+          addClass: "__mobile-visible __string-clr-secondary",
+        },
+
+        // _____________________________________
+        // Message
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "",
+          done: false,
+          addClass: "__string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "A Creative Community",
+          done: false,
+          addClass: "__string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "",
+          done: false,
+          addClass: "__string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "(Scroll Down)",
+          done: false,
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "",
+          done: false,
+          addClass: "__string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "~~~~~~~~~~~~~~~~~~~~~~~~~",
+          done: false,
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "",
+          done: false,
+          addClass: "__string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: paragraphOne,
+          done: false,
+          addClass: "__string-long-form __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "",
+          done: false,
+          addClass: "__string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: paragraphTwo,
+          done: false,
+          addClass: "__string-long-form __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "",
+          done: false,
+          addClass: "__string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: paragraphThree,
+          done: false,
+          addClass: "__string-long-form __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "",
+          done: false,
+          addClass: "__string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "Will you stand with us?",
+          done: false,
+          addClass: "__string-long-form __string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "",
+          done: false,
+          addClass: "__string-clr-secondary",
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "~~~~~~~~~~~~~~~~~~~~~~~~~",
+          done: false,
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "Type: [YES] [NOPE] [HELP]",
+          done: false,
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "~~~~~~~~~~~~~~~~~~~~~~~~~",
+          done: false,
+        },
+        {
+          id: Math.random().toString(36).substring(7),
+          text: "",
+          done: false,
+          addClass: "__string-clr-secondary",
+        },
+      ];
 
       this.setState({
-        invert: color,
+        items: missionMsg,
       });
     }
 
