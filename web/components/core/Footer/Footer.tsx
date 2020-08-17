@@ -56,15 +56,19 @@ class NewsletterForm extends Component<any, FormState> {
   }
 
   render() {
+
+    console.log(this.state)
+
     return (
       <>
         {!this.state.complete ? (
-          <form onSubmit={() => this.handleSubmit}>
+          //@ts-ignore
+          <form onSubmit={this.handleSubmit}>
             <input
               type="email"
               placeholder="> Enter your email"
               value={this.state.value}
-              onChange={() => this.handleChange}
+              onChange={this.handleChange}
             />
           </form>
         ) : (

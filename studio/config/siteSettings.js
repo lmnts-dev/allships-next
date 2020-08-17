@@ -15,5 +15,5 @@ export default class siteSettings {
   static vercelProjectId = "allships";
   static baseUrlHook = "https://api.vercel.com/v1/integrations/deploy/QmUcSnSD2s4xbbwHGVBJFYXcaLegbYo9GQQaUYhCQD4vYD/pnGi9mfb1l";
   static stagingUrl = "https://allships-alpha.now.sh";
-  static stagingUrlHook = "`https://api.vercel.com/v1/integrations/deploy/QmUcSnSD2s4xbbwHGVBJFYXcaLegbYo9GQQaUYhCQD4vYD/gcnS6mZ3NN";
+  static stagingUrlHook = "https://api.vercel.com/v1/integrations/deploy/QmUcSnSD2s4xbbwHGVBJFYXcaLegbYo9GQQaUYhCQD4vYD/gcnS6mZ3NN";
 }

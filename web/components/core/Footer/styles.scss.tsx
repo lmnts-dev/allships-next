@@ -37,14 +37,14 @@ export const FooterStyle = styled.footer`
     padding: 0;
   }
 
-  &:not(input) {
+  /* &:not(input) {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-  }
+  } */
 
   .footer-inner {
     display: flex;
@@ -96,12 +96,12 @@ export const FooterStyle = styled.footer`
         }
 
         .footer-brand {
-          -webkit-touch-callout: none;
+          /* -webkit-touch-callout: none;
           -webkit-user-select: none;
           -khtml-user-select: none;
           -moz-user-select: none;
           -ms-user-select: none;
-          user-select: none;
+          user-select: none; */
 
           .footer-brand-image {
             width: 100%;
@@ -134,12 +134,12 @@ export const FooterStyle = styled.footer`
           li {
             margin-bottom: calc(${Root.Size} / 2);
             cursor: pointer;
-            -webkit-touch-callout: none;
+            /* -webkit-touch-callout: none;
             -webkit-user-select: none;
             -khtml-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
-            user-select: none;
+            user-select: none; */
 
             color: ${Theme.Color.Primary};
 
@@ -245,12 +245,12 @@ export const FooterStyle = styled.footer`
 
         .footer-copyright {
           font-size: 1.5rem;
-          -webkit-touch-callout: none;
+          /* -webkit-touch-callout: none;
           -webkit-user-select: none;
           -khtml-user-select: none;
           -moz-user-select: none;
           -ms-user-select: none;
-          user-select: none;
+          user-select: none; */
 
           @media (max-width: ${Theme.Base.Media.Width.Md}) {
             font-size: 1rem;
