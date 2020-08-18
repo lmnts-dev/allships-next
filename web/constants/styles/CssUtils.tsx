@@ -53,9 +53,9 @@ export class CssUtils {
         width: calc(${Root.Size} / 3);
         height: calc(${Root.Size} / 3);
         border-radius: 50%;
+        opacity: .04;
         background: ${Theme.Color.Secondary};
-        transition: opacity ${Theme.Base.Transition.Duration}
-          ${Theme.Base.Transition.CssEase};
+        transition: opacity ${Theme.Base.Transition.Duration} ${Theme.Base.Transition.CssEase};
         z-index: 10;
       }
     `;
