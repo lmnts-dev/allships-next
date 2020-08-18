@@ -120,7 +120,7 @@ export const GridRowStyle = styled.section`
 
         .section-grid-img-wrapper {
           position: relative;
-          background: ${Theme.Color.Primary};
+          background: ${Theme.Color.Nightsky};
           width: 100%;
           padding-bottom: 33vw;
           overflow: hidden;

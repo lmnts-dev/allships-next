@@ -42,7 +42,7 @@ export class CssUtils {
 
   static ShowLoadingIndicator = () => {
     return css`
-      background: ${Theme.Color.Primary};
+      background: ${Theme.Color.Nightsky};
 
       &:after {
         content: "";

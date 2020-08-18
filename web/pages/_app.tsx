@@ -53,6 +53,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     };
   }, []);
 
+  Router.events.on("routeChangeComplete", () => {
+    window.scrollTo(0, 0);
+  });
+
   // Render our App
   return (
     <Mothership>
