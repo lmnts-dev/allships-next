@@ -43,7 +43,7 @@ const FrontPage: React.FunctionComponent<LMNTS_AppData> = ({
   return (
     <>
       <InnerGrid startBelowNav={true}>
-        <SiteHead title="ALLSHIPS | A Creative Community." />
+        <SiteHead title="ALLSHIPS | A Creative Community" />
         <AddEmbellishments />
         <GrainCover />
         <CardListings

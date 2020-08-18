@@ -546,7 +546,7 @@ export class CardListings extends PureComponent<
           <SiteHead
             title={`ALLSHIPS | ${
               this.state.currentCategory == "everything"
-                ? " A Creative Community."
+                ? " A Creative Community"
                 : capitalCategory
             }`}
           />
