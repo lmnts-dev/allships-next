@@ -1,6 +1,6 @@
 // Core
-import React from "react";
-import App from "next/app";
+import React, { useEffect } from "react";
+import App, { AppProps, AppContext } from "next/app";
 import { createGlobalStyle } from "styled-components";
 
 // Components
@@ -9,6 +9,9 @@ import { Layout } from "../components/core/Layout";
 
 // Constants
 import { Theme } from "../constants/Theme";
+
+import { Router } from "next/router";
+import * as gtag from "../lib/gtag";
 
 // Begin Component
 // __________________________________________________________________________________________
@@ -39,6 +42,25 @@ type MothershipState = {
   textColor: string;
 };
 
+const MyApp = ({ Component, pageProps }: AppProps) => {
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      gtag.pageview(url);
+    };
+    Router.events.on("routeChangeComplete", handleRouteChange);
+    return () => {
+      Router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, []);
+
+  // Render our App
+  return (
+    <Mothership>
+      <Component {...pageProps}></Component>
+    </Mothership>
+  );
+};
+
 /**
  *
  * /pages/_app_.js
@@ -48,7 +70,7 @@ type MothershipState = {
  * @description one call for all data at a time.
  *
  */
-class MyApp extends App<MothershipProps, MothershipState> {
+class Mothership extends App<MothershipProps, MothershipState> {
   constructor(props: MothershipProps) {
     super(props);
 
@@ -1088,7 +1110,6 @@ class MyApp extends App<MothershipProps, MothershipState> {
   }
 
   render() {
-    const { Component, pageProps } = this.props;
     // @ts-ignore
     const { visibleDialog } = this.state;
 
@@ -1139,14 +1160,14 @@ class MyApp extends App<MothershipProps, MothershipState> {
             this.state.focus
           }
         >
-          <Component {...pageProps}></Component>
+          {this.props.children}
         </Layout>
       </>
     );
   }
 }
 
-MyApp.getInitialProps = async (appContext) => {
+MyApp.getInitialProps = async (appContext: AppContext) => {
   // calls page's `getInitialProps` and fills `MothershipProps.pageProps`
   const MothershipProps = await App.getInitialProps(appContext);
 
