@@ -59,7 +59,7 @@ export const FullWidthImage: React.FunctionComponent<LMNTS_Section_FullWidthImag
         }
       >
         <LazyImage
-          src={`${urlFor(image).width(2000).auto("format").url()}`}
+          src={`${urlFor(image).width(2048).auto("format").url()}`}
           alt={alt}
         />
       </FullWidthImageStyle>

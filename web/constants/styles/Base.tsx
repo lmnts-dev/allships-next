@@ -41,7 +41,7 @@ export const Base = {
     SiteWidth: 1620, // px
     // SiteWidth: 2680, // px
     ReadingWidth: 1450, // px
-    SiteFrameWidth: 10,
+    SiteFrameWidth: 4,
     Nav: {
       Size: {
         Lg: 50, // px
@@ -135,7 +135,7 @@ export const Base = {
 
   // Borders
   Border: {
-    Size: 6,
+    Size: 4,
   },
 
   // Dialogs

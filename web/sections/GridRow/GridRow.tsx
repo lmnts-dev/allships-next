@@ -69,7 +69,7 @@ export const GridRow: React.FunctionComponent<LMNTS_Section_GridRow> = ({
                   }
                 >
                   <LazyImage
-                    src={`${urlFor(image).width(1200).auto("format").url()}`}
+                    src={`${urlFor(image).width(2048).auto("format").url()}`}
                     alt={meta}
                     title={meta}
                     uniqueKey={

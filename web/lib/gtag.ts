@@ -1,7 +1,7 @@
 // Begin Component
 //////////////////////////////////////////////////////////////////////
 
-export const GA_TRACKING_ID = "GTM-W9PHLBC";
+export const GA_TRACKING_ID = "GTM-P9NSK4D";
 
 declare global {
   interface Window {
@@ -23,7 +23,7 @@ export const pageview = (url: string) => {
   }
 };
 
-// https://developers.google.com/analytics/devguides/collection/gtagjs/events
+// See: https://developers.google.com/analytics/devguides/collection/gtagjs/events
 export const event = ({ action, params }: GoogleTagEvent) => {
   if (typeof window !== "undefined") {
     window.gtag("event", action, params);
