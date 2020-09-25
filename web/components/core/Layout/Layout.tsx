@@ -1,5 +1,5 @@
 // Constants
-import { GlobalStyle } from "../../../constants/styles/Global";
+// import { GlobalStyle } from "../../../constants/styles/Global";
 
 // Components
 import { Footer } from "../Footer";
@@ -47,7 +47,6 @@ export const Layout: React.FunctionComponent<Props> = ({
 }) => {
   return (
     <>
-      <GlobalStyle />
       {appState.visibleDialog == "launcher" ? (
         <LauncherDialog
           handleCommand={handleCommand}

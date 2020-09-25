@@ -23,7 +23,7 @@ export const GridRowStyle = styled.section`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: calc(${Root.Size} * 2) 0;
+  padding: calc(${Root.Size}) 0;
 
   + .section-grid-row {
     /* padding: 0; */

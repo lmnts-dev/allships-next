@@ -19,7 +19,7 @@ import { Theme } from "../../constants/Theme";
  *
  */
 export const ArticleTextStyle = styled.article`
-  padding: calc(${Root.Size} * 2);
+  padding: calc(${Root.Size});
 
   @media (max-width: ${Theme.Base.Media.Width.Md}) {
     padding: calc(${Root.Size} * 1);

@@ -19,7 +19,7 @@ import { Root } from "../../../constants/Root";
 // Begin Styles
 // __________________________________________________________________________________________
 
-let sectionPadding = `${Root.Size}`;
+let sectionPadding = `calc(${Root.Size} * .5)`;
 let sectionContentMaxWidth = `550px`;
 
 export const SectionLoopStyle = styled.section`
