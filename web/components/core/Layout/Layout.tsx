@@ -9,7 +9,9 @@ import { LauncherDialog } from "../../lib/LauncherDialog";
 
 // Styles
 import { LayoutStyle } from "./styles.scss";
-import { ChangeEvent, FormEvent, MouseEvent } from "react";
+import React, { ChangeEvent, FormEvent, MouseEvent } from "react";
+import { GrainCover } from "../../lib/GrainCover";
+import { LMNTS_NavigationData } from "../../../constants/types";
 
 // Begin Component
 // __________________________________________________________________________________________
@@ -23,6 +25,7 @@ type Props = {
   handleCommand: (cmd: string) => void;
   shouldFocus: boolean;
   children: any;
+  navigation: LMNTS_NavigationData;
 };
 
 /**
@@ -44,15 +47,18 @@ export const Layout: React.FunctionComponent<Props> = ({
   handleAddItem,
   shouldFocus,
   children,
+  navigation,
 }) => {
   return (
     <>
+      <GrainCover />
       {appState.visibleDialog == "launcher" ? (
         <LauncherDialog
           handleCommand={handleCommand}
           handleTextChange={handleTextChange}
           handleAddItem={handleAddItem}
           appState={appState}
+          navigation={navigation}
         />
       ) : (
         false
@@ -63,10 +69,11 @@ export const Layout: React.FunctionComponent<Props> = ({
         handleAddItem={handleAddItem}
         shouldFocus={shouldFocus}
         handleCommand={handleCommand}
+        navigation={navigation}
       />
       <Frame />
       <LayoutStyle className="main-wrapper">{children}</LayoutStyle>
-      <Footer handleCommand={handleCommand} />
+      <Footer navigation={navigation} handleCommand={handleCommand} />
     </>
   );
 };

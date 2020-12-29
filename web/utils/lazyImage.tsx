@@ -16,6 +16,7 @@ type Props = {
   title?: string;
   aspectRatio?: string;
   uniqueKey?: string;
+  addClass?: string;
 };
 
 /**
@@ -60,12 +61,13 @@ export class LazyImage extends React.Component<Props, any> {
       aspectRatio,
       style,
       uniqueKey,
+      addClass
     } = this.props;
 
     return (
       <img
         alt={alt}
-        className="lazy"
+        className={`lazy ${addClass ? addClass : ''}`}
         data-src={src}
         data-srcset={srcset}
         data-sizes={sizes}

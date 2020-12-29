@@ -61,15 +61,33 @@ export class ContentCard extends Component<ContentCardProps, any> {
       data,
       isExternal,
     }) => {
-      let { thumbnail_image, title, categories, author } = data;
+      let {
+        thumbnail_image,
+        wide_thumbnail_image,
+        title,
+        categories,
+        author,
+      } = data;
 
       let isPublishedByUs = author ? author !== "By Others" : false;
 
       if (thumbnail_image && title) {
         return (
           <div className="content-card-inner">
+            {wide_thumbnail_image ? (
+              <LazyImage
+                src={wide_thumbnail_image}
+                alt={title}
+                addClass="desktop-wide-image"
+              />
+            ) : null}
+
             {thumbnail_image ? (
-              <LazyImage src={thumbnail_image} alt={title} />
+              <LazyImage
+                src={thumbnail_image}
+                alt={title}
+                addClass="default-image"
+              />
             ) : null}
             <div className="content-card-title">
               {title} {">"}

@@ -1,5 +1,5 @@
 // Core
-import React, { useEffect } from "react";
+import React, { Component, useEffect } from "react";
 import App, { AppProps, AppContext } from "next/app";
 import { createGlobalStyle } from "styled-components";
 
@@ -12,6 +12,8 @@ import { Theme } from "../constants/Theme";
 
 import { Router } from "next/router";
 import * as gtag from "../lib/gtag";
+import { Queries, QueryUtils } from "../constants/Queries";
+import { LMNTS_NavigationData } from "../constants/types";
 
 // Begin Component
 // __________________________________________________________________________________________
@@ -22,7 +24,14 @@ type MothershipCmd = {
   done: boolean;
 };
 
-type MothershipProps = any;
+type LMNTS_AppProps = AppProps & {
+  navigation: LMNTS_NavigationData;
+};
+
+type MothershipProps = {
+  navigation: LMNTS_NavigationData;
+  children: React.ReactNode;
+};
 
 type MothershipState = {
   visibleDialog: string;
@@ -42,7 +51,7 @@ type MothershipState = {
   textColor: string;
 };
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+const MyApp = ({ Component, pageProps, navigation }: LMNTS_AppProps) => {
   useEffect(() => {
     const handleRouteChange = (url: string) => {
       gtag.pageview(url);
@@ -57,9 +66,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     window.scrollTo(0, 0);
   });
 
+  console.log("navigation:", navigation);
+
   // Render our App
   return (
-    <Mothership>
+    <Mothership navigation={navigation}>
       <Component {...pageProps}></Component>
     </Mothership>
   );
@@ -74,7 +85,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
  * @description one call for all data at a time.
  *
  */
-class Mothership extends App<MothershipProps, MothershipState> {
+class Mothership extends Component<MothershipProps, MothershipState> {
   constructor(props: MothershipProps) {
     super(props);
 
@@ -1149,6 +1160,8 @@ class Mothership extends App<MothershipProps, MothershipState> {
     }
   `;
 
+    console.log("this.props.navigation:", this.props.navigation);
+
     // Render our App
     return (
       <>
@@ -1159,6 +1172,7 @@ class Mothership extends App<MothershipProps, MothershipState> {
           handleAddItem={this.handleAddItem}
           handleCommand={this.handleCommand}
           appState={this.state}
+          navigation={this.props.navigation}
           shouldFocus={
             // @ts-ignore
             this.state.focus
@@ -1177,6 +1191,7 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
 
   return {
     ...MothershipProps,
+    navigation: await QueryUtils.getSanityClient(true).fetch(Queries.GetNavigation()),
   };
 };
 

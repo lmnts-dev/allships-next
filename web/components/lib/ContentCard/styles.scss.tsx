@@ -20,7 +20,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   .content-card {
-  
+
     width: 20%;
     padding: var(--cardPadding);
     position: relative;
@@ -50,17 +50,17 @@ export const GlobalStyles = createGlobalStyle`
           position: absolute;
           top: 0px;
           right: -10px;
-          width: 0; 
-          height: 0; 
+          width: 0;
+          height: 0;
           border-top: 20px solid transparent;
-          border-bottom: 20px solid transparent;  
+          border-bottom: 20px solid transparent;
           border-left: 20px solid ${Theme.Color.Primary};
           transform: rotate(-45deg);
           transform-origin: bottom left;
           z-index: 15;
         }
 
-        .__isLinkPublishedByUs { 
+        .__isLinkPublishedByUs {
           &:after {
             display: none;
           }
@@ -121,11 +121,11 @@ export const GlobalStyles = createGlobalStyle`
         padding: ${Root.BorderSize} calc(${Root.BorderSize} * 2) ${Root.BorderSize};
         z-index: 10;
         pointer-events: none;
-        -webkit-touch-callout: none; 
-        -webkit-user-select: none; 
-        -khtml-user-select: none; 
-        -moz-user-select: none; 
-        -ms-user-select: none; 
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
         user-select: none;
       }
 
@@ -140,11 +140,11 @@ export const GlobalStyles = createGlobalStyle`
           padding: ${Root.BorderSize};
           display: flex;
           pointer-events: none;
-          -webkit-touch-callout: none; 
-          -webkit-user-select: none; 
-          -khtml-user-select: none; 
-          -moz-user-select: none; 
-          -ms-user-select: none; 
+          -webkit-touch-callout: none;
+          -webkit-user-select: none;
+          -khtml-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
           user-select: none;
         }
       }
@@ -162,6 +162,18 @@ export const GlobalStyles = createGlobalStyle`
         height: 100%;
         max-width: 100%;
         z-index: 5;
+
+        .desktop-wide-image {
+          display: none;
+        }
+
+        @media (min-width: ${Theme.Base.Media.Width.Md}) {
+          &.desktop-wide-image {
+            display: block;
+
+            z-index: 10;
+          }
+        }
       }
     }
   }

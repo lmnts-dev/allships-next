@@ -10,6 +10,11 @@ import React, {
 } from "react";
 import LauncherDialogStyle from "./styles.scss";
 import { createGlobalStyle } from "styled-components";
+import {
+  LMNTS_NavigationData,
+  LMNTS_NavigationItem,
+} from "../../../constants/types";
+import Link from "next/link";
 
 // Begin Component
 // __________________________________________________________________________________________
@@ -21,6 +26,7 @@ type LauncherDialogProps = {
     event: FormEvent<HTMLFormElement> | MouseEvent<HTMLButtonElement>
   ) => void;
   appState: any;
+  navigation: LMNTS_NavigationData;
 };
 
 type LauncherDialogState = {
@@ -120,6 +126,35 @@ export class LauncherDialog extends PureComponent<
           </div>
           <div className="launcher-dialog-structure">
             <div className="launcher-dialog-sidebar">
+              {/* ________________________________________________ */}
+              {/* Custom Linklist */}
+              {this.props.navigation && this.props.navigation.link_list ? (
+                <ul
+                  className="launcher-commands launcher-commands--menu-items"
+                  style={{
+                    display: `${this.state.showMenu ? `none` : `block`}`,
+                  }}
+                >
+                  {this.props.navigation.link_list.length > 0
+                    ? this.props.navigation.link_list.map(
+                        (item: LMNTS_NavigationItem, idx: number) => {
+                          return (
+                            <li key={idx} className="__alt __is-link">
+                              <Link href={item.href}>
+                                <a onClick={() => handleCommand("launch none")}>
+                                  {">"} {item.label}
+                                </a>
+                              </Link>
+                            </li>
+                          );
+                        }
+                      )
+                    : null}
+                </ul>
+              ) : null}
+
+              {/* ________________________________________________ */}
+              {/* Menu Commands */}
               <ul className="launcher-commands">
                 <li
                   className={`__mobile-visible ${

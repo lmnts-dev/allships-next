@@ -10,12 +10,18 @@ import { FooterStyle } from "./styles.scss";
 
 // Utilities
 import { QueryUtils } from "../../../constants/Queries";
+import {
+  LMNTS_NavigationData,
+  LMNTS_NavigationItem,
+} from "../../../constants/types";
+import Link from "next/link";
 
 // Begin Component
 // __________________________________________________________________________________________
 
 type FooterProps = {
   handleCommand: (cmd: string) => void;
+  navigation: LMNTS_NavigationData;
 };
 
 type FormState = {
@@ -56,8 +62,7 @@ class NewsletterForm extends Component<any, FormState> {
   }
 
   render() {
-
-    console.log(this.state)
+    console.log(this.state);
 
     return (
       <>
@@ -89,6 +94,7 @@ class NewsletterForm extends Component<any, FormState> {
 
 export const Footer: React.FunctionComponent<FooterProps> = ({
   handleCommand,
+  navigation,
 }) => {
   return (
     <FooterStyle>
@@ -103,6 +109,22 @@ export const Footer: React.FunctionComponent<FooterProps> = ({
               <div className="footer-brand-tagline">A Creative Community</div>
             </div>
             <ul>
+              {navigation.footer_link_list.length > 0
+                ? navigation.footer_link_list.map(
+                    (item: LMNTS_NavigationItem, idx: number) => {
+                      return (
+                        <li key={idx}>
+                          <Link href={item.href}>
+                            <a onClick={() => handleCommand("launch none")}>
+                              {">"} {item.label}
+                            </a>
+                          </Link>
+                        </li>
+                      );
+                    }
+                  )
+                : null}
+
               <li onClick={() => handleCommand("launch launcher")}>
                 {">"} Console
               </li>

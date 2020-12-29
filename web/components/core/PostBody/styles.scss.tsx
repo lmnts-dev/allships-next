@@ -40,6 +40,12 @@ export const PostBodyStyle = styled.div`
 
   border-bottom: 2px ${Theme.Color.Primary} solid;
 
+  &.pseudo-post {
+    padding-top: calc(var(--articlePadding) / 2);
+    border-bottom: 0;
+    margin-bottom: 0;
+  }
+
   @media (max-width: ${Theme.Base.Media.Width.Md}) {
     --articlePadding: calc(${Root.Size} * 2);
 
@@ -125,6 +131,50 @@ export const PostBodyStyle = styled.div`
   article {
     padding-left: ${Root.Grid.Gutter.Left};
     padding-right: ${Root.Grid.Gutter.Right};
+
+    .section-article-text {
+      strong {
+        background: ${Theme.Color.Secondary};
+        color: ${Theme.Color.Background};
+
+        a {
+          color: ${Theme.Color.Primary};
+
+          &:hover {
+            color: ${Theme.Color.Secondary};
+          }
+        }
+      }
+
+      ul {
+        line-height: 1.5;
+        font-size: 1.4rem;
+
+        margin-top: 1.5em;
+
+        li {
+          position: relative;
+
+          padding-left: 1.5rem;
+
+          &:before {
+            content: '';
+
+            position: absolute;
+
+            left: 0;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            height: 2px;
+            width: 1rem;
+
+            background: ${Theme.Color.Secondary};
+          }
+        }
+      }
+    }
   }
 
   /* ___________________________________ */

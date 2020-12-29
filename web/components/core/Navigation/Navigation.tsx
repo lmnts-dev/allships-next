@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { Icon } from "../../lib/Icon";
 import { GlobalStyle } from "../../../constants/styles/Global";
+import { LMNTS_NavigationData } from "../../../constants/types";
 
 // Begin Component
 // __________________________________________________________________________________________
@@ -19,6 +20,7 @@ type Props = {
     event: FormEvent<HTMLFormElement> | MouseEvent<HTMLButtonElement>
   ) => void;
   handleCommand: (cmd: string) => void;
+  navigation: LMNTS_NavigationData;
 };
 
 /**
@@ -39,6 +41,7 @@ export const Navigation: React.FunctionComponent<Props> = ({
   handleTextChange,
   handleAddItem,
   handleCommand,
+  navigation,
 }) => {
   // console.log(appState);
 
@@ -101,7 +104,18 @@ export const Navigation: React.FunctionComponent<Props> = ({
             </span>
           </div>
 
-          {/* Column: Time */}
+          {/* Column: Agency */}
+          {navigation && navigation.nav_cta ? (
+            <div className="col launcher-cta">
+              <Link href={navigation.nav_cta.link.href}>
+                <a className="launcher-wrapper">
+                  {navigation.nav_cta.link.label} {">"}
+                </a>
+              </Link>
+            </div>
+          ) : null}
+
+          {/* Column: Mission */}
           <div
             className="col launcher-mission"
             onClick={() => {
@@ -110,13 +124,13 @@ export const Navigation: React.FunctionComponent<Props> = ({
             }}
           >
             <span
-              className="launcher-mission-wrapper"
+              className="launcher-wrapper"
               onClick={() => {
                 handleCommand("launch launcher");
                 handleCommand("mission");
               }}
             >
-              OUR MISSION {">"}
+              MENU {">"}
             </span>
           </div>
         </div>

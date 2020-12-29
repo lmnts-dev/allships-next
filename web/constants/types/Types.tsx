@@ -18,6 +18,24 @@ import { LMNTS_SectionLoop } from "../../components/core/SectionLoop";
 
 /**
  *
+ * @name LMNTS_Sanity_Page
+ *
+ */
+
+export type LMNTS_Sanity_Page = Sanity_DefaultItem &
+  LMNTS_SectionLoop & {
+    _type: "page";
+    title: string;
+    slug: Sanity_Slug;
+    opengraph?: {
+      description?: string;
+      image?: Sanity_ImageAsset;
+      tags?: string[];
+    };
+  };
+
+/**
+ *
  * @name LMNTS_Sanity_Article
  *
  */
@@ -114,6 +132,7 @@ export type LMNTS_Sanity_DefaultPost = LMNTS_SectionLoop &
     slug: Sanity_Slug;
     tags?: string[];
     thumbnail_image?: Sanity_ImageAsset;
+    wide_thumbnail_image?: Sanity_ImageAsset;
     title?: string;
   };
 
@@ -146,9 +165,31 @@ export type LMNTS_GenericListing = {
   link?: string | null;
   tags?: string[] | null;
   thumbnail_image?: string | null;
+  wide_thumbnail_image?: string | null;
   title?: string | null;
   published?: boolean | null;
   publishedAt?: string | null;
+};
+
+/**
+ *
+ * @name LMNTS_NavigationData
+ *
+ */
+export type LMNTS_NavigationItem = {
+  href: string;
+  label: string;
+};
+
+export type LMNTS_NavigationData = Sanity_DefaultItem & {
+  link_list: LMNTS_NavigationItem[];
+  footer_link_list: LMNTS_NavigationItem[];
+  nav_cta: {
+    link: {
+      href: string;
+      label: string;
+    };
+  };
 };
 
 /**

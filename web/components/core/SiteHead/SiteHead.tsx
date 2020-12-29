@@ -13,12 +13,17 @@ import { Settings } from "../../../constants/site/Settings";
 // Begin Component
 // __________________________________________________________________________________________
 
+export type LMNTS_SiteHead = {
+  title: string,
+  opengraph?: string | null;
+}
+
 let siteTitle = Settings.siteTitle;
 let baseUrl = Settings.siteUrl;
 let description = Settings.siteDescription;
 let keywords = Settings.siteBaseKeywords;
 
-export const SiteHead = ({
+export const SiteHead: React.FunctionComponent<LMNTS_SiteHead> = ({
   title = siteTitle + " | " + description,
   opengraph = `${baseUrl}/og.gif`,
 }) => {

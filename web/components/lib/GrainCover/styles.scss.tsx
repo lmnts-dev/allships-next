@@ -21,16 +21,17 @@ const GrainCoverStyle = styled.div`
   bottom: 0;
   pointer-events: none;
   overflow: hidden;
-  /* display: flex; */
-  display: none;
+  display: flex;
+  opacity: .06;
+  /* display: none; */
   z-index: 999;
-  mix-blend-mode: multiply;
+  /* mix-blend-mode: multiply; */
 
   .grain-cover-inner {
     width: 1000vw;
     height: 1000vh;
-    animation: grain 8s steps(10) infinite;
-    background-image: url('noise.png');
+    /* animation: grain 8s steps(10) infinite; */
+    background-image: url('noise-02.png');
     animation: ${Grain} 8s steps(10) infinite;
   }
 `;

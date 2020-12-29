@@ -256,12 +256,17 @@ export const NavigationStyle = styled.nav<Props>`
 
       /* Launcher Time */
       &.launcher-time,
-      &.launcher-mission {
+      &.launcher-mission,
+      &.launcher-cta {
         display: flex;
         align-items: center;
         padding: 0 ${navPadding};
         cursor: pointer;
         border-left: ${Root.BorderSize} solid ${Theme.Color.Primary};
+
+        .launcher-wrapper {
+          color: ${Theme.Color.Secondary};
+        }
 
         @media (max-width: ${Theme.Base.Media.Width.Sm}) {
           border-left: unset;
@@ -274,6 +279,18 @@ export const NavigationStyle = styled.nav<Props>`
         &:hover {
           background-color: ${Theme.Color.Secondary};
           color: ${Theme.Color.Black};
+
+          .launcher-wrapper {
+            color: ${Theme.Color.Dialog};
+
+            text-decoration: none;
+          }
+        }
+      }
+
+      &.launcher-cta {
+        @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+          display: none;
         }
       }
     }

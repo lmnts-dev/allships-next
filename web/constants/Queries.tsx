@@ -53,7 +53,8 @@ export class Queries {
       ...,
       "author": author->,
       "featured_image": featured_image.asset->,
-      "thumbnail_image": thumbnail_image.asset->
+      "thumbnail_image": thumbnail_image.asset->,
+      "wide_thumbnail_image": wide_thumbnail_image.asset->
     }`;
   };
 
@@ -66,6 +67,39 @@ export class Queries {
       },
       "featured_image": featured_image.asset->,
       "thumbnail_image": thumbnail_image.asset->,
+      "content": content[]{
+          ...,
+          "image": image.asset->,
+          "images": images[].asset->,
+          "items": items[]{
+            ..., "image" : image.asset->
+          }
+       }
+    }`;
+  };
+
+  /**
+   *
+   * Pages
+   *
+   */
+  static CurrentPage = () => {
+    return groq`*[_type == "page" && slug.current == $slug][0]{
+      ...,
+      "content": content[]{
+          ...,
+          "image": image.asset->,
+          "images": images[].asset->,
+          "items": items[]{
+            ..., "image" : image.asset->
+          }
+       }
+    }`;
+  };
+
+  static AllPages = () => {
+    return groq`*[_type == "page"]{
+      ...,
       "content": content[]{
           ...,
           "image": image.asset->,
@@ -139,6 +173,15 @@ export class Queries {
           }
        }
     }`;
+  };
+
+  /**
+   *
+   * Navigation
+   *
+   */
+  static GetNavigation = () => {
+    return groq`*[_type == "navigation"][0]`;
   };
 }
 
@@ -321,6 +364,7 @@ export class QueryUtils {
           thumbnail_image: item.thumbnail_image
             ? item.thumbnail_image.url
             : null,
+          wide_thumbnail_image: item.wide_thumbnail_image ? item.wide_thumbnail_image.url : null,
           title: item.title ? item.title : null,
           published: true,
           publishedAt: item._createdAt,
@@ -616,6 +660,7 @@ export class QueryUtils {
       allContent
     );
 
+
     /**
      *
      * Return our Server Data
@@ -643,6 +688,7 @@ export class QueryUtils {
         allContent: allContent,
         allFeaturedContent: allFeaturedContent,
         allCategories: allCategories,
+
       },
     };
   };
