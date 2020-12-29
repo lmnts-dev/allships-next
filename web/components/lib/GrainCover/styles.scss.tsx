@@ -31,7 +31,7 @@ const GrainCoverStyle = styled.div`
     width: 1000vw;
     height: 1000vh;
     /* animation: grain 8s steps(10) infinite; */
-    background-image: url('noise-02.png');
+    background-image: url('noise-03.png');
     animation: ${Grain} 8s steps(10) infinite;
   }
 `;
