@@ -418,9 +418,12 @@ export class QueryUtils {
     });
 
     // @todo: Sort our new content by published time.
+    let unserializedContent = mergedContent;
+    let stringifiedContent = JSON.stringify(unserializedContent);
+    let serializedContent = JSON.parse(stringifiedContent);
 
     // Return our newly merged array.
-    return mergedContent;
+    return serializedContent;
   };
 
   /**
