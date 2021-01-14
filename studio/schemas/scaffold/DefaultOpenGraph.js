@@ -19,15 +19,13 @@ export const DefaultOpenGraph = [
       collapsible: true,
       collapsed: true,
     },
-    fieldsets: [
-      {name: 'opengraph', title: 'OpenGraph Settings'}
-    ],
+    fieldsets: [{ name: "opengraph", title: "OpenGraph Settings" }],
     fields: [
       {
         name: "image",
         title: "Image",
         type: "image",
-        fieldset: 'opengraph',
+        fieldset: "opengraph",
         options: {
           hotspot: true,
         },
@@ -36,13 +34,13 @@ export const DefaultOpenGraph = [
         name: "description",
         title: "Description",
         type: "text",
-        fieldset: 'opengraph',
+        fieldset: "opengraph",
       },
       {
         name: "tags",
         title: "Tags",
         type: "array",
-        fieldset: 'opengraph',
+        fieldset: "opengraph",
         of: [
           {
             type: "string",
@@ -51,6 +49,6 @@ export const DefaultOpenGraph = [
           },
         ],
       },
-    ]
-  }
+    ],
+  },
 ];
