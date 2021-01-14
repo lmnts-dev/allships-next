@@ -38,6 +38,7 @@ import { MarqueeRow } from "./sections/MarqueeRow";
 import { SectionBreak } from "./sections/SectionBreak";
 import { StickySection } from "./sections/StickySection";
 import { ArticleText } from "./sections/ArticleText";
+import { Navigation } from "./settings/Navigation";
 
 // __________________________________________________________________________________________
 
@@ -87,5 +88,6 @@ export default createSchema({
      *
      */
     Config,
+    Navigation
   ]),
 });

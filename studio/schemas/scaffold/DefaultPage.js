@@ -10,6 +10,7 @@
 
 import { Theme } from "../scaffold/Theme";
 import { Sections } from "../scaffold/Sections";
+import { DefaultOpenGraph } from "./DefaultOpenGraph";
 
 // __________________________________________________________________________________________
 
@@ -29,22 +30,5 @@ export const DefaultPage = [
     },
   },
   Sections(),
-  ...Theme,
-  {
-    name: "description",
-    title: "Description (SEO Only)",
-    type: "text",
-  },
-  {
-    name: "tags",
-    title: "Tags (SEO Only)",
-    type: "array",
-    of: [
-      {
-        type: "string",
-        name: "tag",
-        title: "Tag Name",
-      },
-    ],
-  },
+  ...DefaultOpenGraph
 ];

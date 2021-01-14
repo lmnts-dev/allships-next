@@ -51,7 +51,7 @@ export const DefaultPost = [
   },
   {
     name: "featured_image",
-    title: "Featured Image",
+    title: "Opengraph / Sharing Image",
     type: "image",
     options: {
       hotspot: true,
@@ -60,6 +60,15 @@ export const DefaultPost = [
   {
     name: "thumbnail_image",
     title: "Thumbnail Image",
+    type: "image",
+    options: {
+      hotspot: true,
+    },
+  },
+  {
+    name: "wide_thumbnail_image",
+    title: "Wide Thumbnail Image",
+    description: "This is ONLY for desktop at the wide ratio.",
     type: "image",
     options: {
       hotspot: true,

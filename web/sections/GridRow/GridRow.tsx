@@ -59,7 +59,7 @@ export const GridRow: React.FunctionComponent<LMNTS_Section_GridRow> = ({
                       : -1
                   }`}
                   style={
-                    image && image.metadata.dimensions
+                    image && image.metadata
                       ? {
                           paddingBottom: calcAspectRatio(
                             image.metadata.dimensions

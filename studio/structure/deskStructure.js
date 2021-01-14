@@ -22,6 +22,8 @@ import {
   // FaCampground,
   FaUsers,
   FaExternalLinkAlt,
+  FaSpaceShuttle,
+  FaDraftingCompass,
 } from "react-icons/fa";
 
 // Registries
@@ -33,6 +35,8 @@ import { ConfigRegistry } from "../schemas/settings/Config";
 import { AuthorRegistry } from "../schemas/content/Author";
 
 import resolveProductionUrl from "../utils/resolveProductionUrl";
+import { PageRegistry } from "../schemas/content/Page";
+import { NavigationRegistry } from "../schemas/settings/Navigation";
 
 // __________________________________________________________________________________________
 
@@ -148,9 +152,15 @@ export default () =>
         .title("Articles")
         .icon(FaBook)
         .schemaType(ArticleRegistry.name)
-        // When you open this list item, list out the documents
-        // of the type “project"
         .child(S.documentTypeList(ArticleRegistry.name).title("Articles")),
+
+      // Pages
+      S.listItem()
+        // Give it a title
+        .title("Pages")
+        .icon(FaSpaceShuttle)
+        .schemaType(PageRegistry.name)
+        .child(S.documentTypeList(PageRegistry.name).title("Pages")),
 
       // // Events
       // S.listItem()
@@ -210,6 +220,19 @@ export default () =>
 
       // Divider
       S.divider(),
+
+
+      // Navigation
+      S.listItem()
+        .title("Navigation")
+        .icon(FaDraftingCompass)
+        .child(
+          S.editor()
+            .id(NavigationRegistry.name)
+            .schemaType(NavigationRegistry.name)
+            .documentId("navigationConfig")
+            .title("Navigation Settings")
+        ),
 
       // Settings
       S.listItem()

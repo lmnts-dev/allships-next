@@ -60,7 +60,7 @@ const ArticlePostTemplate: React.FunctionComponent<LMNTS_Article_Post> = ({
       />
       <PostBody
         post={_document}
-        baseRoute="/launcher/articles"
+        baseRoute=""
         categoryDynamicRoute="[category]"
       />
       <InnerGrid>
