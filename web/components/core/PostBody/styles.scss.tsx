@@ -74,8 +74,10 @@ export const PostBodyStyle = styled.div`
   }
 
   p,
-  ul {
+  ul,
+  ol {
     font-family: var(--articleFont);
+    width: 100%;
     max-width: var(--articleMaxWidth);
     margin: 0 auto;
     color: ${Theme.Color.White};
@@ -146,16 +148,23 @@ export const PostBodyStyle = styled.div`
         }
       }
 
-      ul {
+      ul, ol {
         line-height: 1.5;
         font-size: 1.4rem;
 
+        width: 100%;
+        max-width: var(--articleMaxWidth);
+
         margin-top: 1.5em;
+        margin-bottom: 1.5em;
+        margin-left: auto;
+        margin-right: auto;
 
         li {
           position: relative;
 
           padding-left: 1.5rem;
+          padding-bottom: 1.25em;
 
           &:before {
             content: '';
@@ -163,9 +172,9 @@ export const PostBodyStyle = styled.div`
             position: absolute;
 
             left: 0;
-            top: 50%;
+            top: calc(1em / 1.25);
 
-            transform: translateY(-50%);
+            /* transform: translateY(-50%); */
 
             height: 2px;
             width: 1rem;
